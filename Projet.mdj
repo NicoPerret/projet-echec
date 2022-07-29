@@ -1441,11 +1441,30 @@
 									"model": {
 										"$ref": "AAAAAAGCNN4V2cfD5Yg="
 									},
+									"subViews": [
+										{
+											"_type": "UMLOperationView",
+											"_id": "AAAAAAGCSi+1doaHA38=",
+											"_parent": {
+												"$ref": "AAAAAAGCNN4V2sfMjo4="
+											},
+											"model": {
+												"$ref": "AAAAAAGCSi+1ZoaEAxA="
+											},
+											"font": "Arial;13;0",
+											"left": 685,
+											"top": 524,
+											"width": 168.04150390625,
+											"height": 13,
+											"text": "+calculElo()",
+											"horizontalAlignment": 0
+										}
+									],
 									"font": "Arial;13;0",
 									"left": 680,
 									"top": 519,
 									"width": 178.04150390625,
-									"height": 10
+									"height": 23
 								},
 								{
 									"_type": "UMLReceptionCompartmentView",
@@ -9843,6 +9862,16 @@
 							},
 							"name": "couleurJoueur2",
 							"type": "boolean int"
+						}
+					],
+					"operations": [
+						{
+							"_type": "UMLOperation",
+							"_id": "AAAAAAGCSi+1ZoaEAxA=",
+							"_parent": {
+								"$ref": "AAAAAAGCNN4V2cfD5Yg="
+							},
+							"name": "calculElo"
 						}
 					]
 				},
