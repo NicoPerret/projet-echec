@@ -3,8 +3,7 @@ package fr.echec.classe.modeJeux;
 public class ParametresPartie {
 private int temps;
 private int penalitePiece;
-public enum typePartie;
-private int adversaire
+private int adversaire;
 public int getTemps() {
 	return temps;
 }
@@ -17,10 +16,12 @@ public int getPenalitePiece() {
 public void setPenalitePiece(int penalitePiece) {
 	this.penalitePiece = penalitePiece;
 }
-public int getTypePartie() {
-	return typePartie;
+public int getAdversaire() {
+	return adversaire;
 }
-public void setTypePartie(int typePartie) {
-	this.typePartie = typePartie;
+public void setAdversaire(int adversaire) {
+	this.adversaire = adversaire;
 }
+
 }
+
