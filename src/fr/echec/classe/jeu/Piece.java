@@ -11,6 +11,7 @@ public class Piece {
 	private boolean enVie = true;
 	private int valeurMateriel; // NB : pion = 1 point, fou = 3 points, cavalier = 3 points, tour = 5 points,
 								// dame = 9 points
+	private String nomPlateau;
 
 	// Getters et Setters
 	public int getCoordonnee() {
@@ -56,7 +57,6 @@ public class Piece {
 	// Constructeur pièce
 
 	public Piece(TypePiece nom, boolean couleur) {
-
 		this.nom = nom;
 		this.couleur = couleur;
 		switch (nom) {
@@ -86,6 +86,14 @@ public class Piece {
 
 	public void seDeplacer() {
 
+	}
+
+	public String getNomPlateau() {
+		return nomPlateau;
+	}
+
+	public void setNomPlateau(String nomPlateau) {
+		this.nomPlateau = nomPlateau;
 	}
 }
 

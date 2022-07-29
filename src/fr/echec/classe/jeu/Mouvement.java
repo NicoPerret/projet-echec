@@ -12,7 +12,7 @@ public class Mouvement {
 	private int couleurPiece;
 	
 	// indique l'ensemble des cases potentiellement disponibles pour la pièce sélectionnée
-	private int[] destinationsPossibles = new int[];
+	//private int[] destinationsPossibles = new int[];
 	
 	// Contient le nombre de cases entre la piece et le bord du plateau
 	// [haut, bas, gauche, droite]
@@ -32,9 +32,9 @@ public class Mouvement {
 	
 	public void createCoupsTypePiece() {
 		
-		this.coupsTypePiece.put("pionB", new int[] {8}); // devant
+		this.coupsTypePiece.put("pionB", new int[] {8}); // devant // ajouter 2cases au debut + prise en diag + prise en passant
 		this.coupsTypePiece.put("pionN", new int[] {-8});
-		this.coupsTypePiece.put("tour", new int[] {8,16,24,32,40,48,56,64,
+		this.coupsTypePiece.put("tour", new int[] {8,16,24,32,40,48,56,64, // un deplt en trop
 												   -8,-16,-24,-32,-40,-48,-56,-64,
 												   1,2,3,4,5,6,7,8,
 												   -1,-2,-3,-4,-5,-6,-7,-8}); // vertical (+8 ou -8) ou horizontal
@@ -77,8 +77,5 @@ public class Mouvement {
 		int[] destinationsAutorisees = this.coupsTypePiece.get(nomPiece);
 		//finir !!!!!!!!!!!!
 	}
-	
-	
-	
 
 }

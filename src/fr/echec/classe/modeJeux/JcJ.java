@@ -5,7 +5,7 @@ public class JcJ {
 	boolean couleurJoueur2;
 	
 	
-	public void calculElo(int ra, int rb, double d, double e) {
+	public void calculElo(int ra, int rb, double sa, double sb) {//mettre joueurs en parametre de la fct pour recup elo et le modifier
 
 		// Real Rating Player A/B
 		// Elo des joueurs avant la partie
@@ -43,8 +43,8 @@ public class JcJ {
 		
 		
 		// Calcul du nouveau Elo
-		int differentielA =   (int) Math.ceil(k * (d - ea));
-		int differentielB = (int) Math.ceil(k* (e - eb)) ;
+		int differentielA =   (int) Math.ceil(k * (sa - ea));
+		int differentielB = (int) Math.ceil(k* (sb - eb)) ;
 		
 		
 		ran = ra + differentielA;

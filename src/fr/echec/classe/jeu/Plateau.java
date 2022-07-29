@@ -32,6 +32,9 @@ public class Plateau {
 	//Constructeurs
 	public Plateau() {
 		String nom = "   ";
+		for (int i=0; i<64; i++) {
+			this.plateau[i] = nom;
+		}
 		
 		Piece pi = new Piece(TypePiece.PION, false);
 		this.Pieces.add(pi);
@@ -45,28 +48,29 @@ public class Plateau {
 		for(Piece p : this.Pieces) {
 			switch(p.getNom()) {
 			case PION :
-				nom = "p"+(p.isCouleur()==true ? "b"+cptPionBlanc++ : "n"+cptPionNoir++);
+				p.setNomPlateau("p"+(p.isCouleur()==true ? "b"+cptPionBlanc++ : "n"+cptPionNoir++));
 				break;
 			case TOUR :
-				nom = "t"+(p.isCouleur()==true ? "b"+cptTourBlanc++ : "n"+cptTourNoir++);
+				p.setNomPlateau("t"+(p.isCouleur()==true ? "b"+cptTourBlanc++ : "n"+cptTourNoir++));
 				break;
 			case FOU :
-				nom = "f"+(p.isCouleur()==true ? "b"+cptFouBlanc++ : "n"+cptFouNoir++);
+				p.setNomPlateau("f"+(p.isCouleur()==true ? "b"+cptFouBlanc++ : "n"+cptFouNoir++));
 				break;
 			case CAVALIER :
-				nom = "c"+(p.isCouleur()==true ? "b"+cptCavBlanc++ : "n"+cptCavNoir++);
+				p.setNomPlateau("c"+(p.isCouleur()==true ? "b"+cptCavBlanc++ : "n"+cptCavNoir++));
 				break;
 			case ROI :
-				nom = "r"+(p.isCouleur()==true ? "b " : "n ");
+				p.setNomPlateau("r"+(p.isCouleur()==true ? "b " : "n "));
 				break;
 			case DAME :
-				nom = "d"+(p.isCouleur()==true ? "b " : "n ");
+				p.setNomPlateau("d"+(p.isCouleur()==true ? "b " : "n "));
 				break;
 			default:
 				break;
 			}
 			
-			this.plateau[cpt] = nom;
+			this.plateau[cpt] = p.getNomPlateau();
+			
 			if(cpt==16) {
 				cpt += 32;
 			}else {
