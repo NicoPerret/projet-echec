@@ -9,7 +9,7 @@ public class Piece {
 	private TypePiece nom;
 	private boolean couleur;
 	private boolean enVie = true;
-	private int valeurMateriel;
+	private int valeurMateriel;        //NB : pion = 1 point,   fou = 3 points, cavalier = 3 points, tour = 5 points, dame = 9 points
 
 	// Getters et Setters
 	public int getCoordonnee() {
@@ -54,13 +54,30 @@ public class Piece {
 	
 	// Constructeur pièce
 	
-	public Piece (TypePiece nom, boolean couleur, int valeurMateriel) {
-		
+	public Piece (TypePiece nom, boolean couleur) {
+		switch (nom) {
+			case PION :
+				valeurMateriel = 1;
+				break;
+			case FOU :
+				valeurMateriel = 3;
+				break;
+			case CAVALIER :
+				valeurMateriel = 3;
+				break;
+			case TOUR :
+				valeurMateriel = 5;
+				break;
+			case DAME :
+				valeurMateriel = 9;
+				break;
+			case ROI :
+				valeurMateriel = 0;
+				break;
+			
+			}
 	}
 	
-	
-
-	//Constructeurs
 	
 	
 	
@@ -69,5 +86,9 @@ public class Piece {
 	public void seDeplacer() {
 
 	}
-
+	
+	//sous-fonction "Capture"
+public static void Capture() {
+	if
+}
 }

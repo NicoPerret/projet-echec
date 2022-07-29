@@ -4,7 +4,7 @@ import fr.echec.enumerateur.TypePiece;
 
 public class NotationCoup {
 	
-	/*	Récupère les coordonées de départ et d'arrivée de la pièce en format 0-63
+	/*	Récupère les coordonnées de départ et d'arrivée de la pièce en format 0-63
 	 *  	NotationCoup coup1 = new NotationCoup(56,63);
 	 *  
 	 *  Conversion du format [0-63] en [a1-h8]
