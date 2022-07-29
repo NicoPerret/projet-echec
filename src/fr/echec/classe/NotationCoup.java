@@ -5,7 +5,7 @@ import fr.echec.enumerateur.TypePiece;
 public class NotationCoup {
 	
 	/*	Récupère les coordonées de départ et d'arrivée de la pièce en format 0-63
-	 *  	NotationCoup coup1 = new NotationCoup(56,63)
+	 *  	NotationCoup coup1 = new NotationCoup(56,63);
 	 *  
 	 *  Conversion du format [0-63] en [a1-h8]
 	 *  	coup1.ecrireCoup();
@@ -65,34 +65,26 @@ public class NotationCoup {
 	}
 	
 	// Methodes
-	
-	
-	// TODO : obtenir le nom de la piece qui a bougé
-	public String nomPiece() {
-		return "";
-	}
-	
-	// Conversion du format 0-63 dans le format a1-h8
+
+	// Conversion du format 0-63 dans le format A1-H8
+	// attention les cases ne sont pas encore déterminées
 	public String conversion(int coordonnee64) {
 		String coordonneeStandard = "";
 		
-		String[] listeLignes = new String[] {"a", "b", "c", "d", "e", "f", "g", "h"};
-		coordonneeStandard = listeLignes[coordonnee64 / 8] + (coordonnee64 % 8);
+		String[] listeLignes = new String[] {"A", "B", "C", "D", "E", "F", "G", "H"};
+		coordonneeStandard = listeLignes[coordonnee64 % 8] + (coordonnee64 / 8);
 		return coordonneeStandard;
 	}
 	
 	// Ecriture du dernier coup joué
-	public void ecrireCoup() {
+	public void ecrireCoup() { // A COMPLETER
 		// Récuperation des coordonnées standards
 		this.coordDepartStandard = this.conversion(coordDepart64);
 		this.coordArriveeStandard = this.conversion(coordArrivee64);
 		
 		// Ecriture du coup
-		this.coupFormatStandard = (this.nomPiece() +
+		this.coupFormatStandard = (this.typePiece +
 								   this.coordDepartStandard + "-" + 
 							       this.coordArriveeStandard);
-
 	}
-	
-
 }

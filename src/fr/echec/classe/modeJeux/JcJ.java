@@ -1,6 +1,6 @@
 package fr.echec.classe.modeJeux;
 
 public class JcJ {
-	boolean couleurJoueur;
-	int niveauIA;
+	boolean couleurJoueur1;
+	boolean couleurJoueur2;
 }

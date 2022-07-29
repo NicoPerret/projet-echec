@@ -5,27 +5,28 @@ import java.util.TimerTask;
 
 public class Chrono {
 
-Timer chrono = new Timer();
-	
-public void decompte() {
+	Timer chrono = new Timer();
 
-	chrono.schedule(new TimerTask() {
-		
-		int temps = 160;
-		@Override
-		public void run() {
-			 int tempsMinute = temps / 60; 
-			 int tempsSecond = temps % 60;
-			 
-			 System.out.println(tempsMinute + " : " + tempsSecond );
-			
-			if (temps == 0) {
-				System.out.println("Défaite au temps");
-				cancel();
+	public void decompte() { //cancel n'arrete pas la fonction
+
+		chrono.schedule(new TimerTask() {
+
+			int temps = 160;
+
+			@Override
+			public void run() {
+				int tempsMinute = temps / 60;
+				int tempsSecond = temps % 60;
+
+				System.out.println(tempsMinute + " : " + tempsSecond);
+
+				if (temps == 0) {
+					System.out.println("Défaite au temps");
+					cancel();
+				}
+				temps--;
+
 			}
-			temps--;
-			
-		}
-	}, 1000, 1000);
-}
+		}, 1000, 1000);
+	}
 }
