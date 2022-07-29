@@ -5,10 +5,10 @@ import fr.echec.enumerateur.TypePiece;
 public class Piece {
 
 	// Déclaration des variables
-	private int coordonnee;
+	private int coordonnee = -1;
 	private TypePiece nom;
 	private boolean couleur;
-	private boolean enVie;
+	private boolean enVie = true;
 	private int valeurMateriel;
 
 	// Getters et Setters
@@ -52,7 +52,11 @@ public class Piece {
 		this.valeurMateriel = valeurMateriel;
 	}
 
-// Méthodes
+	//Constructeurs
+	
+	
+	
+	// Méthodes
 
 	public void seDeplacer() {
 
