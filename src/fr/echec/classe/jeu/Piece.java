@@ -99,6 +99,12 @@ public class Piece {
 
 	// sous-fonction "Capture"
 //public static void Capture() {
-//	if
-//}
-//}
+//	if piece(coordonnée) se déplace sur coordonnées2 et 
+//        if piece adverse sur coordonnées2 { pièce adverse.enVie = false; scoreJoueur = scoreJoueur+valeurMateriel(pièceadverse)
+//				if enVie(pièce) == false  --> la pièce est retirée du plateau
+
+//sous-fonction "Promotion"
+//public static void Promotion() {
+//	if piece(coordonnées) se déplace sur coordonnées2 (A1-H1 ou A8-H8) { 
+//      demander au joueur quelle pièce il veut; pièce-> piece choisie
+
