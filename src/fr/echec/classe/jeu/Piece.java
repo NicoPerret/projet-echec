@@ -51,6 +51,14 @@ public class Piece {
 	public void setValeurMateriel(int valeurMateriel) {
 		this.valeurMateriel = valeurMateriel;
 	}
+	
+	// Constructeur pièce
+	
+	public Piece (TypePiece nom, boolean couleur, int valeurMateriel) {
+		
+	}
+	
+	
 
 	//Constructeurs
 	
