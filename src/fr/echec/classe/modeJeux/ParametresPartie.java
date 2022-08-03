@@ -41,25 +41,30 @@ public class ParametresPartie {
 	}
 
 	public void choixMode() {
-		System.out.println("Choisissez le type de partie : " );
-		int choix = readInt();
+		System.out.println("Choisissez le type de partie : ");
+		// ajouter system.in
+		int choix = 0;
+		// choix = readInt();
 
-	switch(choix) {
+		switch (choix) {
 
-	case 1 :
-		System.out.println("Problème");
-		typeDeLaPartie= TypePartie.PROBLEME PROBLEME;
-		break;
+		case 1:
+			System.out.println("Problème");
+			typeDeLaPartie = TypePartie.PROBLEME;
+			break;
 
-	case 2 :System.out.println("Joueur contre Joueur");
-		typeDeLaPartie = TypePartie.JOUEURVSJOUEUR;
-		break;
+		case 2:
+			System.out.println("Joueur contre Joueur");
+			typeDeLaPartie = TypePartie.JOUEURVSJOUEUR;
+			break;
 
-	case 3 :System.out.println("Joueur contre IA");
-		typeDeLaPartie = TypePartie.JOUEURVSIA;
-		break;
+		case 3:
+			System.out.println("Joueur contre IA");
+			typeDeLaPartie = TypePartie.JOUEURVSIA;
+			break;
 
-		default : System.out.println("Mauvais choix... recommencez");
+		default:
+			System.out.println("Mauvais choix... recommencez");
 		}
 	}
 }

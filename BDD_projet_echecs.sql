@@ -41,7 +41,13 @@ CREATE TABLE resultatProbleme (
     res_id SERIAL PRIMARY KEY,
     res_utilisateur_id INT NOT NULL,
     res_partie_id INT NOT NULL
-)
+);
+
+CREATE TABLE penalitePiece (
+    pen_id SERIAL PRIMARY KEY,
+    pen_nom VARCHAR(20),
+    pen_fen VARCHAR(100)
+);
 
 ALTER TABLE historiquePartie 
     ADD

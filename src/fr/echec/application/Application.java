@@ -6,7 +6,7 @@ public class Application {
 
 	public static void main(String[] args) {
 
-		Plateau p = new Plateau("tcfdrfct/ppptpppp/8/8/8/8/PPPPPPPP/TCFDRFCT");
+		Plateau p = new Plateau("tcfdrfct/pppppppp/8/8/8/8/PPPPPPPP/T1FDRF1T");
 		System.out.println(p);
 
 		
