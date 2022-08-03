@@ -103,7 +103,7 @@ public class Piece {
 //sous-fonction "Déplacement impossible"
 	public void DeplacementImpossible() {
 		for (Piece p : ensemblePieces) {
-			if (p.coordonnee == coordonnee) {
+			if (p.coordonnee == coordonnee||p.couleur=couleur) {
 				System.out.println("Déplacement impossible");
 			}
 		}
@@ -111,7 +111,7 @@ public class Piece {
 		// sous-fonction "Capture"
 
 		for (Piece p : ensemblePieces) {
-			if (p.coordonnee == coordonnee) {
+			if (p.coordonnee == coordonnee|| p.couleur!=couleur) {
 				p.Capture();
 			}
 			this.coordonnee = coordonnee;
