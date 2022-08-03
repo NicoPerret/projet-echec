@@ -40,24 +40,17 @@ public class Plateau {
 		}
 		int cptPionBlanc = 1,cptPionNoir = 1, cptTourBlanc = 1, cptTourNoir = 1, cpt = 0; 
 		int cptFouBlanc = 1, cptFouNoir = 1, cptCavBlanc = 1, cptCavNoir = 1;
-		
-		
-		Hashtable <Character, String> test = new Hashtable<Character, String>();
-		test.put('t', "TOUR");
-		test.put('c', "CAVALIER");
-		test.put('f', "FOU");
-		test.put('d', "DAME");
-		test.put('r', "ROI");
-		test.put('p', "PION");
-		test.put('T', "TOUR");
-		test.put('C', "CAVALIER");
-		test.put('F', "FOU");
-		test.put('D', "DAME");
-		test.put('R', "ROI");
-		test.put('P', "PION");
 		// --------
 		
-
+		Hashtable <Character, String> test = new Hashtable<Character, String>();
+		test.put('R', "TOUR");
+		test.put('N', "CAVALIER");
+		test.put('B', "FOU");
+		test.put('Q', "DAME");
+		test.put('K', "ROI");
+		test.put('P', "PION");
+		
+		
 		char[] fenTab = new char[fen.length()];
 		for(int i=0; i<fen.length();i++) {
 			fenTab[i] = fen.charAt(i);
@@ -72,36 +65,30 @@ public class Plateau {
 					lig += Character.getNumericValue(c);	
 				}else {
 					String coul = (Character.isUpperCase(c)? "Blanc" : "Noir");
-					String nomPiece = test.get(c);
-					TypePiece type = TypePiece.valueOf(nomPiece);
+					TypePiece type = TypePiece.valueOf(test.get(Character.toUpperCase(c)));
 					
 					Piece pi = new Piece(type, coul);
 					
 					// pour console
 					// ------
-					boolean bool = true;
-					if (pi.isCouleur() == "Blanc") {
-						bool = false;
-					}
-					
 					switch(pi.getNom()) {
 					case PION :
-						pi.setNomPlateau("p"+(bool == true ? "b"+cptPionBlanc++ : "n"+cptPionNoir++));
+						pi.setNomPlateau("p"+(coul == "Blanc" ? "b"+cptPionBlanc++ : "n"+cptPionNoir++));
 						break;
 					case TOUR :
-						pi.setNomPlateau("t"+(bool == true ? "b"+cptTourBlanc++ : "n"+cptTourNoir++));
+						pi.setNomPlateau("t"+(coul == "Blanc" ? "b"+cptTourBlanc++ : "n"+cptTourNoir++));
 						break;
 					case FOU :
-						pi.setNomPlateau("f"+(bool == true ? "b"+cptFouBlanc++ : "n"+cptFouNoir++));
+						pi.setNomPlateau("f"+(coul == "Blanc" ? "b"+cptFouBlanc++ : "n"+cptFouNoir++));
 						break;
 					case CAVALIER :
-						pi.setNomPlateau("c"+(bool == true ? "b"+cptCavBlanc++ : "n"+cptCavNoir++));
+						pi.setNomPlateau("c"+(coul == "Blanc"? "b"+cptCavBlanc++ : "n"+cptCavNoir++));
 						break;
 					case ROI :
-						pi.setNomPlateau("r"+(bool == true ? "b " : "n "));
+						pi.setNomPlateau("r"+(coul == "Blanc" ? "b " : "n "));
 						break;
 					case DAME :
-						pi.setNomPlateau("d"+(bool == true ? "b " : "n "));
+						pi.setNomPlateau("d"+(coul == "Blanc" ? "b " : "n "));
 						break;
 					default:
 						break;

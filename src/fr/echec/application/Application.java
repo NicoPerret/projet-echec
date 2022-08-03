@@ -6,9 +6,10 @@ public class Application {
 
 	public static void main(String[] args) {
 
-		Plateau p = new Plateau("tcfdrfct/pppppppp/8/8/8/8/PPPPPPPP/T1FDRF1T");
+		Plateau p = new Plateau("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR");
 		System.out.println(p);
-
+		
+		
 		
 //	Piece pionBlanc = new Piece (TypePiece.PION, true);
 //	Piece fouBlanc = new Piece (TypePiece.FOU, true);
@@ -20,5 +21,4 @@ public class Application {
 //		System.out.println(pionBlanc);
 		
 	}
-
 }
