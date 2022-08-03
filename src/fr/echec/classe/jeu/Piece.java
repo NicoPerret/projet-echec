@@ -2,6 +2,8 @@ package fr.echec.classe.jeu;
 
 import fr.echec.enumerateur.TypePiece;
 
+import java.util.LinkedList;
+
 public class Piece {
 
 	// Déclaration des variables
@@ -12,6 +14,7 @@ public class Piece {
 	private int valeurMateriel; // NB : pion = 1 point, fou = 3 points, cavalier = 3 points, tour = 5 points,
 								// dame = 9 points
 	private String nomPlateau;
+	LinkedList<Piece> ensemblePieces;
 
 	// Getters et Setters
 	public int getCoordonnee() {
@@ -56,7 +59,7 @@ public class Piece {
 
 	// Constructeur pièce
 
-	public Piece(TypePiece nom, String couleur) {
+	public Piece(TypePiece nom, String couleur, LinkedList<Piece> ensemblePieces) {
 		this.nom = nom;
 		this.couleur = couleur;
 		switch (nom) {
@@ -80,6 +83,7 @@ public class Piece {
 			break;
 
 		}
+		ensemblePieces.add(this);
 	}
 
 	// Méthodes
@@ -95,16 +99,47 @@ public class Piece {
 	public void setNomPlateau(String nomPlateau) {
 		this.nomPlateau = nomPlateau;
 	}
-}
 
-	// sous-fonction "Capture"
+//sous-fonction "Déplacement impossible"
+	public void DeplacementImpossible() {
+		for (Piece p : ensemblePieces) {
+			if (p.coordonnee == coordonnee) {
+				System.out.println("Déplacement impossible");
+			}
+		}
+
+		// sous-fonction "Capture"
+
+		for (Piece p : ensemblePieces) {
+			if (p.coordonnee == coordonnee) {
+				p.Capture();
+			}
+			this.coordonnee = coordonnee;
+		}
+	}
+
+	public void Capture() {
+		ensemblePieces.remove(this);
+	}
+
 //public static void Capture() {
-//	if piece(coordonnée) se déplace sur coordonnées2 et 
-//        if piece adverse sur coordonnées2 { pièce adverse.enVie = false; scoreJoueur = scoreJoueur+valeurMateriel(pièceadverse)
-//				if enVie(pièce) == false  --> la pièce est retirée du plateau
+
 
 //sous-fonction "Promotion"
+	public void Promotion() {
+		for (Piece p : ensemblePieces) {
+			if (p.coordonnee == 56 || p.coordonnee == 57 || p.coordonnee == 58 || p.coordonnee == 59
+					|| p.coordonnee == 60 || p.coordonnee == 61 || p.coordonnee == 62 || p.coordonnee == 63
+					|| p.coordonnee == 0 || p.coordonnee == 1 || p.coordonnee == 2 || p.coordonnee == 3
+					|| p.coordonnee == 4 || p.coordonnee == 5 || p.coordonnee == 6 || p.coordonnee == 7) {
+
+				System.out.println("Quel pièce voulez-vous comme promotion?");
+				p.nom = read();
+			}
+		}
+	}
+}
+
 //public static void Promotion() {
 //	if piece(coordonnées) se déplace sur coordonnées2 (A1-H1 ou A8-H8) { 
 //      demander au joueur quelle pièce il veut; pièce-> piece choisie
-
