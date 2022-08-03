@@ -5,7 +5,7 @@ CREATE DATABASE echecs;
 CREATE TABLE utilisateurs (
     uti_id SERIAL PRIMARY KEY,
     uti_pseudo VARCHAR(20) NOT NULL,
-    uti_mdp VARCHAR(20) NOT NULL,
+    uti_mdp VARCHAR(150) NOT NULL,
     uti_nom VARCHAR(20) NOT NULL,
     uti_prenom VARCHAR(20) NOT NULL,
     uti_elo INT DEFAULT 800,
@@ -40,7 +40,8 @@ CREATE TABLE historiqueMessage (
 CREATE TABLE resultatProbleme (
     res_id SERIAL PRIMARY KEY,
     res_utilisateur_id INT NOT NULL,
-    res_partie_id INT NOT NULL
+    res_partie_id INT NOT NULL,
+    res_date TIMESTAMP NOT NULL
 );
 
 CREATE TABLE penalitePiece (
@@ -89,3 +90,19 @@ VALUES
     ('AdminGortex', 'admin' , 'desmoulin', 'Felix', 'desmoulin.felix@gmail.com' , 'true', 'true'),
     ('Fradmin', 'admin', 'philippe', 'francois', 'francoisphilippe67@gmail.com', 'true', 'true' ),
     ('Admin_FM', 'echecs', 'MASSON', 'François-Marie', 'francoismarie.masson@gmail.com', 'true', 'true');
+
+INSERT INTO penalitePiece (pen_nom, pen_fen)
+VALUES
+    ('TourBlanc', 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/1NBQKBN1'),
+    ('CavBlanc', 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/T1BQKB1T'),
+    ('FouBlanc', 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/TN1QK1NT'),
+    ('DameBlanc', 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNB1KBNR'),
+    ('TourNoir', '1nbqkbn1/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR'),
+    ('CavNoir', 'r1bqkb1r/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR'),    
+    ('FouNoir', 'rn1qk1nr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR'),
+    ('DameNoir', 'rnb1kbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR');
+
+
+INSERT INTO probleme (prob_fen_depart, prob_liste_deplacement, prob_traitaublanc, prob_difficulte)
+VALUES
+    ('q3k1nr/1pp1nQpp/3p4/1P2p3/4P3/B1PP1b2/B5PP/5K2','','false','...')
