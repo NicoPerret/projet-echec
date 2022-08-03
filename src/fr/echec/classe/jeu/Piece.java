@@ -59,7 +59,7 @@ public class Piece {
 
 	// Constructeur pièce
 
-	public Piece(TypePiece nom, String couleur, LinkedList<Piece> ensemblePieces) {
+	public Piece(TypePiece nom, String couleur) {
 		this.nom = nom;
 		this.couleur = couleur;
 		switch (nom) {
@@ -83,7 +83,7 @@ public class Piece {
 			break;
 
 		}
-		ensemblePieces.add(this);
+
 	}
 
 	// Méthodes
@@ -101,7 +101,7 @@ public class Piece {
 	}
 
 //sous-fonction "Déplacement impossible"
-	public void DeplacementImpossible() {
+	/*public void DeplacementImpossible() {
 		for (Piece p : ensemblePieces) {
 			if (p.coordonnee == coordonnee||p.couleur=couleur) {
 				System.out.println("Déplacement impossible");
@@ -117,7 +117,7 @@ public class Piece {
 			this.coordonnee = coordonnee;
 		}
 	}
-
+*/
 	public void Capture() {
 		ensemblePieces.remove(this);
 	}
@@ -126,7 +126,7 @@ public class Piece {
 
 
 //sous-fonction "Promotion"
-	public void Promotion() {
+	/*public void Promotion() {
 		for (Piece p : ensemblePieces) {
 			if (p.coordonnee == 56 || p.coordonnee == 57 || p.coordonnee == 58 || p.coordonnee == 59
 					|| p.coordonnee == 60 || p.coordonnee == 61 || p.coordonnee == 62 || p.coordonnee == 63
@@ -137,7 +137,7 @@ public class Piece {
 				p.nom = read();
 			}
 		}
-	}
+	}*/
 }
 
 //public static void Promotion() {
