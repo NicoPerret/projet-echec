@@ -31,6 +31,7 @@ public class Utilisateur {
 		this.elo = elo;
 	}
 	
+	//Methodes
 	public void jouer() {
 	}
 	

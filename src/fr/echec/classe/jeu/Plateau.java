@@ -1,6 +1,7 @@
 package fr.echec.classe.jeu;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 
 import fr.echec.enumerateur.TypePiece;
@@ -30,51 +31,89 @@ public class Plateau {
 	}
 
 	//Constructeurs
-	public Plateau() {
+	public Plateau(String fen) {
+		// pour la version console
+		// --------
 		String nom = "   ";
 		for (int i=0; i<64; i++) {
 			this.plateau[i] = nom;
 		}
-		
-		Piece pi = new Piece(TypePiece.PION, false);
-		this.Pieces.add(pi);
-		Piece pi2 = new Piece(TypePiece.TOUR, true);
-		this.Pieces.add(pi2);
-		Piece pi3 =  new Piece(TypePiece.TOUR, true);
-		this.Pieces.add(pi3);
-		
 		int cptPionBlanc = 1,cptPionNoir = 1, cptTourBlanc = 1, cptTourNoir = 1, cpt = 0; 
 		int cptFouBlanc = 1, cptFouNoir = 1, cptCavBlanc = 1, cptCavNoir = 1;
-		for(Piece p : this.Pieces) {
-			switch(p.getNom()) {
-			case PION :
-				p.setNomPlateau("p"+(p.isCouleur()==true ? "b"+cptPionBlanc++ : "n"+cptPionNoir++));
-				break;
-			case TOUR :
-				p.setNomPlateau("t"+(p.isCouleur()==true ? "b"+cptTourBlanc++ : "n"+cptTourNoir++));
-				break;
-			case FOU :
-				p.setNomPlateau("f"+(p.isCouleur()==true ? "b"+cptFouBlanc++ : "n"+cptFouNoir++));
-				break;
-			case CAVALIER :
-				p.setNomPlateau("c"+(p.isCouleur()==true ? "b"+cptCavBlanc++ : "n"+cptCavNoir++));
-				break;
-			case ROI :
-				p.setNomPlateau("r"+(p.isCouleur()==true ? "b " : "n "));
-				break;
-			case DAME :
-				p.setNomPlateau("d"+(p.isCouleur()==true ? "b " : "n "));
-				break;
-			default:
-				break;
-			}
-			
-			this.plateau[cpt] = p.getNomPlateau();
-			
-			if(cpt==16) {
-				cpt += 32;
+		
+		
+		Hashtable <Character, String> test = new Hashtable<Character, String>();
+		test.put('t', "TOUR");
+		test.put('c', "CAVALIER");
+		test.put('f', "FOU");
+		test.put('d', "DAME");
+		test.put('r', "ROI");
+		test.put('p', "PION");
+		test.put('T', "TOUR");
+		test.put('C', "CAVALIER");
+		test.put('F', "FOU");
+		test.put('D', "DAME");
+		test.put('R', "ROI");
+		test.put('P', "PION");
+		// --------
+		
+
+		char[] fenTab = new char[fen.length()];
+		for(int i=0; i<fen.length();i++) {
+			fenTab[i] = fen.charAt(i);
+		}
+		int lig = 0, col = 7;
+		for (char c : fenTab) {
+			if (c == '/'){
+				lig = 0;
+				col--;
 			}else {
-				cpt++;
+				if(Character.isDigit(c)) {
+					lig += Character.getNumericValue(c);	
+				}else {
+					String coul = (Character.isUpperCase(c)? "Blanc" : "Noir");
+					String nomPiece = test.get(c);
+					TypePiece type = TypePiece.valueOf(nomPiece);
+					
+					Piece pi = new Piece(type, coul);
+					
+					// pour console
+					// ------
+					boolean bool = true;
+					if (pi.isCouleur() == "Blanc") {
+						bool = false;
+					}
+					
+					switch(pi.getNom()) {
+					case PION :
+						pi.setNomPlateau("p"+(bool == true ? "b"+cptPionBlanc++ : "n"+cptPionNoir++));
+						break;
+					case TOUR :
+						pi.setNomPlateau("t"+(bool == true ? "b"+cptTourBlanc++ : "n"+cptTourNoir++));
+						break;
+					case FOU :
+						pi.setNomPlateau("f"+(bool == true ? "b"+cptFouBlanc++ : "n"+cptFouNoir++));
+						break;
+					case CAVALIER :
+						pi.setNomPlateau("c"+(bool == true ? "b"+cptCavBlanc++ : "n"+cptCavNoir++));
+						break;
+					case ROI :
+						pi.setNomPlateau("r"+(bool == true ? "b " : "n "));
+						break;
+					case DAME :
+						pi.setNomPlateau("d"+(bool == true ? "b " : "n "));
+						break;
+					default:
+						break;
+					}
+					//----
+					
+					this.Pieces.add(pi);
+					plateau[col*8 + lig] = pi.getNomPlateau();
+					
+					lig++;
+				}
+				
 			}
 		}
 	}

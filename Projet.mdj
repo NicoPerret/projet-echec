@@ -7246,8 +7246,8 @@
 								"$ref": "AAAAAAFF+qBtyKM79qY="
 							},
 							"font": "Arial;13;0",
-							"left": 352,
-							"top": 504,
+							"left": 536,
+							"top": 608,
 							"width": 80.6962890625,
 							"height": 66,
 							"text": "choix adversaire ou aléatoire\n"
@@ -7266,7 +7266,7 @@
 								"$ref": "AAAAAAGCNVPbEMjENG8="
 							},
 							"lineStyle": 1,
-							"points": "527:520;433:531"
+							"points": "579:565;577:607"
 						},
 						{
 							"_type": "UMLAssociationView",
@@ -9221,8 +9221,8 @@
 								"$ref": "AAAAAAFF+qBtyKM79qY="
 							},
 							"font": "Arial;13;0",
-							"left": 608,
-							"top": 376,
+							"left": 320,
+							"top": 488,
 							"width": 78.525390625,
 							"height": 40,
 							"text": "Historique"
@@ -9241,7 +9241,7 @@
 								"$ref": "AAAAAAGCSQae2lraJM8="
 							},
 							"lineStyle": 1,
-							"points": "607:393;579:391"
+							"points": "382:487;441:439"
 						}
 					]
 				},

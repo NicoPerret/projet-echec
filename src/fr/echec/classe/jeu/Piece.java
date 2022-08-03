@@ -7,7 +7,7 @@ public class Piece {
 	// Déclaration des variables
 	private int coordonnee = -1;
 	private TypePiece nom;
-	private boolean couleur;
+	private String couleur;
 	private boolean enVie = true;
 	private int valeurMateriel; // NB : pion = 1 point, fou = 3 points, cavalier = 3 points, tour = 5 points,
 								// dame = 9 points
@@ -30,11 +30,11 @@ public class Piece {
 		this.nom = nom;
 	}
 
-	public boolean isCouleur() {
+	public String isCouleur() {
 		return couleur;
 	}
 
-	public void setCouleur(boolean couleur) {
+	public void setCouleur(String couleur) {
 		this.couleur = couleur;
 	}
 
@@ -56,7 +56,7 @@ public class Piece {
 
 	// Constructeur pièce
 
-	public Piece(TypePiece nom, boolean couleur) {
+	public Piece(TypePiece nom, String couleur) {
 		this.nom = nom;
 		this.couleur = couleur;
 		switch (nom) {
