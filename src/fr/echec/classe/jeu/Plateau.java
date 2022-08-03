@@ -11,7 +11,7 @@ public class Plateau {
 
 	private String[] plateau = new String[64];
 	private int numPartie;
-	private List<Piece> Pieces = new ArrayList<>();
+	public List<Piece> Pieces = new ArrayList<>();
 
 	// Getters et Setter
 	public String[] getPlateau() {

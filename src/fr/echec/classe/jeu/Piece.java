@@ -4,7 +4,7 @@ import fr.echec.enumerateur.TypePiece;
 
 import java.util.LinkedList;
 
-public class Piece {
+public class Piece extends Plateau {
 
 	// Déclaration des variables
 	private int coordonnee = -1;
@@ -13,8 +13,7 @@ public class Piece {
 	private boolean enVie = true;
 	private int valeurMateriel; // NB : pion = 1 point, fou = 3 points, cavalier = 3 points, tour = 5 points,
 								// dame = 9 points
-	private String nomPlateau;
-	LinkedList<Piece> ensemblePieces;
+	private String nomPlateau;;
 
 	// Getters et Setters
 	public int getCoordonnee() {
@@ -59,7 +58,7 @@ public class Piece {
 
 	// Constructeur pièce
 
-	public Piece(TypePiece nom, String couleur, LinkedList<Piece> ensemblePieces) {
+	public Piece(TypePiece nom, String couleur) {
 		this.nom = nom;
 		this.couleur = couleur;
 		switch (nom) {
@@ -83,7 +82,7 @@ public class Piece {
 			break;
 
 		}
-		ensemblePieces.add(this);
+		Pieces.add(this);
 	}
 
 	// Méthodes
@@ -102,15 +101,15 @@ public class Piece {
 
 //sous-fonction "Déplacement impossible"
 	public void DeplacementImpossible() {
-		for (Piece p : ensemblePieces) {
-			if (p.coordonnee == coordonnee||p.couleur=couleur) {
+		for (Piece p : Pieces) {
+			if (p.coordonnee == coordonnee||p.couleur==couleur) {
 				System.out.println("Déplacement impossible");
 			}
 		}
 
 		// sous-fonction "Capture"
 
-		for (Piece p : ensemblePieces) {
+		for (Piece p : Pieces) {
 			if (p.coordonnee == coordonnee|| p.couleur!=couleur) {
 				p.Capture();
 			}
@@ -119,7 +118,7 @@ public class Piece {
 	}
 
 	public void Capture() {
-		ensemblePieces.remove(this);
+		Pieces.remove(this);
 	}
 
 //public static void Capture() {
@@ -127,7 +126,7 @@ public class Piece {
 
 //sous-fonction "Promotion"
 	public void Promotion() {
-		for (Piece p : ensemblePieces) {
+		for (Piece p : Pieces) {
 			if (p.coordonnee == 56 || p.coordonnee == 57 || p.coordonnee == 58 || p.coordonnee == 59
 					|| p.coordonnee == 60 || p.coordonnee == 61 || p.coordonnee == 62 || p.coordonnee == 63
 					|| p.coordonnee == 0 || p.coordonnee == 1 || p.coordonnee == 2 || p.coordonnee == 3
