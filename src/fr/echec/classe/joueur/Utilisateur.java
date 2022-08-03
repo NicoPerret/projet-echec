@@ -43,7 +43,14 @@ public class Utilisateur {
 	}
 	
 	public void choisirRegles() {
-	}
+		//System.out.println("Choisissez votre mode de jeu : ");
+		//choixMode();
+		// if mode 1vs1 --> n° adversaire ou aléatoire
+		//System.out.println("Choisissez votre temps : ");
+		//decompte({
+		//int temps = readInt();
+		//System.out.println("Vous êtes prêt à jouer");
+		}
 	
 	public void recupererHistorique() {
 		
