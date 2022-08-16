@@ -9,18 +9,27 @@ class Chrono {
 	private long stopWatchStartTime = 0;
 	private long stopWatchStopTime = 0;
 	private boolean stopWatchRunning = false;
+	private long tempsRestant = 600000000000l;
+	private long temps = 0;
+	private boolean defaiteTemps = false;
 
-
-	public void start() {
-		this.stopWatchStartTime = System.nanoTime();
-		this.stopWatchRunning = true;
-
+	public long getTemps() {
+		return temps;
 	}
 
-	public void stop() {
-		this.stopWatchStopTime = System.nanoTime();
-		this.stopWatchRunning = false;
+	public void setTemps(long temps) {
+		this.temps = temps;
 	}
+
+	public boolean isDefaiteTemps() {
+		return defaiteTemps;
+	}
+
+	public void setDefaiteTemps(boolean defaiteTemps) {
+		this.defaiteTemps = defaiteTemps;
+	}
+
+	
 
 	public long getElapsedSeconds() {
 		long elapsedTime;
@@ -47,56 +56,64 @@ class Chrono {
 		return this.stopWatchStartTime;
 	}
 
-	public void getTempsRestant(long tempsRestant) {
+	public void getAffichageTempsRestant(long tempsRestant) {
 		System.out.println("Temps restant " + tempsRestant / nanoSecondsPerMinute + " mintutes et "
 				+ (tempsRestant / nanoSecondsPerSecond) % 60 + " secondes");
 	}
 
-	
+	public long getTempsRestant() {
+		return tempsRestant;
+	}
+
+	public void setTempsRestant(long tempsRestant) {
+		this.tempsRestant = tempsRestant;
+	}
+
+	public void runnig() {
+
+		this.temps = System.nanoTime() - this.getStopWatchStartTime();
+		if (this.temps > this.tempsRestant) {
+			this.setDefaiteTemps(true);
+			this.stop();
+			this.tempsRestant = 0;
+			System.out.println("Perdu au temps");
+		}
+		
+	}
+
+	public void start() {
+		this.stopWatchStartTime = System.nanoTime();
+		this.stopWatchRunning = true;
+
+	}
+	public void stop() {
+		this.stopWatchStopTime = System.nanoTime();
+		this.stopWatchRunning = false;
+		this.tempsRestant -= temps;
+	}
+
 }
 
-						// EXEMPLE D'UTILISATION 
+// EXEMPLE D'UTILISATION
 
-
-
-//public static void main(String[] args) {
+// public static void main(String[] args) {
 //
-//	Chrono chronoj1 = new Chrono();
-//	Chrono chronoj2 = new Chrono();
-//	long nanoSecondsPerSecond = 1000000000;
-//	long nanoSecondsPerMinute = 60000000000L;
-//	long tempsRestantJ1 = 600000000000L;
-//	long tempsRestantJ2 = 600000000000L;
-//	long temps = 0;
+//		Chrono chronoj1 = new Chrono();
 //
-//	// Tour du J1
-//	chronoj1.start();
-//	for(int i = 0 ; i<2000000; i++) {
+////		// Tour du J1
 //
-//		temps = System.nanoTime() - chronoj1.getStopWatchStartTime();
+//		chronoj1.start();
 //
-//		if (temps > tempsRestantJ1) {
-//			System.out.println("Perdu au temps");
-//			break;
+//		while (true) {
+//
+//			chronoj1.runnig();
+//
+//			if (chronoj1.isDefaiteTemps() == true) {
+//				break;
+//			}
 //		}
-//	}
-//	chronoj1.stop();
-//	tempsRestantJ1 -= temps;
-//	chronoj1.getTempsRestant(tempsRestantJ1);
 //
-//	// Tour du J2
+//		chronoj1.stop();
+//		chronoj1.getAffichageTempsRestant(chronoj1.getTempsRestant());
 //
-//	chronoj2.start();
-//	while (true) {
-//		
-//		temps = System.nanoTime() - chronoj2.getStopWatchStartTime();
-//		
-//		if (temps > tempsRestantJ2) {
-//			System.out.println("Perdu au temps");
-//			break;
-//		}
 //	}
-//	chronoj2.stop();
-//	tempsRestantJ2 -= temps;
-//	chronoj1.getTempsRestant(tempsRestantJ2);
-//}
