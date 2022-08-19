@@ -1,7 +1,6 @@
 package fr.echec.classe.jeu;
 
 
-
 class Chrono {
 
 	private final long nanoSecondsPerSecond = 1000000000;
@@ -11,6 +10,7 @@ class Chrono {
 	private boolean stopWatchRunning = false;
 	private long tempsRestant = 600000000000l;
 	private long temps = 0;
+	private long increment = 0;
 	private boolean defaiteTemps = false;
 
 	public long getTemps() {
@@ -29,7 +29,14 @@ class Chrono {
 		this.defaiteTemps = defaiteTemps;
 	}
 
-	
+	public long getIncrement() {
+		return increment;
+	}
+
+	public void setIncrement(long increment) {
+		this.increment = increment * 1000000000;
+	}
+
 
 	public long getElapsedSeconds() {
 		long elapsedTime;
@@ -90,31 +97,35 @@ class Chrono {
 	public void stop() {
 		this.stopWatchStopTime = System.nanoTime();
 		this.stopWatchRunning = false;
-		this.tempsRestant -= temps;
+		this.tempsRestant =this.tempsRestant - this.temps + this.increment;
 	}
 
+	public Chrono (long tempsRestantMin,long tempsRestantSec, long increment){
+		this.setTempsRestant(tempsRestantMin, tempsRestantSec);
+		this.setIncrement(increment);
+	}
 }
 
 // EXEMPLE D'UTILISATION
-
+//
 // public static void main(String[] args) {
 //
-//		Chrono chronoj1 = new Chrono();
+//Chrono chronoj1 = new Chrono(3,0,2);
 //
-////		// Tour du J1
+////// Tour du J1
 //
-//		chronoj1.start();
+//chronoj1.start();
 //
-//		while (true) {
+//for (int i = 0; i < 200000000l; i++) {
 //
-//			chronoj1.runnig();
+//	chronoj1.runnig();
 //
-//			if (chronoj1.isDefaiteTemps() == true) {
-//				break;
-//			}
-//		}
-//
-//		chronoj1.stop();
-//		chronoj1.getAffichageTempsRestant(chronoj1.getTempsRestant());
-//
+//	if (chronoj1.isDefaiteTemps() == true) {
+//		break;
 //	}
+//}
+//
+//chronoj1.stop();
+//chronoj1.getAffichageTempsRestant(chronoj1.getTempsRestant());
+//
+//}
