@@ -25,6 +25,22 @@ public class Mouvement {
 	
 	//  ======================  Methodes ====================
 	
+	public Piece getPiece() {
+		return piece;
+	}
+
+	public void setPiece(Piece piece) {
+		this.piece = piece;
+	}
+
+	public Map<TypePiece, int[]> getCoupsTypePiece() {
+		return coupsTypePiece;
+	}
+
+	public void setCoupsTypePiece(Map<TypePiece, int[]> coupsTypePiece) {
+		this.coupsTypePiece = coupsTypePiece;
+	}
+
 	// Constructeur
 	public Mouvement(Plateau plateau) {
 		createCoupsTypePiece();
@@ -35,7 +51,7 @@ public class Mouvement {
 		
 		// Pour une case donnée regarde si une pièce est présente
 		
-		List<Piece> pieces = plateau.Pieces; // l'attribut est public
+		List<Piece> pieces = plateau.getPieces(); // l'attribut est public
 		for (Piece piece : pieces) {
 			if (piece.getCoordonnee() == coord) {
 				return piece;
