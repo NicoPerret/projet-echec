@@ -1,38 +1,48 @@
 package fr.echec.classe.jeu;
 
 import java.util.*;
-import java.util.List;
-import java.util.Map;
 
 import fr.echec.enumerateur.TypePiece;
 
 public class Mouvement {
 	
+	// Reste a faire :
+	//   - pion : déplacement selon la couleur pour le cavalier
+	//   - pion : coups particuliers (2 cases, prise, ...)
+	//   - gérer la prise en général selon la couleur de la pièce adverse
+	//   - gestion du Roque
+	//   - vérifier qu'un coup est possible par rapport à l'échec au roi
+	
+	
 	private Piece piece;
 	
 	private Plateau plateau;
 	
-	// Contient le nombre de cases entre la piece et le bord du plateau
-	// [haut, bas, gauche, droite, HG, HD, BG, BD]
-	// private int[] casesDispoBordPlateau = new int[8];
-	
 	// Liste des coups possibles par pieces et par couleur
 	private Map<TypePiece, int[]> coupsTypePiece = new HashMap<TypePiece, int[]>();
-	// pour rajouter une une clé : map.put("Key", "Value");
-	// pour récupérer une valeur : map.get("Key")
 	
 	
-	// Methodes
+	
+	//  ======================  Methodes ====================
+	
+	// Constructeur
+	public Mouvement(Plateau plateau) {
+		createCoupsTypePiece();
+		this.plateau = plateau;
+	}
 	
 	private Piece trouvePieceCoord(int coord) {
-		List<Piece> pieces = plateau.getPieces(); // fonction a rajouter ?
+		
+		// Pour une case donnée regarde si une pièce est présente
+		
+		List<Piece> pieces = plateau.Pieces; // l'attribut est public
 		for (Piece piece : pieces) {
 			if (piece.getCoordonnee() == coord) {
 				return piece;
 			}
 		}
 		
-		System.out.println("ATTENTION PAS DE PIECE ICI !");
+		return null;
 		
 	}
 	
@@ -40,10 +50,10 @@ public class Mouvement {
 	public void createCoupsTypePiece() {
 		
 		this.coupsTypePiece.put(TypePiece.PION, new int[] {8, -8}); // devant // ajouter 2cases au debut + prise en diag + prise en passant
-		this.coupsTypePiece.put(TypePiece.TOUR, new int[] {8,16,24,32,40,48,56, // un deplt en trop
+		this.coupsTypePiece.put(TypePiece.TOUR, new int[] {8,16,24,32,40,48,56,
 												   -8,-16,-24,-32,-40,-48,-56,
 												   1,2,3,4,5,6,7,
-												   -1,-2,-3,-4,-5,-6,-7}); // vertical (+8 ou -8) ou horizontal
+												   -1,-2,-3,-4,-5,-6,-7});
 		this.coupsTypePiece.put(TypePiece.CAVALIER, new int[] {6,10,15,17,-6,-10,-15,-17});
 		this.coupsTypePiece.put(TypePiece.FOU, new int[] {9,18,27,36,45,54,63,
 												  -9,-18,-27,-36,-45,-54,-63,
@@ -62,6 +72,9 @@ public class Mouvement {
 	}
 	
 	private int[] trouveCasesDispoBordPlateau() {
+		
+		// Renvoie le nombre de cases entre la piece et le bord du plateau
+		// [haut, bas, gauche, droite, HG, HD, BG, BD]
 		
 		int[] casesDispoBordPlateau = new int[8];
 		
@@ -90,22 +103,82 @@ public class Mouvement {
 	private int trouvePieceVoisineDirection(int direction, int casesBordPlateau) {
 
 		// renvoie le nombre de cases jusqu'a la premiere piece trouvee ou par defaut jusqu au bord
+		// la piece voisine trouvée est incluse dans le nombre de cases si elle est de couleur opposée
 		
 		int coordPiece = this.piece.getCoordonnee();
 		int casesPieceVoisine = 0;
 		
 		for (int i=1; i <= casesBordPlateau; i++) {
+			
 			if (this.plateau.getPlateau()[coordPiece + i*direction] != "   ") {
-				break;
+				
+				Piece pieceVoisine = trouvePieceCoord(coordPiece + i*direction);
+				
+				if (pieceVoisine.isCouleur() == this.piece.isCouleur()) {
+					break;
+				}
+				else {
+					casesPieceVoisine ++;
+					break;
+				}
+				
 			}
-			else {
-				casesPieceVoisine ++;
-			}
+			
+			casesPieceVoisine ++;
 		}
 		
 		return casesPieceVoisine;
 		
-		// !!!!!!!!!!!!!!!! ATTENTION !!!!!!!!!!!!!! La gestion de la couleur n'est pas prise en compte !!!
+	}
+		
+	
+	private List<Integer> placeDispoCavalier(int[] casesDispoBordPlateau, List<Integer> destinationsDispo) {
+		// Fonction spéciale pour les mouvements du cavalier
+		
+		// mvts du cavalier : {6,10,15,17,-6,-10,-15,-17}
+		
+		int haut = casesDispoBordPlateau[0];
+		int bas = casesDispoBordPlateau[1];
+		int gauche = casesDispoBordPlateau[2];
+		int droite = casesDispoBordPlateau[3];
+		
+		if (haut >= 2) {
+			if (gauche >= 1) {
+				destinationsDispo.add(15);
+			}
+			if (droite >= 1) {
+				destinationsDispo.add(17);
+			}
+		}
+			
+		if (haut >= 1) {
+			if (gauche >= 2) {
+				destinationsDispo.add(6);
+			}
+			if (droite >= 1) {
+				destinationsDispo.add(10);
+			} 
+		}
+		
+		if (bas >= 2) {
+			if (gauche >= 1) {
+				destinationsDispo.add(-17);
+			}
+			if (droite >= 1) {
+				destinationsDispo.add(-15);
+			} 
+		}
+			
+		if (bas >= 1) {
+			if (gauche >= 2) {
+				destinationsDispo.add(-10);
+			}
+			if (droite >= 1) {
+				destinationsDispo.add(-6);
+			} 
+		}
+		
+		return destinationsDispo;
 	}
 	
 	public List<Integer> trouveDestinationsPossibles() {
@@ -133,10 +206,17 @@ public class Mouvement {
 		}
 		
 		// On determine l'ensemble des destinations dispos sans tenir compte du type de la piece
+		// à l'exception du cavalier
 		
-		for (int i = 0; i < 8; i++) {
-			for (int j = 1; j <= placeDispo[i]; j++) {
-				destinationsDispo.add(coordPiece + directions[i]*placeDispo[j]);
+		if (piece.getNom() == TypePiece.CAVALIER) {
+			placeDispoCavalier(casesDispoBordPlateau, destinationsDispo);
+		}
+		
+		else {
+			for (int i = 0; i < 8; i++) {
+				for (int j = 1; j <= placeDispo[i]; j++) {
+					destinationsDispo.add(coordPiece + directions[i]*placeDispo[j]);
+				}
 			}
 		}
 		
@@ -154,6 +234,7 @@ public class Mouvement {
 		
 		
 	}
+
 //	// Méthodes
 
 	
@@ -198,7 +279,7 @@ public class Mouvement {
 //			}
 //		}
 //	}
-}
+//}
 
 //public static void Promotion() {
 //	if piece(coordonnées) se déplace sur coordonnées2 (A1-H1 ou A8-H8) { 
