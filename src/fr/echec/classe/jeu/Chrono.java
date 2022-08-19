@@ -65,8 +65,9 @@ class Chrono {
 		return tempsRestant;
 	}
 
+	// ENTRER NOMBRE DE MINUTES
 	public void setTempsRestant(long tempsRestant) {
-		this.tempsRestant = tempsRestant;
+		this.tempsRestant = tempsRestant * 60000000000l;
 	}
 
 	public void runnig() {
