@@ -82,11 +82,7 @@ public class Piece extends Plateau {
 			break;
 
 		}
-<<<<<<< HEAD
 		Pieces.add(this);
-=======
-
->>>>>>> d716de3c09718259311678462d50a3d8ef30f8b8
 	}
 
 	// Méthodes
@@ -104,15 +100,9 @@ public class Piece extends Plateau {
 	}
 
 //sous-fonction "Déplacement impossible"
-<<<<<<< HEAD
 	public void DeplacementImpossible() {
 		for (Piece p : Pieces) {
 			if (p.coordonnee == coordonnee||p.couleur==couleur) {
-=======
-	/*public void DeplacementImpossible() {
-		for (Piece p : ensemblePieces) {
-			if (p.coordonnee == coordonnee||p.couleur=couleur) {
->>>>>>> d716de3c09718259311678462d50a3d8ef30f8b8
 				System.out.println("Déplacement impossible");
 			}
 		}
@@ -126,7 +116,7 @@ public class Piece extends Plateau {
 			this.coordonnee = coordonnee;
 		}
 	}
-*/
+
 	public void Capture() {
 		Pieces.remove(this);
 	}
@@ -135,13 +125,8 @@ public class Piece extends Plateau {
 
 
 //sous-fonction "Promotion"
-<<<<<<< HEAD
 	public void Promotion() {
 		for (Piece p : Pieces) {
-=======
-	/*public void Promotion() {
-		for (Piece p : ensemblePieces) {
->>>>>>> d716de3c09718259311678462d50a3d8ef30f8b8
 			if (p.coordonnee == 56 || p.coordonnee == 57 || p.coordonnee == 58 || p.coordonnee == 59
 					|| p.coordonnee == 60 || p.coordonnee == 61 || p.coordonnee == 62 || p.coordonnee == 63
 					|| p.coordonnee == 0 || p.coordonnee == 1 || p.coordonnee == 2 || p.coordonnee == 3
@@ -151,7 +136,7 @@ public class Piece extends Plateau {
 				p.nom = read();
 			}
 		}
-	}*/
+	}
 }
 
 //public static void Promotion() {
