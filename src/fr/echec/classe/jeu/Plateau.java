@@ -101,7 +101,7 @@ public class Plateau {
 						break;
 					}
 					// ----
-
+					pi.setCoordonnee(col * 8 + lig);
 					this.Pieces.add(pi);
 					plateau[col * 8 + lig] = pi.getNomPlateau();
 
