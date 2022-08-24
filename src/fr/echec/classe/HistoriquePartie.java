@@ -1,7 +1,10 @@
 package fr.echec.classe;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+
+import fr.echec.classe.joueur.Utilisateur;
 
 public class HistoriquePartie {
 
@@ -11,11 +14,15 @@ public class HistoriquePartie {
 	 */
 
 	// Attributs
+	private int id; 
 	private int compteurCoup = 0;
 	private List<NotationCoup> listeCoups = new ArrayList<>();
-	private String idJ1;
-	private String idJ2;
+	private Utilisateur j1 ;
+	private Utilisateur j2 ;
 	private int idPartie;
+	private int idMessages; 
+	private LocalDateTime date;
+	private int vainqueurId;
 
 	// get-set methodes
 
@@ -35,20 +42,22 @@ public class HistoriquePartie {
 		this.listeCoups = listeCoups;
 	}
 
-	public String getIdJ1() {
-		return idJ1;
+	
+
+	public Utilisateur getJ1() {
+		return j1;
 	}
 
-	public void setIdJ1(String idJ1) {
-		this.idJ1 = idJ1;
+	public void setJ1(Utilisateur j1) {
+		this.j1 = j1;
 	}
 
-	public String getIdJ2() {
-		return idJ2;
+	public Utilisateur getJ2() {
+		return j2;
 	}
 
-	public void setIdJ2(String idJ2) {
-		this.idJ2 = idJ2;
+	public void setJ2(Utilisateur j2) {
+		this.j2 = j2;
 	}
 
 	public int getIdPartie() {
@@ -59,9 +68,42 @@ public class HistoriquePartie {
 		this.idPartie = idPartie;
 	}
 
-	// Methodes
-	public void ajouterCoup(NotationCoup coup) {
-		this.listeCoups.add(coup);
+	
+
+	public int getId() {
+		return id;
 	}
 
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getIdMessages() {
+		return idMessages;
+	}
+
+	public void setIdMessages(int idMessages) {
+		this.idMessages = idMessages;
+	}
+
+	public LocalDateTime getDate() {
+		return date;
+	}
+
+	public void setDate(LocalDateTime date) {
+		this.date = date;
+	}
+
+	public int getVainqueurId() {
+		return vainqueurId;
+	}
+
+	public void setVainqueurId(int vainqueurId) {
+		this.vainqueurId = vainqueurId;
+	}
+	
+	// Methodes
+		public void ajouterCoup(NotationCoup coup) {
+			this.listeCoups.add(coup);
+		}
 }
