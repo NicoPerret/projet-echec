@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.echec.classe.HistoriquePartie;
-import fr.echec.excepetion.HistoriquePartieNotFoundException;
-import fr.echec.excepetion.IdNegatifException;
+import fr.echec.exception.HistoriquePartieNotFoundException;
+import fr.echec.exception.IdNegatifException;
 import fr.echec.repository.IHistoriquePartie;
 import fr.echec.repository.sql.HistoriquePartieRepoSql;
 

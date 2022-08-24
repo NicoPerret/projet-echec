@@ -1,4 +1,4 @@
-package fr.echec.excepetion;
+package fr.echec.exception;
 
 public class IdNegatifException extends Exception {
 
