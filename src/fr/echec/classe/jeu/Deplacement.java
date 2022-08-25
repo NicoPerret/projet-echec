@@ -4,31 +4,36 @@ import java.util.Scanner;
 
 import fr.echec.enumerateur.TypePiece;
 
-public class Deplacement extends CoupsPossibles {
-	String read() {
+public class Deplacement {
+	public String read() {
 		Scanner sc = new Scanner(System.in);
 		return sc.nextLine();
 	}
-//	// sous-fonction "Capture"
-//
-//	if (piece.getCoordonnee() == coord && piece.couleur != piece.trouvePieceCoordonnee(coord).couleur)) { //if case remplie alors capture
-//			piece=null;
-//			piece.Capture();
-//		}
-//		piece.trouvePieceCoordonnee(coord).Capture();
-//	}
-//}
+
+	// sous-fonction "Capture"
+	public void deplacement(Piece piece, int coord, Plateau p) {
+		p.setCaseTableau("   ", piece.getCoordonnee());
+		p.setCaseTableau(piece.getNomPlateau(), coord);
+		
+		if (p.getPieceCase(coord) != null) {
+
+			Capture(p.getPieceCase(coord));
+		}
+
+		p.getPieceCase(piece.getCoordonnee()).setCoordonnee(coord);
+	}
 
 	public void Capture(Piece piece) {
-		if (piece==null) {
-			plateau.remove(piece);
-		}
+
+		piece.setCoordonnee(-1);
+		piece.setEnVie(false);
+
 	}
 
 //public static void Capture() {
 
 //sous-fonction "Promotion"
-	public void Promotion() {
+	public void Promotion(Piece piece) {
 		if (piece.getNom() == TypePiece.PION) { // verif coord dernier deplace pion ou pas ?
 			if (piece.getCoordonnee() == 56 || piece.getCoordonnee() == 57 || piece.getCoordonnee() == 58
 					|| piece.getCoordonnee() == 59 || piece.getCoordonnee() == 60 || piece.getCoordonnee() == 61
@@ -38,14 +43,16 @@ public class Deplacement extends CoupsPossibles {
 					|| piece.getCoordonnee() == 7) {
 
 				System.out.println("Quel pièce voulez-vous comme promotion?");
-				piece.getNom().valueOf(read());
+				piece.getNom().valueOf(read()); // a convertir avec un switch // toLowerCase
+				piece.getNomPlateau(); // a completer
 			}
 		}
 	}
 }
 //	// sous-fonction roque
+// Petit roque et grand roque 
 //	// public void Roque() {
-//	//if(piece.getNom(TypePiece.ROI).getCoordonnee()==5&&piece.getNom(TypePiece.TOUR).getCoordonnee()==8)
+//	//if(piece.getNom(TypePiece.ROI).getCoordonnee()==5&&piece.getNom(TypePiece.TOUR).getCoordonnee()==8) // utiliser le boolean "aBouge" et verifier les cases entre
 //
 //	{
 //		//piece.getNom(TypePiece.ROI).setCoordonnee(7);

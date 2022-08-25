@@ -3,10 +3,13 @@ package fr.echec.application;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.DebugGraphics;
+
 import fr.echec.classe.NotationCoup;
 import fr.echec.classe.Partie;
 import fr.echec.classe.jeu.Chrono;
 import fr.echec.classe.jeu.CoupsPossibles;
+import fr.echec.classe.jeu.Deplacement;
 import fr.echec.classe.jeu.Fen;
 import fr.echec.classe.jeu.Plateau;
 
@@ -15,6 +18,7 @@ public class Application {
 	public static void main(String[] args) {
 
 		// SETUP RUDIMENTAIRE MAIS FONCTIONNEL 
+		Deplacement d = new Deplacement();
 		NotationCoup nt = new NotationCoup(0, 0);
 		Partie p = new Partie(); 
 		Fen fen = new Fen();
@@ -41,22 +45,27 @@ public class Application {
 			int select = nt.conversionLettreTo64(selection);
 			
 			// Envoie dans coup possible 
-			CoupsPossibles coup = new CoupsPossibles(pl);
+			CoupsPossibles coupPossible = new CoupsPossibles();
 			
-			coup.setPiece(pl.getPieceCase(select));
-			listeCoup = coup.trouveDestinationsPossibles(); 
+			coupPossible.setPiece(pl.getPieceCase(select));
+			listeCoup = coupPossible.trouveDestinationsPossibles(pl); 
+			
+			
 			// affichage et récupp de la liste des coups possible 
-			System.out.println("Coups possible : ");
+			
+			
+			System.out.println("Coup(s) possible(s) : ");
 			for (Integer i : listeCoup) {
 				System.out.println(nt.conversion64ToLettre(i));
 			}
 			
 			
 			// Jouer la piece 
-			p.jouerPiece();
+			selection = p.jouerPiece();
+			int coup = nt.conversionLettreTo64(selection);
 			
+			d.deplacement(pl.getPieceCase(select), coup, pl);
 			// vérifier que le coup appartient à coup possible 
-			
 			
 			// Jouer le coup 
 			

@@ -23,8 +23,7 @@ public class CoupsPossibles {
 	
 	
 	private Piece piece;
-	private Plateau plateau;
-	
+
 	// Liste des coups possibles par pieces et par couleur
 	private Map<TypePiece, int[]> coupsTypePiece = new HashMap<TypePiece, int[]>();
 
@@ -49,9 +48,9 @@ public class CoupsPossibles {
 
 	// ========================= Constructeur =============================
 	
-	public CoupsPossibles(Plateau plateau) {
+	public CoupsPossibles() {
 		createCoupsTypePiece();
-		this.plateau = plateau;
+		
 	}
 	
 	// ============= Définition des déplacements par pièce ==================
@@ -111,7 +110,7 @@ public class CoupsPossibles {
 		
 	}
 	
-	private int trouvePieceVoisineDirection(int direction, int casesBordPlateau) {
+	private int trouvePieceVoisineDirection(int direction, int casesBordPlateau, Plateau plateau) {
 
 		// renvoie le nombre de cases jusqu'à la premiere pièce trouvée ou par défaut jusqu'au bord
 		// la pièce voisine trouvée est incluse dans le nombre de cases si elle est de couleur opposée
@@ -121,7 +120,7 @@ public class CoupsPossibles {
 		
 		for (int i=1; i <= casesBordPlateau; i++) {
 			
-			Piece pieceVoisine = this.plateau.getPieceCase(coordPiece + i*direction);
+			Piece pieceVoisine = plateau.getPieceCase(coordPiece + i*direction);
 			
 			if (pieceVoisine != null) {
 				
@@ -141,7 +140,7 @@ public class CoupsPossibles {
 
 	// ================================= Cas particuliers ======================================
 	
-	private List<Integer> placeDispoCavalier(int[] casesDispoBordPlateau) {
+	private List<Integer> placeDispoCavalier(int[] casesDispoBordPlateau, Plateau plateau) {
 		// Fonction spéciale pour les mouvements du cavalier
 		
 		// mvts du cavalier : {6,10,15,17,-6,-10,-15,-17}
@@ -172,7 +171,7 @@ public class CoupsPossibles {
 		
 		for (int coord : destinationsDispo) {
 			
-			Piece pieceVoisine = this.plateau.getPieceCase(coord);
+			Piece pieceVoisine = plateau.getPieceCase(coord);
 			
 			if (pieceVoisine != null && this.piece.isCouleur() == pieceVoisine.isCouleur()) {
 				coordASupprimer.add(coord);
@@ -252,7 +251,7 @@ public class CoupsPossibles {
 		return coupsReglementaires;	
 	}
 	
-	public List<Integer> sousfctDestinationsDispo(int[] casesDispoBordPlateau) {
+	public List<Integer> sousfctDestinationsDispo(int[] casesDispoBordPlateau, Plateau plateau) {
 		
 		int[] placeDispo = new int[8];
 		
@@ -263,11 +262,11 @@ public class CoupsPossibles {
 		List<Integer> destinationsDispo = new ArrayList<>();
 		
 		for (int i = 0; i < 8; i++) {
-			placeDispo[i] = this.trouvePieceVoisineDirection(directions[i], casesDispoBordPlateau[i]);
+			placeDispo[i] = this.trouvePieceVoisineDirection(directions[i], casesDispoBordPlateau[i], plateau);
 		}
 		
 		if (piece.getNom() == TypePiece.CAVALIER) {
-			destinationsDispo = placeDispoCavalier(casesDispoBordPlateau);
+			destinationsDispo = placeDispoCavalier(casesDispoBordPlateau, plateau);
 		}
 		
 		else {
@@ -298,7 +297,7 @@ public class CoupsPossibles {
 	}
 	
 	
-	public List<Integer> trouveDestinationsPossibles() { //service ?
+	public List<Integer> trouveDestinationsPossibles(Plateau plateau) { //service ?
 		 
 		int coordPiece = this.piece.getCoordonnee();
 		
@@ -310,7 +309,7 @@ public class CoupsPossibles {
 		 
 		// Place disponible sans tenir compte du type de la piece
 		List<Integer> destinationsDispo = 
-				sousfctDestinationsDispo(casesDispoBordPlateau); 
+				sousfctDestinationsDispo(casesDispoBordPlateau,plateau); 
 		
 		// Application de cas particuliers (restriction mvt des pions)
 		coupsReglementaires = sousfctFiltres(coupsReglementaires);
@@ -332,15 +331,6 @@ public class CoupsPossibles {
 		
 	}
 
-//	// Méthodes
 
-
-//sous-fonction "Déplacement impossible"
-//	public void DeplacementImpossible() {
-//		for (Piece p : Pieces) {
-//			if (p.coordonnee == coordonnee && p.couleur==couleur) {
-//				System.out.println("Déplacement impossible");
-//			}
-//		}
 
 }

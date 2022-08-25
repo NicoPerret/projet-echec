@@ -98,12 +98,12 @@ public class Partie {
 	public String selectionPiece() {
 
 		if (compteurTours % 2 == 1) {
-			System.out.println("Tour du Joueur 1 : ");
+			System.out.println("Tour du Blanc : ");
 			System.out.println("Saisir une piece : ");
 			this.chronoJ1.start();
 
 		} else {
-			System.out.println("Tour du Joueur 2 : ");
+			System.out.println("Tour du Noir : ");
 			System.out.println("Saisir une piece : ");
 			this.chronoJ2.start();
 		}
@@ -118,12 +118,12 @@ public class Partie {
 	public String jouerPiece() {
 
 		if (compteurTours % 2 == 1) {
-			System.out.println("Tour du Joueur 1 : ");
+			System.out.println("Tour du Blanc : ");
 			System.out.println("Déplacer la piece : ");
 		
 
 		} else {
-			System.out.println("Tour du Joueur 2 : ");
+			System.out.println("Tour du Noir : ");
 			System.out.println("Déplacer la piece : ");
 			
 		}
