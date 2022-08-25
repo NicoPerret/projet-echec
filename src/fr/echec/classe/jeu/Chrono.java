@@ -84,7 +84,7 @@ public class Chrono {
 		if (this.temps > this.tempsRestant) {
 			this.setDefaiteTemps(true);
 			this.stop();
-			this.tempsRestant = 0;
+			this.setTempsRestant(0,0);
 			System.out.println("Perdu au temps");
 		}
 		
@@ -96,9 +96,12 @@ public class Chrono {
 
 	}
 	public void stop() {
-		this.stopWatchStopTime = System.nanoTime();
-		this.stopWatchRunning = false;
-		this.tempsRestant =this.tempsRestant - this.temps + this.increment;
+		if (this.stopWatchRunning== true) {
+			this.stopWatchStopTime = System.nanoTime();
+			this.stopWatchRunning = false;
+			this.tempsRestant =this.tempsRestant - this.temps + this.increment;
+			
+		}
 	}
 
 	public Chrono (long tempsRestantMin,long tempsRestantSec, long increment){
