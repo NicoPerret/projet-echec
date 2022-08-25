@@ -92,7 +92,9 @@ public class Partie {
 		this.setChronoJ1(parametreChrono);
 		this.setChronoj2(parametreChrono);
 	}
+	
 
+	
 	public String selectionPiece() {
 
 		if (compteurTours % 2 == 1) {
@@ -108,8 +110,8 @@ public class Partie {
 
 		Scanner sc = new Scanner(System.in);
 		String saisie = sc.nextLine();
+		
 
-		sc.close();
 		return saisie;
 	}
 
@@ -118,23 +120,21 @@ public class Partie {
 		if (compteurTours % 2 == 1) {
 			System.out.println("Tour du Joueur 1 : ");
 			System.out.println("Déplacer la piece : ");
-			this.chronoJ1.start();
+		
 
 		} else {
 			System.out.println("Tour du Joueur 2 : ");
 			System.out.println("Déplacer la piece : ");
-			this.chronoJ2.start();
+			
 		}
 
 		Scanner sc = new Scanner(System.in);
 		String saisie = sc.nextLine();
+		
 
-	
-
-		sc.close();
 		return saisie;
 	}
-	
+
 	public void finTour() {
 		if (this.getCompteurTours() % 2 == 1) {
 
@@ -148,6 +148,6 @@ public class Partie {
 			this.chronoJ2.getAffichageTempsRestant(chronoJ2.getTempsRestant());
 
 		}
-		this.compteurTours ++ ; 
+		this.compteurTours++;
 	}
 }

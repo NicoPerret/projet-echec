@@ -96,12 +96,14 @@ public class Chrono {
 
 	}
 	public void stop() {
-		if (this.stopWatchRunning== true) {
+		if (stopWatchRunning == true) {
+			
 			this.stopWatchStopTime = System.nanoTime();
 			this.stopWatchRunning = false;
 			this.tempsRestant =this.tempsRestant - this.temps + this.increment;
-			
 		}
+			
+		
 	}
 
 	public Chrono (long tempsRestantMin,long tempsRestantSec, long increment){
