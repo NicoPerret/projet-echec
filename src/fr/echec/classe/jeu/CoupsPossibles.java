@@ -49,7 +49,7 @@ public class CoupsPossibles {
 
 	// ========================= Constructeur =============================
 	
-	public void Mouvement(Plateau plateau) {
+	public CoupsPossibles(Plateau plateau) {
 		createCoupsTypePiece();
 		this.plateau = plateau;
 	}
@@ -82,7 +82,7 @@ public class CoupsPossibles {
 	
 	// ==================== Sous-fonctions générales ======================
 	
-	protected Piece trouvePieceCoord(int coord) {
+	private Piece trouvePieceCoord(int coord) {
 		
 		// Pour une case donnée regarde si une pièce est présente
 		
@@ -296,9 +296,10 @@ public class CoupsPossibles {
 //	// Méthodes
 
 
-//sous-fonction "Déplacement impossible"  // à utiliser en cas de mauvaise saisie
+//sous-fonction "Déplacement impossible"
 //	public void DeplacementImpossible() {
-//			if (destinationsJouables=="null"||destinationsJouables=="") {
+//		for (Piece p : Pieces) {
+//			if (p.coordonnee == coordonnee && p.couleur==couleur) {
 //				System.out.println("Déplacement impossible");
 //			}
 //		}
