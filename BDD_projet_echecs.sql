@@ -102,5 +102,4 @@ VALUES
 -- repo partie mais plus tard
 -- repo pb
 -- repo penalite piece 
-
--- generateur de fen
+-- repo resPb

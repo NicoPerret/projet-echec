@@ -1,9 +1,12 @@
 package fr.echec.classe.joueur;
 
-public class Utilisateur {//revoir coherence avec bdd
+public class Utilisateur {
 	protected  int id;
 	protected String pseudo;
 	protected String mdp;
+	protected String nom;
+	protected String prenom;
+	protected String email;
 	protected int elo;
 	
 	public int getId() {
