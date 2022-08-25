@@ -37,6 +37,7 @@ public class Plateau {
 			.orElse(null);
 	}
 	
+	//que pour la console
 	public void setCaseTableau(String nom, int coord) {
 		this.plateau[coord] = nom;
 	}
