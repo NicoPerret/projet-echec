@@ -12,7 +12,7 @@ public class Fen {
 		Plateau plat = new Plateau();
 		String[] plateau = new String[64];
 		List<Piece> pieces = new ArrayList<>();
-		
+
 		// pour la version console
 		// --------
 		String nom = "   ";
@@ -88,7 +88,47 @@ public class Fen {
 	}
 
 	public String creationFen(Plateau plat) {
-		return null;
+		String fen = "";
+		String str;
+		char piece = 0;
+		char p = 0;
+		int j = 0;
+		for (int i = plat.getPlateau().length - 1; i >= 0; i--) {
+			j++;
+			str = plat.getPlateau()[i];
+			switch (str.charAt(0)) {
+			case 't':
+				piece = 'r';
+				break;
+			case 'c':
+				piece = 'n';
+				break;
+			case 'f':
+				piece = 'b';
+				break;
+			case 'r':
+				piece = 'k';
+				break;
+			case 'd':
+				piece = 'q';
+				break;
+			case 'p':
+				piece = 'p';
+			}
+			
+			if (str.charAt(1) == 'b') {
+				p = Character.toUpperCase(piece);
+			} else if (str.charAt(1) == 'n') {
+				p = Character.toLowerCase(piece);
+			} else {
+				p = '1';
+			}
+			fen = fen + p;
+			if (j % 8 == 0 && i != 0) {
+				fen = fen + "/";
+			}
+		}
+		return fen;
 	}
 
 }

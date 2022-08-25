@@ -83,19 +83,32 @@ public class NotationCoup {
 
 	// Conversion du format 0-63 dans le format A1-H8
 	
-	public String conversion(int coordonnee64) {
+	public String conversion64ToLettre(int coordonnee64) {
 		String coordonneeStandard = "";
 
 		String[] listeLignes = new String[] { "A", "B", "C", "D", "E", "F", "G", "H" };
 		coordonneeStandard = listeLignes[coordonnee64 % 8] + (coordonnee64 / 8 + 1);
 		return coordonneeStandard;
 	}
+	
+	public int conversionLettreTo64(String coordonneeLettre) {
+		int coordonneeStandard = 0;
+		
+		int lettre = coordonneeLettre.charAt(0) - 'A';
+		int chiffre = coordonneeLettre.charAt(1) - 48;  // Pour convertir char en int
+		
+		coordonneeStandard = (chiffre - 1 )  * 8 + lettre; 
+	
+//		String[] listeLignes = new String[] { "A", "B", "C", "D", "E", "F", "G", "H" };
+//		coordonneeStandard = listeLignes[coordonnee64 % 8] + (coordonnee64 / 8 + 1);
+		return coordonneeStandard;
+	}
 
 	// Ecriture du dernier coup joué
 	public void ecrireCoup() { // A COMPLETER
 		// Récuperation des coordonnées standards
-		this.coordDepartStandard = this.conversion(coordDepart64);
-		this.coordArriveeStandard = this.conversion(coordArrivee64);
+		this.coordDepartStandard = this.conversion64ToLettre(coordDepart64);
+		this.coordArriveeStandard = this.conversion64ToLettre(coordArrivee64);
 
 		// Ecriture du coup
 		this.coupFormatStandard = (this.typePiece + this.coordDepartStandard + "-" + this.coordArriveeStandard);

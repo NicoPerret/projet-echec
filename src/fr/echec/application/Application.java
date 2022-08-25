@@ -1,7 +1,13 @@
 package fr.echec.application;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import fr.echec.classe.NotationCoup;
 import fr.echec.classe.Partie;
 import fr.echec.classe.jeu.Chrono;
+import fr.echec.classe.jeu.CoupsPossibles;
+import fr.echec.classe.jeu.Fen;
 import fr.echec.classe.jeu.Plateau;
 
 public class Application {
@@ -9,17 +15,21 @@ public class Application {
 	public static void main(String[] args) {
 
 		// SETUP RUDIMENTAIRE MAIS FONCTIONNEL 
+		NotationCoup nt = new NotationCoup(0, 0);
 		Partie p = new Partie(); 
-		Plateau pl = new Plateau("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR");
-		Chrono chrono = new Chrono(0,10,2);
-		
+		Fen fen = new Fen();
+		Plateau pl = new Plateau();
+		pl = fen.creationPlateau("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR");
+		Chrono chrono = new Chrono(3,0,2);
+		List<Integer> listeCoup = new ArrayList<>();
 		
 		p.setChronos(chrono);
 		p.setPlateau(pl);
-		p.setCompteurTours(3);
+	
+	
+
 		
-		
-		// UNE PARTIE 
+//		// UNE PARTIE 
 		while(true) {
 			
 			System.out.println(p.getPlateau());
@@ -27,13 +37,19 @@ public class Application {
 			
 			
 			//selection 
-			p.selectionPiece();
+			String selection = p.selectionPiece();
+			int select = nt.conversionLettreTo64(selection);
 			
 			// Envoie dans coup possible 
+			CoupsPossibles coup = new CoupsPossibles(pl);
 			
-			
+			coup.setPiece(pl.getPieceCase(select));
+			listeCoup = coup.trouveDestinationsPossibles(); 
 			// affichage et récupp de la liste des coups possible 
-			
+			System.out.println("Coups possible : ");
+			for (Integer i : listeCoup) {
+				System.out.println(nt.conversion64ToLettre(i));
+			}
 			
 			
 			// Jouer la piece 
@@ -49,6 +65,10 @@ public class Application {
 			// Fin du tour 
 			
 			p.finTour();
+			
+			if (p.getChronoJ1().isDefaiteTemps() || p.getChronoj2().isDefaiteTemps()) {
+				break;
+			}
 		}
 	
 	
