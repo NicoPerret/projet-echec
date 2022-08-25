@@ -4,7 +4,7 @@ import java.util.*;
 
 import fr.echec.enumerateur.TypePiece;
 
-public class Mouvement {
+public class CoupsPossibles {
 	
 	// Reste à faire :
 	//   - pion : prise en passant, prise en diagonale, pas prise en face
@@ -23,13 +23,11 @@ public class Mouvement {
 	
 	
 	private Piece piece;
-	
 	private Plateau plateau;
 	
 	// Liste des coups possibles par pieces et par couleur
 	private Map<TypePiece, int[]> coupsTypePiece = new HashMap<TypePiece, int[]>();
-	
-	
+
 	
 	//  ======================  getters - setters ====================
 	
@@ -58,7 +56,7 @@ public class Mouvement {
 	
 	// ============= Définition des déplacements par pièce ==================
 	
-	public void createCoupsTypePiece() {
+	public void createCoupsTypePiece() { // coup reglementaire par type de pieces
 		
 		this.coupsTypePiece.put(TypePiece.PION, new int[] {8, 16, -8, -16});
 		this.coupsTypePiece.put(TypePiece.TOUR, new int[] {8,16,24,32,40,48,56,
@@ -89,16 +87,14 @@ public class Mouvement {
 		// Pour une case donnée regarde si une pièce est présente
 		
 		List<Piece> pieces = plateau.getPieces();
+		// plateau[coord] ? .isBlank ? "   " ou "pb1" + recup piece avec son nom dans list piece de plateau
 		for (Piece piece : pieces) {
 			if (piece.getCoordonnee() == coord) {
 				return piece;
 			}
 		}
-		
 		return null;
-		
 	}
-	
 	
 	private int[] trouveCasesDispoBordPlateau() {
 		
@@ -234,7 +230,7 @@ public class Mouvement {
 	// ========================= FONCTION PRINCIPALE ================================
 	// ==============================================================================
 	
-	public List<Integer> trouveDestinationsPossibles() {
+	public List<Integer> trouveDestinationsPossibles() { //service ?
 		
 		int coordPiece = this.piece.getCoordonnee();
 		
@@ -295,58 +291,17 @@ public class Mouvement {
 		}
 		
 		return destinationsJouables;
-		
-		
 	}
 
 //	// Méthodes
 
-	
 
-	
-//
-////sous-fonction "Déplacement impossible"
+//sous-fonction "Déplacement impossible"
 //	public void DeplacementImpossible() {
 //		for (Piece p : Pieces) {
-//			if (p.coordonnee == coordonnee||p.couleur==couleur) {
+//			if (p.coordonnee == coordonnee && p.couleur==couleur) {
 //				System.out.println("Déplacement impossible");
 //			}
 //		}
-//
-//		// sous-fonction "Capture"
-//
-//		for (Piece p : Pieces) {
-//			if (p.coordonnee == coordonnee|| p.couleur!=couleur) {
-//				p.Capture();
-//			}
-//			p.coordonnee = coordonnee;
-//		}
-//	}
-//
-//	public void Capture() {
-//		Pieces.remove(this);
-//	}
-//
-////public static void Capture() {
-//
-//
-////sous-fonction "Promotion"
-//	public void Promotion() {
-//		for (Piece p : Pieces) {
-//			if (p.coordonnee == 56 || p.coordonnee == 57 || p.coordonnee == 58 || p.coordonnee == 59
-//					|| p.coordonnee == 60 || p.coordonnee == 61 || p.coordonnee == 62 || p.coordonnee == 63
-//					|| p.coordonnee == 0 || p.coordonnee == 1 || p.coordonnee == 2 || p.coordonnee == 3
-//					|| p.coordonnee == 4 || p.coordonnee == 5 || p.coordonnee == 6 || p.coordonnee == 7) {
-//
-//				System.out.println("Quel pièce voulez-vous comme promotion?");
-//				p.nom = read();
-//			}
-//		}
-//	}
-//}
-
-//public static void Promotion() {
-//	if piece(coordonnées) se déplace sur coordonnées2 (A1-H1 ou A8-H8) { 
-//      demander au joueur quelle pièce il veut; pièce-> piece choisie
 
 }

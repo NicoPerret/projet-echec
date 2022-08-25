@@ -1,7 +1,8 @@
 package fr.echec.classe.jeu;
 
+// affichage temps restant si defaite au temps
 
-class Chrono {
+public class Chrono {
 
 	private final long nanoSecondsPerSecond = 1000000000;
 	private final long nanoSecondsPerMinute = 60000000000L;

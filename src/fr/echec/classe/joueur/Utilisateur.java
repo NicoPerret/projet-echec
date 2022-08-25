@@ -1,6 +1,6 @@
 package fr.echec.classe.joueur;
 
-public class Utilisateur {
+public class Utilisateur {//revoir coherence avec bdd
 	protected  int id;
 	protected String pseudo;
 	protected String mdp;

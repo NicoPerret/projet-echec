@@ -2,11 +2,10 @@ package fr.echec.classe.jeu;
 
 import fr.echec.enumerateur.TypePiece;
 
-import java.util.LinkedList;
-
-public class Piece  {
+public class Piece {
 
 	// Déclaration des variables
+	//ajout a deja bouger boolean false;
 	private int coordonnee = -1;
 	private TypePiece nom;
 	private String couleur;
@@ -55,7 +54,7 @@ public class Piece  {
 	public void setValeurMateriel(int valeurMateriel) {
 		this.valeurMateriel = valeurMateriel;
 	}
-	
+
 	public String getNomPlateau() {
 		return nomPlateau;
 	}
@@ -65,7 +64,6 @@ public class Piece  {
 	}
 
 	// Constructeur pièce
-
 	public Piece(TypePiece nom, String couleur) {
 		this.nom = nom;
 		this.couleur = couleur;
@@ -90,6 +88,5 @@ public class Piece  {
 			break;
 
 		}
-	
 	}
 }

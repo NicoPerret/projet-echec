@@ -98,7 +98,7 @@ public class HistoriquePartieRepoSql extends RepositorySql implements IHistoriqu
 	public void save(HistoriquePartie entity) {
 		try {
 			PreparedStatement myStatement = this.prepare(
-					"INSERT INTO historiquepartie (hsp_id_j1, hsp_id_j2, hsp_message_id, hsp_deplacement, hsp_vainqueur_id) VALUES (?,?,?,?,?)");
+					"INSERT INTO historiquepartie (hsp_id_j1, hsp_id_j2, hsp_message_id, hsp_deplacements, hsp_vainqueur_id) VALUES (?,?,?,?,?)");
 
 			// On injecte les paramètres à la requête (l'index commence à 1)
 			myStatement.setInt(1, entity.getJ1().getId());

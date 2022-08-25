@@ -14,14 +14,14 @@ public class HistoriquePartie {
 	 */
 
 	// Attributs
-	private int id; 
-	private int compteurCoup = 0;
-	private List<NotationCoup> listeCoups = new ArrayList<>();
-	private Utilisateur j1 ;
-	private Utilisateur j2 ;
-	private int idPartie;
-	private int idMessages; 
-	private LocalDateTime date;
+	private int id;
+	private int compteurCoup = 0; // peut etre deja dans la classe partie
+	private List<NotationCoup> listeCoups = new ArrayList<>();//peut etre stocker sous une liste de string et concatener pour la bdd
+	private Utilisateur j1;
+	private Utilisateur j2;
+	private int idPartie; // a revoir avec la classe partie
+	private int idMessages; // a revoir avec la classe message
+	private LocalDateTime date; // a revoir avec bon format pour la bdd
 	private int vainqueurId;
 
 	// get-set methodes
@@ -41,8 +41,6 @@ public class HistoriquePartie {
 	public void setListeCoups(List<NotationCoup> listeCoups) {
 		this.listeCoups = listeCoups;
 	}
-
-	
 
 	public Utilisateur getJ1() {
 		return j1;
@@ -67,8 +65,6 @@ public class HistoriquePartie {
 	public void setIdPartie(int idPartie) {
 		this.idPartie = idPartie;
 	}
-
-	
 
 	public int getId() {
 		return id;
@@ -101,9 +97,9 @@ public class HistoriquePartie {
 	public void setVainqueurId(int vainqueurId) {
 		this.vainqueurId = vainqueurId;
 	}
-	
+
 	// Methodes
-		public void ajouterCoup(NotationCoup coup) {
-			this.listeCoups.add(coup);
-		}
+	public void ajouterCoup(NotationCoup coup) {
+		this.listeCoups.add(coup);
+	}
 }

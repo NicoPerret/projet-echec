@@ -8,7 +8,6 @@ import fr.echec.enumerateur.TypePiece;
 
 public class Plateau {
 	// Déclaration des variables
-
 	private String[] plateau = new String[64];
 	private int numPartie;
 	private List<Piece> Pieces = new ArrayList<>();
@@ -46,7 +45,7 @@ public class Plateau {
 		for (int i = 0; i < 64; i++) {
 			this.plateau[i] = nom;
 		}
-		int cptPionBlanc = 1, cptPionNoir = 1, cptTourBlanc = 1, cptTourNoir = 1, cpt = 0;
+		int cptPionBlanc = 1, cptPionNoir = 1, cptTourBlanc = 1, cptTourNoir = 1;
 		int cptFouBlanc = 1, cptFouNoir = 1, cptCavBlanc = 1, cptCavNoir = 1;
 		// --------
 

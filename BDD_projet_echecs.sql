@@ -18,7 +18,7 @@ CREATE TABLE  historiquePartie (
     hsp_id SERIAL PRIMARY KEY,
     hsp_id_J1 INT NOT NULL,
     hsp_id_J2 INT NOT NULL,
-    hsp_message_id INT NOT NULL,
+    hsp_message TEXT NOT NULL,
     hsp_deplacements TEXT,
     hsp_date TIMESTAMP NOT NULL,
     hsp_vainqueur_id int
@@ -27,14 +27,9 @@ CREATE TABLE  historiquePartie (
 CREATE TABLE probleme(
     prob_id SERIAL PRIMARY KEY,
     prob_fen_depart VARCHAR(100) NOT NULL,
-    prob_liste_deplacement VARCHAR(100),
+    prob_liste_deplacements VARCHAR(100),
     prob_traitaublanc BOOLEAN NOT NULL,
     prob_difficulte INT NOT NULL
-);
-
-CREATE TABLE historiqueMessage (
-	hsm_id SERIAL PRIMARY KEY,
-  	hsm_liste_message TEXT
 );
 
 CREATE TABLE resultatProbleme (
@@ -51,12 +46,6 @@ CREATE TABLE penalitePiece (
 );
 
 ALTER TABLE historiquePartie 
-    ADD
-        CONSTRAINT FK_Partie_Message
-        FOREIGN KEY (hsp_message_id)
-        REFERENCES historiqueMessage(hsm_id)
-        ON DELETE CASCADE
-        ON UPDATE CASCADE,
     ADD
         CONSTRAINT fk_j1id
         FOREIGN KEY (hsp_id_J1)
@@ -103,6 +92,15 @@ VALUES
     ('DameNoir', 'rnb1kbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR');
 
 
-INSERT INTO probleme (prob_fen_depart, prob_liste_deplacement, prob_traitaublanc, prob_difficulte)
-VALUES
-    ('q3k1nr/1pp1nQpp/3p4/1P2p3/4P3/B1PP1b2/B5PP/5K2','','false','...')
+--INSERT INTO probleme (prob_fen_depart, prob_liste_deplacement, prob_traitaublanc, prob_difficulte)
+--VALUES
+--    ('q3k1nr/1pp1nQpp/3p4/1P2p3/4P3/B1PP1b2/B5PP/5K2','','false','...')
+
+
+
+-- repo utilisateur DAO
+-- repo partie mais plus tard
+-- repo pb
+-- repo penalite piece 
+
+-- generateur de fen
