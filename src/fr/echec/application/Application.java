@@ -1,17 +1,60 @@
 package fr.echec.application;
 
-import java.util.List;
-
-import fr.echec.classe.jeu.Mouvement;
-import fr.echec.classe.jeu.Plateau;
+import fr.echec.classe.Partie;
 import fr.echec.classe.jeu.Chrono;
+import fr.echec.classe.jeu.Plateau;
 
 public class Application {
 
 	public static void main(String[] args) {
 
-//		Plateau p = new Plateau("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR");
-//		System.out.println(p);
+		// SETUP RUDIMENTAIRE MAIS FONCTIONNEL 
+		Partie p = new Partie(); 
+		Plateau pl = new Plateau("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR");
+		Chrono chrono = new Chrono(0,10,2);
+		
+		
+		p.setChronos(chrono);
+		p.setPlateau(pl);
+		p.setCompteurTours(3);
+		
+		
+		// UNE PARTIE 
+		while(true) {
+			
+			System.out.println(p.getPlateau());
+			
+			
+			
+			//selection 
+			p.selectionPiece();
+			
+			// Envoie dans coup possible 
+			
+			
+			// affichage et récupp de la liste des coups possible 
+			
+			
+			
+			// Jouer la piece 
+			p.jouerPiece();
+			
+			// vérifier que le coup appartient à coup possible 
+			
+			
+			// Jouer le coup 
+			
+			
+			
+			// Fin du tour 
+			
+			p.finTour();
+		}
+	
+	
+
+	
+	
 //		
 //		Mouvement moove = new Mouvement(p);
 //		moove.setPiece(p.getPieces().get(1));
