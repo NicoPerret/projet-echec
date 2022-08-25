@@ -22,8 +22,8 @@ public class CoupsPossibles {
 	// System.out.println(mvt.trouveDestinationsPossibles());
 	
 	
-	private Piece piece;
-	private Plateau plateau;
+	protected Piece piece;
+	protected Plateau plateau;
 	
 	// Liste des coups possibles par pieces et par couleur
 	private Map<TypePiece, int[]> coupsTypePiece = new HashMap<TypePiece, int[]>();
@@ -49,7 +49,7 @@ public class CoupsPossibles {
 
 	// ========================= Constructeur =============================
 	
-	public Mouvement(Plateau plateau) {
+	public void Mouvement(Plateau plateau) {
 		createCoupsTypePiece();
 		this.plateau = plateau;
 	}
@@ -82,7 +82,7 @@ public class CoupsPossibles {
 	
 	// ==================== Sous-fonctions générales ======================
 	
-	private Piece trouvePieceCoord(int coord) {
+	protected Piece trouvePieceCoord(int coord) {
 		
 		// Pour une case donnée regarde si une pièce est présente
 		
@@ -296,10 +296,9 @@ public class CoupsPossibles {
 //	// Méthodes
 
 
-//sous-fonction "Déplacement impossible"
+//sous-fonction "Déplacement impossible"  // à utiliser en cas de mauvaise saisie
 //	public void DeplacementImpossible() {
-//		for (Piece p : Pieces) {
-//			if (p.coordonnee == coordonnee && p.couleur==couleur) {
+//			if (destinationsJouables=="null"||destinationsJouables=="") {
 //				System.out.println("Déplacement impossible");
 //			}
 //		}
