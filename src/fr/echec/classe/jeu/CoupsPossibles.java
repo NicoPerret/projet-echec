@@ -49,7 +49,7 @@ public class CoupsPossibles {
 
 	// ========================= Constructeur =============================
 	
-	public CoupsPossibles (Plateau plateau) {
+	public CoupsPossibles(Plateau plateau) {
 		createCoupsTypePiece();
 		this.plateau = plateau;
 	}
