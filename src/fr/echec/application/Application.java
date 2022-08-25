@@ -46,7 +46,7 @@ public class Application {
 			coup.setPiece(pl.getPieceCase(select));
 			listeCoup = coup.trouveDestinationsPossibles(); 
 			// affichage et récupp de la liste des coups possible 
-			
+			System.out.println("Coups possible : ");
 			for (Integer i : listeCoup) {
 				System.out.println(nt.conversion64ToLettre(i));
 			}
