@@ -183,7 +183,6 @@ public class Partie {
 
 		if (compteurTours % 2 == 1) {
 			System.out.println("Tour du Blanc : ");
-			System.out.println("Saisir une piece : ");
 			this.chronoJ1.start();
 			this.couleurJoueurActif = "Blanc";
 

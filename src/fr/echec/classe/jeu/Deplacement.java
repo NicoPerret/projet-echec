@@ -110,8 +110,8 @@ public class Deplacement {
 				piece2.setaBouge(true);
 			}
 			else if (p.getPieceCase(61) == null && p.getPieceCase(62) == null) {
-				piece.setCoordonnee(6);
-				piece2.setCoordonnee(5);
+				piece.setCoordonnee(61);
+				piece2.setCoordonnee(62);
 				piece.setaBouge(true);
 				piece2.setaBouge(true);
 			}

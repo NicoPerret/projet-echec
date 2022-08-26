@@ -1,17 +1,20 @@
-fct roque b/n
-promotion
-prise du pion
+! reprendre structure bdd ! tous ensemble
+
+fct Grand roque b/n
+
+gestion deplacement tour - gestion echec tour
+ajouter roque dans déplacement /!\ condition echec
 
 changer choix piece pour deplacement
-gestion echec
-ajouter roque dans déplacement
+
+modif couleur => enum
+
+
+ajouter utilisateurs dans partie
 prise passant
 gestion echec et mat
 gestion nul
 gestion pat
-modif couleur => enum
-reprendre structure bdd
-ajouter utilisateurs dans partie
 fct concat notationsCoup en String
 historique coup
 pb : fct creation des pb
