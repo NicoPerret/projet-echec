@@ -136,41 +136,46 @@ public class Partie {
 
 		if (compteurTours % 2 == 1) {
 			System.out.println("Tour du Blanc : ");
-			System.out.println("Saisir une piece : ");
+			
 			this.chronoJ1.start();
 			this.couleurJoueurActif = "Blanc";
 
 		} else {
 			System.out.println("Tour du Noir : ");
-			System.out.println("Saisir une piece : ");
+			
 			this.chronoJ2.start();
 			this.couleurJoueurActif = "Noir";
 		}
-
+		System.out.println("Saisir une piece : ");
 		while (true) {
 
 			String saisie = sc.nextLine();
-			coordDepart = nt.conversionLettreTo64(saisie);
-
-			if (plateau.getPieceCase(coordDepart) != null
-					&& plateau.getPieceCase(coordDepart).isCouleur() == this.couleurJoueurActif) {
-				listeCoup = coupPossible.trouveDestinationsPossibles(plateau, plateau.getPieceCase(coordDepart));
-
-				if (listeCoup.isEmpty() == false) {
-					System.out.println("Coup(s) possible(s) : ");
-
-					for (Integer i : listeCoup) {
-						System.out.println(nt.conversion64ToLettre(i));
+			
+			
+				
+				coordDepart = nt.conversionLettreTo64(saisie);
+				
+				
+				if (plateau.getPieceCase(coordDepart) != null
+						&& plateau.getPieceCase(coordDepart).isCouleur() == this.couleurJoueurActif) {
+					listeCoup = coupPossible.trouveDestinationsPossibles(plateau, plateau.getPieceCase(coordDepart));
+					
+					if (listeCoup.isEmpty() == false) {
+						System.out.println("Coup(s) possible(s) : ");
+						
+						for (Integer i : listeCoup) {
+							System.out.println(nt.conversion64ToLettre(i));
+						}
+						break;
+					} else {
+						System.out.println("Aucun coup possible pour cette piece");
 					}
-					break;
+					
 				} else {
-					System.out.println("Aucun coup possible pour cette piece");
+					System.out.println("Mauvaise saisie : Piece non trouvée ou mauvaise couleur ");
+					
 				}
-
-			} else {
-				System.out.println("Mauvaise saisie : Piece non trouvée ou mauvaise couleur ");
-
-			}
+			
 		}
 
 	}
@@ -184,33 +189,38 @@ public class Partie {
 
 		} else {
 			System.out.println("Tour du Noir : ");
-			System.out.println("Saisir une piece : ");
+			
 			this.chronoJ2.start();
 			this.couleurJoueurActif = "Noir";
 		}
-
+		System.out.println("Saisir une piece : ");
+		
+		
 		while (true) {
 
 			String saisie = sc.nextLine();
-			coordDepart = nt.conversionLettreTo64(saisie);
-
-			if (plateau.getPieceCase(coordDepart) != null
-					&& plateau.getPieceCase(coordDepart).isCouleur() == this.couleurJoueurActif) {
-				listeCoup = coupPossible.trouveDestinationsPossibles(plateau, plateau.getPieceCase(coordDepart));
-
 			
+				
+				coordDepart = nt.conversionLettreTo64(saisie);
+				
+				if (plateau.getPieceCase(coordDepart) != null
+						&& plateau.getPieceCase(coordDepart).isCouleur() == this.couleurJoueurActif) {
+					listeCoup = coupPossible.trouveDestinationsPossibles(plateau, plateau.getPieceCase(coordDepart));
+					
+					
 					System.out.println("Coup(s) possible(s) : ");
-
+					
 					for (Integer i : listeCoup) {
 						System.out.println(nt.conversion64ToLettre(i));
 					}
 					break;
-				
-
-			} else {
-				System.out.println("Mauvaise saisie : Piece non trouvée ou mauvaise couleur ");
-
-			}
+					
+					
+				} else {
+					System.out.println("Mauvaise saisie : Piece non trouvée ou mauvaise couleur ");
+					
+				}
+			
 		}
 
 	}
