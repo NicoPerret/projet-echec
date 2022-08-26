@@ -10,24 +10,20 @@ public class Application {
 		// SETUP RUDIMENTAIRE MAIS FONCTIONNEL
 		ParametresPartie param = new ParametresPartie();
 		Partie p = new Partie(param);
-	
-		
 
-		
-
-//		// UNE PARTIE
+		// UNE PARTIE
 		while (true) {
 
 			System.out.println(p.getPlateau());
 
 			p.selectionPiece();
 			p.jouerPiece();
+			
 			p.finTour();
 
 			if (p.getChronoJ1().isDefaiteTemps() || p.getChronoj2().isDefaiteTemps()) {
 				break;
 			}
 		}
-
 	}
 }

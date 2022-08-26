@@ -12,27 +12,30 @@ public class Deplacement {
 
 	// sous-fonction "Capture"
 	public void deplacement(Piece piece, int coord, Plateau p) {
+		
+		//ajouter conditions sur roque
+		
 		p.setCaseTableau("   ", piece.getCoordonnee());
 		p.setCaseTableau(piece.getNomPlateau(), coord);
 
 		if (p.getPieceCase(coord) != null) {
 
-			Capture(p.getPieceCase(coord));
+			capture(p.getPieceCase(coord));
 		}
 
 		p.getPieceCase(piece.getCoordonnee()).setCoordonnee(coord);
+		piece.setaBouge(true);
 	}
 
-	public void Capture(Piece piece) {
+	public void capture(Piece piece) {
 
 		piece.setCoordonnee(-1);
 		piece.setEnVie(false);
 
 	}
 
-
 //sous-fonction "Promotion"
-	public void Promotion(Piece piece) {
+	public void promotion(Piece piece, Plateau p) {
 		if (piece.getNom() == TypePiece.PION) { // verif coord dernier deplace pion ou pas ?
 			if (piece.getCoordonnee() == 56 || piece.getCoordonnee() == 57 || piece.getCoordonnee() == 58
 					|| piece.getCoordonnee() == 59 || piece.getCoordonnee() == 60 || piece.getCoordonnee() == 61
@@ -50,7 +53,7 @@ public class Deplacement {
 				switch (promotion) {
 				case 1:
 					piece.setNom(TypePiece.FOU);
-					if (piece.isCouleur() == "blanc") {
+					if (piece.isCouleur() == "Blanc") {
 						piece.setNomPlateau("fbp");
 					} else {
 						piece.setNomPlateau("fnp");
@@ -58,7 +61,7 @@ public class Deplacement {
 					break;
 				case 2:
 					piece.setNom(TypePiece.CAVALIER);
-					if (piece.isCouleur() == "blanc") {
+					if (piece.isCouleur() == "Blanc") {
 						piece.setNomPlateau("cbp");
 					} else {
 						piece.setNomPlateau("cnp");
@@ -67,7 +70,7 @@ public class Deplacement {
 
 				case 3:
 					piece.setNom(TypePiece.TOUR);
-					if (piece.isCouleur() == "blanc") {
+					if (piece.isCouleur() == "Blanc") {
 						piece.setNomPlateau("tbp");
 					} else {
 						piece.setNomPlateau("tnp");
@@ -75,39 +78,44 @@ public class Deplacement {
 					break;
 				case 4:
 					piece.setNom(TypePiece.DAME);
-					if (piece.isCouleur() == "blanc") {
+					if (piece.isCouleur() == "Blanc") {
 						piece.setNomPlateau("dbp");
+						p.setCaseTableau("dbp", piece.getCoordonnee());
 					} else {
 						piece.setNomPlateau("dnp");
+						p.setCaseTableau("dnp", piece.getCoordonnee());
 					}
 					break;
 				}
-				
+
 			}
 		}
 	}
 
 //	 sous-fonction Petit Roque et Grand Roque
 
- public void PetitRoque(Piece piece, Piece piece2, Plateau p) {
- if(piece.getNom()==TypePiece.ROI && piece.isaBouge()==false && piece2.getNom()==TypePiece.TOUR&& piece2.isaBouge()==false)  
-	{ if (p.getPieceCase(5)==null&&p.getPieceCase(6)==null) {
-		piece.setCoordonnee(6);
-		piece2.setCoordonnee(5);
-		piece.setaBouge(true);
-		piece2.setaBouge(true);
-	}}}
-	
-		
-	
-	public void GrandRoque(Piece piece, Piece piece2, Plateau p) {
-		if(piece.getNom()==TypePiece.ROI && piece.isaBouge()==false && piece2.getNom()==TypePiece.TOUR&& piece2.isaBouge()==false)  
-		{ if (p.getPieceCase(5)==null&&p.getPieceCase(6)==null) {
-			piece.setCoordonnee(2);
-			piece2.setCoordonnee(3);
-			piece.setaBouge(true);
-			piece2.setaBouge(true);
+	public void PetitRoque(Piece piece, Piece piece2, Plateau p) {
+		if (piece.getNom() == TypePiece.ROI && piece.isaBouge() == false && piece2.getNom() == TypePiece.TOUR
+				&& piece2.isaBouge() == false) {
+			if (p.getPieceCase(5) == null && p.getPieceCase(6) == null) {
+				piece.setCoordonnee(6);
+				piece2.setCoordonnee(5);
+				piece.setaBouge(true);
+				piece2.setaBouge(true);
+			}
 		}
 	}
 
-}}
+	public void GrandRoque(Piece piece, Piece piece2, Plateau p) {
+		if (piece.getNom() == TypePiece.ROI && piece.isaBouge() == false && piece2.getNom() == TypePiece.TOUR
+				&& piece2.isaBouge() == false) {
+			if (p.getPieceCase(2) == null && p.getPieceCase(3) == null && p.getPieceCase(4) == null) {
+				piece.setCoordonnee(3);
+				piece2.setCoordonnee(4);
+				piece.setaBouge(true);
+				piece2.setaBouge(true);
+			}
+		}
+
+	}
+}

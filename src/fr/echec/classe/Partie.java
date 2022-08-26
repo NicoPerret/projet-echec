@@ -19,7 +19,6 @@ public class Partie {
 	private Plateau plateau;
 	private Utilisateur j1;
 	private Utilisateur j2;
-
 	private ParametresPartie parametre;
 
 	// VARIABLES
@@ -117,7 +116,6 @@ public class Partie {
 		this.chronoJ1 = param.getChrono();
 		this.chronoJ2 = param.getChrono();
 		this.plateau = fen.creationPlateau(param.getFen());
-
 	}
 
 // METHODES 
@@ -145,7 +143,6 @@ public class Partie {
 		while (true) {
 
 			String saisie = sc.nextLine();
-
 			coordDepart = nt.conversionLettreTo64(saisie);
 
 			if (plateau.getPieceCase(coordDepart) != null
@@ -184,26 +181,27 @@ public class Partie {
 
 		}
 		boolean vrai = false;
-		
+		int coordArrivee = 0;
 		while (vrai == false) {
 			String saisie = sc.nextLine();
-			System.out.println(saisie);
-			int coordArrivee = nt.conversionLettreTo64(saisie);
-			
+			coordArrivee = nt.conversionLettreTo64(saisie);
+
 			for (Integer i : listeCoup) {
 				if (coordArrivee == i) {
-					d.deplacement(plateau.getPieceCase(coordDepart), coordArrivee, plateau);
+					// mettre promotion dans deplacement
+					d.deplacement(plateau.getPieceCase(coordDepart), coordArrivee, plateau); 
 					vrai = true;
 					break;
 				}
-
 			}
 			if (vrai == false) {
-
+				
 				System.out.println("Déplacement illégal");
 				System.out.println("Veuillez saisir un coup dans la liste ci-dessus");
+				
 			}
 		}
+		d.promotion(plateau.getPieceCase(coordArrivee),plateau);
 
 	}
 
@@ -215,6 +213,7 @@ public class Partie {
 			this.chronoJ1.getAffichageTempsRestant(chronoJ1.getTempsRestant());
 
 		} else {
+
 			this.chronoJ2.runnig();
 			this.chronoJ2.stop();
 			this.chronoJ2.getAffichageTempsRestant(chronoJ2.getTempsRestant());

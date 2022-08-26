@@ -4,6 +4,7 @@ import fr.echec.classe.jeu.Chrono;
 import fr.echec.enumerateur.TypePartie;
 
 public class ParametresPartie {
+	
 	private Chrono chrono = new Chrono(5, 0, 0);
 	// ATTENTION PENALITE ==> MODIFIER LE FEN
 	private String fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR";
@@ -45,7 +46,6 @@ public class ParametresPartie {
 // Constructeur
 
 	public ParametresPartie() {
-
 	}
 
 	public ParametresPartie(int minute, int seconde, int increment, String fen) {
