@@ -7,10 +7,8 @@ import java.sql.SQLException;
 
 public abstract class RepositorySql {
 	
-	
-	// Déclaration Variable 
+	// VARIABLES
 	private Connection connection;
-
 	
 	// Connexion à la BDD
 	protected Connection connect() throws SQLException {

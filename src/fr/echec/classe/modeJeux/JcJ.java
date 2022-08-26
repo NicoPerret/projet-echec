@@ -3,6 +3,8 @@ package fr.echec.classe.modeJeux;
 import fr.echec.classe.joueur.Utilisateur;
 
 public class JcJ {
+	
+	// VARIABLES
 	boolean couleurJoueur1;
 	boolean couleurJoueur2;
 

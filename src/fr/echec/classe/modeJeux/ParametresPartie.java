@@ -5,6 +5,7 @@ import fr.echec.enumerateur.TypePartie;
 
 public class ParametresPartie {
 	
+	// VARIABLES
 	private Chrono chrono = new Chrono(5, 0, 0);
 	// ATTENTION PENALITE ==> MODIFIER LE FEN
 	private String fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR";

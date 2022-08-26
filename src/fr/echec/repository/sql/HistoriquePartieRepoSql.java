@@ -103,7 +103,7 @@ public class HistoriquePartieRepoSql extends RepositorySql implements IHistoriqu
 			// On injecte les paramètres à la requête (l'index commence à 1)
 			myStatement.setInt(1, entity.getJ1().getId());
 			myStatement.setInt(2, entity.getJ2().getId());
-			myStatement.setInt(3, entity.getIdMessages()); // classe Message à completer
+			myStatement.setString(3, entity.getMessages()); // classe Message à completer
 			
 			// myStatement.setString(4, entity.); // A FINIR
 			myStatement.setInt(2, entity.getVainqueurId());
