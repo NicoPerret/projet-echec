@@ -263,7 +263,7 @@ public class CoupsPossibles {
 		String couleurPiece = pieceSimul.isCouleur();
 		Piece roi = new Piece(TypePiece.ROI, "");
 		if (couleurPiece == "Blanc") {roi = plateauSimul.getByNomPlateau("rb ");}
-		else {roi = plateauSimul.getByNomPlateau("rb ");}
+		else {roi = plateauSimul.getByNomPlateau("rn ");}
 		
 		// On repère toutes les cases où une pièce adverse pourrait atteindre le roi.
 		

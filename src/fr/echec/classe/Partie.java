@@ -147,8 +147,7 @@ public class Partie {
 
 			if (plateau.getPieceCase(coordDepart) != null
 					&& plateau.getPieceCase(coordDepart).isCouleur() == this.couleurJoueurActif) {
-				coupPossible.setPiece(plateau.getPieceCase(coordDepart));
-				listeCoup = coupPossible.trouveDestinationsPossibles(plateau);
+				listeCoup = coupPossible.trouveDestinationsPossibles(plateau,plateau.getPieceCase(coordDepart));
 
 				if (listeCoup.isEmpty() == false) {
 					System.out.println("Coup(s) possible(s) : ");
