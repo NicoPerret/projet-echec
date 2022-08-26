@@ -33,12 +33,10 @@ public class Application {
 	
 
 		
-//		// UNE PARTIE 
+//		// UNE PARTIE IL FAUT TOUT BIEN RANGER !
 		while(true) {
 			
 			System.out.println(p.getPlateau());
-			
-			
 			
 			//selection 
 			String selection = p.selectionPiece();
@@ -52,13 +50,10 @@ public class Application {
 			
 			
 			// affichage et récupp de la liste des coups possible 
-			
-			
 			System.out.println("Coup(s) possible(s) : ");
 			for (Integer i : listeCoup) {
 				System.out.println(nt.conversion64ToLettre(i));
 			}
-			
 			
 			// Jouer la piece 
 			selection = p.jouerPiece();

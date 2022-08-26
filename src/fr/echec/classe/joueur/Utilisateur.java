@@ -8,6 +8,7 @@ public class Utilisateur {
 	protected String prenom;
 	protected String email;
 	protected int elo;
+	protected String couleur;
 	
 	public int getId() {
 		return id;
@@ -32,6 +33,12 @@ public class Utilisateur {
 	}
 	public void setElo(int elo) {
 		this.elo = elo;
+	}
+	public String getCouleur() {
+		return couleur;
+	}
+	public void setCouleur(String couleur) {
+		this.couleur = couleur;
 	}
 	
 	//Methodes

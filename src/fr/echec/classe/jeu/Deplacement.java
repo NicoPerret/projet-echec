@@ -45,6 +45,8 @@ public class Deplacement {
 				System.out.println("Quel pièce voulez-vous comme promotion?");
 				piece.getNom().valueOf(read()); // a convertir avec un switch // toLowerCase
 				piece.getNomPlateau(); // a completer
+				//setTypePiece
+				//set Nomplateau =>dbp ou dnp if couleur
 			}
 		}
 	}

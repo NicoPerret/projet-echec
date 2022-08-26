@@ -37,6 +37,13 @@ public class Plateau {
 			.orElse(null);
 	}
 	
+	public Piece getByNomPlateau(String nom) {
+		return this.pieces.stream()
+				.filter(piece -> piece.getNomPlateau().equals(nom))
+				.findFirst()
+				.orElse(null);
+	}
+	
 	//que pour la console
 	public void setCaseTableau(String nom, int coord) {
 		this.plateau[coord] = nom;
