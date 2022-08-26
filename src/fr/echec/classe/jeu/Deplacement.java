@@ -53,32 +53,38 @@ public class Deplacement {
 				switch (promotion) {
 				case 1:
 					piece.setNom(TypePiece.FOU);
-					if (piece.isCouleur() == "Blanc") {
+					if (piece.isCouleur().equals("Blanc")) {
 						piece.setNomPlateau("fbp");
+						p.setCaseTableau("fbp", piece.getCoordonnee());
 					} else {
 						piece.setNomPlateau("fnp");
+						p.setCaseTableau("fnp", piece.getCoordonnee());
 					}
 					break;
 				case 2:
 					piece.setNom(TypePiece.CAVALIER);
-					if (piece.isCouleur() == "Blanc") {
+					if (piece.isCouleur().equals("Blanc")) {
 						piece.setNomPlateau("cbp");
+						p.setCaseTableau("cbp", piece.getCoordonnee());
 					} else {
 						piece.setNomPlateau("cnp");
+						p.setCaseTableau("cnp", piece.getCoordonnee());
 					}
 					break;
 
 				case 3:
 					piece.setNom(TypePiece.TOUR);
-					if (piece.isCouleur() == "Blanc") {
+					if (piece.isCouleur().equals("Blanc")) {
 						piece.setNomPlateau("tbp");
+						p.setCaseTableau("tbp", piece.getCoordonnee());
 					} else {
 						piece.setNomPlateau("tnp");
+						p.setCaseTableau("tnp", piece.getCoordonnee());
 					}
 					break;
 				case 4:
 					piece.setNom(TypePiece.DAME);
-					if (piece.isCouleur() == "Blanc") {
+					if (piece.isCouleur().equals("Blanc")) {
 						piece.setNomPlateau("dbp");
 						p.setCaseTableau("dbp", piece.getCoordonnee());
 					} else {
@@ -94,7 +100,7 @@ public class Deplacement {
 
 //	 sous-fonction Petit Roque et Grand Roque
 
-	public void PetitRoque(Piece piece, Piece piece2, Plateau p) {
+	public void petitRoque(Piece piece, Piece piece2, Plateau p) {
 		if (piece.getNom() == TypePiece.ROI && piece.isaBouge() == false && piece2.getNom() == TypePiece.TOUR
 				&& piece2.isaBouge() == false) {
 			if (p.getPieceCase(5) == null && p.getPieceCase(6) == null) {
@@ -103,15 +109,21 @@ public class Deplacement {
 				piece.setaBouge(true);
 				piece2.setaBouge(true);
 			}
+			else if (p.getPieceCase(61) == null && p.getPieceCase(62) == null) {
+				piece.setCoordonnee(6);
+				piece2.setCoordonnee(5);
+				piece.setaBouge(true);
+				piece2.setaBouge(true);
+			}
 		}
 	}
 
-	public void GrandRoque(Piece piece, Piece piece2, Plateau p) {
+	public void grandRoque(Piece piece, Piece piece2, Plateau p) {
 		if (piece.getNom() == TypePiece.ROI && piece.isaBouge() == false && piece2.getNom() == TypePiece.TOUR
 				&& piece2.isaBouge() == false) {
-			if (p.getPieceCase(2) == null && p.getPieceCase(3) == null && p.getPieceCase(4) == null) {
-				piece.setCoordonnee(3);
-				piece2.setCoordonnee(4);
+			if (p.getPieceCase(57) == null && p.getPieceCase(58) == null && p.getPieceCase(59) == null) {
+				piece.setCoordonnee(58);
+				piece2.setCoordonnee(59);
 				piece.setaBouge(true);
 				piece2.setaBouge(true);
 			}
