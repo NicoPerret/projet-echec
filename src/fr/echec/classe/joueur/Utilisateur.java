@@ -1,14 +1,15 @@
 package fr.echec.classe.joueur;
 
 public class Utilisateur {
+	// VARIABLES from BDD
 	protected  int id;
 	protected String pseudo;
 	protected String mdp;
 	protected String nom;
 	protected String prenom;
-	protected String email;
 	protected int elo;
-	protected String couleur;
+	protected String email;
+	protected String couleur; // ajouter dans bdd
 	
 	public int getId() {
 		return id;

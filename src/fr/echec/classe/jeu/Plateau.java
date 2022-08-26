@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Plateau {
-	// Déclaration des variables
+	
+	// VARIABLES
 	private String[] plateau = new String[64];
 	private List<Piece> pieces = new ArrayList<>();
 
