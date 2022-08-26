@@ -94,6 +94,10 @@ public class NotationCoup {
 	public int conversionLettreTo64(String coordonneeLettre) {
 		int coordonneeStandard = 0;
 		
+		if (coordonneeLettre.length() != 2) {
+			return -1;
+		}
+		
 		int lettre = coordonneeLettre.charAt(0) - 'A';
 		int chiffre = coordonneeLettre.charAt(1) - 48;  // Pour convertir char en int
 		

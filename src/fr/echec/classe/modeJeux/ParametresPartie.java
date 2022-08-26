@@ -1,28 +1,14 @@
 package fr.echec.classe.modeJeux;
 
+import fr.echec.classe.jeu.Chrono;
 import fr.echec.enumerateur.TypePartie;
 
 public class ParametresPartie {
-	private int temps;
-	private int penalitePiece;
+	private Chrono chrono = new Chrono(5, 0, 0);
+	// ATTENTION PENALITE ==> MODIFIER LE FEN
+	private String fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR";
 	private int choixAdversaire; // a voir si boolean et a setup que si 1v1
 	private TypePartie typeDeLaPartie;
-
-	public int getTemps() {
-		return temps;
-	}
-
-	public void setTemps(int temps) {
-		this.temps = temps;
-	}
-
-	public int getPenalitePiece() {
-		return penalitePiece;
-	}
-
-	public void setPenalitePiece(int penalitePiece) {
-		this.penalitePiece = penalitePiece;
-	}
 
 	public int getchoixAdversaire() {
 		return choixAdversaire;
@@ -40,6 +26,34 @@ public class ParametresPartie {
 		this.typeDeLaPartie = typeDeLaPartie;
 	}
 
+	public Chrono getChrono() {
+		return chrono;
+	}
+
+	public void setChrono(Chrono chrono) {
+		this.chrono = chrono;
+	}
+
+	public String getFen() {
+		return fen;
+	}
+
+	public void setFen(String fen) {
+		this.fen = fen;
+	}
+
+// Constructeur
+
+	public ParametresPartie() {
+
+	}
+
+	public ParametresPartie(int minute, int seconde, int increment, String fen) {
+		this.chrono = new Chrono(minute, seconde, increment);
+		this.fen = fen;
+	}
+
+	// Méthode
 	public void choixMode() {
 		System.out.println("Choisissez le type de partie : ");
 		// ajouter system.in
@@ -67,4 +81,5 @@ public class ParametresPartie {
 			System.out.println("Mauvais choix... recommencez");
 		}
 	}
+
 }
