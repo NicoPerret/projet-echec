@@ -189,7 +189,7 @@ public class CoupsPossibles {
 		int coord = piece.getCoordonnee();
 		String couleur = piece.isCouleur();
 		
-		if (couleur == "Blanc") {
+		if (couleur.equals("Blanc")) {
 			coupsReglementaires.remove(Integer.valueOf(-8));
 			coupsReglementaires.remove(Integer.valueOf(-16));
 			if (coord / 8 != 1) {
@@ -248,8 +248,21 @@ public class CoupsPossibles {
 		// On fait une copie de plateau et de la piece
 		
 		Plateau plateauSimul = new Plateau();
-		plateauSimul.setPlateau(plateau.getPlateau());
-		plateauSimul.setPieces(plateau.getPieces());
+		//plateauSimul.setPlateau(plateau.getPlateau());
+		String[] s = new String[64];
+		for (int i =0; i<=63;i++) {
+			s[i]= plateau.getPlateau()[i];
+		}
+		
+		List<Piece> liste = new ArrayList<>();
+		for(Piece p : plateau.getPieces()) {
+			Piece p1 = new Piece(p.getNom(),p.isCouleur());
+			p1.setCoordonnee(p.getCoordonnee());
+			p1.setNomPlateau(p.getNomPlateau());
+			liste.add(p1);
+		}
+		
+		plateauSimul.setPieces(liste);
 		
 		Piece pieceSimul = plateauSimul.getPieceCase(piece.getCoordonnee());
 		
@@ -261,8 +274,8 @@ public class CoupsPossibles {
 		// On repère le roi de la même couleur de la pièce.
 		
 		String couleurPiece = pieceSimul.isCouleur();
-		Piece roi = new Piece(TypePiece.ROI, "");
-		if (couleurPiece == "Blanc") {roi = plateauSimul.getByNomPlateau("rb ");}
+		Piece roi = null;
+		if (couleurPiece.equals("Blanc")) {roi = plateauSimul.getByNomPlateau("rb ");}
 		else {roi = plateauSimul.getByNomPlateau("rn ");}
 		
 		// On repère toutes les cases où une pièce adverse pourrait atteindre le roi.
@@ -270,9 +283,9 @@ public class CoupsPossibles {
 		int[] roiCasesDispoBordPlateau = trouveCasesDispoBordPlateau(roi);
 		
 		List<Integer> destinationsMenace = 
-				sousfctDestinationsDispo(roiCasesDispoBordPlateau,plateauSimul, pieceSimul);
+				sousfctDestinationsDispo(roiCasesDispoBordPlateau,plateauSimul, roi);
 		
-		destinationsMenace.addAll(placeDispoCavalier(roiCasesDispoBordPlateau,plateauSimul, pieceSimul));
+		destinationsMenace.addAll(placeDispoCavalier(roiCasesDispoBordPlateau,plateauSimul, roi));
 		
 		// On fait la liste des pièces adverses effectivement présentes sur ces cases.
 		
@@ -288,8 +301,12 @@ public class CoupsPossibles {
 		// Pour chaque pièce adverse trouvée, on regarde si elle peut effectivement atteindre le roi selon son type :
 		
 		for (Piece pieceAdverse : listePiecesMenace) {
+			System.out.println(pieceAdverse.getCoordonnee());
+		}
+
+		for (Piece pieceAdverse : listePiecesMenace) {
 			
-			int coordPiece = pieceSimul.getCoordonnee();
+			int coordPiece = roi.getCoordonnee();
 			int coordPieceAdverse = pieceAdverse.getCoordonnee(); 
 			int diffCoord = coordPiece - coordPieceAdverse;
 			
@@ -297,7 +314,7 @@ public class CoupsPossibles {
 			
 			case PION :
 				
-				if (pieceAdverse.isCouleur() == "Blanc") {
+				if (pieceAdverse.isCouleur().equals("Blanc")) {
 					if ((diffCoord == 7 && !(surMemeLigne(coordPieceAdverse, 7))) || diffCoord == 9) {
 						mvtImpossibleEchec = true;	
 					}	

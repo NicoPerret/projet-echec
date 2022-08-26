@@ -147,7 +147,7 @@ public class Partie {
 
 			if (plateau.getPieceCase(coordDepart) != null
 					&& plateau.getPieceCase(coordDepart).isCouleur() == this.couleurJoueurActif) {
-				listeCoup = coupPossible.trouveDestinationsPossibles(plateau,plateau.getPieceCase(coordDepart));
+				listeCoup = coupPossible.trouveDestinationsPossibles(plateau, plateau.getPieceCase(coordDepart));
 
 				if (listeCoup.isEmpty() == false) {
 					System.out.println("Coup(s) possible(s) : ");
@@ -165,6 +165,29 @@ public class Partie {
 
 			}
 		}
+
+	}
+
+	public void teleportPiece() {
+
+		if (compteurTours % 2 == 1) {
+			System.out.println("Tour du Blanc : ");
+			System.out.println("Déplacer la piece : ");
+
+		} else {
+			System.out.println("Tour du Noir : ");
+			System.out.println("Déplacer la piece : ");
+
+		}
+		int coordArrivee = 0;
+
+		String saisie = sc.nextLine();
+		coordArrivee = nt.conversionLettreTo64(saisie);
+
+		// mettre promotion dans deplacement
+		d.deplacement(plateau.getPieceCase(coordDepart), coordArrivee, plateau);
+
+		d.promotion(plateau.getPieceCase(coordArrivee), plateau);
 
 	}
 
@@ -188,19 +211,19 @@ public class Partie {
 			for (Integer i : listeCoup) {
 				if (coordArrivee == i) {
 					// mettre promotion dans deplacement
-					d.deplacement(plateau.getPieceCase(coordDepart), coordArrivee, plateau); 
+					d.deplacement(plateau.getPieceCase(coordDepart), coordArrivee, plateau);
 					vrai = true;
 					break;
 				}
 			}
 			if (vrai == false) {
-				
+
 				System.out.println("Déplacement illégal");
 				System.out.println("Veuillez saisir un coup dans la liste ci-dessus");
-				
+
 			}
 		}
-		d.promotion(plateau.getPieceCase(coordArrivee),plateau);
+		d.promotion(plateau.getPieceCase(coordArrivee), plateau);
 
 	}
 

@@ -17,8 +17,8 @@ public class Application {
 			System.out.println(p.getPlateau());
 
 			p.selectionPiece();
-			p.jouerPiece();
-			
+//			p.jouerPiece();
+			p.teleportPiece();
 			p.finTour();
 
 			if (p.getChronoJ1().isDefaiteTemps() || p.getChronoj2().isDefaiteTemps()) {
