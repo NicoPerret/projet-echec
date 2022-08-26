@@ -5,16 +5,16 @@ import java.util.Scanner;
 import fr.echec.enumerateur.TypePiece;
 
 public class Deplacement {
-	public String read() {
+	public int read() {
 		Scanner sc = new Scanner(System.in);
-		return sc.nextLine();
+		return sc.nextInt();
 	}
 
 	// sous-fonction "Capture"
 	public void deplacement(Piece piece, int coord, Plateau p) {
 		p.setCaseTableau("   ", piece.getCoordonnee());
 		p.setCaseTableau(piece.getNomPlateau(), coord);
-		
+
 		if (p.getPieceCase(coord) != null) {
 
 			Capture(p.getPieceCase(coord));
@@ -30,7 +30,6 @@ public class Deplacement {
 
 	}
 
-//public static void Capture() {
 
 //sous-fonction "Promotion"
 	public void Promotion(Piece piece) {
@@ -43,22 +42,72 @@ public class Deplacement {
 					|| piece.getCoordonnee() == 7) {
 
 				System.out.println("Quel pièce voulez-vous comme promotion?");
-				piece.getNom().valueOf(read()); // a convertir avec un switch // toLowerCase
-				piece.getNomPlateau(); // a completer
-				//setTypePiece
-				//set Nomplateau =>dbp ou dnp if couleur
+				System.out.println("1 - Fou");
+				System.out.println("2 - Cavalier");
+				System.out.println("3 - Tour");
+				System.out.println("4 - Dame");
+				int promotion = read();
+				switch (promotion) {
+				case 1:
+					piece.setNom(TypePiece.FOU);
+					if (piece.isCouleur() == "blanc") {
+						piece.setNomPlateau("fbp");
+					} else {
+						piece.setNomPlateau("fnp");
+					}
+					break;
+				case 2:
+					piece.setNom(TypePiece.CAVALIER);
+					if (piece.isCouleur() == "blanc") {
+						piece.setNomPlateau("cbp");
+					} else {
+						piece.setNomPlateau("cnp");
+					}
+					break;
+
+				case 3:
+					piece.setNom(TypePiece.TOUR);
+					if (piece.isCouleur() == "blanc") {
+						piece.setNomPlateau("tbp");
+					} else {
+						piece.setNomPlateau("tnp");
+					}
+					break;
+				case 4:
+					piece.setNom(TypePiece.DAME);
+					if (piece.isCouleur() == "blanc") {
+						piece.setNomPlateau("dbp");
+					} else {
+						piece.setNomPlateau("dnp");
+					}
+					break;
+				}
+				
 			}
 		}
 	}
-}
-//	// sous-fonction roque
-// Petit roque et grand roque 
-//	// public void Roque() {
-//	//if(piece.getNom(TypePiece.ROI).getCoordonnee()==5&&piece.getNom(TypePiece.TOUR).getCoordonnee()==8) // utiliser le boolean "aBouge" et verifier les cases entre
-//
-//	{
-//		//piece.getNom(TypePiece.ROI).setCoordonnee(7);
-//		piece.getNom(TypePiece.TOUR).setCoordonnee(6);
-//	}
-//
-//}}
+
+//	 sous-fonction Petit Roque et Grand Roque
+
+ public void PetitRoque(Piece piece, Piece piece2, Plateau p) {
+ if(piece.getNom()==TypePiece.ROI && piece.isaBouge()==false && piece2.getNom()==TypePiece.TOUR&& piece2.isaBouge()==false)  
+	{ if (p.getPieceCase(5)==null&&p.getPieceCase(6)==null) {
+		piece.setCoordonnee(6);
+		piece2.setCoordonnee(5);
+		piece.setaBouge(true);
+		piece2.setaBouge(true);
+	}}}
+	
+		
+	
+	public void GrandRoque(Piece piece, Piece piece2, Plateau p) {
+		if(piece.getNom()==TypePiece.ROI && piece.isaBouge()==false && piece2.getNom()==TypePiece.TOUR&& piece2.isaBouge()==false)  
+		{ if (p.getPieceCase(5)==null&&p.getPieceCase(6)==null) {
+			piece.setCoordonnee(2);
+			piece2.setCoordonnee(3);
+			piece.setaBouge(true);
+			piece2.setaBouge(true);
+		}
+	}
+
+}}
