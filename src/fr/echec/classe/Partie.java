@@ -14,7 +14,7 @@ import fr.echec.classe.modeJeux.ParametresPartie;
 
 public class Partie {
 
-	// VARIABLES BDD
+	// VARIABLES from BDD
 	private int id;
 	private Plateau plateau;
 	private Utilisateur j1;
@@ -27,6 +27,7 @@ public class Partie {
 	private NotationCoup nt = new NotationCoup(0, 0);
 	private Scanner sc = new Scanner(System.in);
 	private int compteurTours = 1;
+	private int compteurCoups= 0; 
 	private Deplacement d = new Deplacement();
 	private int coordDepart;
 	private Fen fen = new Fen();
@@ -109,7 +110,13 @@ public class Partie {
 	public void setCouleurJoueurActif(String couleurJoueurActif) {
 		this.couleurJoueurActif = couleurJoueurActif;
 	}
+	public int getCompteurCoups() {
+		return compteurCoups;
+	}
 
+	public void setCompteurCoups(int compteurCoups) {
+		this.compteurCoups = compteurCoups;
+	}
 // Constructeur 
 
 	public Partie(ParametresPartie param) {
@@ -273,6 +280,7 @@ public class Partie {
 			this.chronoJ1.runnig();
 			this.chronoJ1.stop();
 			this.chronoJ1.getAffichageTempsRestant(chronoJ1.getTempsRestant());
+			compteurCoups ++ ;
 
 		} else {
 
@@ -283,5 +291,7 @@ public class Partie {
 		}
 		this.compteurTours++;
 	}
+
+
 
 }
