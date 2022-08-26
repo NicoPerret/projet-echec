@@ -12,7 +12,8 @@ public class Piece {
 	private boolean enVie = true;
 	private int valeurMateriel; // NB : pion = 1 point, fou = 3 points, cavalier = 3 points, tour = 5 points,
 								// dame = 9 points
-	private String nomPlateau;;
+	private String nomPlateau;
+	private boolean aBouge = false;
 
 	// Getters et Setters
 	public int getCoordonnee() {
@@ -62,6 +63,13 @@ public class Piece {
 	public void setNomPlateau(String nomPlateau) {
 		this.nomPlateau = nomPlateau;
 	}
+	public boolean isaBouge() {
+		return aBouge;
+	}
+
+	public void setaBouge(boolean aBouge) {
+		this.aBouge = aBouge;
+	}
 
 	// Constructeur pièce
 	public Piece(TypePiece nom, String couleur) {
@@ -89,4 +97,6 @@ public class Piece {
 
 		}
 	}
+
+	
 }
