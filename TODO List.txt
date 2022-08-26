@@ -1,0 +1,24 @@
+fct roque b/n
+promotion
+prise du pion
+
+changer choix piece pour deplacement
+gestion echec
+ajouter roque dans déplacement
+prise passant
+gestion echec et mat
+gestion nul
+gestion pat
+modif couleur => enum
+reprendre structure bdd
+ajouter utilisateurs dans partie
+fct concat notationsCoup en String
+historique coup
+pb : fct creation des pb
+pb : jouer les coups par l'ordi
+pb : verif coup jouer est le bon
+
+html accueil
+html plateau
+html parametrePartie
+html historiquePartie
