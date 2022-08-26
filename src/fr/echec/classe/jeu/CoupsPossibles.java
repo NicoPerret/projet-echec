@@ -1,6 +1,10 @@
 package fr.echec.classe.jeu;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import fr.echec.enumerateur.TypePiece;
 
@@ -21,22 +25,12 @@ public class CoupsPossibles {
 	// mvt.setPiece(p.getPieces().get(1)); // Correspond à cn1
 	// System.out.println(mvt.trouveDestinationsPossibles());
 	
-	
-	private Piece piece;
 
 	// Liste des coups possibles par pieces et par couleur
 	private Map<TypePiece, int[]> coupsTypePiece = new HashMap<TypePiece, int[]>();
 
 	
 	//  ======================  getters - setters ====================
-	
-	public Piece getPiece() {
-		return piece;
-	}
-
-	public void setPiece(Piece piece) {
-		this.piece = piece;
-	}
 
 	public Map<TypePiece, int[]> getCoupsTypePiece() {
 		return coupsTypePiece;
@@ -73,22 +67,22 @@ public class CoupsPossibles {
 				   								   -1,-2,-3,-4,-5,-6,-7,
 				   								   9,18,27,36,45,54,63,
 												  -9,-18,-27,-36,-45,-54,-63,
-												   7,14,21,28,35,42,49,
-												  -7,-14,-21,-28,-35,-42,-49});
+												   14,21,28,35,42,49,
+												  -14,-21,-28,-35,-42,-49});
 		this.coupsTypePiece.put(TypePiece.ROI, new int[] {1,7,8,9,-1,-7,-8,-9});
 		
 	}
 	
 	// ==================== Sous-fonctions générales ======================
 	
-	private int[] trouveCasesDispoBordPlateau() {
+	private int[] trouveCasesDispoBordPlateau(Piece piece) {
 		
 		// Renvoie le nombre de cases entre la piece et le bord du plateau
 		// [haut, bas, gauche, droite, HG, HD, BG, BD]
 		
 		int[] casesDispoBordPlateau = new int[8];
 		
-		int coordPiece = this.piece.getCoordonnee();
+		int coordPiece = piece.getCoordonnee();
 		// haut
 		casesDispoBordPlateau[0] = 7 - coordPiece / 8 ;
 		// bas
@@ -110,12 +104,12 @@ public class CoupsPossibles {
 		
 	}
 	
-	private int trouvePieceVoisineDirection(int direction, int casesBordPlateau, Plateau plateau) {
+	private int trouvePieceVoisineDirection(int direction, int casesBordPlateau, Plateau plateau, Piece piece) {
 
 		// renvoie le nombre de cases jusqu'à la premiere pièce trouvée ou par défaut jusqu'au bord
 		// la pièce voisine trouvée est incluse dans le nombre de cases si elle est de couleur opposée
 		
-		int coordPiece = this.piece.getCoordonnee();
+		int coordPiece = piece.getCoordonnee();
 		int casesPieceVoisine = 0;
 		
 		for (int i=1; i <= casesBordPlateau; i++) {
@@ -124,7 +118,7 @@ public class CoupsPossibles {
 			
 			if (pieceVoisine != null) {
 				
-				if (pieceVoisine.isCouleur() != this.piece.isCouleur()) {
+				if (pieceVoisine.isCouleur() != piece.isCouleur()) {
 					casesPieceVoisine ++;
 				}
 				
@@ -140,7 +134,7 @@ public class CoupsPossibles {
 
 	// ================================= Cas particuliers ======================================
 	
-	private List<Integer> placeDispoCavalier(int[] casesDispoBordPlateau, Plateau plateau) {
+	private List<Integer> placeDispoCavalier(int[] casesDispoBordPlateau, Plateau plateau, Piece piece) {
 		// Fonction spéciale pour les mouvements du cavalier
 		
 		// mvts du cavalier : {6,10,15,17,-6,-10,-15,-17}
@@ -152,7 +146,7 @@ public class CoupsPossibles {
 		int gauche = casesDispoBordPlateau[2];
 		int droite = casesDispoBordPlateau[3];
 		
-		int coordCav = this.piece.getCoordonnee();
+		int coordCav = piece.getCoordonnee();
 		
 		// On ajoute toutes les destinations qui rentrent dans le plateau
 		
@@ -173,7 +167,7 @@ public class CoupsPossibles {
 			
 			Piece pieceVoisine = plateau.getPieceCase(coord);
 			
-			if (pieceVoisine != null && this.piece.isCouleur() == pieceVoisine.isCouleur()) {
+			if (pieceVoisine != null && piece.isCouleur() == pieceVoisine.isCouleur()) {
 				coordASupprimer.add(coord);
 			}
 			
@@ -188,12 +182,12 @@ public class CoupsPossibles {
 	}
 	
 	
-	private void filtreDeplacementsPion(List<Integer> coupsReglementaires) {
+	private void filtreDeplacementsPion(List<Integer> coupsReglementaires, Piece piece) {
 		
 		// Gestion de la couleur du pion et de l'avancement 1 / 2 cases
 		
-		int coord = this.piece.getCoordonnee();
-		String couleur = this.piece.isCouleur();
+		int coord = piece.getCoordonnee();
+		String couleur = piece.isCouleur();
 		
 		if (couleur == "Blanc") {
 			coupsReglementaires.remove(Integer.valueOf(-8));
@@ -212,26 +206,158 @@ public class CoupsPossibles {
 		
 	}
 	
+	private boolean surMemeLigne(int coord, int coup) {
+		return ((coord + 7) / 8 == coord / 8);
+	}
 	
-	private boolean ImpossibleEchec(int coord) {
-		//  on regarde pour l'ensemble des pieces adverses si 
-		// 	le roi est dans la liste de deplacement possible...
-		// Il faut simuler le deplacement de la piece avant ?
-		// -> une idée est de faire une version modifiée de TrouvePièceCoordonnée
+	private boolean ImpossibleEchec(Plateau plateau, Piece piece, int coup) {
 		
-		// On change la coordonnée de la pièce à l'emplacement voulu
-		// (donc la vérification est à faire à la fin)
-		// On cherche la coordonnée du roi de sa couleur
-		// Pour chaque pièce de couleur opposée :
-		// 	- si la coordonnée du roi est inclus dans destinations jouables
-		//	  on renvoie que le coup est considéré comme impossible
-		//  sinon c'est bon et on effectue bien le coup
+		// à mettre vers la fin
+		// On fait une copie de plateau
+		// On simule le mouvement possible dans la copie de plateau.
 		
-		// Attention à ne pas faire de boucle sur "trouveDestinationsPossibles"
-		// => On a besoin d'une sous fonction...
-		// Faut simplifier aussi...
+		// On repère la position du roi de la même couleur de la pièce.
 		
-		return false; // juste pour pas voir du rouge
+		// On repère toutes les pièces adverses susceptible de le menacer :
+		//    - Faire placeDispoBordPlateau sur le roi
+		// 	  - trouver les destination dispos pour le roi
+		//	  - parmis les destinations dispos, trouver les cases contenant des pièces adverses
+		
+		// Pour chaque pièce adverse trouvée, on regarde si elle peut atteindre le roi :
+		//	  - On peut juste faire des conditions par type de pièce sur la difference de coordonnee:
+		//	  		- TOUR : diff inclus dans coupsTypePiece(cavalier) et on change PAS de ligne
+		//			- CAVALIER : diff inclus dans coupsTypePiece(cavalier) et on change de ligne
+		//			- FOU : diff inclus dans coupsTypePiece(fou) et on change de ligne
+		//			- Roi : diff inclus dans coupsTypePiece(fou) et si abs(diff) > 1 on change de ligne
+		//			- Dame : diff inclus dans coupsTypePiece(dame)
+		//			- Pion : si noir diff = -7 ou -9 et on change de ligne; si blanc 7 ou 9 et on change de ligne
+		
+		// 	  - changer de ligne : (coordPieceEnnemie + dplt) / 8 != coordPieceEnnemie / 8
+		//    		-> Applicable si abs(dplt) <= 7 
+		
+		//
+		// Si une pièce peut atteindre le roi :
+		// 	  - on s'arrête et on renvoie que le déplacement est impossible
+		// Si on finit la boucle sans que le roi soit menacé :
+		//	  - on renvoie que le déplacement est possible
+		
+		// --------------------------------------------------------
+		
+		boolean mvtImpossibleEchec = false;
+		
+		// On fait une copie de plateau et de la piece
+		
+		Plateau plateauSimul = new Plateau();
+		plateauSimul.setPlateau(plateau.getPlateau());
+		plateauSimul.setPieces(plateau.getPieces());
+		
+		Piece pieceSimul = plateauSimul.getPieceCase(piece.getCoordonnee());
+		
+		// On simule le mouvement possible dans la copie de plateau.
+		
+		Deplacement dpltClasse = new Deplacement();
+		dpltClasse.deplacement(pieceSimul, coup, plateauSimul);
+		
+		// On repère le roi de la même couleur de la pièce.
+		
+		String couleurPiece = pieceSimul.isCouleur();
+		Piece roi = new Piece(TypePiece.ROI, "");
+		if (couleurPiece == "Blanc") {roi = plateauSimul.getByNomPlateau("rb ");}
+		else {roi = plateauSimul.getByNomPlateau("rb ");}
+		
+		// On repère toutes les cases où une pièce adverse pourrait atteindre le roi.
+		
+		int[] roiCasesDispoBordPlateau = trouveCasesDispoBordPlateau(roi);
+		
+		List<Integer> destinationsMenace = 
+				sousfctDestinationsDispo(roiCasesDispoBordPlateau,plateauSimul, pieceSimul);
+		
+		destinationsMenace.addAll(placeDispoCavalier(roiCasesDispoBordPlateau,plateauSimul, pieceSimul));
+		
+		// On fait la liste des pièces adverses effectivement présentes sur ces cases.
+		
+		List<Piece> listePiecesMenace = new ArrayList<>();
+		
+		for (int destination : destinationsMenace) {
+			Piece pieceAdverse = plateauSimul.getPieceCase(destination);
+			if (pieceAdverse != null) {
+				listePiecesMenace.add(pieceAdverse);
+			}
+		}
+		
+		// Pour chaque pièce adverse trouvée, on regarde si elle peut effectivement atteindre le roi selon son type :
+		
+		for (Piece pieceAdverse : listePiecesMenace) {
+			
+			int coordPiece = pieceSimul.getCoordonnee();
+			int coordPieceAdverse = pieceAdverse.getCoordonnee(); 
+			int diffCoord = coordPiece - coordPieceAdverse;
+			
+			switch (pieceAdverse.getNom()) {
+			
+			case PION :
+				
+				if (pieceAdverse.isCouleur() == "Blanc") {
+					if ((diffCoord == 7 && !(surMemeLigne(coordPieceAdverse, 7))) || diffCoord == 9) {
+						mvtImpossibleEchec = true;	
+					}	
+				} else {
+					if ((diffCoord == -7 && !(surMemeLigne(coordPieceAdverse, -7))) || diffCoord == -9) {
+						mvtImpossibleEchec = true;	
+					}
+				}
+					
+				break;
+				
+			case TOUR :
+				if(Arrays.stream(this.coupsTypePiece.get(TypePiece.TOUR)).anyMatch(i -> i == diffCoord)) {
+					if (surMemeLigne(coordPieceAdverse, diffCoord)) {
+						mvtImpossibleEchec = true;
+					}
+				}
+				break;
+				
+			case CAVALIER :
+				if(Arrays.stream(this.coupsTypePiece.get(TypePiece.CAVALIER)).anyMatch(i -> i == diffCoord)) {
+					if (!(surMemeLigne(coordPieceAdverse, diffCoord))) {
+						mvtImpossibleEchec = true;
+					}
+				}
+				break;
+				
+			case FOU :
+				if(Arrays.stream(this.coupsTypePiece.get(TypePiece.FOU)).anyMatch(i -> i == diffCoord)) {
+					if (!(surMemeLigne(coordPieceAdverse, diffCoord))) {
+						mvtImpossibleEchec = true;
+					}
+				}
+				break;
+				
+			case DAME :
+				if(Arrays.stream(this.coupsTypePiece.get(TypePiece.CAVALIER)).anyMatch(i -> i == diffCoord)) {
+					mvtImpossibleEchec = true;
+				}
+				break;
+				
+			case ROI :
+				if(Arrays.stream(this.coupsTypePiece.get(TypePiece.CAVALIER)).anyMatch(i -> i == diffCoord)) {
+					if (diffCoord == 1  || diffCoord != -1) {
+						mvtImpossibleEchec = true;
+					}
+					else if (!(surMemeLigne(coordPieceAdverse, diffCoord))) {
+						mvtImpossibleEchec = true;
+					}
+				}
+				break;
+			}
+			
+			// Si une pièce peut atteindre le roi : on s'arrête et on renvoie que le déplacement est impossible
+			if (mvtImpossibleEchec) {
+				break;
+			}
+		}
+		
+		return mvtImpossibleEchec; 
 		
 	}	
 	
@@ -242,7 +368,7 @@ public class CoupsPossibles {
 	// ========================= FONCTION PRINCIPALE ================================
 	// ==============================================================================
 	
-	public List<Integer> sousfctCoupsReglementaires() {
+	public List<Integer> sousfctCoupsReglementaires(Piece piece) {
 		List<Integer> coupsReglementaires = new ArrayList<>(); // Liste des coups réglementaires par pièce
 		for (int coup : this.coupsTypePiece.get(piece.getNom())) {
 			coupsReglementaires.add(coup);
@@ -251,22 +377,22 @@ public class CoupsPossibles {
 		return coupsReglementaires;	
 	}
 	
-	public List<Integer> sousfctDestinationsDispo(int[] casesDispoBordPlateau, Plateau plateau) {
+	public List<Integer> sousfctDestinationsDispo(int[] casesDispoBordPlateau, Plateau plateau, Piece piece) {
 		
 		int[] placeDispo = new int[8];
 		
-		int coordPiece = this.piece.getCoordonnee();
+		int coordPiece = piece.getCoordonnee();
 		
 		int[] directions = new int[] {8,-8,-1,1,7,9,-9,-7}; // Haut-Bas-Gauche-Droite-HG-HD-BG-BD
 		
 		List<Integer> destinationsDispo = new ArrayList<>();
 		
 		for (int i = 0; i < 8; i++) {
-			placeDispo[i] = this.trouvePieceVoisineDirection(directions[i], casesDispoBordPlateau[i], plateau);
+			placeDispo[i] = this.trouvePieceVoisineDirection(directions[i], casesDispoBordPlateau[i], plateau, piece);
 		}
 		
 		if (piece.getNom() == TypePiece.CAVALIER) {
-			destinationsDispo = placeDispoCavalier(casesDispoBordPlateau, plateau);
+			destinationsDispo = placeDispoCavalier(casesDispoBordPlateau, plateau, piece);
 		}
 		
 		else {
@@ -284,12 +410,12 @@ public class CoupsPossibles {
 	}
 	
 
-	public List<Integer> sousfctFiltres(List<Integer> coupsReglementaires) {
+	public List<Integer> sousfctFiltres(List<Integer> coupsReglementaires, Piece piece) {
 		
 		List<Integer> coupsReglementairesModif = coupsReglementaires;
 		
 		if (piece.getNom() == TypePiece.PION) {
-			filtreDeplacementsPion(coupsReglementaires);
+			filtreDeplacementsPion(coupsReglementaires, piece);
 		}
 		
 		return coupsReglementairesModif;
@@ -297,38 +423,38 @@ public class CoupsPossibles {
 	}
 	
 	
-	public List<Integer> trouveDestinationsPossibles(Plateau plateau) { //service ?
+	public List<Integer> trouveDestinationsPossibles(Plateau plateau, Piece piece) { //service ?
 		 
-		int coordPiece = this.piece.getCoordonnee();
+		int coordPiece = piece.getCoordonnee();
 		
 		// Liste des coups réglementaires par pièce
-		List<Integer> coupsReglementaires = sousfctCoupsReglementaires();
+		List<Integer> coupsReglementaires = sousfctCoupsReglementaires(piece);
 		 
 		// Cases libres autour de la pièce
-		int[] casesDispoBordPlateau = trouveCasesDispoBordPlateau();
+		int[] casesDispoBordPlateau = trouveCasesDispoBordPlateau(piece);
 		 
 		// Place disponible sans tenir compte du type de la piece
 		List<Integer> destinationsDispo = 
-				sousfctDestinationsDispo(casesDispoBordPlateau,plateau); 
+				sousfctDestinationsDispo(casesDispoBordPlateau,plateau, piece); 
 		
 		// Application de cas particuliers (restriction mvt des pions)
-		coupsReglementaires = sousfctFiltres(coupsReglementaires);
+		coupsReglementaires = sousfctFiltres(coupsReglementaires, piece);
 		 
 		
 		// On ajoute toutes les destinations dispos pour le type de la piece qui rentrent dans les cases dispos. 
+		// On vérifie aussi pour chaque destination dispo que ça ne met pas le roi en échec
 		List<Integer> destinationsJouables = new ArrayList<>();
 				 
 		for (int deplacement : coupsReglementaires) {
 			for (int destination : destinationsDispo) {
-				if (coordPiece + deplacement == destination) {
+				if (coordPiece + deplacement == destination && ImpossibleEchec(plateau, piece, destination) == false) {
 					destinationsJouables.add(coordPiece + deplacement);
-					}
 				}
 			}
+		}
 					
 		return destinationsJouables;
-		 
-		
+		 	
 	}
 
 
