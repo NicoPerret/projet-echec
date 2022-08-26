@@ -14,7 +14,7 @@ public class NotationCoup {
 	 * System.out.println(coup1.getCoupFormatStandard());
 	 */
 
-	// Attributs
+	// VARIABLES
 	private int coordDepart64;
 	private int coordArrivee64;
 	private String coordDepartStandard;

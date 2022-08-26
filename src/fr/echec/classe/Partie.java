@@ -14,7 +14,7 @@ import fr.echec.classe.modeJeux.ParametresPartie;
 
 public class Partie {
 
-	// VARIABLES BDD
+	// VARIABLES from BDD
 	private int id;
 	private Plateau plateau;
 	private Utilisateur j1;

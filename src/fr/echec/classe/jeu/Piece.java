@@ -4,8 +4,7 @@ import fr.echec.enumerateur.TypePiece;
 
 public class Piece {
 
-	// Déclaration des variables
-	//ajout a deja bouger boolean false;
+	// VARIABLES
 	private int coordonnee = -1;
 	private TypePiece nom;
 	private String couleur;

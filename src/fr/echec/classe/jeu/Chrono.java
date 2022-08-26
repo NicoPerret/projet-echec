@@ -4,6 +4,7 @@ package fr.echec.classe.jeu;
 
 public class Chrono {
 
+	// VARIABLES
 	private final long nanoSecondsPerSecond = 1000000000;
 	private final long nanoSecondsPerMinute = 60000000000L;
 	private long stopWatchStartTime = 0;
