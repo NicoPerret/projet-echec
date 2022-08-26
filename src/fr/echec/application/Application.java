@@ -16,8 +16,10 @@ public class Application {
 
 			System.out.println(p.getPlateau());
 
-			p.selectionPiece();
+		// 	p.selectionPiece();
 //			p.jouerPiece();
+			
+			p.selectionPieceTP();
 			p.teleportPiece();
 			p.finTour();
 

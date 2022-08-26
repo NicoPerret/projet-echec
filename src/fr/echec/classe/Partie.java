@@ -167,6 +167,46 @@ public class Partie {
 		}
 
 	}
+	public void selectionPieceTP() {
+
+		if (compteurTours % 2 == 1) {
+			System.out.println("Tour du Blanc : ");
+			System.out.println("Saisir une piece : ");
+			this.chronoJ1.start();
+			this.couleurJoueurActif = "Blanc";
+
+		} else {
+			System.out.println("Tour du Noir : ");
+			System.out.println("Saisir une piece : ");
+			this.chronoJ2.start();
+			this.couleurJoueurActif = "Noir";
+		}
+
+		while (true) {
+
+			String saisie = sc.nextLine();
+			coordDepart = nt.conversionLettreTo64(saisie);
+
+			if (plateau.getPieceCase(coordDepart) != null
+					&& plateau.getPieceCase(coordDepart).isCouleur() == this.couleurJoueurActif) {
+				listeCoup = coupPossible.trouveDestinationsPossibles(plateau, plateau.getPieceCase(coordDepart));
+
+			
+					System.out.println("Coup(s) possible(s) : ");
+
+					for (Integer i : listeCoup) {
+						System.out.println(nt.conversion64ToLettre(i));
+					}
+					break;
+				
+
+			} else {
+				System.out.println("Mauvaise saisie : Piece non trouvée ou mauvaise couleur ");
+
+			}
+		}
+
+	}
 
 	public void teleportPiece() {
 
