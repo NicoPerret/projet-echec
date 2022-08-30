@@ -1,5 +1,3 @@
-! reprendre structure bdd ! tous ensemble
-
 fct Grand roque b/n
 
 gestion deplacement tour - gestion echec tour
