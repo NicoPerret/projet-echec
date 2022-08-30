@@ -18,10 +18,11 @@ CREATE TABLE  historiquePartie (
     hsp_id SERIAL PRIMARY KEY,
     hsp_id_J1 INT NOT NULL,
     hsp_id_J2 INT NOT NULL,
-    hsp_message TEXT NOT NULL,
-    hsp_deplacements TEXT,
+    hsp_messages TEXT NOT NULL,
+    hsp_liste_coups TEXT,
     hsp_date TIMESTAMP NOT NULL,
-    hsp_vainqueur_id int
+    hsp_vainqueur_id INT,
+    hsp_param_id INT NOT NULL
 );
 
 CREATE TABLE probleme(
@@ -37,6 +38,12 @@ CREATE TABLE resultatProbleme (
     res_utilisateur_id INT NOT NULL,
     res_partie_id INT NOT NULL,
     res_date TIMESTAMP NOT NULL
+);
+
+CREATE TABLE parametres (
+    par_id SERIAL PRIMARY KEY,
+    par_penaltie_piece_id INT NOT NULL,
+    par_chrono VARCHAR(10) NOT NULL
 );
 
 CREATE TABLE penalitePiece (
@@ -56,6 +63,20 @@ ALTER TABLE historiquePartie
         CONSTRAINT fk_j2id
         FOREIGN KEY (hsp_id_J2)
         REFERENCES utilisateurs(uti_id)
+        ON DELETE NO ACTION
+        ON UPDATE CASCADE,
+    ADD
+        CONSTRAINT fk_paramid
+        FOREIGN KEY (hsp_param_id)
+        REFERENCES parametres(par_id)
+        ON DELETE NO ACTION
+        ON UPDATE CASCADE;
+
+ALTER TABLE parametres
+    ADD
+        CONSTRAINT fk_penalpiece
+        FOREIGN KEY (par_penaltie_piece_id)
+        REFERENCES penalitePiece(pen_id)
         ON DELETE NO ACTION
         ON UPDATE CASCADE;
 

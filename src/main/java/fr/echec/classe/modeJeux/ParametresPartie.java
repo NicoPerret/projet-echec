@@ -5,10 +5,12 @@ import fr.echec.enumerateur.TypePartie;
 
 public class ParametresPartie {
 	
-	// VARIABLES
-	private Chrono chrono = new Chrono(5, 0, 0);
+	// VARIABLES from BDD
 	// ATTENTION PENALITE ==> MODIFIER LE FEN
 	private String fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR";
+	
+	// VARIABLES
+	private Chrono chrono = new Chrono(5, 0, 0); // a modif avec HTML
 	private int choixAdversaire; // a voir si boolean et a setup que si 1v1
 	private TypePartie typeDeLaPartie;
 

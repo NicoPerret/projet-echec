@@ -9,7 +9,10 @@ public class Utilisateur {
 	protected String prenom;
 	protected int elo;
 	protected String email;
-	protected String couleur; // ajouter dans bdd
+	
+	// VARIABLES
+	protected String couleur;
+	
 	
 	public int getId() {
 		return id;

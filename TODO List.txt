@@ -9,7 +9,8 @@ changer choix piece pour deplacement
 
 modif couleur => enum
 
-
+maj UML
+ajouter les attributs bdd de pb
 ajouter utilisateurs dans partie
 prise passant
 gestion echec et mat
