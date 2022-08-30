@@ -13,7 +13,7 @@ public abstract class RepositorySql {
 	// Connexion à la BDD
 	protected Connection connect() throws SQLException {
 		
-		this.connection = DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/echecs", "postgres", "root");
+		this.connection = DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/echecs", "postgres", RepositorySqlParametres.sqlCodeConnection);
 
 		return this.connection;
 	}
