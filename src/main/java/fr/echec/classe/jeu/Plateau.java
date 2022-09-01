@@ -9,7 +9,7 @@ public class Plateau {
 	private String[] plateau = new String[64];
 	private List<Piece> pieces = new ArrayList<>();
 
-	// Getters et Setter
+	// GETTERS / SETTERS
 	public String[] getPlateau() {
 		return plateau;
 	}
@@ -26,11 +26,11 @@ public class Plateau {
 		this.pieces = pieces;
 	}
 
-	// Constructeurs
+	// CONSTRUCTEURS
 	public Plateau() {
 	}
 
-	// Méthodes
+	// METHODES
 	public Piece getPieceCase(int coord) {
 		return this.pieces.stream()
 			.filter(piece -> piece.getCoordonnee() == coord)
@@ -45,7 +45,6 @@ public class Plateau {
 				.orElse(null);
 	}
 	
-	//que pour la console
 	public void setCaseTableau(String nom, int coord) {
 		this.plateau[coord] = nom;
 	}
