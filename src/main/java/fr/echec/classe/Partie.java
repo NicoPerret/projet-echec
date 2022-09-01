@@ -27,7 +27,7 @@ public class Partie {
 	private NotationCoup nt = new NotationCoup(0, 0);
 	private Scanner sc = new Scanner(System.in);
 	private int compteurTours = 1;
-	private int compteurCoups= 0; 
+	private int compteurCoups= 1; 
 	private Deplacement d = new Deplacement();
 	private int coordDepart;
 	private Fen fen = new Fen();
@@ -35,6 +35,7 @@ public class Partie {
 	private String couleurJoueurActif = "Blanc";
 	private CoupsPossibles coupPossible = new CoupsPossibles();
 	private List<Integer> listeCoup = new ArrayList<>();
+	HistoriquePartie h = new HistoriquePartie();
 
 	// GETTERS AND SETTERS
 
@@ -117,7 +118,19 @@ public class Partie {
 	public void setCompteurCoups(int compteurCoups) {
 		this.compteurCoups = compteurCoups;
 	}
+	
+	
+	public HistoriquePartie getH() {
+		return h;
+	}
+	
+	public void setH(HistoriquePartie h) {
+		this.h = h;
+	}
 // Constructeur 
+
+	
+
 
 	public Partie(ParametresPartie param) {
 		this.chronoJ1 = param.getChrono();
@@ -162,7 +175,7 @@ public class Partie {
 					
 					if (listeCoup.isEmpty() == false) {
 						System.out.println("Coup(s) possible(s) : ");
-						
+						nt.setCoordDepartStandard(saisie);
 						for (Integer i : listeCoup) {
 							System.out.println(nt.conversion64ToLettre(i));
 						}
@@ -208,6 +221,7 @@ public class Partie {
 					
 					
 					System.out.println("Coup(s) possible(s) : ");
+					nt.setCoordDepartStandard(saisie);
 					
 					for (Integer i : listeCoup) {
 						System.out.println(nt.conversion64ToLettre(i));
@@ -239,11 +253,13 @@ public class Partie {
 
 		String saisie = sc.nextLine();
 		coordArrivee = nt.conversionLettreTo64(saisie);
+		nt.setCoordArriveeStandard(saisie);
 
 		// mettre promotion dans deplacement
 		d.deplacement(plateau.getPieceCase(coordDepart), coordArrivee, plateau);
 
 		d.promotion(plateau.getPieceCase(coordArrivee), plateau);
+		
 
 	}
 
@@ -267,6 +283,7 @@ public class Partie {
 			for (Integer i : listeCoup) {
 				if (coordArrivee == i) {
 					// mettre promotion dans deplacement
+					nt.setCoordArriveeStandard(saisie);
 					d.deplacement(plateau.getPieceCase(coordDepart), coordArrivee, plateau);
 					vrai = true;
 					break;
@@ -280,23 +297,30 @@ public class Partie {
 			}
 		}
 		d.promotion(plateau.getPieceCase(coordArrivee), plateau);
+		
 
 	}
 
 	public void finTour() {
+
+		h.ajouterCoup(" "+ nt.getCoordDepartStandard()+ " " + nt.getCoordArriveeStandard() +" ");
+		
 		if (this.getCompteurTours() % 2 == 1) {
 
 			this.chronoJ1.runnig();
 			this.chronoJ1.stop();
 			this.chronoJ1.getAffichageTempsRestant(chronoJ1.getTempsRestant());
-			compteurCoups ++ ;
+			h.ajouterCoup("/");
 
 		} else {
 
 			this.chronoJ2.runnig();
 			this.chronoJ2.stop();
 			this.chronoJ2.getAffichageTempsRestant(chronoJ2.getTempsRestant());
-
+			
+			
+			compteurCoups ++ ;
+			h.ajouterCoup(" " + compteurCoups + " : ");;
 		}
 		this.compteurTours++;
 	}

@@ -1,8 +1,6 @@
 package fr.echec.classe;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 import fr.echec.classe.joueur.Utilisateur;
 
@@ -18,31 +16,18 @@ public class HistoriquePartie {
 	private Utilisateur j1;
 	private Utilisateur j2;
 	private String messages; // a revoir avec la classe message
-	private List<NotationCoup> listeCoups = new ArrayList<>();//peut etre stocker sous une liste de string et concatener pour la bdd
+	private String listeCoups = "1 : ";//peut etre stocker sous une liste de string et concatener pour la bdd
 	private LocalDateTime date; // a revoir avec bon format pour la bdd
 	private int vainqueurId;
 	
 	// VARIABLES
-	private int compteurCoup = 0; // peut etre deja dans la classe partie
-	private int idPartie; // a revoir avec la classe partie
+	
 	
 	// get-set methodes
 
-	public int getCompteurCoup() {
-		return compteurCoup;
-	}
+	
 
-	public void setCompteurCoup(int compteurCoup) {
-		this.compteurCoup = compteurCoup;
-	}
 
-	public List<NotationCoup> getListeCoups() {
-		return listeCoups;
-	}
-
-	public void setListeCoups(List<NotationCoup> listeCoups) {
-		this.listeCoups = listeCoups;
-	}
 
 	public Utilisateur getJ1() {
 		return j1;
@@ -58,14 +43,6 @@ public class HistoriquePartie {
 
 	public void setJ2(Utilisateur j2) {
 		this.j2 = j2;
-	}
-
-	public int getIdPartie() {
-		return idPartie;
-	}
-
-	public void setIdPartie(int idPartie) {
-		this.idPartie = idPartie;
 	}
 
 	public int getId() {
@@ -92,16 +69,26 @@ public class HistoriquePartie {
 		this.vainqueurId = vainqueurId;
 	}
 
-	// Methodes
-	public void ajouterCoup(NotationCoup coup) {
-		this.listeCoups.add(coup);
-	}
-
 	public String getMessages() {
 		return messages;
 	}
-
+	
 	public void setMessages(String messages) {
 		this.messages = messages;
 	}
+	
+	public String getListeCoups() {
+		return listeCoups;
+	}
+	
+	public void setListeCoups(String listeCoups) {
+		this.listeCoups = listeCoups;
+	}
+	
+	
+	// Methodes
+	public void ajouterCoup(String coup) {
+		this.listeCoups= this.listeCoups.concat(coup);
+	}
+
 }

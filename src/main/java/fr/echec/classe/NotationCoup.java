@@ -1,7 +1,5 @@
 package fr.echec.classe;
 
-import fr.echec.enumerateur.TypePiece;
-
 public class NotationCoup {
 
 	/*
@@ -19,7 +17,6 @@ public class NotationCoup {
 	private int coordArrivee64;
 	private String coordDepartStandard;
 	private String coordArriveeStandard;
-	private TypePiece typePiece;
 	private String coupFormatStandard;
 
 	// constructeur
@@ -63,13 +60,6 @@ public class NotationCoup {
 		this.coordArriveeStandard = coordArriveeStandard;
 	}
 
-	public TypePiece getTypePiece() {
-		return typePiece;
-	}
-
-	public void setTypePiece(TypePiece typePiece) {
-		this.typePiece = typePiece;
-	}
 
 	public String getCoupFormatStandard() {
 		return coupFormatStandard;
@@ -108,13 +98,5 @@ public class NotationCoup {
 		return coordonneeStandard;
 	}
 
-	// Ecriture du dernier coup joué
-	public void ecrireCoup() { // A COMPLETER
-		// Récuperation des coordonnées standards
-		this.coordDepartStandard = this.conversion64ToLettre(coordDepart64);
-		this.coordArriveeStandard = this.conversion64ToLettre(coordArrivee64);
-
-		// Ecriture du coup
-		this.coupFormatStandard = (this.typePiece + this.coordDepartStandard + "-" + this.coordArriveeStandard);
-	}
+	
 }
