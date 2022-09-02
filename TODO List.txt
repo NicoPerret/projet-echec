@@ -1,7 +1,10 @@
+persistence.xml
+
 fct Grand roque b/n
 
 gestion deplacement tour - gestion echec tour
 ajouter roque dans déplacement /!\ condition echec
+fct isEchec()
 
 changer choix piece pour deplacement
 
