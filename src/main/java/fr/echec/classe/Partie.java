@@ -11,6 +11,7 @@ import fr.echec.classe.jeu.Fen;
 import fr.echec.classe.jeu.Plateau;
 import fr.echec.classe.joueur.Utilisateur;
 import fr.echec.classe.modeJeux.ParametresPartie;
+import fr.echec.enumerateur.CouleursPiece;
 
 public class Partie {
 
@@ -31,8 +32,7 @@ public class Partie {
 	private Deplacement d = new Deplacement();
 	private int coordDepart;
 	private Fen fen = new Fen();
-	// 0 = Blanc / 1 = Noir
-	private String couleurJoueurActif = "Blanc";
+	private CouleursPiece couleurJoueurActif = CouleursPiece.BLANC; 
 	private CoupsPossibles coupPossible = new CoupsPossibles();
 	private List<Integer> listeCoup = new ArrayList<>();
 	HistoriquePartie h = new HistoriquePartie();
@@ -103,14 +103,15 @@ public class Partie {
 	public void setParametre(ParametresPartie parametre) {
 		this.parametre = parametre;
 	}
-
-	public String getCouleurJoueurActif() {
+	
+	public CouleursPiece getCouleurJoueurActif() {
 		return couleurJoueurActif;
 	}
 
-	public void setCouleurJoueurActif(String couleurJoueurActif) {
+	public void setCouleurJoueurActif(CouleursPiece couleurJoueurActif) {
 		this.couleurJoueurActif = couleurJoueurActif;
 	}
+
 	public int getCompteurCoups() {
 		return compteurCoups;
 	}
@@ -151,13 +152,13 @@ public class Partie {
 			System.out.println("Tour du Blanc : ");
 			
 			this.chronoJ1.start();
-			this.couleurJoueurActif = "Blanc";
+			this.couleurJoueurActif = CouleursPiece.BLANC;
 
 		} else {
 			System.out.println("Tour du Noir : ");
 			
 			this.chronoJ2.start();
-			this.couleurJoueurActif = "Noir";
+			this.couleurJoueurActif = CouleursPiece.NOIR;
 		}
 		System.out.println("Saisir une piece : ");
 		while (true) {
@@ -170,7 +171,7 @@ public class Partie {
 				
 				
 				if (plateau.getPieceCase(coordDepart) != null
-						&& plateau.getPieceCase(coordDepart).isCouleur() == this.couleurJoueurActif) {
+						&& plateau.getPieceCase(coordDepart).getCouleur() == this.couleurJoueurActif) {
 					listeCoup = coupPossible.trouveDestinationsPossibles(plateau, plateau.getPieceCase(coordDepart));
 					
 					if (listeCoup.isEmpty() == false) {
@@ -197,13 +198,13 @@ public class Partie {
 		if (compteurTours % 2 == 1) {
 			System.out.println("Tour du Blanc : ");
 			this.chronoJ1.start();
-			this.couleurJoueurActif = "Blanc";
+			this.couleurJoueurActif = CouleursPiece.BLANC;
 
 		} else {
 			System.out.println("Tour du Noir : ");
 			
 			this.chronoJ2.start();
-			this.couleurJoueurActif = "Noir";
+			this.couleurJoueurActif = CouleursPiece.NOIR;
 		}
 		System.out.println("Saisir une piece : ");
 		
@@ -216,7 +217,7 @@ public class Partie {
 				coordDepart = nt.conversionLettreTo64(saisie);
 				
 				if (plateau.getPieceCase(coordDepart) != null
-						&& plateau.getPieceCase(coordDepart).isCouleur() == this.couleurJoueurActif) {
+						&& plateau.getPieceCase(coordDepart).getCouleur() == this.couleurJoueurActif) {
 					listeCoup = coupPossible.trouveDestinationsPossibles(plateau, plateau.getPieceCase(coordDepart));
 					
 					

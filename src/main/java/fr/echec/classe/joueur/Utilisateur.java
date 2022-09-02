@@ -1,11 +1,16 @@
 package fr.echec.classe.joueur;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+
+import fr.echec.enumerateur.CouleursPiece;
+
 
 @Entity
 @Table(name = "utilisateur")
@@ -36,9 +41,10 @@ public class Utilisateur {
 	protected String email;
 	
 	// VARIABLES
-	protected String couleur;
+	protected CouleursPiece couleur;
 	
 	
+	//GETTERS / SETTERS
 	public int getId() {
 		return id;
 	}
@@ -57,18 +63,37 @@ public class Utilisateur {
 	public void setMdp(String mdp) {
 		this.mdp = mdp;
 	}
+	public String getNom() {
+		return nom;
+	}
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+	public String getPrenom() {
+		return prenom;
+	}
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
 	public int getElo() {
 		return elo;
 	}
 	public void setElo(int elo) {
 		this.elo = elo;
 	}
-	public String getCouleur() {
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public CouleursPiece getCouleur() {
 		return couleur;
 	}
-	public void setCouleur(String couleur) {
+	public void setCouleur(CouleursPiece couleur) {
 		this.couleur = couleur;
 	}
+	
 	
 	//Methodes
 	public void jouer() {

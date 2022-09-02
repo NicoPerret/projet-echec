@@ -1,5 +1,6 @@
 package fr.echec.classe.jeu;
 
+import fr.echec.enumerateur.CouleursPiece;
 import fr.echec.enumerateur.TypePiece;
 
 public class Piece {
@@ -7,7 +8,7 @@ public class Piece {
 	// VARIABLES
 	private int coordonnee = -1;
 	private TypePiece nom;
-	private String couleur;
+	private CouleursPiece couleur;
 	private boolean enVie = true;
 	private int valeurMateriel; // NB : pion = 1 point, fou = 3 points, cavalier = 3 points, tour = 5 points,
 								// dame = 9 points
@@ -31,11 +32,11 @@ public class Piece {
 		this.nom = nom;
 	}
 
-	public String isCouleur() {
+	public CouleursPiece getCouleur() {
 		return couleur;
 	}
 
-	public void setCouleur(String couleur) {
+	public void setCouleur(CouleursPiece couleur) {
 		this.couleur = couleur;
 	}
 
@@ -71,7 +72,7 @@ public class Piece {
 	}
 
 	// Constructeur pièce
-	public Piece(TypePiece nom, String couleur) {
+	public Piece(TypePiece nom, CouleursPiece couleur) {
 		this.nom = nom;
 		this.couleur = couleur;
 		switch (nom) {

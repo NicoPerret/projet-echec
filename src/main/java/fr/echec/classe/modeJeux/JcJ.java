@@ -1,12 +1,13 @@
 package fr.echec.classe.modeJeux;
 
 import fr.echec.classe.joueur.Utilisateur;
+import fr.echec.enumerateur.CouleursPiece;
 
 public class JcJ {
 	
 	// VARIABLES
-	boolean couleurJoueur1;
-	boolean couleurJoueur2;
+	CouleursPiece couleurJoueur1;
+	CouleursPiece couleurJoueur2;
 
 	public void calculElo(Utilisateur joueur1, Utilisateur joueur2, double sa, double sb) {
 		// mettre joueurs en
