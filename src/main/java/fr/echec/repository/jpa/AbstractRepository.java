@@ -19,6 +19,7 @@ private Class<T> clz;
 		
 		this.clz = clz;
 	}
+	
 	public List<T> findAll() {
 		EntityManager em = emf.createEntityManager();
 		

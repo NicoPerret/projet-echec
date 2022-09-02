@@ -16,11 +16,13 @@ public class Application {
 		while (true) {
 
 			// Jouer
-			p.jouer();
+//			p.jouer();
 
 			// TP
-			// p.teleportation();
-
+			p.teleportation();
+			
+			System.out.println(p.getH().getListeCoups());
+			
 			if (p.getChronoJ1().isDefaiteTemps() || p.getChronoj2().isDefaiteTemps()) {
 				break;
 			}

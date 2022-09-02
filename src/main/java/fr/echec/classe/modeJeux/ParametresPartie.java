@@ -101,16 +101,11 @@ public class ParametresPartie {
 		switch (choix) {
 
 		case 1:
-			System.out.println("Problème");
-			typeDeLaPartie = TypePartie.PROBLEME;
-			break;
-
-		case 2:
 			System.out.println("Joueur contre Joueur");
 			typeDeLaPartie = TypePartie.JOUEURVSJOUEUR;
 			break;
 
-		case 3:
+		case 2:
 			System.out.println("Joueur contre IA");
 			typeDeLaPartie = TypePartie.JOUEURVSIA;
 			break;

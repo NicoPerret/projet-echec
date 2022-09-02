@@ -1,15 +1,7 @@
-changer choix piece pour deplacement
-historique
-=> Felix
+A VERIF
+Ajouter roque dans coup possible
+Ajouter condition echec dans roque (simuler deplacement roi sur les cases entre roi et tour)
 
-gestion deplacement tour - gestion echec tour
-ajouter roque dans déplacement /!\ condition echec
-=>Francois
-
-fct Grand roque b/n
-save => FM
-
-maj UML => Nico
 
 
 
@@ -17,7 +9,6 @@ ajouter utilisateurs dans partie
 prise passant
 gestion echec et mat / gestion pat
 gestion nul
-historique coup
 pb : fct creation des pb
 pb : jouer les coups par l'ordi
 pb : verif coup jouer est le bon

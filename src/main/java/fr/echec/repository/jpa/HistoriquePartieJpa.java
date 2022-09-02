@@ -10,7 +10,6 @@ public class HistoriquePartieJpa extends AbstractRepository<HistoriquePartie> im
 		
 	}
 
-
 	@Override
 	public void save(HistoriquePartie entity) {
 		super.save(entity, (entity.getId() == 0));
