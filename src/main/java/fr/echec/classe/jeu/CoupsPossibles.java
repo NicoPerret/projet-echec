@@ -223,11 +223,16 @@ public class CoupsPossibles {
 		
 	}
 	
-	private boolean surMemeLigne(int coord, int coup) {
-		return ((coord + 7) / 8 == coord / 8);
+	// ==============================================================================
+	// ============================ GESTION ECHEC ===================================
+	// ==============================================================================
+
+	
+	private boolean surMemeLigne(int coordRoi, int diffCoord) {
+		return ((coordRoi + diffCoord) / 8 == coordRoi / 8);
 	}
 	
-	private boolean ImpossibleEchec(Plateau plateau, Piece piece, int coup) {
+	private boolean impossibleEchec(Plateau plateau, Piece piece, int coup) {
 		
 		boolean mvtImpossibleEchec = false;
 		
@@ -255,7 +260,9 @@ public class CoupsPossibles {
 		// On simule le mouvement possible dans la copie de plateau.
 		
 		Deplacement dpltClasse = new Deplacement();
-		dpltClasse.deplacement(pieceSimul, coup, plateauSimul);
+		if (coup != 0) {
+			dpltClasse.deplacement(pieceSimul, coup, plateauSimul);
+		}
 		
 		// On repère le roi de la même couleur de la pièce.
 		
@@ -288,20 +295,21 @@ public class CoupsPossibles {
 
 		for (Piece pieceAdverse : listePiecesMenace) {
 			
-			int coordPiece = roi.getCoordonnee();
+			int coordRoi = roi.getCoordonnee();
 			int coordPieceAdverse = pieceAdverse.getCoordonnee(); 
-			int diffCoord = coordPiece - coordPieceAdverse;
+			int diffCoord = coordRoi - coordPieceAdverse;
 			
 			switch (pieceAdverse.getNom()) {
 			
 			case PION :
 				
+
 				if (pieceAdverse.getCouleur()== CouleursPiece.BLANC) {
-					if ((diffCoord == 7 && !(surMemeLigne(coordPieceAdverse, 7))) || diffCoord == 9) {
+					if ((diffCoord == 7 && !(surMemeLigne(coordRoi, diffCoord))) || diffCoord == 9) {
 						mvtImpossibleEchec = true;	
 					}	
 				} else {
-					if ((diffCoord == -7 && !(surMemeLigne(coordPieceAdverse, -7))) || diffCoord == -9) {
+					if ((diffCoord == -7 && !(surMemeLigne(coordRoi, diffCoord))) || diffCoord == -9) {
 						mvtImpossibleEchec = true;	
 					}
 				}
@@ -310,7 +318,7 @@ public class CoupsPossibles {
 				
 			case TOUR :
 				if(Arrays.stream(this.coupsTypePiece.get(TypePiece.TOUR)).anyMatch(i -> i == diffCoord)) {
-					if (surMemeLigne(coordPieceAdverse, diffCoord)) {
+					if (surMemeLigne(coordRoi, diffCoord)) {
 						mvtImpossibleEchec = true;
 					}
 					else if (diffCoord >= 8) {
@@ -321,7 +329,7 @@ public class CoupsPossibles {
 				
 			case CAVALIER :
 				if(Arrays.stream(this.coupsTypePiece.get(TypePiece.CAVALIER)).anyMatch(i -> i == diffCoord)) {
-					if (!(surMemeLigne(coordPieceAdverse, diffCoord))) {
+					if (!(surMemeLigne(coordRoi, diffCoord))) {
 						mvtImpossibleEchec = true;
 					}
 				}
@@ -329,7 +337,7 @@ public class CoupsPossibles {
 				
 			case FOU :
 				if(Arrays.stream(this.coupsTypePiece.get(TypePiece.FOU)).anyMatch(i -> i == diffCoord)) {
-					if (!(surMemeLigne(coordPieceAdverse, diffCoord))) {
+					if (!(surMemeLigne(coordRoi, diffCoord))) {
 						mvtImpossibleEchec = true;
 					}
 				}
@@ -346,7 +354,7 @@ public class CoupsPossibles {
 					if (diffCoord == 1  || diffCoord != -1) {
 						mvtImpossibleEchec = true;
 					}
-					else if (!(surMemeLigne(coordPieceAdverse, diffCoord))) {
+					else if (!(surMemeLigne(coordRoi, diffCoord))) {
 						mvtImpossibleEchec = true;
 					}
 				}
@@ -361,7 +369,25 @@ public class CoupsPossibles {
 		
 		return mvtImpossibleEchec; 
 		
-	}	
+	}
+	
+	public boolean isEchec(Plateau plateau, CouleursPiece couleur) {
+		// Renvoie si le joueur actuel est en échec
+		
+		// On repère la position du roi
+		Piece roi = null;
+		
+		if (couleur == CouleursPiece.BLANC) {roi = plateau.getByNomPlateau("rb ");}
+		else {roi = plateau.getByNomPlateau("rn ");}
+		
+		// On applique la fonction impossibleEchec sur le roi avec un déplacement nul
+		// ça permet de voir si le roi à sa position actuelle est en échec
+		System.out.println("coordRoi " +roi.getCoordonnee());
+		boolean enEchec = impossibleEchec(plateau, roi, 0);
+		
+		return enEchec;
+		
+	}
 	
 	
 	
@@ -449,7 +475,7 @@ public class CoupsPossibles {
 				 
 		for (int deplacement : coupsReglementaires) {
 			for (int destination : destinationsDispo) {
-				if (coordPiece + deplacement == destination && ImpossibleEchec(plateau, piece, destination) == false) {
+				if (coordPiece + deplacement == destination && impossibleEchec(plateau, piece, destination) == false) {
 					destinationsJouables.add(coordPiece + deplacement);
 				}
 			}
