@@ -7,12 +7,13 @@ import fr.echec.classe.HistoriquePartie;
 import fr.echec.exception.HistoriquePartieNotFoundException;
 import fr.echec.exception.IdNegatifException;
 import fr.echec.repository.IHistoriquePartie;
+import fr.echec.repository.jpa.HistoriquePartieJpa;
 import fr.echec.repository.sql.HistoriquePartieRepoSql;
 
 public class HistoriquePartieService {
+	private IHistoriquePartie repoPartie = new HistoriquePartieJpa();
 
 	public HistoriquePartie findById(int id) throws IdNegatifException, HistoriquePartieNotFoundException {
-		IHistoriquePartie repoPartie = new HistoriquePartieRepoSql();
 
 		if (id <= 0) {
 			throw new IdNegatifException();
@@ -28,7 +29,7 @@ public class HistoriquePartieService {
 	}
 
 	public List<HistoriquePartie> findAll() {
-		IHistoriquePartie repoProduit = new HistoriquePartieRepoSql();
+		IHistoriquePartie repoProduit = new HistoriquePartieJpa();
 		List<HistoriquePartie> historiques = repoProduit.findAll();
 
 		if (historiques == null) {
@@ -40,7 +41,7 @@ public class HistoriquePartieService {
 
 	public void save(HistoriquePartie laPartie) throws HistoriquePartieNotFoundException {
 
-		IHistoriquePartie repoFournisseur = new HistoriquePartieRepoSql();
+		IHistoriquePartie repoFournisseur = new HistoriquePartieJpa();
 
 		if (laPartie == null) {
 			throw new HistoriquePartieNotFoundException();

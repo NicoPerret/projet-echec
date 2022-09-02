@@ -37,7 +37,7 @@ public class Deplacement {
 
 //sous-fonction "Promotion"
 	public void promotion(Piece piece, Plateau p) {
-		if (piece.getNom() == TypePiece.PION) { // verif coord dernier deplace pion ou pas ?
+		if (piece.getNom() == TypePiece.PION) {
 			if (piece.getCoordonnee() == 56 || piece.getCoordonnee() == 57 || piece.getCoordonnee() == 58
 					|| piece.getCoordonnee() == 59 || piece.getCoordonnee() == 60 || piece.getCoordonnee() == 61
 					|| piece.getCoordonnee() == 62 || piece.getCoordonnee() == 63 || piece.getCoordonnee() == 0
@@ -122,13 +122,18 @@ public class Deplacement {
 	public void grandRoque(Piece piece, Piece piece2, Plateau p) {
 		if (piece.getNom() == TypePiece.ROI && piece.isaBouge() == false && piece2.getNom() == TypePiece.TOUR
 				&& piece2.isaBouge() == false) {
-			if (p.getPieceCase(57) == null && p.getPieceCase(58) == null && p.getPieceCase(59) == null) {
+			if (p.getPieceCase(1) == null && p.getPieceCase(2) == null && p.getPieceCase(3) == null) {
+				piece.setCoordonnee(2);
+				piece2.setCoordonnee(3);
+				piece.setaBouge(true);
+				piece2.setaBouge(true);
+			}
+			else if (p.getPieceCase(59) == null && p.getPieceCase(58) == null&& p.getPieceCase(57)==null) {
 				piece.setCoordonnee(58);
 				piece2.setCoordonnee(59);
 				piece.setaBouge(true);
 				piece2.setaBouge(true);
-			}
 		}
 
-	}
-}
+	}}}
+
