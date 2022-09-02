@@ -1,13 +1,38 @@
 package fr.echec.classe.joueur;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "utilisateur")
 public class Utilisateur {
 	// VARIABLES from BDD
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "uti_id")
 	protected  int id;
+	
+	@Column (name = "uti_pseudo",length = 20, nullable = false)
 	protected String pseudo;
+	
+	@Column (name = "uti_mdp",length = 150, nullable = false)
 	protected String mdp;
+	
+	@Column (name = "uti_nom",length = 20, nullable = false)
 	protected String nom;
+	
+	@Column (name = "uti_prenom",length = 20, nullable = false)
 	protected String prenom;
+	
+	@Column(name = "uti_elo", nullable = false)
 	protected int elo;
+	
+	@Column (name = "uti_email",length = 50, nullable = false)
 	protected String email;
 	
 	// VARIABLES

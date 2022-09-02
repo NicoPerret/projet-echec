@@ -36,14 +36,14 @@ CREATE TABLE probleme(
 CREATE TABLE resultatProbleme (
     res_id SERIAL PRIMARY KEY,
     res_utilisateur_id INT NOT NULL,
-    res_partie_id INT NOT NULL,
+    res_probleme_id INT NOT NULL,
     res_date TIMESTAMP NOT NULL
 );
 
 CREATE TABLE parametres (
     par_id SERIAL PRIMARY KEY,
     par_penaltie_piece_id INT NOT NULL,
-    par_chrono VARCHAR(10) NOT NULL
+    par_chrono INT NOT NULL
 );
 
 CREATE TABLE penalitePiece (

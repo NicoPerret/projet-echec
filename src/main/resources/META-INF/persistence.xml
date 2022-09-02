@@ -8,7 +8,7 @@
 	<persistence-unit name="EshopUnit" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
-		<class>fr.formation.model.Fournisseur</class>
+		<class>fr.echec.classe.HistoriquePartie</class>
 		<class>fr.formation.model.Client</class>
 		<class>fr.formation.model.Produit</class>
 		<class>fr.formation.model.Commande</class>

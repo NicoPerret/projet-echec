@@ -1,16 +1,35 @@
 package fr.echec.classe.modeJeux;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Table;
+
 import fr.echec.classe.jeu.Chrono;
 import fr.echec.enumerateur.TypePartie;
 
+@Entity
+@Table(name = "parametres")
 public class ParametresPartie {
 	
 	// VARIABLES from BDD
-	// ATTENTION PENALITE ==> MODIFIER LE FEN
-	private String fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR";
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "par_id")
+	private int id;	
+	@Column(name = "par_chrono", nullable = false)
+	private int paramChrono =5;
+	
+	@JoinColumn (name = "par_penalite_piece_id", nullable = false)
+	private PenalitePiece penalitePiece;
 	
 	// VARIABLES
-	private Chrono chrono = new Chrono(5, 0, 0); // a modif avec HTML
+	// ATTENTION PENALITE ==> MODIFIER LE FEN
+	private Chrono chrono = new Chrono(paramChrono, 0, 0); // a modif avec HTML
+	private String fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR";
 	private int choixAdversaire; // a voir si boolean et a setup que si 1v1
 	private TypePartie typeDeLaPartie;
 
@@ -46,11 +65,27 @@ public class ParametresPartie {
 		this.fen = fen;
 	}
 
+	public int getId() {
+		return id;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	public int getParamChrono() {
+		return paramChrono;
+	}
+	
+	public void setParamChrono(int paramChrono) {
+		this.paramChrono = paramChrono;
+	}
+	
 // Constructeur
 
 	public ParametresPartie() {
 	}
-
+	
 	public ParametresPartie(int minute, int seconde, int increment, String fen) {
 		this.chrono = new Chrono(minute, seconde, increment);
 		this.fen = fen;
