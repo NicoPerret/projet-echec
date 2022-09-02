@@ -1,21 +1,18 @@
-Mapping complet persistence.xml 
-ajouter les attributs bdd de pb
+changer choix piece pour deplacement
+historique
 => Felix
-
-modif couleur => enum => Nico
 
 gestion deplacement tour - gestion echec tour
 ajouter roque dans déplacement /!\ condition echec
-fct isEchec() =>Francois
+=>Francois
 
 fct Grand roque b/n
 save => FM
 
+maj UML => Nico
 
 
-changer choix piece pour deplacement
 
-maj UML
 ajouter utilisateurs dans partie
 prise passant
 gestion echec et mat / gestion pat
