@@ -16,26 +16,27 @@ import fr.echec.enumerateur.CouleursPiece;
 public class Partie {
 
 	// VARIABLES from BDD
-	private int id;
-	private Plateau plateau;
 	private Utilisateur j1;
 	private Utilisateur j2;
 	private ParametresPartie parametre;
 
 	// VARIABLES
+	private int id;
+	private Plateau plateau;
 	private Chrono chronoJ1;
 	private Chrono chronoJ2;
 	private NotationCoup nt = new NotationCoup(0, 0);
 	private Scanner sc = new Scanner(System.in);
 	private int compteurTours = 1;
-	private int compteurCoups= 1; 
+	private int compteurCoups = 1;
 	private Deplacement d = new Deplacement();
 	private int coordDepart;
 	private Fen fen = new Fen();
-	private CouleursPiece couleurJoueurActif = CouleursPiece.BLANC; 
+	private CouleursPiece couleurJoueurActif = CouleursPiece.BLANC;
 	private CoupsPossibles coupPossible = new CoupsPossibles();
 	private List<Integer> listeCoup = new ArrayList<>();
 	HistoriquePartie h = new HistoriquePartie();
+	private boolean verifChangerPiece = false;
 
 	// GETTERS AND SETTERS
 
@@ -103,7 +104,7 @@ public class Partie {
 	public void setParametre(ParametresPartie parametre) {
 		this.parametre = parametre;
 	}
-	
+
 	public CouleursPiece getCouleurJoueurActif() {
 		return couleurJoueurActif;
 	}
@@ -119,19 +120,15 @@ public class Partie {
 	public void setCompteurCoups(int compteurCoups) {
 		this.compteurCoups = compteurCoups;
 	}
-	
-	
+
 	public HistoriquePartie getH() {
 		return h;
 	}
-	
+
 	public void setH(HistoriquePartie h) {
 		this.h = h;
 	}
 // Constructeur 
-
-	
-
 
 	public Partie(ParametresPartie param) {
 		this.chronoJ1 = param.getChrono();
@@ -150,13 +147,13 @@ public class Partie {
 
 		if (compteurTours % 2 == 1) {
 			System.out.println("Tour du Blanc : ");
-			
+
 			this.chronoJ1.start();
 			this.couleurJoueurActif = CouleursPiece.BLANC;
 
 		} else {
 			System.out.println("Tour du Noir : ");
-			
+
 			this.chronoJ2.start();
 			this.couleurJoueurActif = CouleursPiece.NOIR;
 		}
@@ -164,35 +161,33 @@ public class Partie {
 		while (true) {
 
 			String saisie = sc.nextLine();
-			
-			
-				
-				coordDepart = nt.conversionLettreTo64(saisie);
-				
-				
-				if (plateau.getPieceCase(coordDepart) != null
-						&& plateau.getPieceCase(coordDepart).getCouleur() == this.couleurJoueurActif) {
-					listeCoup = coupPossible.trouveDestinationsPossibles(plateau, plateau.getPieceCase(coordDepart));
-					
-					if (listeCoup.isEmpty() == false) {
-						System.out.println("Coup(s) possible(s) : ");
-						nt.setCoordDepartStandard(saisie);
-						for (Integer i : listeCoup) {
-							System.out.println(nt.conversion64ToLettre(i));
-						}
-						break;
-					} else {
-						System.out.println("Aucun coup possible pour cette piece");
+
+			coordDepart = nt.conversionLettreTo64(saisie);
+
+			if (plateau.getPieceCase(coordDepart) != null
+					&& plateau.getPieceCase(coordDepart).getCouleur() == this.couleurJoueurActif) {
+				listeCoup = coupPossible.trouveDestinationsPossibles(plateau, plateau.getPieceCase(coordDepart));
+
+				if (listeCoup.isEmpty() == false) {
+					System.out.println("Coup(s) possible(s) : ");
+					nt.setCoordDepartStandard(saisie);
+					for (Integer i : listeCoup) {
+						System.out.println(nt.conversion64ToLettre(i));
 					}
-					
+					break;
 				} else {
-					System.out.println("Mauvaise saisie : Piece non trouvée ou mauvaise couleur ");
-					
+					System.out.println("Aucun coup possible pour cette piece");
 				}
-			
+
+			} else {
+				System.out.println("Mauvaise saisie : Piece non trouvée ou mauvaise couleur ");
+
+			}
+
 		}
 
 	}
+
 	public void selectionPieceTP() {
 
 		if (compteurTours % 2 == 1) {
@@ -202,39 +197,35 @@ public class Partie {
 
 		} else {
 			System.out.println("Tour du Noir : ");
-			
+
 			this.chronoJ2.start();
 			this.couleurJoueurActif = CouleursPiece.NOIR;
 		}
 		System.out.println("Saisir une piece : ");
-		
-		
+
 		while (true) {
 
 			String saisie = sc.nextLine();
-			
-				
-				coordDepart = nt.conversionLettreTo64(saisie);
-				
-				if (plateau.getPieceCase(coordDepart) != null
-						&& plateau.getPieceCase(coordDepart).getCouleur() == this.couleurJoueurActif) {
-					listeCoup = coupPossible.trouveDestinationsPossibles(plateau, plateau.getPieceCase(coordDepart));
-					
-					
-					System.out.println("Coup(s) possible(s) : ");
-					nt.setCoordDepartStandard(saisie);
-					
-					for (Integer i : listeCoup) {
-						System.out.println(nt.conversion64ToLettre(i));
-					}
-					break;
-					
-					
-				} else {
-					System.out.println("Mauvaise saisie : Piece non trouvée ou mauvaise couleur ");
-					
+
+			coordDepart = nt.conversionLettreTo64(saisie);
+
+			if (plateau.getPieceCase(coordDepart) != null
+					&& plateau.getPieceCase(coordDepart).getCouleur() == this.couleurJoueurActif) {
+				listeCoup = coupPossible.trouveDestinationsPossibles(plateau, plateau.getPieceCase(coordDepart));
+
+				System.out.println("Coup(s) possible(s) : ");
+				nt.setCoordDepartStandard(saisie);
+
+				for (Integer i : listeCoup) {
+					System.out.println(nt.conversion64ToLettre(i));
 				}
-			
+				break;
+
+			} else {
+				System.out.println("Mauvaise saisie : Piece non trouvée ou mauvaise couleur ");
+
+			}
+
 		}
 
 	}
@@ -260,12 +251,12 @@ public class Partie {
 		d.deplacement(plateau.getPieceCase(coordDepart), coordArrivee, plateau);
 
 		d.promotion(plateau.getPieceCase(coordArrivee), plateau);
-		
 
 	}
 
 	public void jouerPiece() {
 
+		System.out.println("Saisir 0 pour changer de piece");
 		if (compteurTours % 2 == 1) {
 			System.out.println("Tour du Blanc : ");
 			System.out.println("Déplacer la piece : ");
@@ -275,37 +266,55 @@ public class Partie {
 			System.out.println("Déplacer la piece : ");
 
 		}
-		boolean vrai = false;
+		boolean verifIfSaisieCoupPossible = false;
+		verifChangerPiece = false;
 		int coordArrivee = 0;
-		while (vrai == false) {
+
+		while (verifIfSaisieCoupPossible == false) {
+
 			String saisie = sc.nextLine();
 			coordArrivee = nt.conversionLettreTo64(saisie);
 
 			for (Integer i : listeCoup) {
+
 				if (coordArrivee == i) {
-					// mettre promotion dans deplacement
+
 					nt.setCoordArriveeStandard(saisie);
 					d.deplacement(plateau.getPieceCase(coordDepart), coordArrivee, plateau);
-					vrai = true;
+					verifIfSaisieCoupPossible = true;
+					verifChangerPiece = true;
+
 					break;
 				}
 			}
-			if (vrai == false) {
 
-				System.out.println("Déplacement illégal");
-				System.out.println("Veuillez saisir un coup dans la liste ci-dessus");
+			if (verifIfSaisieCoupPossible == false) {
+
+				if (saisie.equals("0")) {
+					break;
+				} else {
+
+					System.out.println("Veuillez saisir un coup dans la liste ci-dessus");
+					System.out.println("Déplacement illégal");
+				}
 
 			}
+
 		}
-		d.promotion(plateau.getPieceCase(coordArrivee), plateau);
-		
+		if (verifChangerPiece) {
+			d.promotion(plateau.getPieceCase(coordArrivee), plateau);
+
+		}
 
 	}
 
 	public void finTour() {
 
-		h.ajouterCoup(" "+ nt.getCoordDepartStandard()+ " " + nt.getCoordArriveeStandard() +" ");
-		
+		h.ajouterCoup(" " + nt.getCoordDepartStandard() + " " + nt.getCoordArriveeStandard() + " ");
+		if (coupPossible.isEchec(plateau, couleurJoueurActif)) {
+			h.ajouterCoup("+");
+		}
+
 		if (this.getCompteurTours() % 2 == 1) {
 
 			this.chronoJ1.runnig();
@@ -318,14 +327,33 @@ public class Partie {
 			this.chronoJ2.runnig();
 			this.chronoJ2.stop();
 			this.chronoJ2.getAffichageTempsRestant(chronoJ2.getTempsRestant());
-			
-			
-			compteurCoups ++ ;
-			h.ajouterCoup(" " + compteurCoups + " : ");;
+
+			compteurCoups++;
+			h.ajouterCoup(" " + compteurCoups + " : ");
+
 		}
 		this.compteurTours++;
 	}
 
+	public void jouer() {
 
+		System.out.println(plateau);
+		while (verifChangerPiece == false) {
+
+			this.selectionPiece();
+			this.jouerPiece();
+
+		}
+		verifChangerPiece = false;
+		this.finTour();
+	}
+
+	public void teleportation() {
+		
+		System.out.println(plateau);
+		this.selectionPieceTP();
+		this.teleportPiece();
+		this.finTour();
+	}
 
 }

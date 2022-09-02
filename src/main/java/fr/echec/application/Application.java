@@ -11,18 +11,16 @@ public class Application {
 		// SETUP RUDIMENTAIRE MAIS FONCTIONNEL
 		ParametresPartie param = new ParametresPartie();
 		Partie p = new Partie(param);
-		HistoriquePartieService srvHistPartie = new HistoriquePartieService();
+		// HistoriquePartieService srvHistPartie = new HistoriquePartieService();
 		// UNE PARTIE
 		while (true) {
 
-			System.out.println(p.getPlateau());
-		
-//			p.selectionPiece();
-//			p.jouerPiece();
-			p.selectionPieceTP();
-			p.teleportPiece();
-			p.finTour();
-			System.out.println( p.getH().getListeCoups());
+			// Jouer
+			p.jouer();
+
+			// TP
+			// p.teleportation();
+
 			if (p.getChronoJ1().isDefaiteTemps() || p.getChronoj2().isDefaiteTemps()) {
 				break;
 			}

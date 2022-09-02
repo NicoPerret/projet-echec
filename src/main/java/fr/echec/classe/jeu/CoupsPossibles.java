@@ -377,8 +377,12 @@ public class CoupsPossibles {
 		// On repère la position du roi
 		Piece roi = null;
 		
-		if (couleur == CouleursPiece.BLANC) {roi = plateau.getByNomPlateau("rb ");}
-		else {roi = plateau.getByNomPlateau("rn ");}
+		if (couleur == CouleursPiece.NOIR) {
+			roi = plateau.getByNomPlateau("rb ");
+			}
+		else {
+			roi = plateau.getByNomPlateau("rn ");
+		}
 		
 		// On applique la fonction impossibleEchec sur le roi avec un déplacement nul
 		// ça permet de voir si le roi à sa position actuelle est en échec
