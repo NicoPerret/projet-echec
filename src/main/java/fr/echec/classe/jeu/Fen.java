@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
+import fr.echec.enumerateur.CouleursPiece;
 import fr.echec.enumerateur.TypePiece;
 
 public class Fen {
@@ -44,7 +45,7 @@ public class Fen {
 				if (Character.isDigit(c)) {
 					lig += Character.getNumericValue(c);
 				} else {
-					String coul = (Character.isUpperCase(c) ? "Blanc" : "Noir");
+					CouleursPiece coul = (Character.isUpperCase(c) ? CouleursPiece.BLANC : CouleursPiece.NOIR);
 					TypePiece type = TypePiece.valueOf(test.get(Character.toUpperCase(c)));
 
 					Piece pi = new Piece(type, coul);
@@ -53,22 +54,22 @@ public class Fen {
 					// ------
 					switch (pi.getNom()) {
 					case PION:
-						pi.setNomPlateau("p" + (coul == "Blanc" ? "b" + cptPionBlanc++ : "n" + cptPionNoir++));
+						pi.setNomPlateau("p" + (coul == CouleursPiece.BLANC ? "b" + cptPionBlanc++ : "n" + cptPionNoir++));
 						break;
 					case TOUR:
-						pi.setNomPlateau("t" + (coul == "Blanc" ? "b" + cptTourBlanc++ : "n" + cptTourNoir++));
+						pi.setNomPlateau("t" + (coul == CouleursPiece.BLANC ? "b" + cptTourBlanc++ : "n" + cptTourNoir++));
 						break;
 					case FOU:
-						pi.setNomPlateau("f" + (coul == "Blanc" ? "b" + cptFouBlanc++ : "n" + cptFouNoir++));
+						pi.setNomPlateau("f" + (coul == CouleursPiece.BLANC ? "b" + cptFouBlanc++ : "n" + cptFouNoir++));
 						break;
 					case CAVALIER:
-						pi.setNomPlateau("c" + (coul == "Blanc" ? "b" + cptCavBlanc++ : "n" + cptCavNoir++));
+						pi.setNomPlateau("c" + (coul == CouleursPiece.BLANC ? "b" + cptCavBlanc++ : "n" + cptCavNoir++));
 						break;
 					case ROI:
-						pi.setNomPlateau("r" + (coul == "Blanc" ? "b " : "n "));
+						pi.setNomPlateau("r" + (coul == CouleursPiece.BLANC ? "b " : "n "));
 						break;
 					case DAME:
-						pi.setNomPlateau("d" + (coul == "Blanc" ? "b " : "n "));
+						pi.setNomPlateau("d" + (coul == CouleursPiece.BLANC ? "b " : "n "));
 						break;
 					default:
 						break;

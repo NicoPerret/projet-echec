@@ -1,9 +1,11 @@
 package fr.echec.classe.modeJeux;
 
+import fr.echec.enumerateur.CouleursPiece;
+
 public class JcIA extends ParametresPartie{
 
 	// VARIABLES
-	boolean couleurJoueur;
+	CouleursPiece couleurJoueur;
 	int niveauIA;
 	
 }

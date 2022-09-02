@@ -2,6 +2,7 @@ package fr.echec.classe.jeu;
 
 import java.util.Scanner;
 
+import fr.echec.enumerateur.CouleursPiece;
 import fr.echec.enumerateur.TypePiece;
 
 public class Deplacement {
@@ -53,7 +54,7 @@ public class Deplacement {
 				switch (promotion) {
 				case 1:
 					piece.setNom(TypePiece.FOU);
-					if (piece.isCouleur().equals("Blanc")) {
+					if (piece.getCouleur() == CouleursPiece.BLANC) {
 						piece.setNomPlateau("fbp");
 						p.setCaseTableau("fbp", piece.getCoordonnee());
 					} else {
@@ -63,7 +64,7 @@ public class Deplacement {
 					break;
 				case 2:
 					piece.setNom(TypePiece.CAVALIER);
-					if (piece.isCouleur().equals("Blanc")) {
+					if (piece.getCouleur() == CouleursPiece.BLANC) {
 						piece.setNomPlateau("cbp");
 						p.setCaseTableau("cbp", piece.getCoordonnee());
 					} else {
@@ -74,7 +75,7 @@ public class Deplacement {
 
 				case 3:
 					piece.setNom(TypePiece.TOUR);
-					if (piece.isCouleur().equals("Blanc")) {
+					if (piece.getCouleur() == CouleursPiece.BLANC) {
 						piece.setNomPlateau("tbp");
 						p.setCaseTableau("tbp", piece.getCoordonnee());
 					} else {
@@ -84,7 +85,7 @@ public class Deplacement {
 					break;
 				case 4:
 					piece.setNom(TypePiece.DAME);
-					if (piece.isCouleur().equals("Blanc")) {
+					if (piece.getCouleur() == CouleursPiece.BLANC) {
 						piece.setNomPlateau("dbp");
 						p.setCaseTableau("dbp", piece.getCoordonnee());
 					} else {

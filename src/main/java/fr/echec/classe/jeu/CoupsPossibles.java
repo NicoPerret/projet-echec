@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import fr.echec.enumerateur.CouleursPiece;
 import fr.echec.enumerateur.TypePiece;
 
 public class CoupsPossibles {
@@ -106,7 +107,7 @@ public class CoupsPossibles {
 			
 			if (pieceVoisine != null) {
 				
-				if (pieceVoisine.isCouleur() != piece.isCouleur()) {
+				if (pieceVoisine.getCouleur() != piece.getCouleur()) {
 					casesPieceVoisine ++;
 				}
 				
@@ -155,7 +156,7 @@ public class CoupsPossibles {
 			
 			Piece pieceVoisine = plateau.getPieceCase(coord);
 			
-			if (pieceVoisine != null && piece.isCouleur() == pieceVoisine.isCouleur()) {
+			if (pieceVoisine != null && piece.getCouleur() == pieceVoisine.getCouleur()) {
 				coordASupprimer.add(coord);
 			}
 			
@@ -177,9 +178,9 @@ public class CoupsPossibles {
 		// Pas prise en face, prise en diagonale
 		
 		int coord = piece.getCoordonnee();
-		String couleur = piece.isCouleur();
+		CouleursPiece couleur = piece.getCouleur();
 		
-		if (couleur.equals("Blanc")) {
+		if (couleur == CouleursPiece.BLANC) {
 			coupsReglementaires.remove(Integer.valueOf(-7)); // coups couleur opposée
 			coupsReglementaires.remove(Integer.valueOf(-8));
 			coupsReglementaires.remove(Integer.valueOf(-9));
@@ -241,7 +242,7 @@ public class CoupsPossibles {
 		
 		List<Piece> liste = new ArrayList<>();
 		for(Piece p : plateau.getPieces()) {
-			Piece p1 = new Piece(p.getNom(),p.isCouleur());
+			Piece p1 = new Piece(p.getNom(),p.getCouleur());
 			p1.setCoordonnee(p.getCoordonnee());
 			p1.setNomPlateau(p.getNomPlateau());
 			liste.add(p1);
@@ -258,9 +259,9 @@ public class CoupsPossibles {
 		
 		// On repère le roi de la même couleur de la pièce.
 		
-		String couleurPiece = pieceSimul.isCouleur();
+		CouleursPiece couleurPiece = pieceSimul.getCouleur();
 		Piece roi = null;
-		if (couleurPiece.equals("Blanc")) {roi = plateauSimul.getByNomPlateau("rb ");}
+		if (couleurPiece== CouleursPiece.BLANC) {roi = plateauSimul.getByNomPlateau("rb ");}
 		else {roi = plateauSimul.getByNomPlateau("rn ");}
 		
 		// On repère toutes les cases où une pièce adverse pourrait atteindre le roi.
@@ -295,7 +296,7 @@ public class CoupsPossibles {
 			
 			case PION :
 				
-				if (pieceAdverse.isCouleur().equals("Blanc")) {
+				if (pieceAdverse.getCouleur()== CouleursPiece.BLANC) {
 					if ((diffCoord == 7 && !(surMemeLigne(coordPieceAdverse, 7))) || diffCoord == 9) {
 						mvtImpossibleEchec = true;	
 					}	
