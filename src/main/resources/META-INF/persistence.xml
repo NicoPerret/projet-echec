@@ -8,11 +8,11 @@
 	<persistence-unit name="EshopUnit" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
+
 		<class>fr.echec.classe.HistoriquePartie</class>
-		<class>fr.formation.model.Client</class>
-		<class>fr.formation.model.Produit</class>
-		<class>fr.formation.model.Commande</class>
-		<class>fr.formation.model.CommandeDetail</class>
+		<class>fr.echec.classe.Message</class>
+		<class>fr.echec.classe.NotationCoup</class>
+		<class>fr.echec.classe.Partie</class>
 
 		<properties>
       		<!-- Listes des propriétés liées à l’implémentation (Hibernate, OpenJPA, ...) -->

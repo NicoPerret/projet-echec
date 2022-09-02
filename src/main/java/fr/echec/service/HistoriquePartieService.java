@@ -8,7 +8,6 @@ import fr.echec.exception.HistoriquePartieNotFoundException;
 import fr.echec.exception.IdNegatifException;
 import fr.echec.repository.IHistoriquePartie;
 import fr.echec.repository.jpa.HistoriquePartieJpa;
-import fr.echec.repository.sql.HistoriquePartieRepoSql;
 
 public class HistoriquePartieService {
 	private IHistoriquePartie repoPartie = new HistoriquePartieJpa();
