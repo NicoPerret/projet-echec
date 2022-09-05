@@ -1,22 +1,23 @@
 package fr.echec.classe.partie;
 
 import fr.echec.classe.joueur.Utilisateur;
+import fr.echec.classe.parametres.ParametresPartie;
 import fr.echec.enumerateur.CouleursPiece;
 
-public class JcJ {
-	
+public class JcJ extends Partie {
+
 	// VARIABLES
 	CouleursPiece couleurJoueur1;
 	CouleursPiece couleurJoueur2;
 
-	public void calculElo(Utilisateur joueur1, Utilisateur joueur2, double sa, double sb) {
-		// mettre joueurs en
-// parametre de la fct pour
-// recup elo et le modifier
+	public JcJ(ParametresPartie param) {
+		super(param);
+	}
 
+	public void calculElo(Utilisateur joueur1, Utilisateur joueur2, double sa, double sb) {
 		// Real Rating Player A/B
 		// Elo des joueurs avant la partie
-		//
+		
 		int ra = joueur1.getElo();
 		int rb = joueur2.getElo();
 
@@ -57,10 +58,8 @@ public class JcJ {
 
 		// Arrondie au superieur
 
-		joueur1.setElo((int) Math.ceil(ran)) ;
+		joueur1.setElo((int) Math.ceil(ran));
 		joueur2.setElo((int) Math.ceil(rbn));
-		
-		
 
 		System.out.println(" Ancien Elo Joueur A : " + ra);
 		System.out.println(" Ancien Elo Joueur B : " + rb);

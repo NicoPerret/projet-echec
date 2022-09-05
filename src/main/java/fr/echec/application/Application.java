@@ -1,6 +1,7 @@
 package fr.echec.application;
 
 import fr.echec.classe.parametres.ParametresPartie;
+import fr.echec.classe.partie.JcJ;
 import fr.echec.classe.partie.Partie;
 import fr.echec.service.HistoriquePartieService;
 
@@ -10,7 +11,7 @@ public class Application {
 
 		// SETUP RUDIMENTAIRE MAIS FONCTIONNEL
 		ParametresPartie param = new ParametresPartie();
-		Partie p = new Partie(param);
+		Partie p = new JcJ(param);
 		// HistoriquePartieService srvHistPartie = new HistoriquePartieService();
 		// UNE PARTIE
 		while (true) {

@@ -1,6 +1,7 @@
 package fr.echec.classe.historique;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,7 +9,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -19,13 +22,6 @@ import fr.echec.classe.parametres.ParametresPartie;
 @Entity
 @Table(name = "historiquepartie")
 public class HistoriquePartie {
-
-	/*
-	 * Liste de tous les coups Peut ajouter un coup Récupère le nom des joueurs
-	 * Récupère l'id de la partie Indique le numero du coup
-	 */
-	
-	
 
 	// VARIABLES to BDD
 	@Id
@@ -58,14 +54,18 @@ public class HistoriquePartie {
 	@ManyToOne
 	@JoinColumn(name = "hsp_param_id", nullable = false)
 	private ParametresPartie param; 
+	
 	// VARIABLES
+	@ManyToMany
+	@JoinTable(
+			name = "historique_partie",
+			joinColumns = @JoinColumn(name = "histjou_utlisateur_id"),
+			inverseJoinColumns = @JoinColumn(name = "histjou_historique_partie_id"))
+	protected List<Utilisateur> joueurs;
 	
 	
-	// get-set methodes
-
 	
-
-
+	// GETTERS / SETTERS
 
 	public Utilisateur getJ1() {
 		return j1;
