@@ -82,8 +82,8 @@ ALTER TABLE parametres
 
 ALTER TABLE resultatProbleme
     ADD
-        CONSTRAINT fk_partieid
-        FOREIGN KEY (res_partie_id)
+        CONSTRAINT fk_problemeid
+        FOREIGN KEY (res_probleme_id)
         REFERENCES probleme(prob_id)
         ON DELETE CASCADE
         ON UPDATE CASCADE,

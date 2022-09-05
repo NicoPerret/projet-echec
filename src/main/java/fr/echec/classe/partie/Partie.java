@@ -39,7 +39,9 @@ public class Partie {
 	private List<Integer> listeCoup = new ArrayList<>();
 	HistoriquePartie h = new HistoriquePartie();
 	private boolean verifChangerPiece = false;
-
+	private boolean surrJ1 = false;
+	private boolean surrJ2 = false;
+	private JcJ jcj = new JcJ();
 	// GETTERS AND SETTERS
 
 	public int getId() {
@@ -130,6 +132,23 @@ public class Partie {
 	public void setH(HistoriquePartie h) {
 		this.h = h;
 	}
+
+	public boolean isSurrJ1() {
+		return surrJ1;
+	}
+
+	public void setSurrJ1(boolean surrJ1) {
+		this.surrJ1 = surrJ1;
+	}
+
+	public boolean isSurrJ2() {
+		return surrJ2;
+	}
+
+	public void setSurrJ2(boolean surrJ2) {
+		this.surrJ2 = surrJ2;
+	}
+
 // Constructeur 
 
 	public Partie(ParametresPartie param) {
@@ -159,6 +178,7 @@ public class Partie {
 			this.chronoJ2.start();
 			this.couleurJoueurActif = CouleursPiece.NOIR;
 		}
+		System.out.println("Taper FF pour abbandonner");
 		System.out.println("Saisir une piece : ");
 		while (true) {
 
@@ -179,6 +199,19 @@ public class Partie {
 					break;
 				} else {
 					System.out.println("Aucun coup possible pour cette piece");
+				}
+
+			} else if (saisie.equals("FF")) {
+
+				if (this.couleurJoueurActif.toString() == "BLANC") {
+					surrJ1 = true;
+
+					break;
+				}
+
+				else {
+					surrJ2 = true;
+					break;
 				}
 
 			} else {
@@ -223,7 +256,20 @@ public class Partie {
 				}
 				break;
 
-			} else {
+			} else if (saisie == "FF") {
+
+				if (this.couleurJoueurActif.toString() == "BLANC") {
+					surrJ1 = true;
+					break;
+				}
+
+				else {
+					surrJ2 = true;
+					break;
+				}
+			}
+
+			else {
 				System.out.println("Mauvaise saisie : Piece non trouvée ou mauvaise couleur ");
 
 			}
@@ -233,7 +279,9 @@ public class Partie {
 	}
 
 	public void teleportPiece() {
-
+		if (surrJ1 == true || surrJ2 == true) {
+			return;
+		}
 		if (compteurTours % 2 == 1) {
 			System.out.println("Tour du Blanc : ");
 			System.out.println("Déplacer la piece : ");
@@ -257,7 +305,10 @@ public class Partie {
 	}
 
 	public void jouerPiece() {
-
+		if (surrJ1 == true || surrJ2 == true) {
+			verifChangerPiece = true;
+			return;
+		}
 		System.out.println("Saisir 0 pour changer de piece");
 		if (compteurTours % 2 == 1) {
 			System.out.println("Tour du Blanc : ");
@@ -311,7 +362,10 @@ public class Partie {
 	}
 
 	public void finTour() {
-
+		if (surrJ1 == true || surrJ2 == true) {
+			verifChangerPiece = true;
+			return;
+		}
 		h.ajouterCoup(" " + nt.getCoordDepartStandard() + " " + nt.getCoordArriveeStandard() + " ");
 		if (coupPossible.isEchec(plateau, couleurJoueurActif)) {
 			h.ajouterCoup("+");
@@ -351,11 +405,37 @@ public class Partie {
 	}
 
 	public void teleportation() {
-		
+
 		System.out.println(plateau);
 		this.selectionPieceTP();
 		this.teleportPiece();
 		this.finTour();
+	}
+
+	public boolean finPartie() {
+		double resJ1 = 0.5;
+		double resJ2 = 0.5;
+
+		if (getChronoJ1().isDefaiteTemps() || isSurrJ1() == true) {
+			h.setVainqueurId(j2.getId());
+			System.out.println("Le joueur 2 gagne !");
+			resJ1 = 0;
+			resJ2 = 1;
+			jcj.calculElo(j1, j2, resJ1, resJ2);
+			return true;
+
+		}
+
+		else if (getChronoj2().isDefaiteTemps() || isSurrJ2()) {
+			System.out.println("Le joueur 1 gagne !");
+			h.setVainqueurId(j1.getId());
+			resJ1 = 1;
+			resJ2 = 0;
+			jcj.calculElo(j1, j2, resJ1, resJ2);
+			return true;
+		}
+		
+		return false;
 	}
 
 }

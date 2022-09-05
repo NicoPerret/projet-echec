@@ -4,7 +4,7 @@ import fr.echec.classe.joueur.Utilisateur;
 import fr.echec.enumerateur.CouleursPiece;
 
 public class JcJ {
-	
+
 	// VARIABLES
 	CouleursPiece couleurJoueur1;
 	CouleursPiece couleurJoueur2;
@@ -57,15 +57,13 @@ public class JcJ {
 
 		// Arrondie au superieur
 
-		joueur1.setElo((int) Math.ceil(ran)) ;
+		joueur1.setElo((int) Math.ceil(ran));
 		joueur2.setElo((int) Math.ceil(rbn));
-		
-		
 
-		System.out.println(" Ancien Elo Joueur A : " + ra);
-		System.out.println(" Ancien Elo Joueur B : " + rb);
-		System.out.println("Changement A : " + differentielA);
-		System.out.println("Changement B : " + differentielB);
+		// System.out.println(" Ancien Elo Joueur A : " + ra);
+		// System.out.println(" Ancien Elo Joueur B : " + rb);
+		// System.out.println("Changement A : " + differentielA);
+		// System.out.println("Changement B : " + differentielB);
 		System.out.println(" Nouveau Elo Joueur A : " + joueur1.getElo());
 		System.out.println(" Nouveau Elo Joueur B : " + joueur2.getElo());
 
