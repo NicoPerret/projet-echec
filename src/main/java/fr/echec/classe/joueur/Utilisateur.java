@@ -43,12 +43,11 @@ public class Utilisateur {
 	@Column (name = "uti_email",length = 50, nullable = false)
 	protected String email;
 	
-	// VARIABLES
-	protected CouleursPiece couleur;
-	
 	@ManyToMany(mappedBy = "joueurs")
 	protected List<HistoriquePartie> historiqueParties;
 	
+	// VARIABLES
+	protected CouleursPiece couleur;
 	
 	//GETTERS / SETTERS
 	public int getId() {

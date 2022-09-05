@@ -9,3 +9,57 @@ fieldset {
     background-color: rgb(46, 134, 146);
     border-radius: 10px;
 }
+
+.conteneur{
+    display: flex;
+ }
+
+.gauche{
+    float: left;
+    width:25%
+ }
+ .milieu{
+    display: inline-block;
+    width:50%
+ }
+ .droite{
+    float: right;
+    width:25%
+ }
+ 
+.plateau { 
+    width: 242px;
+    display: grid; 
+    grid-template-columns: repeat(8, 30px); 
+    grid-template-rows: repeat(8, 30px);
+    text-align : center;
+    border: solid 1px black;
+    box-sizing: border-box;
+}
+
+.plateau div:nth-child(-2n+9),
+.plateau div:nth-child(9) ~ div:nth-child(-2n+16),
+.plateau div:nth-child(17) ~ div:nth-child(-2n+25),
+.plateau div:nth-child(25) ~ div:nth-child(-2n+32),
+.plateau div:nth-child(33) ~ div:nth-child(-2n+41),
+.plateau div:nth-child(41) ~ div:nth-child(-2n+48),
+.plateau div:nth-child(49) ~ div:nth-child(-2n+57),
+.plateau div:nth-child(57) ~ div:nth-child(-2n+64)
+{
+    background: black;
+}
+
+.grille {
+    grid-template-columns: 30px 250px; 
+    grid-template-rows: 250px 30px;  
+}
+
+.grille1 {
+    grid-template-columns: repeat(1, 30px); 
+    grid-template-rows: repeat(8, 30px);  
+}
+
+.grille2 {
+    grid-template-columns: repeat(8, 30px); 
+    grid-template-rows: repeat(1, 30px);  
+}
