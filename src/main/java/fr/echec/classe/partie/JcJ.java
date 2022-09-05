@@ -70,4 +70,30 @@ public class JcJ extends Partie {
 		System.out.println(" Nouveau Elo Joueur B : " + joueur2.getElo());
 
 	}
+	
+	public boolean finPartie() {
+		double resJ1 = 0.5;
+		double resJ2 = 0.5;
+
+		if (getChronoJ1().isDefaiteTemps() || isSurrJ1() == true) {
+			h.setVainqueurId(j2.getId());
+			System.out.println("Le joueur 2 gagne !");
+			resJ1 = 0;
+			resJ2 = 1;
+			calculElo(j1, j2, resJ1, resJ2);
+			return true;
+
+		}
+
+		else if (getChronoj2().isDefaiteTemps() || isSurrJ2()) {
+			System.out.println("Le joueur 1 gagne !");
+			h.setVainqueurId(j1.getId());
+			resJ1 = 1;
+			resJ2 = 0;
+			calculElo(j1, j2, resJ1, resJ2);
+			return true;
+		}
+
+		return false;
+	}
 }

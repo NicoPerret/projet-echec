@@ -20,7 +20,7 @@
       		<property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/echecs" />
 		    <property name="hibernate.connection.driver" value="org.postgresql.Driver" />
 		    <property name="hibernate.connection.user" value="postgres" />
-		    <property name="hibernate.connection.password" value="root" />
+		    <property name="hibernate.connection.password" value="postgres" />
 		
 		    <!-- Permet d'exécuter les requêtes DDL pour la génération de la base de données -->
 		    <!-- Valeurs possibles : validate, update, create, create-drop -->

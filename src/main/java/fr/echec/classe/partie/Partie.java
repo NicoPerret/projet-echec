@@ -18,8 +18,8 @@ import fr.echec.enumerateur.CouleursPiece;
 public class Partie {
 
 	// VARIABLES from BDD
-	private Utilisateur j1;
-	private Utilisateur j2;
+	protected Utilisateur j1;
+	protected Utilisateur j2;
 	private ParametresPartie parametre;
 
 	// VARIABLES
@@ -41,7 +41,7 @@ public class Partie {
 	private boolean verifChangerPiece = false;
 	private boolean surrJ1 = false;
 	private boolean surrJ2 = false;
-	private JcJ jcj = new JcJ(parametre);
+	//private JcJ jcj = new JcJ(parametre);
 	
 	// GETTERS AND SETTERS
 
@@ -302,8 +302,6 @@ public class Partie {
 		// mettre promotion dans deplacement
 		d.deplacement(plateau.getPieceCase(coordDepart), coordArrivee, plateau);
 
-		d.promotion(plateau.getPieceCase(coordArrivee), plateau);
-
 	}
 
 	public void jouerPiece() {
@@ -351,7 +349,7 @@ public class Partie {
 
 		}
 		if (verifChangerPiece) {
-			d.promotion(plateau.getPieceCase(coordArrivee), plateau);
+			//d.promotion(plateau.getPieceCase(coordArrivee), plateau);
 
 		}
 
@@ -408,30 +406,6 @@ public class Partie {
 		this.finTour();
 	}
 
-	public boolean finPartie() {
-		double resJ1 = 0.5;
-		double resJ2 = 0.5;
-
-		if (getChronoJ1().isDefaiteTemps() || isSurrJ1() == true) {
-			h.setVainqueurId(j2.getId());
-			System.out.println("Le joueur 2 gagne !");
-			resJ1 = 0;
-			resJ2 = 1;
-			jcj.calculElo(j1, j2, resJ1, resJ2);
-			return true;
-
-		}
-
-		else if (getChronoj2().isDefaiteTemps() || isSurrJ2()) {
-			System.out.println("Le joueur 1 gagne !");
-			h.setVainqueurId(j1.getId());
-			resJ1 = 1;
-			resJ2 = 0;
-			jcj.calculElo(j1, j2, resJ1, resJ2);
-			return true;
-		}
-
-		return false;
-	}
+	
 
 }

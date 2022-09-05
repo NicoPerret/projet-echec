@@ -16,7 +16,7 @@ public class Application {
 
 		// SETUP RUDIMENTAIRE MAIS FONCTIONNEL
 		ParametresPartie param = new ParametresPartie();
-		Partie p = new JcJ(param);
+		JcJ p = new JcJ(param);
 		Utilisateur j1 = new Utilisateur();
 		Utilisateur j2 = new Utilisateur();
 		// HistoriquePartieService srvHistPartie = new HistoriquePartieService();

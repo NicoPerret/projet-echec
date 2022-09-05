@@ -13,10 +13,7 @@ public class Deplacement {
 		return sc.nextInt();
 	}
 
-	// sous-fonction "Capture"
 	public void deplacement(Piece piece, int coord, Plateau p) {
-
-		// ajouter conditions sur roque
 
 		p.setCaseTableau("   ", piece.getCoordonnee());
 		p.setCaseTableau(piece.getNomPlateau(), coord);
@@ -25,9 +22,18 @@ public class Deplacement {
 
 			capture(p.getPieceCase(coord));
 		}
-
-		p.getPieceCase(piece.getCoordonnee()).setCoordonnee(coord);
-		piece.setaBouge(true);
+		
+		if (piece.getNom() == TypePiece.ROI && coord == piece.getCoordonnee()+2) {
+			jouerPetitRoque(piece, p);
+		} else if (piece.getNom() == TypePiece.ROI && coord == piece.getCoordonnee()-2) {
+			jouerGrandRoque(piece, p);
+		} else {
+			p.getPieceCase(piece.getCoordonnee()).setCoordonnee(coord);
+			piece.setaBouge(true);
+			promotion(piece, p);
+		}
+		
+		
 	}
 
 	public void capture(Piece piece) {
@@ -123,39 +129,42 @@ public class Deplacement {
 	}
 
 //	 sous-fonction Petit Roque et Grand Roque
-
-	public void petitRoque(Piece piece, Piece piece2, Plateau p) {
-		if (piece.getNom() == TypePiece.ROI && piece.isaBouge() == false && piece2.getNom() == TypePiece.TOUR
-				&& piece2.isaBouge() == false) {
-			if (p.getPieceCase(5) == null && p.getPieceCase(6) == null) {
-				piece.setCoordonnee(6);
-				piece2.setCoordonnee(5);
-				piece.setaBouge(true);
-				piece2.setaBouge(true);
-			} else if (p.getPieceCase(61) == null && p.getPieceCase(62) == null) {
-				piece.setCoordonnee(61);
-				piece2.setCoordonnee(62);
-				piece.setaBouge(true);
-				piece2.setaBouge(true);
-			}
-		}
+	
+	public void jouerPetitRoque(Piece roi, Plateau p) {
+		
+		Piece tour = p.getPieceCase(roi.getCoordonnee()+3);
+		
+		p.setCaseTableau("   ", tour.getCoordonnee());
+		p.setCaseTableau(tour.getNomPlateau(), tour.getCoordonnee()-2);
+		
+		roi.setCoordonnee(roi.getCoordonnee()+2);
+		tour.setCoordonnee(tour.getCoordonnee()-2);
+		roi.setaBouge(true);
+		tour.setaBouge(true);
+		
+		p.getPieceCase(roi.getCoordonnee()).setCoordonnee(roi.getCoordonnee()+2);
+		p.getPieceCase(tour.getCoordonnee()).setCoordonnee(tour.getCoordonnee()-2);
+		p.getPieceCase(roi.getCoordonnee()+2).setaBouge(true);
+		p.getPieceCase(tour.getCoordonnee()-2).setaBouge(true);
+		
 	}
-
-	public void grandRoque(Piece piece, Piece piece2, Plateau p) {
-		if (piece.getNom() == TypePiece.ROI && piece.isaBouge() == false && piece2.getNom() == TypePiece.TOUR
-				&& piece2.isaBouge() == false) {
-			if (p.getPieceCase(1) == null && p.getPieceCase(2) == null && p.getPieceCase(3) == null) {
-				piece.setCoordonnee(2);
-				piece2.setCoordonnee(3);
-				piece.setaBouge(true);
-				piece2.setaBouge(true);
-			} else if (p.getPieceCase(59) == null && p.getPieceCase(58) == null && p.getPieceCase(57) == null) {
-				piece.setCoordonnee(58);
-				piece2.setCoordonnee(59);
-				piece.setaBouge(true);
-				piece2.setaBouge(true);
-			}
-
-		}
+	
+	public void jouerGrandRoque(Piece roi, Plateau p) {
+		
+		Piece tour = p.getPieceCase(roi.getCoordonnee()-4);
+		
+		p.setCaseTableau("   ", tour.getCoordonnee());
+		p.setCaseTableau(tour.getNomPlateau(), tour.getCoordonnee()+3);
+		
+		roi.setCoordonnee(roi.getCoordonnee()-2);
+		tour.setCoordonnee(tour.getCoordonnee()+3);
+		roi.setaBouge(true);
+		tour.setaBouge(true);
+		
+		p.getPieceCase(roi.getCoordonnee()).setCoordonnee(roi.getCoordonnee()-2);
+		p.getPieceCase(tour.getCoordonnee()).setCoordonnee(tour.getCoordonnee()+3);
+		p.getPieceCase(roi.getCoordonnee()-2).setaBouge(true);
+		p.getPieceCase(tour.getCoordonnee()+3).setaBouge(true);
 	}
+	
 }

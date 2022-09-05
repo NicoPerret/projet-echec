@@ -77,24 +77,40 @@ public class GestionRoque extends GestionEchec{
 	
 	public List<Integer> ajouteDestinationRoque(List<Integer> destinationsJouables, Plateau plateau, Piece piece) {
 		
-		Piece roi;
-		Piece tourPetitRoque;
-		Piece tourGrandRoque;
+		Piece roi = null;
+		Piece tourPetitRoque = null;
+		Piece tourGrandRoque = null;
+		
+		boolean petitRoquePossible = false;
+		boolean grandRoquePossible = false;
 		
 		if (piece.getNom() == TypePiece.ROI) {
-			CouleursPiece couleurJoueur = piece.getCouleur();
-			if (couleurJoueur == CouleursPiece.BLANC) {
-				roi = piece;
+			
+			roi = piece;
+			if (piece.getCouleur() == CouleursPiece.BLANC) {
 				tourGrandRoque = plateau.getByNomPlateau("tb1");
 				tourPetitRoque = plateau.getByNomPlateau("tb2");
 			} else {
-				roi = piece;
 				tourGrandRoque = plateau.getByNomPlateau("tn1");
-				tourPetitRoque = plateau.getByNomPlateau("tb2");
+				tourPetitRoque = plateau.getByNomPlateau("tn2");
 			}
+			
+			petitRoquePossible = petitRoque(roi, tourPetitRoque, plateau);
+			grandRoquePossible = grandRoque(roi, tourGrandRoque, plateau);
+			
 		} 
+		
+		if (petitRoquePossible) {
+			destinationsJouables.add(roi.getCoordonnee() + 2);
+		}
+		
+		if (grandRoquePossible) {
+			destinationsJouables.add(roi.getCoordonnee() - 2);
+		}
 		
 		return destinationsJouables;
 	}
-
+	
+	
+	
 }

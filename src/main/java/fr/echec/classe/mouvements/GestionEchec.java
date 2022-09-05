@@ -182,13 +182,14 @@ public class GestionEchec extends AnalyseCoupsReglementaires {
 		
 		Piece roi = null;
 		
-		if (couleur == CouleursPiece.NOIR) {
+		if (couleur == CouleursPiece.BLANC) {
 			roi = plateau.getByNomPlateau("rb ");
 			}
 		else {
 			roi = plateau.getByNomPlateau("rn ");
 		}
-		
+		System.out.println(casePlateau);
+		System.out.println(roi.getCoordonnee());
 		boolean enEchec = mvtEchec(plateau, roi, casePlateau - roi.getCoordonnee());
 		
 		return enEchec;

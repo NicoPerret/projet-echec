@@ -16,7 +16,7 @@ import fr.echec.service.ProblemeService;
 @Table(name = "probleme")
 public class Probleme {
 	
-	private ProblemeService srvProbleme = new ProblemeService();
+	//private ProblemeService srvProbleme = new ProblemeService();
 
 	// VARIABLES from BDD
 	@Id

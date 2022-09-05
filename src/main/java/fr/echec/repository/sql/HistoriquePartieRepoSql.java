@@ -38,7 +38,7 @@ public class HistoriquePartieRepoSql extends RepositorySql implements IHistoriqu
 		}
 	}
 
-	@Override
+	
 	public HistoriquePartie findById(int id) {
 		try {
 			PreparedStatement myStatement = this.prepare("SELECT * FROM produit WHERE pro_id = ?");
@@ -122,7 +122,7 @@ public class HistoriquePartieRepoSql extends RepositorySql implements IHistoriqu
 
 	}
 
-	@Override
+	
 	public void deleteById(int id) {
 		try {
 			PreparedStatement myStatement = this.prepare("DELETE FROM fournisseur WHERE fou_id = ?");

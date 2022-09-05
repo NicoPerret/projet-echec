@@ -11,7 +11,7 @@ import fr.echec.classe.jeu.Plateau;
 import fr.echec.enumerateur.CouleursPiece;
 import fr.echec.enumerateur.TypePiece;
 
-public class CoupsPossibles extends GestionEchec {
+public class CoupsPossibles extends GestionRoque {
 	
 	
 	public List<Integer> trouveDestinationsPossibles(Plateau plateau, Piece piece) {
@@ -40,6 +40,8 @@ public class CoupsPossibles extends GestionEchec {
 				}
 			}
 		}
+		// On regarde si les roques sont possibles
+		destinationsJouables = ajouteDestinationRoque(destinationsJouables, plateau, piece);
 					
 		return destinationsJouables;
 		 	
