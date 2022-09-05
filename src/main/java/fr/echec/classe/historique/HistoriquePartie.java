@@ -56,7 +56,7 @@ public class HistoriquePartie {
 	private int vainqueurId;
 	
 	@ManyToOne
-	@JoinColumn(name = "hsp_param_id", nullable = false)
+	@JoinColumn(name = "hsp_param_id")
 	private ParametresPartie param; 
 	// VARIABLES
 	

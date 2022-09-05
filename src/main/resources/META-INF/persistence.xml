@@ -17,7 +17,7 @@
 
 		<properties>
       		<!-- Listes des propriétés liées à l’implémentation (Hibernate, OpenJPA, ...) -->
-      		<property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/eshop" />
+      		<property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/echecs" />
 		    <property name="hibernate.connection.driver" value="org.postgresql.Driver" />
 		    <property name="hibernate.connection.user" value="postgres" />
 		    <property name="hibernate.connection.password" value="root" />

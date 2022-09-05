@@ -164,19 +164,27 @@ public class Partie {
 		this.setChronoj2(parametreChrono);
 	}
 
+	public boolean tourBlanc() {
+		if (compteurTours % 2 == 1) {
+			this.couleurJoueurActif = CouleursPiece.BLANC;
+			return true;
+		} else {
+			this.couleurJoueurActif = CouleursPiece.NOIR;
+			return false;
+		}
+	}
+
 	public void selectionPiece() {
 
-		if (compteurTours % 2 == 1) {
+		if (tourBlanc()) {
 			System.out.println("Tour du Blanc : ");
 
 			this.chronoJ1.start();
-			this.couleurJoueurActif = CouleursPiece.BLANC;
 
 		} else {
 			System.out.println("Tour du Noir : ");
-
 			this.chronoJ2.start();
-			this.couleurJoueurActif = CouleursPiece.NOIR;
+
 		}
 		System.out.println("Taper FF pour abbandonner");
 		System.out.println("Saisir une piece : ");
@@ -225,16 +233,15 @@ public class Partie {
 
 	public void selectionPieceTP() {
 
-		if (compteurTours % 2 == 1) {
+		if (tourBlanc()) {
 			System.out.println("Tour du Blanc : ");
 			this.chronoJ1.start();
-			this.couleurJoueurActif = CouleursPiece.BLANC;
 
 		} else {
 			System.out.println("Tour du Noir : ");
 
 			this.chronoJ2.start();
-			this.couleurJoueurActif = CouleursPiece.NOIR;
+
 		}
 		System.out.println("Saisir une piece : ");
 
@@ -282,15 +289,9 @@ public class Partie {
 		if (surrJ1 == true || surrJ2 == true) {
 			return;
 		}
-		if (compteurTours % 2 == 1) {
 			System.out.println("Tour du Blanc : ");
 			System.out.println("Déplacer la piece : ");
 
-		} else {
-			System.out.println("Tour du Noir : ");
-			System.out.println("Déplacer la piece : ");
-
-		}
 		int coordArrivee = 0;
 
 		String saisie = sc.nextLine();
@@ -310,15 +311,9 @@ public class Partie {
 			return;
 		}
 		System.out.println("Saisir 0 pour changer de piece");
-		if (compteurTours % 2 == 1) {
-			System.out.println("Tour du Blanc : ");
-			System.out.println("Déplacer la piece : ");
 
-		} else {
-			System.out.println("Tour du Noir : ");
-			System.out.println("Déplacer la piece : ");
+		System.out.println("Déplacer la piece : ");
 
-		}
 		boolean verifIfSaisieCoupPossible = false;
 		verifChangerPiece = false;
 		int coordArrivee = 0;
@@ -434,7 +429,7 @@ public class Partie {
 			jcj.calculElo(j1, j2, resJ1, resJ2);
 			return true;
 		}
-		
+
 		return false;
 	}
 

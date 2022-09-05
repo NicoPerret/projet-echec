@@ -7,13 +7,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
+import javax.persistence.Transient;
 
 import fr.echec.enumerateur.CouleursPiece;
 
 
 @Entity
-@Table(name = "utilisateur")
+@Table(name = "utilisateurs")
 public class Utilisateur {
 	// VARIABLES from BDD
 	
@@ -41,6 +41,7 @@ public class Utilisateur {
 	protected String email;
 	
 	// VARIABLES
+	@Transient
 	protected CouleursPiece couleur;
 	
 	

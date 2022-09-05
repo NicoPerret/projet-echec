@@ -22,7 +22,7 @@ CREATE TABLE  historiquePartie (
     hsp_liste_coups TEXT,
     hsp_date TIMESTAMP NOT NULL,
     hsp_vainqueur_id INT,
-    hsp_param_id INT NOT NULL
+    hsp_param_id INT 
 );
 
 CREATE TABLE probleme(

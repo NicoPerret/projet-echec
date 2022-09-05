@@ -20,7 +20,7 @@ public class Probleme {
 	@Column (name = "prob_fen_depart",length = 100, nullable = false)
 	private String fenDepart;
 	
-	@Column (name = "prob_fen_depart",length = 100)
+	@Column (name = "prob_liste_deplacement",length = 100)
 	private String listeDeplacement;
 	
 	@Column(name = "prob_traitaublanc", nullable = false)
