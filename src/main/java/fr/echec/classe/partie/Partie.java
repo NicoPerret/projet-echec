@@ -23,31 +23,33 @@ import fr.echec.service.UtilisateursService;
 public class Partie {
 
 	// VARIABLES from BDD
-	private Utilisateur j1;
-	private Utilisateur j2;
-	private ParametresPartie parametre;
+	protected Utilisateur j1;
+	protected Utilisateur j2;
+	protected ParametresPartie parametre;
 
 	// VARIABLES
-	private int id;
-	private Plateau plateau;
-	private Chrono chronoJ1;
-	private Chrono chronoJ2;
-	private NotationCoup nt = new NotationCoup(0, 0);
-	private Scanner sc = new Scanner(System.in);
-	private int compteurTours = 1;
-	private int compteurCoups = 1;
-	private Deplacement d = new Deplacement();
-	private int coordDepart;
-	private Fen fen = new Fen();
-	private CouleursPiece couleurJoueurActif = CouleursPiece.BLANC;
-	private CoupsPossibles coupPossible = new CoupsPossibles();
-	private List<Integer> listeCoup = new ArrayList<>();
+	protected int id;
+	protected Plateau plateau;
+	protected Chrono chronoJ1;
+	protected Chrono chronoJ2;
+	protected NotationCoup nt = new NotationCoup(0, 0);
+	protected Scanner sc = new Scanner(System.in);
+	protected int compteurTours = 1;
+	protected int compteurCoups = 1;
+	protected Deplacement d = new Deplacement();
+	protected int coordDepart;
+	protected Fen fen = new Fen();
+	protected CouleursPiece couleurJoueurActif = CouleursPiece.BLANC;
+	protected CoupsPossibles coupPossible = new CoupsPossibles();
+	protected List<Integer> listeCoup = new ArrayList<>();
 	HistoriquePartie h = new HistoriquePartie();
-	private boolean verifChangerPiece = false;
-	private boolean surrJ1 = false;
-	private boolean surrJ2 = false;
-	private JcJ jcj = new JcJ();
-	private FinPartie finPartie = new FinPartie();
+	protected boolean verifChangerPiece = false;
+	protected boolean surrJ1 = false;
+	protected boolean surrJ2 = false;
+
+	
+	protected FinPartie finPartie = new FinPartie();
+
 	// GETTERS AND SETTERS
 
 	public int getId() {
@@ -414,43 +416,7 @@ public class Partie {
 		this.finTour();
 	}
 
-	public boolean isPartieFinie() {
-		double resJ1 = 0.5;
-		double resJ2 = 0.5;
-		boolean fin = false;
-		
-		if (tourBlanc()) {
-			
-			// fin = finPartie.isEchecMatOuPat(plateau, couleurJoueurActif);
 
-			if (getChronoJ1().isDefaiteTemps() || isSurrJ1() == true || finPartie.isEchecMat()) {
-				h.setVainqueurId(j2.getId());
-				System.out.println("Le joueur 2 gagne !");
-				resJ1 = 0;
-				resJ2 = 1;
-				jcj.calculElo(j1, j2, resJ1, resJ2);
-				return true;
-
-			}
-
-		} else {
-			// finPartie.isEchecMatOuPat(plateau, couleurJoueurActif);
-			if (getChronoj2().isDefaiteTemps() || isSurrJ2() || finPartie.isEchecMat()) {
-				System.out.println("Le joueur 1 gagne !");
-				h.setVainqueurId(j1.getId());
-				resJ1 = 1;
-				resJ2 = 0;
-				jcj.calculElo(j1, j2, resJ1, resJ2);
-				return true;
-			}
-			if(fin) {
-				jcj.calculElo(j1, j2, resJ1, resJ2);
-				return true;
-			}
-		}
-
-		return false;
-	}
 	
 	public void savePartieEtHistorique() throws HistoriquePartieNotFoundException {
 		HistoriquePartieService srvHistPartie = new HistoriquePartieService();

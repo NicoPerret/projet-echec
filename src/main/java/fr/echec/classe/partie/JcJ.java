@@ -1,22 +1,60 @@
 package fr.echec.classe.partie;
 
 import fr.echec.classe.joueur.Utilisateur;
+import fr.echec.classe.parametres.ParametresPartie;
 import fr.echec.enumerateur.CouleursPiece;
 
-public class JcJ {
+
+public class JcJ extends Partie {
 
 	// VARIABLES
-	CouleursPiece couleurJoueur1;
-	CouleursPiece couleurJoueur2;
+	protected CouleursPiece couleurJoueur1;
+	protected CouleursPiece couleurJoueur2;
 
+	public JcJ(ParametresPartie param) {
+		super(param);
+	}
+	public boolean isPartieFinie() {
+		double resJ1 = 0.5;
+		double resJ2 = 0.5;
+		boolean fin = false;
+		
+		if (tourBlanc()) {
+			
+			// fin = finPartie.isEchecMatOuPat(plateau, couleurJoueurActif);
+
+			if (getChronoJ1().isDefaiteTemps() || isSurrJ1() == true || finPartie.isEchecMat()) {
+				h.setVainqueurId(j2.getId());
+				System.out.println("Le joueur 2 gagne !");
+				resJ1 = 0;
+				resJ2 = 1;
+				calculElo(j1, j2, resJ1, resJ2);
+				return true;
+
+			}
+
+		} else {
+			// finPartie.isEchecMatOuPat(plateau, couleurJoueurActif);
+			if (getChronoj2().isDefaiteTemps() || isSurrJ2() || finPartie.isEchecMat()) {
+				System.out.println("Le joueur 1 gagne !");
+				h.setVainqueurId(j1.getId());
+				resJ1 = 1;
+				resJ2 = 0;
+				calculElo(j1, j2, resJ1, resJ2);
+				return true;
+			}
+			if(fin) {
+				calculElo(j1, j2, resJ1, resJ2);
+				return true;
+			}
+		}
+
+		return false;
+	}
 	public void calculElo(Utilisateur joueur1, Utilisateur joueur2, double sa, double sb) {
-		// mettre joueurs en
-// parametre de la fct pour
-// recup elo et le modifier
-
 		// Real Rating Player A/B
 		// Elo des joueurs avant la partie
-		//
+		
 		int ra = joueur1.getElo();
 		int rb = joueur2.getElo();
 

@@ -18,11 +18,13 @@ public class FinPartie {
 	private CoupsPossibles coupsPossibles = new CoupsPossibles();
 	private List<Integer> listeCoup = new ArrayList<>();
 	private List<String> listeFen = new ArrayList<>();
+
 	private Fen fen = new Fen(); 
 	private boolean nulle = false;
 	private boolean echecMat = false;
 	
 	
+
 // GETTERS ET SETTERS 
 
 	public Deplacement getDeplacement() {
@@ -64,6 +66,7 @@ public class FinPartie {
 	public boolean isEchecMatOuPat(Plateau plateau, CouleursPiece couleur) {
 
 		for (int i = 0; i < 64; i++) {
+
 			
 			
 
@@ -84,9 +87,11 @@ public class FinPartie {
 			
 			if(listeCoup.isEmpty() == false) {
 				
+
 				return false;
-				
+
 			}
+
 			
 		}
 		if (couleur == CouleursPiece.BLANC) {
@@ -102,18 +107,19 @@ public class FinPartie {
 			return true;
 			
 		}else if (listeCoup.isEmpty() == false){
+
 			System.out.println("Match nul par Pat");
 			nulle = true;
 			return true;
 		}
 		return false;
 	}
-	
-	public boolean isMatchnul(Plateau plateau) {
+
+	public boolean isMatchNul(Plateau plateau) {
 		fen.creationFen(plateau);
-		
+
 		return false;
-		
+
 	}
 
 }

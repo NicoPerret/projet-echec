@@ -18,12 +18,12 @@ public class UtilisateursJpa extends AbstractRepository<Utilisateur> implements 
 	}
 
 	@Override
-	public void deleteById(int id) {
+	public void deleteById(Integer id) {
 		// TODO Auto-generated method stub
 		
 	}
 
-
+	
 	
 
 

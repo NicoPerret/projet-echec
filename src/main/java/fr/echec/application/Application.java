@@ -1,12 +1,8 @@
 package fr.echec.application;
 
-import java.time.LocalDateTime;
-import java.util.List;
-
-import fr.echec.classe.historique.HistoriquePartie;
 import fr.echec.classe.joueur.Utilisateur;
 import fr.echec.classe.parametres.ParametresPartie;
-import fr.echec.classe.partie.Partie;
+import fr.echec.classe.partie.JcJ;
 import fr.echec.exception.HistoriquePartieNotFoundException;
 import fr.echec.exception.IdNegatifException;
 import fr.echec.service.HistoriquePartieService;
@@ -18,7 +14,8 @@ public class Application {
 
 		// SETUP RUDIMENTAIRE MAIS FONCTIONNEL
 		ParametresPartie param = new ParametresPartie();
-		Partie p = new Partie(param);
+
+		JcJ p = new JcJ(param);
 
 	
 		HistoriquePartieService srvHistPartie = new HistoriquePartieService();
@@ -31,13 +28,17 @@ public class Application {
 		p.setJ2(j2);
 		
 //		// UNE PARTIE
-		while (true) {
+
+	
+//		// UNE PARTIE
+			while (true) {
 //
 //			// Jouer
-			p.jouer();
+				p.jouer();
 
-			// TP
-			// p.teleportation();
+				// TP
+				// p.teleportation();
+
 
 			if (p.isPartieFinie() == true) {
 				break;
@@ -46,6 +47,6 @@ public class Application {
 
 		p.savePartieEtHistorique();
 		
-		
+
 	}
 }

@@ -142,4 +142,16 @@ public class HistoriquePartieRepoSql extends RepositorySql implements IHistoriqu
 
 	}
 
+	@Override
+	public HistoriquePartie findById(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deleteById(Integer id) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
