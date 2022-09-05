@@ -1,4 +1,4 @@
-package fr.echec.classe.modeJeux;
+package fr.echec.classe.partie;
 
 import fr.echec.classe.joueur.Utilisateur;
 import fr.echec.enumerateur.CouleursPiece;

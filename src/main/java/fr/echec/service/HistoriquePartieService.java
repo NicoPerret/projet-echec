@@ -3,7 +3,7 @@ package fr.echec.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.echec.classe.HistoriquePartie;
+import fr.echec.classe.historique.HistoriquePartie;
 import fr.echec.exception.HistoriquePartieNotFoundException;
 import fr.echec.exception.IdNegatifException;
 import fr.echec.repository.IHistoriquePartie;

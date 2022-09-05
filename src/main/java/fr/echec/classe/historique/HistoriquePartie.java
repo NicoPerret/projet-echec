@@ -1,4 +1,4 @@
-package fr.echec.classe;
+package fr.echec.classe.historique;
 
 import java.time.LocalDateTime;
 
@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import fr.echec.classe.joueur.Utilisateur;
-import fr.echec.classe.modeJeux.ParametresPartie;
+import fr.echec.classe.parametres.ParametresPartie;
 
 
 @Entity

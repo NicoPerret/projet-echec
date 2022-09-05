@@ -1,4 +1,4 @@
-package fr.echec.classe.modeJeux;
+package fr.echec.classe.probleme;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -1,4 +1,4 @@
-package fr.echec.classe;
+package fr.echec.classe.historique;
 
 public class NotationCoup {
 

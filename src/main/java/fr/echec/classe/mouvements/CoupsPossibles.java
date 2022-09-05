@@ -1,4 +1,4 @@
-package fr.echec.classe.jeu;
+package fr.echec.classe.mouvements;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import fr.echec.classe.jeu.Piece;
+import fr.echec.classe.jeu.Plateau;
 import fr.echec.enumerateur.CouleursPiece;
 import fr.echec.enumerateur.TypePiece;
 

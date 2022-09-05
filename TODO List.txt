@@ -3,12 +3,16 @@ Ajouter roque dans coup possible
 Ajouter condition echec dans roque (simuler deplacement roi sur les cases entre roi et tour)
 
 
-
+requete findAllByIdJoueur mapping ?
 
 ajouter utilisateurs dans partie
+extends JCJ et JcIA de partie
+reorganiser coupsPossibles et mouvements
 prise passant
 gestion echec et mat / gestion pat
 gestion nul
+modif elo
+
 pb : fct creation des pb
 pb : jouer les coups par l'ordi
 pb : verif coup jouer est le bon

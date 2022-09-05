@@ -1,4 +1,4 @@
-package fr.echec.classe.modeJeux;
+package fr.echec.classe.probleme;
 
 import java.time.LocalDateTime;
 

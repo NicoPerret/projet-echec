@@ -1,7 +1,7 @@
 package fr.echec.application;
 
-import fr.echec.classe.Partie;
-import fr.echec.classe.modeJeux.ParametresPartie;
+import fr.echec.classe.parametres.ParametresPartie;
+import fr.echec.classe.partie.Partie;
 import fr.echec.service.HistoriquePartieService;
 
 public class Application {

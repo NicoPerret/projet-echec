@@ -1,7 +1,9 @@
-package fr.echec.classe.jeu;
+package fr.echec.classe.mouvements;
 
 import java.util.Scanner;
 
+import fr.echec.classe.jeu.Piece;
+import fr.echec.classe.jeu.Plateau;
 import fr.echec.enumerateur.CouleursPiece;
 import fr.echec.enumerateur.TypePiece;
 

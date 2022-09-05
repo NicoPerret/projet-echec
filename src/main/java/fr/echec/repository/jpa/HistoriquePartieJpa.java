@@ -1,6 +1,6 @@
 package fr.echec.repository.jpa;
 
-import fr.echec.classe.HistoriquePartie;
+import fr.echec.classe.historique.HistoriquePartie;
 import fr.echec.repository.IHistoriquePartie;
 
 public class HistoriquePartieJpa extends AbstractRepository<HistoriquePartie> implements IHistoriquePartie {

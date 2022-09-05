@@ -8,12 +8,12 @@
 	<persistence-unit name="EshopUnit" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
-		<class>fr.echec.classe.HistoriquePartie</class>
+		<class>fr.echec.classe.historique.HistoriquePartie</class>
 		<class>fr.echec.classe.joueur.Utilisateur</class>
-		<class>fr.echec.classe.modeJeux.Probleme</class>
-		<class>fr.echec.classe.modeJeux.PenalitePiece</class>
-		<class>fr.echec.classe.modeJeux.ResultatProbleme</class>
-		<class>fr.echec.classe.modeJeux.ParametresPartie</class>
+		<class>fr.echec.classe.probleme.Probleme</class>
+		<class>fr.echec.classe.parametres.PenalitePiece</class>
+		<class>fr.echec.classe.probleme.ResultatProbleme</class>
+		<class>fr.echec.classe.parametres.ParametresPartie</class>
 
 		<properties>
       		<!-- Listes des propriétés liées à l’implémentation (Hibernate, OpenJPA, ...) -->

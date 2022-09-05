@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.echec.classe.HistoriquePartie;
+import fr.echec.classe.historique.HistoriquePartie;
 import fr.echec.classe.joueur.Utilisateur;
 import fr.echec.repository.IHistoriquePartie;
 

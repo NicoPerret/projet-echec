@@ -1,16 +1,18 @@
-package fr.echec.classe;
+package fr.echec.classe.partie;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import fr.echec.classe.historique.HistoriquePartie;
+import fr.echec.classe.historique.NotationCoup;
 import fr.echec.classe.jeu.Chrono;
-import fr.echec.classe.jeu.CoupsPossibles;
-import fr.echec.classe.jeu.Deplacement;
 import fr.echec.classe.jeu.Fen;
 import fr.echec.classe.jeu.Plateau;
 import fr.echec.classe.joueur.Utilisateur;
-import fr.echec.classe.modeJeux.ParametresPartie;
+import fr.echec.classe.mouvements.CoupsPossibles;
+import fr.echec.classe.mouvements.Deplacement;
+import fr.echec.classe.parametres.ParametresPartie;
 import fr.echec.enumerateur.CouleursPiece;
 
 public class Partie {
