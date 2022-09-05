@@ -1,6 +1,5 @@
 package fr.echec.repository.jpa;
 
-import java.lang.reflect.Field;
 import java.util.List;
 
 import javax.persistence.EntityManager;

@@ -28,8 +28,7 @@ public class HistoriquePartieService {
 	}
 
 	public List<HistoriquePartie> findAll() {
-		IHistoriquePartie repoProduit = new HistoriquePartieJpa();
-		List<HistoriquePartie> historiques = repoProduit.findAll();
+		List<HistoriquePartie> historiques = repoPartie.findAll();
 
 		if (historiques == null) {
 			return new ArrayList<>();
@@ -40,13 +39,11 @@ public class HistoriquePartieService {
 
 	public void save(HistoriquePartie laPartie) throws HistoriquePartieNotFoundException {
 
-		IHistoriquePartie repoFournisseur = new HistoriquePartieJpa();
-
 		if (laPartie == null) {
 			throw new HistoriquePartieNotFoundException();
 		}
 
-		repoFournisseur.save(laPartie);
+		repoPartie.save(laPartie);
 
 	}
 }

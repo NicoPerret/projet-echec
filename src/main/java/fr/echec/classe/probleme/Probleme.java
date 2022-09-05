@@ -1,5 +1,8 @@
 package fr.echec.classe.probleme;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,9 +10,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import fr.echec.service.ProblemeService;
+
 @Entity
 @Table(name = "probleme")
 public class Probleme {
+	
+	private ProblemeService srvProbleme = new ProblemeService();
 
 	// VARIABLES from BDD
 	@Id
@@ -20,7 +27,7 @@ public class Probleme {
 	@Column (name = "prob_fen_depart",length = 100, nullable = false)
 	private String fenDepart;
 	
-	@Column (name = "prob_fen_depart",length = 100)
+	@Column (name = "prob_liste_deplacement",length = 100)
 	private String listeDeplacement;
 	
 	@Column(name = "prob_traitaublanc", nullable = false)
@@ -75,4 +82,18 @@ public class Probleme {
 
 	// METHODES
 
+	// Jouer les coups par l'ordi
+	//public void coupOrdi() {
+		//for(un caractère "lambda" sur une chaîne de caractères) { 
+		//	if("lambda"=="/"){
+	
+//		}
+//	}
+//	
+	// Verif coup joué est le bon
+	
+//	public void bonCoup() {
+//		for ()
+//	}
+	
 }
