@@ -22,7 +22,7 @@ CREATE TABLE  historiquePartie (
     hsp_liste_coups TEXT,
     hsp_date TIMESTAMP NOT NULL,
     hsp_vainqueur_id INT,
-    hsp_param_id INT NOT NULL
+    hsp_param_id INT 
 );
 
 CREATE TABLE probleme(
@@ -82,8 +82,8 @@ ALTER TABLE parametres
 
 ALTER TABLE resultatProbleme
     ADD
-        CONSTRAINT fk_partieid
-        FOREIGN KEY (res_partie_id)
+        CONSTRAINT fk_problemeid
+        FOREIGN KEY (res_probleme_id)
         REFERENCES probleme(prob_id)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
