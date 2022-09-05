@@ -10,37 +10,38 @@ import fr.echec.repository.IProbleme;
 import fr.echec.repository.jpa.ProblemeJpa;
 
 public class ProblemeService {
-private IProbleme repoProbleme = new ProblemeJpa();
+	private IProbleme repoProbleme = new ProblemeJpa();
 
-public Probleme findById(int id) throws IdNegatifException, ProblemeNotFoundException{
-	if (id <= 0) {
-		throw new IdNegatifException();
-		
-	}Probleme leProbleme = repoProbleme.findById(id);
+	public Probleme findById(int id) throws IdNegatifException, ProblemeNotFoundException {
+		if (id <= 0) {
+			throw new IdNegatifException();
 
-	if (leProbleme == null) {
-		throw new ProblemeNotFoundException(); //
+		}
+		Probleme leProbleme = repoProbleme.findById(id);
+
+		if (leProbleme == null) {
+			throw new ProblemeNotFoundException(); //
+		}
+
+		return leProbleme;
 	}
 
-	return leProbleme;
-}
-public List<Probleme> findAll() {
-	List<Probleme> problemes = repoProbleme.findAll();
-	
-	if (problemes == null) {
-		return new ArrayList<>();
-	}
-	
-	return problemes;
-}
+	public List<Probleme> findAll() {
+		List<Probleme> problemes = repoProbleme.findAll();
 
-public void save(Probleme leProbleme) throws ProblemeNotFoundException {
-	if (leProbleme == null) {
-		throw new ProblemeNotFoundException();
+		if (problemes == null) {
+			return new ArrayList<>();
+		}
+
+		return problemes;
 	}
 
-	repoProbleme.save(leProbleme);
+	public void save(Probleme leProbleme) throws ProblemeNotFoundException {
+		if (leProbleme == null) {
+			throw new ProblemeNotFoundException();
+		}
 
-}
-}
+		repoProbleme.save(leProbleme);
 
+	}
+}

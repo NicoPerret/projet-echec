@@ -8,8 +8,8 @@ import fr.echec.enumerateur.CouleursPiece;
 public class JcJ extends Partie {
 
 	// VARIABLES
-	CouleursPiece couleurJoueur1;
-	CouleursPiece couleurJoueur2;
+	protected CouleursPiece couleurJoueur1;
+	protected CouleursPiece couleurJoueur2;
 
 	public JcJ(ParametresPartie param) {
 		super(param);

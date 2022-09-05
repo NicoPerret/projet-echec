@@ -41,7 +41,8 @@ public class Partie {
 	private boolean verifChangerPiece = false;
 	private boolean surrJ1 = false;
 	private boolean surrJ2 = false;
-	private JcJ jcj = new JcJ();
+	private JcJ jcj = new JcJ(parametre);
+	
 	// GETTERS AND SETTERS
 
 	public int getId() {

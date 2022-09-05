@@ -55,17 +55,16 @@ public class HistoriquePartie {
 	@JoinColumn(name = "hsp_param_id")
 	private ParametresPartie param; 
 	
-	// VARIABLES
 	@ManyToMany
 	@JoinTable(
-			name = "historique_partie",
+			name = "historique_joueur",
 			joinColumns = @JoinColumn(name = "histjou_utlisateur_id"),
 			inverseJoinColumns = @JoinColumn(name = "histjou_historique_partie_id"))
 	protected List<Utilisateur> joueurs;
 	
+	// VARIABLES
 	
-	
-	// GETTERS / SETTERS
+	// GETTERS - SETTERS
 
 	public Utilisateur getJ1() {
 		return j1;

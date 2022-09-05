@@ -10,7 +10,7 @@ import fr.echec.enumerateur.TypePiece;
 public class GestionRoque extends GestionEchec{
 	
 	
-	private boolean petitRoque(Piece roi, Piece tour, Plateau plateau) {
+	protected boolean petitRoque(Piece roi, Piece tour, Plateau plateau) {
 		
 		boolean petitRoquePossible = false;
 		CouleursPiece couleurJoueur = roi.getCouleur();
@@ -41,7 +41,7 @@ public class GestionRoque extends GestionEchec{
 		return petitRoquePossible;
 	}
 
-	private boolean grandRoque(Piece roi, Piece tour, Plateau plateau) {
+	protected boolean grandRoque(Piece roi, Piece tour, Plateau plateau) {
 		
 		boolean grandRoquePossible = false;
 		CouleursPiece couleurJoueur = roi.getCouleur();
@@ -92,19 +92,7 @@ public class GestionRoque extends GestionEchec{
 				tourGrandRoque = plateau.getByNomPlateau("tn1");
 				tourPetitRoque = plateau.getByNomPlateau("tb2");
 			}
-		} else if (piece.getNom() == TypePiece.TOUR) {
-			// TODO Faut savoir quelle tour est la tour qu'on a en entrée !!!
-			CouleursPiece couleurJoueur = piece.getCouleur();
-			if (couleurJoueur == CouleursPiece.BLANC) {
-				roi = plateau.getByNomPlateau("rb ");
-				tourGrandRoque = plateau.getByNomPlateau("tb1");
-				tourPetitRoque = plateau.getByNomPlateau("tb2");
-			} else {
-				roi = plateau.getByNomPlateau("rn ");
-				tourGrandRoque = plateau.getByNomPlateau("tn1");
-				tourPetitRoque = plateau.getByNomPlateau("tb2");
-			}
-		}
+		} 
 		
 		return destinationsJouables;
 	}
