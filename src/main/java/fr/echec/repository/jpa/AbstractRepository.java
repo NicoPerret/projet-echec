@@ -37,7 +37,7 @@ private Class<T> clz;
 			em.close();
 		}
 	}
-	public T findById(Integer id) {
+	public T findById(int id) {
 		EntityManager em = emf.createEntityManager();
 		
 		try {
@@ -53,24 +53,33 @@ private Class<T> clz;
 		}
 	}
 	
-	public void save(T entity, boolean insert) {
+	public void save(T entity) {
 		EntityManager em = emf.createEntityManager();
 		
 		try {
 			em.getTransaction().begin();
 			
-			if (insert) {
+			
+			Field field = entity.getClass().getDeclaredField("id");
+			
+			field.setAccessible(true);
+			
+			Integer id = (Integer)field.get(entity);
+			
+			if (id == 0) {
 				em.persist(entity);
 			}
 			
 			else {
 				em.merge(entity);
+				
 			}
 			
 			em.getTransaction().commit();
 		}
 		
 		catch (Exception e) {
+			e.printStackTrace();
 			em.getTransaction().rollback();
 		}
 		

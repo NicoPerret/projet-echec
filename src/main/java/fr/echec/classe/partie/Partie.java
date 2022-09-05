@@ -1,9 +1,11 @@
 package fr.echec.classe.partie;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import fr.echec.application.FinPartie;
 import fr.echec.classe.historique.HistoriquePartie;
 import fr.echec.classe.historique.NotationCoup;
 import fr.echec.classe.jeu.Chrono;
@@ -14,6 +16,9 @@ import fr.echec.classe.mouvements.CoupsPossibles;
 import fr.echec.classe.mouvements.Deplacement;
 import fr.echec.classe.parametres.ParametresPartie;
 import fr.echec.enumerateur.CouleursPiece;
+import fr.echec.exception.HistoriquePartieNotFoundException;
+import fr.echec.service.HistoriquePartieService;
+import fr.echec.service.UtilisateursService;
 
 public class Partie {
 
@@ -42,6 +47,7 @@ public class Partie {
 	private boolean surrJ1 = false;
 	private boolean surrJ2 = false;
 	private JcJ jcj = new JcJ();
+	private FinPartie finPartie = new FinPartie();
 	// GETTERS AND SETTERS
 
 	public int getId() {
@@ -289,8 +295,8 @@ public class Partie {
 		if (surrJ1 == true || surrJ2 == true) {
 			return;
 		}
-			System.out.println("Tour du Blanc : ");
-			System.out.println("Déplacer la piece : ");
+		System.out.println("Tour du Blanc : ");
+		System.out.println("Déplacer la piece : ");
 
 		int coordArrivee = 0;
 
@@ -384,6 +390,7 @@ public class Partie {
 
 		}
 		this.compteurTours++;
+
 	}
 
 	public void jouer() {
@@ -407,30 +414,55 @@ public class Partie {
 		this.finTour();
 	}
 
-	public boolean finPartie() {
+	public boolean isPartieFinie() {
 		double resJ1 = 0.5;
 		double resJ2 = 0.5;
+		boolean fin = false;
+		
+		if (tourBlanc()) {
+			
+			// fin = finPartie.isEchecMatOuPat(plateau, couleurJoueurActif);
 
-		if (getChronoJ1().isDefaiteTemps() || isSurrJ1() == true) {
-			h.setVainqueurId(j2.getId());
-			System.out.println("Le joueur 2 gagne !");
-			resJ1 = 0;
-			resJ2 = 1;
-			jcj.calculElo(j1, j2, resJ1, resJ2);
-			return true;
+			if (getChronoJ1().isDefaiteTemps() || isSurrJ1() == true || finPartie.isEchecMat()) {
+				h.setVainqueurId(j2.getId());
+				System.out.println("Le joueur 2 gagne !");
+				resJ1 = 0;
+				resJ2 = 1;
+				jcj.calculElo(j1, j2, resJ1, resJ2);
+				return true;
 
-		}
+			}
 
-		else if (getChronoj2().isDefaiteTemps() || isSurrJ2()) {
-			System.out.println("Le joueur 1 gagne !");
-			h.setVainqueurId(j1.getId());
-			resJ1 = 1;
-			resJ2 = 0;
-			jcj.calculElo(j1, j2, resJ1, resJ2);
-			return true;
+		} else {
+			// finPartie.isEchecMatOuPat(plateau, couleurJoueurActif);
+			if (getChronoj2().isDefaiteTemps() || isSurrJ2() || finPartie.isEchecMat()) {
+				System.out.println("Le joueur 1 gagne !");
+				h.setVainqueurId(j1.getId());
+				resJ1 = 1;
+				resJ2 = 0;
+				jcj.calculElo(j1, j2, resJ1, resJ2);
+				return true;
+			}
+			if(fin) {
+				jcj.calculElo(j1, j2, resJ1, resJ2);
+				return true;
+			}
 		}
 
 		return false;
+	}
+	
+	public void savePartieEtHistorique() throws HistoriquePartieNotFoundException {
+		HistoriquePartieService srvHistPartie = new HistoriquePartieService();
+		UtilisateursService srvUti = new UtilisateursService(); 
+		this.getH().setDate(LocalDateTime.now());
+		this.getH().setJ1(j1);
+		this.getH().setJ2(j2);
+		this.getH().setMessages("TEST");
+		srvHistPartie.save(this.getH());
+		srvUti.save(this.getJ1());
+		srvUti.save(this.getJ2());
+
 	}
 
 }
