@@ -6,6 +6,7 @@ import java.util.List;
 import fr.echec.classe.historique.HistoriquePartie;
 import fr.echec.classe.joueur.Utilisateur;
 import fr.echec.classe.parametres.ParametresPartie;
+import fr.echec.classe.partie.JcJ;
 import fr.echec.classe.partie.Partie;
 import fr.echec.exception.HistoriquePartieNotFoundException;
 import fr.echec.exception.IdNegatifException;
@@ -20,9 +21,10 @@ public class Application {
 		Partie p = new Partie(param);
 		Utilisateur j1 = new Utilisateur();
 		Utilisateur j2 = new Utilisateur();
-		
-
-		
+		Partie p = new JcJ(param);
+		// HistoriquePartieService srvHistPartie = new HistoriquePartieService();
+		// UNE PARTIE
+		while (true) {		
 		j1.setElo(1000);
 		j1.setId(1);
 		j2.setElo(900);
