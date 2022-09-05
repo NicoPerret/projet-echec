@@ -1,21 +1,26 @@
-A VERIF
+Francois
+Reorganiser coupsPossibles et mouvements
 Ajouter roque dans coup possible
 Ajouter condition echec dans roque (simuler deplacement roi sur les cases entre roi et tour)
 
-
-requete findAllByIdJoueur mapping ?
-
-ajouter utilisateurs dans partie
+Nico
 extends JCJ et JcIA de partie
-reorganiser coupsPossibles et mouvements
-prise passant
-gestion echec et mat / gestion pat
-gestion nul
-modif elo
+requete findAllByIdJoueur mapping ?
+html
 
+Felix
+gestion echec et mat / gestion pat
+fonction abandonner
+
+FM
 pb : fct creation des pb
 pb : jouer les coups par l'ordi
 pb : verif coup jouer est le bon
+
+
+prise passant
+gestion nul
+modif elo
 
 html accueil
 html plateau
