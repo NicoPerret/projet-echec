@@ -86,14 +86,17 @@ public class Probleme {
 	//public void coupOrdi() {
 		//for(un caractère "lambda" sur une chaîne de caractères) { 
 		//	if("lambda"=="/"){
-	
+		//jouer le coup après le "/" converti en fen;
 //		}
 //	}
 //	
 	// Verif coup joué est le bon
 	
 //	public void bonCoup() {
-//		for ()
+//		if (coup joué par joueur == coup stocké dans problème) {
+//	  faire le coup sur l'échiquier;
+//	  else { System.out.println("Ce n'est pas le bon coup! Reessayer");
+//	  }
 //	}
 	
 }
