@@ -6,44 +6,84 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Form_echec.css" />
     <title>Echec</title>
+    <link rel="i=shorcut icon" href="RoiNoir.png">
 </head>
-<body>
-    <div class="grille">
-        <div class="grille1">
-            <script>
-            for (let i = 0 ; i<8 ; i++){
-                const c = document.createElement('div');
-                c.setAttribute('id', 8-i);
-                
-        
-                cases.splice(0, 0, c);
-        
-                document.querySelector('.grille1').append(c);
-            }
-            </script>
-        </div>
-        
-        <div class="plateau">
-            <script>
-                const cases = [];
-                const lettres = ['A','B','C','D','E','F','G','H'];
-                for (let i = 0; i < 64; i++) {
-                    const c = document.createElement('div');
-        
-                    c.setAttribute('id', lettres[(i%8)] + (8 -Math.floor(i/8,1)));
-        
-                    cases.splice(0, 0, c);
-        
-                    document.querySelector('.plateau').append(c);
-                }
-            </script>
 
+<body>
+    <div class="conteneur">
+        <div class="gauche">Il n'y a rien à gauche de la page</div>
+        <div class="milieu">
+            <div class="grille2horizGrand">
+                <div class="grille5verti">
+                    <div class="grille2horiz">
+                        <div>Nom adversaire</div>
+                        <div>Chrono adversaire</div>
+                    </div>
+                    <div>Pieces capturées</div>
+                    <div class="grillePlateauPrincipale">
+                        <div class="grillePlateau1a8"></div>
+                        
+                        <div class="grillePlateau"></div>
+                        <div></div>
+                        <div class="grillePlateauAaH"></div>
+                    </div>
+                    <div class="grille2horiz">
+                        <div>Mon nom</div>
+                        <div>Mon chrono</div>
+                    </div>
+                    <div>Pieces capturées</div>
+                </div>
+                <div>
+                    <div style="height: 50%;"><button>Abandonner</button></div>
+                    <div style="height: 50%;"><button>Nul</button></div>
+                </div>
+            </div>
         </div>
-        <div></div>
-        <div class="grille2"></div>
-</div>
+        <div class="droite">
+            <div class="grille2lignes">
+                <div>Historique Coups</div>
+                <div>Chat</div>
+            </div>
+        </div>
+
+    </div>
+
     
 
+
+
+
+    <script>
+        for (let i = 0 ; i<8 ; i++){
+            const c = document.createElement('div');
+    
+            c.innerHTML = 8-i;
+
+            document.querySelector('.grille1').append(c);
+        }
+    </script>
+    <script>
+        const cases = [];
+        const lettres = ['A','B','C','D','E','F','G','H'];
+        for (let i = 0; i < 64; i++) {
+            const c = document.createElement('div');
+
+            c.setAttribute('id', lettres[(i%8)] + (8 -Math.floor(i/8,1)));
+
+            cases.splice(0, 0, c);
+
+            document.querySelector('.plateau').append(c);
+        }
+    </script>
+    <script>
+        for (let i = 0 ; i<8 ; i++){
+            const c = document.createElement('div');
+    
+            c.innerHTML = lettres[i];
+
+            document.querySelector('.grille2').append(c);
+        }
+    </script>
 
 </body>
 </html>

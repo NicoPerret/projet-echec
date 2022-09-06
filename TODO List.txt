@@ -1,16 +1,15 @@
-
-Reorganiser coupsPossibles et mouvements
 Ajouter roque dans coup possible
 Ajouter condition echec dans roque (simuler deplacement roi sur les cases entre roi et tour)
 
-
 gestion echec et mat / gestion pat
-
-
 repo et service utllisateur
 
-service pb delete
+service pb delete + delete histo partie
 pb : jouer les coups par l'ordi
+
+
+
+Reorganiser mouvements
 pb : verif coup jouer est le bon
 prise passant
 gestion nul
