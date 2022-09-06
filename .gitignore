@@ -5,7 +5,7 @@ target/
 .classpath
 .project
 RepositorySqlParametres.java
-persitence.xml
+persistence.xml
 
 # Compiled class file
 *.class
