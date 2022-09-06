@@ -18,7 +18,7 @@ public class Application {
 		JcJ p = new JcJ(param);
 
 	
-		HistoriquePartieService srvHistPartie = new HistoriquePartieService();
+	
 		UtilisateursService srvUti = new UtilisateursService();
 		
 		Utilisateur j1 = srvUti.findById(1);
@@ -35,14 +35,16 @@ public class Application {
 
 				// TP
 				// p.teleportation();
-
-
+			
 			if (p.isPartieFinie() == true) {
 				break;
 			}
 		}
 
 		p.savePartieEtHistorique();
+		
+			
+		
 		
 
 	}

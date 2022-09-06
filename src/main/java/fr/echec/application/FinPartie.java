@@ -16,8 +16,9 @@ public class FinPartie {
 
 	private Deplacement deplacement = new Deplacement();
 	private CoupsPossibles coupsPossibles = new CoupsPossibles();
-	private List<Integer> listeCoup = new ArrayList<>();
-	private List<String> listeFen = new ArrayList<>();
+	
+	private ArrayList<String> listeFen = new ArrayList<>();
+	private Test test = new Test();
 
 	private Fen fen = new Fen(); 
 	private boolean nulle = false;
@@ -64,7 +65,7 @@ public class FinPartie {
 	}
 
 	public boolean isEchecMatOuPat(Plateau plateau, CouleursPiece couleur) {
-
+		List<Integer> listeCoup = new ArrayList<>();
 		for (int i = 0; i < 64; i++) {
 
 			
@@ -78,8 +79,9 @@ public class FinPartie {
 					
 					if(plateau.getPieceCase(i).getCouleur() == couleur) {
 						
+						
 						listeCoup = coupsPossibles.trouveDestinationsPossibles(plateau, plateau.getPieceCase(i));
-						System.out.println(listeCoup);
+						
 					}
 				}
 				
@@ -116,9 +118,9 @@ public class FinPartie {
 	}
 
 	public boolean isMatchNul(Plateau plateau) {
-		fen.creationFen(plateau);
-
-		return false;
+		listeFen.add(fen.creationFen(plateau));
+		return test.countFrequencies(listeFen);
+		
 
 	}
 

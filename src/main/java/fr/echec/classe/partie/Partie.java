@@ -358,7 +358,7 @@ public class Partie {
 
 		}
 		if (verifChangerPiece) {
-			//d.promotion(plateau.getPieceCase(coordArrivee), plateau);
+			d.promotion(plateau.getPieceCase(coordArrivee), plateau);
 
 		}
 
@@ -420,6 +420,7 @@ public class Partie {
 	public void savePartieEtHistorique() throws HistoriquePartieNotFoundException {
 		HistoriquePartieService srvHistPartie = new HistoriquePartieService();
 		UtilisateursService srvUti = new UtilisateursService(); 
+		
 		this.getH().setDate(LocalDateTime.now());
 		this.getH().setJ1(j1);
 		this.getH().setJ2(j2);
@@ -427,6 +428,9 @@ public class Partie {
 		srvHistPartie.save(this.getH());
 		srvUti.save(this.getJ1());
 		srvUti.save(this.getJ2());
+		
+		
+		
 
 	}
 
