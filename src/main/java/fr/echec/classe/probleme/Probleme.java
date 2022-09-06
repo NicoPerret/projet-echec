@@ -2,6 +2,7 @@ package fr.echec.classe.probleme;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +11,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import fr.echec.classe.historique.NotationCoup;
+import fr.echec.classe.jeu.Plateau;
+import fr.echec.classe.mouvements.Deplacement;
 import fr.echec.service.ProblemeService;
 
 @Entity
@@ -82,20 +86,35 @@ public class Probleme {
 	// METHODES
 
 	// Jouer les coups par l'ordi
-	//public void coupOrdi() {
-		//for(un caractère "lambda" sur une chaîne de caractères) { 
-		//	if("lambda"=="/"){
-		//jouer le coup après le "/" converti en fen;
-//		}
-//	}
-//	
+	
+	public void coupOrdi() {
+		Deplacement d = new Deplacement();
+		List coupOrdi = new ArrayList(); 
+		for(int i : listeDeplacement.length()) { 
+		if(coupOrdi[i]==){
+		jouer le coup après le "/" converti en fen;
+		d.deplacement(p.getPieceCase(coorDepart), coorArrivee, p)
+		}
+	}
+	
 	// Verif coup joué est le bon
 	
-//	public void bonCoup() {
-//		if (coup joué par joueur == coup stocké dans problème) {
-//	  faire le coup sur l'échiquier;
-//	  else { System.out.println("Ce n'est pas le bon coup! Reessayer");
-//	  }
+	public void verifBonCoup(NotationCoup coupJoueur, Plateau p) {
+	Deplacement d = new Deplacement();
+	Scanner sc = new Scanner(System.in);
+	System.out.println("Saisissez une pièce");
+	String saisie = sc.nextLine();
+	int coorDepart = coupJoueur.conversionLettreTo64(saisie);
+	System.out.println("Déplacer la piece");
+	String saisie2 = sc.nextLine();
+	int coorArrivee = coupJoueur.conversionLettreTo64(saisie2);
+	
+	NotationCoup coupEnregistre = new NotationCoup(0, 0); // remplacer les 0 par les coordonnées enregistrées dans la BDD problème
+		if (coupJoueur.getCoordArriveeStandard().equals(coupEnregistre.getCoordArriveeStandard())== true) {
+			d.deplacement(p.getPieceCase(coorDepart), coorArrivee, p);
+		}
+  else { System.out.println("Ce n'est pas le bon coup! Reessayer");
+	  }
 //	}
 	
-}
+}}
