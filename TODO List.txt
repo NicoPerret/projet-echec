@@ -1,16 +1,8 @@
-Ajouter roque dans coup possible pour les noirs
-Fct roque coord piece ?
-
-
-gestion echec et mat / gestion pat
-
 pb : jouer les coups par l'ordi
-
-
-Reorganiser mouvements
 pb : verif coup jouer est le bon
+
 prise passant
-gestion nul
+
 
 html accueil
 html plateau
