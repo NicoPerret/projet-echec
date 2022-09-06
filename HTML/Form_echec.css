@@ -14,121 +14,122 @@ fieldset {
     display: flex;
  }
 
+
+
 .gauche{
     float: left;
     width:25%;
-    border: solid 1px black;
  }
  .milieu{
     display: inline-block;
     width:50%;
-    border: solid 1px black;
  }
  .droite{
     float: right;
     width:25%;
-    border: solid 1px black;
  }
+
+ .grilleCentral5Verti{
+    display:grid;
+    grid-template-rows: 30px 40px 469px 40px 30px;
+    border: solid 1px black;
+}
  
-.plateau { 
-    width: 242px;
-    display: grid; 
-    grid-template-columns: repeat(8, 30px); 
-    grid-template-rows: repeat(8, 30px);
-    text-align : center;
+.grilleCentraleNomChrono{
+    display:grid;
+    grid-template-columns: 50% 50%;
     border: solid 1px black;
     box-sizing: border-box;
     background: white;
 }
 
-.plateau div:nth-child(-2n+8),
-.plateau div:nth-child(8) ~ div:nth-child(-2n+15),
-.plateau div:nth-child(16) ~ div:nth-child(-2n+24),
-.plateau div:nth-child(24) ~ div:nth-child(-2n+31),
-.plateau div:nth-child(32) ~ div:nth-child(-2n+40),
-.plateau div:nth-child(40) ~ div:nth-child(-2n+47),
-.plateau div:nth-child(48) ~ div:nth-child(-2n+56),
-.plateau div:nth-child(56) ~ div:nth-child(-2n+63)
+.grilleCentralePlateauEtBoutons{
+    display:grid;
+    grid-template-columns: 80% 20%;
+}
+
+.grillePlateau {
+    display: grid;
+    grid-template-columns:  50px 404px; 
+    grid-template-rows: 404px 50px;
+    border: solid 1px black;
+}
+
+.flexPlateau{
+    display: flex;
+    justify-content: center;  
+    margin : 5px;
+}
+
+.grillePlateauPrincipal { 
+    width: 404px;
+    height: 404px;
+    display: grid; 
+    grid-template-columns: repeat(8, 50px); 
+    grid-template-rows: repeat(8, 50px);
+    text-align : center;
+    border: solid 2px black;
+    box-sizing: border-box; 
+}
+.grillePlateauPrincipal div{
+    background: white;
+}
+.grillePlateauPrincipal div:nth-child(-2n+8),
+.grillePlateauPrincipal div:nth-child(8) ~ div:nth-child(-2n+15),
+.grillePlateauPrincipal div:nth-child(16) ~ div:nth-child(-2n+24),
+.grillePlateauPrincipal div:nth-child(24) ~ div:nth-child(-2n+31),
+.grillePlateauPrincipal div:nth-child(32) ~ div:nth-child(-2n+40),
+.grillePlateauPrincipal div:nth-child(40) ~ div:nth-child(-2n+47),
+.grillePlateauPrincipal div:nth-child(48) ~ div:nth-child(-2n+56),
+.grillePlateauPrincipal div:nth-child(56) ~ div:nth-child(-2n+63)
 {
     background: black;
 }
 
-.grille {
+.grillePlateau1a8 {  
     display: grid;
-    grid-template-columns:  30px 242px; 
-    grid-template-rows: 242px 35px;   
-}  
-.grille div{
+    grid-template-columns: repeat(1, 50px); 
+    grid-template-rows: repeat(8, 50px);
+    text-align: center;
+}
+.grillePlateau1a8 div{
+    height: 50px;
+    line-height: 50px;
     border: solid 1px black;
-} 
-
-.grille1 {  
+}
+/*
+.grillePlateauAaH {
     display: grid;
-    grid-template-columns: repeat(1, 30px); 
-    grid-template-rows: repeat(8, 30px);
+    grid-template-columns: repeat(8, 50px); 
+    grid-template-rows: repeat(1, 50px); 
+    text-align: center;
+}
+.grillePlateauAaH div{
+    height: 50px;
+    line-height: 50px;
+    border: solid 1px black;
+}*/
+
+.flexPlateauAaH {
+    display: flex;
+    flex-direction: row;
+    justify-content: center; 
+}
+.flexPlateauAaH div{
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    border: solid 1px black;
     text-align: center;
 }
 
-.grille1 div{
-    height: 30px;
-    line-height: 30px;
+.flexAbandonnerNul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  
 }
 
-.grille2 {
-    display: grid;
-    grid-template-columns: repeat(8, 30px); 
-    grid-template-rows: repeat(1, 30px); 
-    text-align: center;
-}
-
-.grille2 div{
-    height: 30px;
-    line-height: 30px;
-}
-
-.grille3verti{
-    display:grid;
-    grid-template-columns: 100px;
-    grid-template-rows: 50px 150px 50px;
-}
-
-.grille3verti div{
-    border: solid 1px black;
-}
-
-.grille2lignes{
-    display:grid;
-    grid-template-columns: 1;
-    grid-template-rows: repeat(2,150px);
-}
-
-.grille2lignes div{
-    border: solid 1px black;
-}
-
-.grille5verti{
-    display:grid;
-    grid-template-columns: 1;
-    grid-template-rows: 50px 50px 300px 50px 50px;
-}
-.grille5verti div{
-    border: solid 1px black;
-}
-
-.grille2horiz{
-    display:grid;
-    grid-template-columns: 130px 130px;
-    grid-template-rows: 1;
-}
-.grille2horiz div{
-    border: solid 1px black;
-}
-
-.grille2horizGrand{
-    display:grid;
-    grid-template-columns: 300px 100px;
-    grid-template-rows: 1;
-}
-.grille2horizGrand div{
+.divHistoriqueEtChat {
+    height: 50%;
     border: solid 1px black;
 }

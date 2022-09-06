@@ -13,53 +13,46 @@
     <div class="conteneur">
         <div class="gauche">Il n'y a rien à gauche de la page</div>
         <div class="milieu">
-            <div class="grille2horizGrand">
-                <div class="grille5verti">
-                    <div class="grille2horiz">
-                        <div>Nom adversaire</div>
-                        <div>Chrono adversaire</div>
+            <div class="grilleCentralePlateauEtBoutons">
+                <div class="grilleCentral5Verti">
+                    <div class="grilleCentraleNomChrono">
+                        <div style="text-align: left;border: solid 1px black;">Nom adversaire</div>
+                        <div style="text-align: right;border: solid 1px black;">Chrono adversaire</div>
                     </div>
-                    <div>Pieces capturées</div>
-                    <div class="grille">
-                        <div class="grille1"></div>
+                    <div style="border: solid 1px black;">Pieces capturées</div>
+                    <div class="flexPlateau">
+                        <div class="grillePlateau">
+                            <div class="grillePlateau1a8"></div>
                         
-                        <div class="plateau"></div>
-                        <div></div>
-                        <div class="grille2"></div>
+                            <div class="grillePlateauPrincipal"></div>
+                            <div></div>
+                            <div class="flexPlateauAaH"></div>
+                        </div>
                     </div>
-                    <div class="grille2horiz">
-                        <div>Mon nom</div>
-                        <div>Mon chrono</div>
+                    <div class="grilleCentraleNomChrono">
+                        <div style="text-align: left;border: solid 1px black;">Mon nom</div>
+                        <div style="text-align: right;border: solid 1px black;">Mon chrono</div>
                     </div>
-                    <div>Pieces capturées</div>
+                    <div style="border: solid 1px black;">Pieces capturées</div>
                 </div>
-                <div>
-                    <div style="height: 50%;"><button>Abandonner</button></div>
-                    <div style="height: 50%;"><button>Nul</button></div>
+                <div class="flexAbandonnerNul">
+                    <button style="margin:5px">Abandonner</button>
+                    <button style="margin:5px">Nul</button>
                 </div>
             </div>
         </div>
         <div class="droite">
-            <div class="grille2lignes">
-                <div>Historique Coups</div>
-                <div>Chat</div>
-            </div>
+            <div class="divHistoriqueEtChat">Historique Coups</div>
+            <div class="divHistoriqueEtChat">Chat</div>
         </div>
-
     </div>
-
-    
-
-
 
 
     <script>
         for (let i = 0 ; i<8 ; i++){
             const c = document.createElement('div');
-    
             c.innerHTML = 8-i;
-
-            document.querySelector('.grille1').append(c);
+            document.querySelector('.grillePlateau1a8').append(c);
         }
     </script>
     <script>
@@ -69,19 +62,17 @@
             const c = document.createElement('div');
 
             c.setAttribute('id', lettres[(i%8)] + (8 -Math.floor(i/8,1)));
-
             cases.splice(0, 0, c);
+            document.querySelector('.grillePlateauPrincipal').append(c);
 
-            document.querySelector('.plateau').append(c);
         }
     </script>
     <script>
         for (let i = 0 ; i<8 ; i++){
             const c = document.createElement('div');
-    
-            c.innerHTML = lettres[i];
 
-            document.querySelector('.grille2').append(c);
+            c.innerHTML = lettres[i];
+            document.querySelector('.flexPlateauAaH').append(c);
         }
     </script>
 
