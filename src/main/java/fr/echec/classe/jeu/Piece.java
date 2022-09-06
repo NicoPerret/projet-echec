@@ -14,6 +14,7 @@ public class Piece {
 								// dame = 9 points
 	private String nomPlateau;
 	private boolean aBouge = false;
+	private boolean priseEnPassantPossible = false; // true quand un pion vient de bouger de deux cases
 
 	// Getters et Setters
 	public int getCoordonnee() {
@@ -69,6 +70,14 @@ public class Piece {
 
 	public void setaBouge(boolean aBouge) {
 		this.aBouge = aBouge;
+	}
+
+	public boolean isPriseEnPassantPossible() {
+		return priseEnPassantPossible;
+	}
+
+	public void setPriseEnPassantPossible(boolean priseEnPassantPossible) {
+		this.priseEnPassantPossible = priseEnPassantPossible;
 	}
 
 	// Constructeur pièce

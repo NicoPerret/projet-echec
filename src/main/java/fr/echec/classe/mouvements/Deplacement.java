@@ -19,33 +19,39 @@ public class Deplacement {
 			jouerPetitRoque(piece, p);
 		} else if (piece.getNom() == TypePiece.ROI && coord == piece.getCoordonnee()-2) {
 			jouerGrandRoque(piece, p);
-		} else {
+		} else if (piece.getNom() == TypePiece.PION 
+				&& (coord - piece.getCoordonnee()) % 2 == 1 &&  p.getPieceCase(coord) == null) {
+				// Si déplacement en diagonal (impair) et que la case de destination est vide
+				jouerPriseEnPassant(piece, coord, p);
+		}else {
 			bougerPiece(piece, coord, p);
 			promotion(piece, p);
 		}
+		
+		gestionBooleenPriseEnPassant(piece, p);
 		
 	}
 	
 	public void bougerPiece(Piece piece, int coord, Plateau p) {
 		
-		p.setCaseTableau("   ", piece.getCoordonnee());
-		p.setCaseTableau(piece.getNomPlateau(), coord);
-
 		if (p.getPieceCase(coord) != null) {
-
-			capture(p.getPieceCase(coord));
+			capture(p.getPieceCase(coord), p);
 		}
 		
-			p.getPieceCase(piece.getCoordonnee()).setCoordonnee(coord);
-			piece.setaBouge(true);
+		p.setCaseTableau("   ", piece.getCoordonnee());
+		p.setCaseTableau(piece.getNomPlateau(), coord);
+		
+		p.getPieceCase(piece.getCoordonnee()).setCoordonnee(coord);
+		piece.setaBouge(true);;
 		
 	}
 
-	public void capture(Piece piece) {
-
+	public void capture(Piece piece, Plateau p) {
+		
+		p.setCaseTableau("   ", piece.getCoordonnee());
 		piece.setCoordonnee(-1);
 		piece.setEnVie(false);
-
+		
 	}
 
 //sous-fonction "Promotion"
@@ -151,6 +157,34 @@ public class Deplacement {
 		
 		bougerPiece(roi, roi.getCoordonnee()-2, p);
 		bougerPiece(tour, tour.getCoordonnee()+3, p);
+		
+	}
+	
+	// Prise en passant
+	
+	public void gestionBooleenPriseEnPassant(Piece pion, Plateau p) {
+		
+		CouleursPiece couleur = pion.getCouleur();
+		
+		for (Piece piece : p.getPieces()) {
+			if (piece.getCouleur() == couleur && piece.getNom() == TypePiece.PION) {
+				piece.setPriseEnPassantPossible(false);
+			}
+		}
+		
+		pion.setPriseEnPassantPossible(true);
+		
+	}
+	
+	public void jouerPriseEnPassant(Piece pion, int coord, Plateau p) {
+		
+		if (coord == pion.getCoordonnee()+7 || coord == pion.getCoordonnee()-9) {
+			capture(p.getPieceCase(pion.getCoordonnee() -1), p); // prise en passant à gauche
+		} else if (coord == pion.getCoordonnee()+9 || coord == pion.getCoordonnee()-7) {
+			capture(p.getPieceCase(pion.getCoordonnee() +1), p); // prise en passant à droite
+		}
+		
+		bougerPiece(pion, coord, p);
 		
 	}
 	
