@@ -14,9 +14,7 @@ fieldset {
     display: flex;
  }
 
-.conteneur div{
-    border: solid 1px black;
-}
+
 
 .gauche{
     float: left;
@@ -33,27 +31,33 @@ fieldset {
 
  .grilleCentral5Verti{
     display:grid;
-    grid-template-columns: 1;
-    grid-template-rows: 30px 40px 450px 40px 30px;
+    grid-template-rows: 30px 40px 469px 40px 30px;
+    border: solid 1px black;
 }
  
 .grilleCentraleNomChrono{
     display:grid;
     grid-template-columns: 50% 50%;
-    grid-template-rows: 1;
+    border: solid 1px black;
 }
 
 .grilleCentralePlateauEtBoutons{
     display:grid;
     grid-template-columns: 80% 20%;
-    grid-template-rows: 1;
 }
 
 .grillePlateau {
     display: grid;
-    grid-template-columns:  50px 400px; 
-    grid-template-rows: 400px 50px;   
-}  
+    grid-template-columns:  50px 404px; 
+    grid-template-rows: 404px 50px;
+    border: solid 1px black;
+}
+
+.flexPlateau{
+    display: flex;
+    justify-content: center;  
+    margin : 5px;
+}
 
 .grillePlateauPrincipal { 
     width: 404px;
@@ -87,10 +91,11 @@ fieldset {
     text-align: center;
 }
 .grillePlateau1a8 div{
-    height: 30px;
-    line-height: 30px;
+    height: 50px;
+    line-height: 50px;
+    border: solid 1px black;
 }
-
+/*
 .grillePlateauAaH {
     display: grid;
     grid-template-columns: repeat(8, 50px); 
@@ -98,12 +103,31 @@ fieldset {
     text-align: center;
 }
 .grillePlateauAaH div{
-    height: 30px;
-    line-height: 30px;
+    height: 50px;
+    line-height: 50px;
+    border: solid 1px black;
+}*/
+
+.flexPlateauAaH {
+    display: flex;
+    flex-direction: row;
+    justify-content: center; 
+}
+.flexPlateauAaH div{
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    border: solid 1px black;
+    text-align: center;
 }
 
-.grilleAbandonnerNul {
-    display: grid;
-    grid-template-columns:  1; 
-    grid-template-rows: 45% 5% 5% 45%;   
+.flexAbandonnerNul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  
+}
+
+.divHistoriqueEtChat {
+    height: 50%;
+    border: solid 1px black;
 }
