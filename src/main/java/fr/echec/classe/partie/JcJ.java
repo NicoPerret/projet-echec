@@ -11,46 +11,12 @@ public class JcJ extends Partie {
 	protected CouleursPiece couleurJoueur1;
 	protected CouleursPiece couleurJoueur2;
 
+	// constructeur
 	public JcJ(ParametresPartie param) {
 		super(param);
 	}
-	public boolean isPartieFinie() {
-		double resJ1 = 0.5;
-		double resJ2 = 0.5;
-		boolean fin = false;
-		
-		if (tourBlanc()) {
-			
-			// fin = finPartie.isEchecMatOuPat(plateau, couleurJoueurActif);
-
-			if (getChronoJ1().isDefaiteTemps() || isSurrJ1() == true || finPartie.isEchecMat()) {
-				h.setVainqueurId(j2.getId());
-				System.out.println("Le joueur 2 gagne !");
-				resJ1 = 0;
-				resJ2 = 1;
-				calculElo(j1, j2, resJ1, resJ2);
-				return true;
-
-			}
-
-		} else {
-			// finPartie.isEchecMatOuPat(plateau, couleurJoueurActif);
-			if (getChronoj2().isDefaiteTemps() || isSurrJ2() || finPartie.isEchecMat()) {
-				System.out.println("Le joueur 1 gagne !");
-				h.setVainqueurId(j1.getId());
-				resJ1 = 1;
-				resJ2 = 0;
-				calculElo(j1, j2, resJ1, resJ2);
-				return true;
-			}
-			if(fin) {
-				calculElo(j1, j2, resJ1, resJ2);
-				return true;
-			}
-		}
-
-		return false;
-	}
+	// Methodes 
+	
 	public void calculElo(Utilisateur joueur1, Utilisateur joueur2, double sa, double sb) {
 		// Real Rating Player A/B
 		// Elo des joueurs avant la partie
@@ -107,29 +73,48 @@ public class JcJ extends Partie {
 
 	}
 	
-	public boolean finPartie() {
+	public boolean isPartieFinie() {
 		double resJ1 = 0.5;
 		double resJ2 = 0.5;
+		boolean fin = false;
+		
+		if (tourBlanc()) {
+			
+			fin = finPartie.isEchecMatOuPat(plateau, couleurJoueurActif);
 
-		if (getChronoJ1().isDefaiteTemps() || isSurrJ1() == true) {
-			h.setVainqueurId(j2.getId());
-			System.out.println("Le joueur 2 gagne !");
-			resJ1 = 0;
-			resJ2 = 1;
-			calculElo(j1, j2, resJ1, resJ2);
-			return true;
+			if (getChronoJ1().isDefaiteTemps() || isSurrJ1() == true || finPartie.isEchecMat()) {
+				h.setVainqueurId(j2.getId());
+				System.out.println("Le joueur 2 gagne !");
+				resJ1 = 0;
+				resJ2 = 1;
+				calculElo(j1, j2, resJ1, resJ2);
+				return true;
 
+			}
+
+		} else {
+				finPartie.isEchecMatOuPat(plateau, couleurJoueurActif);
+			if (getChronoj2().isDefaiteTemps() || isSurrJ2() || finPartie.isEchecMat()) {
+				System.out.println("Le joueur 1 gagne !");
+				h.setVainqueurId(j1.getId());
+				resJ1 = 1;
+				resJ2 = 0;
+				calculElo(j1, j2, resJ1, resJ2);
+				return true;
+			}
+			if(fin) {
+				calculElo(j1, j2, resJ1, resJ2);
+				return true;
+			}
+			if (finPartie.isMatchNul(plateau)) {
+				System.out.println("Match nul ! ");
+				calculElo(j1, j2, resJ1, resJ2);
+				return true;
+			}
 		}
-
-		else if (getChronoj2().isDefaiteTemps() || isSurrJ2()) {
-			System.out.println("Le joueur 1 gagne !");
-			h.setVainqueurId(j1.getId());
-			resJ1 = 1;
-			resJ2 = 0;
-			calculElo(j1, j2, resJ1, resJ2);
-			return true;
-		}
-
+		
 		return false;
 	}
+	
+	
 }
