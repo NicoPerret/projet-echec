@@ -8,6 +8,7 @@ import fr.echec.exception.IdNegatifException;
 import fr.echec.exception.ProblemeNotFoundException;
 import fr.echec.repository.IProbleme;
 import fr.echec.repository.jpa.ProblemeJpa;
+import fr.formation.exception.IdNegativeException;
 
 public class ProblemeService {
 	private IProbleme repoProbleme = new ProblemeJpa();
@@ -43,5 +44,12 @@ public class ProblemeService {
 
 		repoProbleme.save(leProbleme);
 
+	}
+	public void deleteById(int id) throws IdNegatifException {
+		if (id <= 0) {
+			throw new IdNegatifException();
+		}
+		
+		repoProbleme.deleteById(id);
 	}
 }

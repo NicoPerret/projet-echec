@@ -8,6 +8,7 @@ import fr.echec.exception.HistoriquePartieNotFoundException;
 import fr.echec.exception.IdNegatifException;
 import fr.echec.repository.IHistoriquePartie;
 import fr.echec.repository.jpa.HistoriquePartieJpa;
+import fr.formation.exception.IdNegativeException;
 
 public class HistoriquePartieService {
 	private IHistoriquePartie repoPartie = new HistoriquePartieJpa();
@@ -45,5 +46,12 @@ public class HistoriquePartieService {
 
 		repoPartie.save(laPartie);
 
+	}
+	public void deleteById(int id) throws IdNegatifException {
+		if (id <= 0) {
+			throw new IdNegatifException();
+		}
+		
+		repoPartie.deleteById(id);
 	}
 }
