@@ -1,19 +1,16 @@
-Ajouter roque dans coup possible
-Ajouter condition echec dans roque (simuler deplacement roi sur les cases entre roi et tour)
+Ajouter roque dans coup possible pour les noirs
+Fct roque coord piece ?
+
 
 gestion echec et mat / gestion pat
-repo et service utllisateur
 
-service pb delete + delete histo partie
 pb : jouer les coups par l'ordi
-
 
 
 Reorganiser mouvements
 pb : verif coup jouer est le bon
 prise passant
 gestion nul
-modif elo
 
 html accueil
 html plateau

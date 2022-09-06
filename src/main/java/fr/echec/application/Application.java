@@ -28,9 +28,6 @@ public class Application {
 		p.setJ2(j2);
 		
 //		// UNE PARTIE
-
-	
-//		// UNE PARTIE
 			while (true) {
 //
 //			// Jouer

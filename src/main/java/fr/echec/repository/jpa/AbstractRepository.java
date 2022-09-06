@@ -37,6 +37,7 @@ private Class<T> clz;
 			em.close();
 		}
 	}
+	
 	public T findById(Integer id) {
 		EntityManager em = emf.createEntityManager();
 		

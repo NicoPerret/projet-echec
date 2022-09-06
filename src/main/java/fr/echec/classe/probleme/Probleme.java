@@ -91,9 +91,9 @@ public class Probleme {
 		Deplacement d = new Deplacement();
 		List coupOrdi = new ArrayList(); 
 		for(int i : listeDeplacement.length()) { 
-		if(coupOrdi[i]==){
-		jouer le coup après le "/" converti en fen;
-		d.deplacement(p.getPieceCase(coorDepart), coorArrivee, p)
+			if(coupOrdi[i]==){
+			// jouer le coup après le "/" converti en fen;
+			d.deplacement(p.getPieceCase(coorDepart), coorArrivee, p);
 		}
 	}
 	

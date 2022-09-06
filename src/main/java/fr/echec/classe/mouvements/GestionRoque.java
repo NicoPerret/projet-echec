@@ -9,7 +9,6 @@ import fr.echec.enumerateur.TypePiece;
 
 public class GestionRoque extends GestionEchec{
 	
-	
 	protected boolean petitRoque(Piece roi, Piece tour, Plateau plateau) {
 		
 		boolean petitRoquePossible = false;
@@ -110,7 +109,5 @@ public class GestionRoque extends GestionEchec{
 		
 		return destinationsJouables;
 	}
-	
-	
-	
+
 }

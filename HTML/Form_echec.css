@@ -10,7 +10,27 @@ fieldset {
     border-radius: 10px;
 }
 
-.grillePlateau { 
+.conteneur{
+    display: flex;
+ }
+
+.gauche{
+    float: left;
+    width:25%;
+    border: solid 1px black;
+ }
+ .milieu{
+    display: inline-block;
+    width:50%;
+    border: solid 1px black;
+ }
+ .droite{
+    float: right;
+    width:25%;
+    border: solid 1px black;
+ }
+ 
+.plateau { 
     width: 242px;
     display: grid; 
     grid-template-columns: repeat(8, 30px); 
@@ -33,61 +53,38 @@ fieldset {
     background: black;
 }
 
-.grillePlateauPrincipale {
+.grille {
     display: grid;
     grid-template-columns:  30px 242px; 
     grid-template-rows: 242px 35px;   
 }  
-.grillePlateauPrincipale div{
+.grille div{
     border: solid 1px black;
 } 
 
-.grillePlateau1a8 {  
+.grille1 {  
     display: grid;
     grid-template-columns: repeat(1, 30px); 
     grid-template-rows: repeat(8, 30px);
     text-align: center;
 }
 
-.grillePlateau1a8 div{
+.grille1 div{
     height: 30px;
     line-height: 30px;
 }
 
-.grillePlateauAaH {
+.grille2 {
     display: grid;
     grid-template-columns: repeat(8, 30px); 
     grid-template-rows: repeat(1, 30px); 
     text-align: center;
 }
 
-.grillgrillePlateauAaHe2 div{
+.grille2 div{
     height: 30px;
     line-height: 30px;
 }
-
-
-.conteneur{
-    display: flex;
- }
-
-.gauche{
-    float: left;
-    width:25%;
-    border: solid 1px black;
- }
- .milieu{
-    display: inline-block;
-    width:50%;
-    border: solid 1px black;
- }
- .droite{
-    float: right;
-    width:25%;
-    border: solid 1px black;
- }
-
-
 
 .grille3verti{
     display:grid;

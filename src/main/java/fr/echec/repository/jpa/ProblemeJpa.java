@@ -11,14 +11,8 @@ public class ProblemeJpa extends AbstractRepository<Probleme> implements IProble
 
 	@Override
 	public void save(Probleme entity) {
-		super.save(entity, (entity.getId() == 0));
+		super.save(entity);
 
-	}
-
-	@Override
-	public Probleme findById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }
