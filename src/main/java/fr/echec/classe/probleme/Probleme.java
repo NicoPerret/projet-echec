@@ -14,7 +14,6 @@ import javax.persistence.Table;
 import fr.echec.classe.historique.NotationCoup;
 import fr.echec.classe.jeu.Plateau;
 import fr.echec.classe.mouvements.Deplacement;
-import fr.echec.service.ProblemeService;
 
 @Entity
 @Table(name = "probleme")
