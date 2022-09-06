@@ -6,44 +6,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Form_echec.css" />
     <title>Echec</title>
+    <link rel="i=shorcut icon" href="RoiNoir.png">
 </head>
+
 <body>
-    <div class="grille">
-        <div class="grille1">
-            <script>
-            for (let i = 0 ; i<8 ; i++){
-                const c = document.createElement('div');
-                c.setAttribute('id', 8-i);
-                
-        
-                cases.splice(0, 0, c);
-        
-                document.querySelector('.grille1').append(c);
-            }
-            </script>
+    <div class="conteneur">
+        <div class="gauche">Il n'y a rien à gauche de la page</div>
+        <div class="milieu">
+            <div class="grilleCentralePlateauEtBoutons">
+                <div class="grilleCentral5Verti">
+                    <div class="grilleCentraleNomChrono">
+                        <div style="text-align: left;">Nom adversaire</div>
+                        <div style="text-align: right;">Chrono adversaire</div>
+                    </div>
+                    <div>Pieces capturées</div>
+                    <div class="grillePlateau">
+                        <div class="grillePlateau1a8"></div>
+                        
+                        <div class="grillePlateauPrincipal"></div>
+                        <div></div>
+                        <div class="grillePlateauAaH"></div>
+                    </div>
+                    <div class="grilleCentraleNomChrono">
+                        <div style="text-align: left;">Mon nom</div>
+                        <div style="text-align: right;">Mon chrono</div>
+                    </div>
+                    <div>Pieces capturées</div>
+                </div>
+                <div class="grilleAbandonnerNul">
+                    <div></div>
+                    <div style="text-align: center;"><button>Abandonner</button></div>
+                    <div style="text-align: center;"><button>Nul</button></div>
+                    <div></div>
+                </div>
+            </div>
         </div>
-        
-        <div class="plateau">
-            <script>
-                const cases = [];
-                const lettres = ['A','B','C','D','E','F','G','H'];
-                for (let i = 0; i < 64; i++) {
-                    const c = document.createElement('div');
-        
-                    c.setAttribute('id', lettres[(i%8)] + (8 -Math.floor(i/8,1)));
-        
-                    cases.splice(0, 0, c);
-        
-                    document.querySelector('.plateau').append(c);
-                }
-            </script>
-
+        <div class="droite">
+            <div style="height: 50%;">Historique Coups</div>
+            <div style="height: 50%;">Chat</div>
         </div>
-        <div></div>
-        <div class="grille2"></div>
-</div>
-    
+    </div>
 
+
+    <script>
+        for (let i = 0 ; i<8 ; i++){
+            const c = document.createElement('div');
+            c.innerHTML = 8-i;
+            document.querySelector('.grillePlateau1a8').append(c);
+        }
+    </script>
+    <script>
+        const cases = [];
+        const lettres = ['A','B','C','D','E','F','G','H'];
+        for (let i = 0; i < 64; i++) {
+            const c = document.createElement('div');
+            c.setAttribute('id', lettres[(i%8)] + (8 -Math.floor(i/8,1)));
+            cases.splice(0, 0, c);
+            document.querySelector('.grillePlateauPrincipal').append(c);
+        }
+    </script>
+    <script>
+        for (let i = 0 ; i<8 ; i++){
+            const c = document.createElement('div');
+            c.innerHTML = lettres[i];
+            document.querySelector('.grillePlateauAaH').append(c);
+        }
+    </script>
 
 </body>
 </html>

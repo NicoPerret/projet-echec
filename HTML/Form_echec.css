@@ -14,52 +14,96 @@ fieldset {
     display: flex;
  }
 
+.conteneur div{
+    border: solid 1px black;
+}
+
 .gauche{
     float: left;
-    width:25%
+    width:25%;
  }
  .milieu{
     display: inline-block;
-    width:50%
+    width:50%;
  }
  .droite{
     float: right;
-    width:25%
+    width:25%;
  }
+
+ .grilleCentral5Verti{
+    display:grid;
+    grid-template-columns: 1;
+    grid-template-rows: 30px 40px 450px 40px 30px;
+}
  
-.plateau { 
-    width: 242px;
-    display: grid; 
-    grid-template-columns: repeat(8, 30px); 
-    grid-template-rows: repeat(8, 30px);
-    text-align : center;
-    border: solid 1px black;
-    box-sizing: border-box;
+.grilleCentraleNomChrono{
+    display:grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 1;
 }
 
-.plateau div:nth-child(-2n+9),
-.plateau div:nth-child(9) ~ div:nth-child(-2n+16),
-.plateau div:nth-child(17) ~ div:nth-child(-2n+25),
-.plateau div:nth-child(25) ~ div:nth-child(-2n+32),
-.plateau div:nth-child(33) ~ div:nth-child(-2n+41),
-.plateau div:nth-child(41) ~ div:nth-child(-2n+48),
-.plateau div:nth-child(49) ~ div:nth-child(-2n+57),
-.plateau div:nth-child(57) ~ div:nth-child(-2n+64)
+.grilleCentralePlateauEtBoutons{
+    display:grid;
+    grid-template-columns: 80% 20%;
+    grid-template-rows: 1;
+}
+
+.grillePlateau {
+    display: grid;
+    grid-template-columns:  50px 400px; 
+    grid-template-rows: 400px 50px;   
+}  
+
+.grillePlateauPrincipal { 
+    width: 404px;
+    height: 404px;
+    display: grid; 
+    grid-template-columns: repeat(8, 50px); 
+    grid-template-rows: repeat(8, 50px);
+    text-align : center;
+    border: solid 2px black;
+    box-sizing: border-box; 
+}
+.grillePlateauPrincipal div{
+    background: white;
+}
+.grillePlateauPrincipal div:nth-child(-2n+8),
+.grillePlateauPrincipal div:nth-child(8) ~ div:nth-child(-2n+15),
+.grillePlateauPrincipal div:nth-child(16) ~ div:nth-child(-2n+24),
+.grillePlateauPrincipal div:nth-child(24) ~ div:nth-child(-2n+31),
+.grillePlateauPrincipal div:nth-child(32) ~ div:nth-child(-2n+40),
+.grillePlateauPrincipal div:nth-child(40) ~ div:nth-child(-2n+47),
+.grillePlateauPrincipal div:nth-child(48) ~ div:nth-child(-2n+56),
+.grillePlateauPrincipal div:nth-child(56) ~ div:nth-child(-2n+63)
 {
     background: black;
 }
 
-.grille {
-    grid-template-columns: 30px 250px; 
-    grid-template-rows: 250px 30px;  
+.grillePlateau1a8 {  
+    display: grid;
+    grid-template-columns: repeat(1, 50px); 
+    grid-template-rows: repeat(8, 50px);
+    text-align: center;
+}
+.grillePlateau1a8 div{
+    height: 30px;
+    line-height: 30px;
 }
 
-.grille1 {
-    grid-template-columns: repeat(1, 30px); 
-    grid-template-rows: repeat(8, 30px);  
+.grillePlateauAaH {
+    display: grid;
+    grid-template-columns: repeat(8, 50px); 
+    grid-template-rows: repeat(1, 50px); 
+    text-align: center;
+}
+.grillePlateauAaH div{
+    height: 30px;
+    line-height: 30px;
 }
 
-.grille2 {
-    grid-template-columns: repeat(8, 30px); 
-    grid-template-rows: repeat(1, 30px);  
+.grilleAbandonnerNul {
+    display: grid;
+    grid-template-columns:  1; 
+    grid-template-rows: 45% 5% 5% 45%;   
 }
