@@ -15,4 +15,10 @@ public class ProblemeJpa extends AbstractRepository<Probleme> implements IProble
 
 	}
 
+	@Override
+	public Probleme findById(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

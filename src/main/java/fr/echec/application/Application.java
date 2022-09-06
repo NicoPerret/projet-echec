@@ -1,14 +1,12 @@
 package fr.echec.application;
 
-import java.time.LocalDateTime;
-
 import fr.echec.classe.joueur.Utilisateur;
 import fr.echec.classe.parametres.ParametresPartie;
 import fr.echec.classe.partie.JcJ;
-import fr.echec.classe.partie.Partie;
 import fr.echec.exception.HistoriquePartieNotFoundException;
 import fr.echec.exception.IdNegatifException;
 import fr.echec.service.HistoriquePartieService;
+import fr.echec.service.UtilisateursService;
 
 public class Application {
 
@@ -16,20 +14,22 @@ public class Application {
 
 		// SETUP RUDIMENTAIRE MAIS FONCTIONNEL
 		ParametresPartie param = new ParametresPartie();
-		JcJ p = new JcJ(param);
-		Utilisateur j1 = new Utilisateur();
-		Utilisateur j2 = new Utilisateur();
-		// HistoriquePartieService srvHistPartie = new HistoriquePartieService();
-		// UNE PARTIE
-		while (true) {
-			j1.setElo(1000);
-			j1.setId(1);
-			j2.setElo(900);
-			j2.setId(2);
 
-			p.setJ1(j1);
-			p.setJ2(j2);
-			HistoriquePartieService srvHistPartie = new HistoriquePartieService();
+		JcJ p = new JcJ(param);
+
+	
+		HistoriquePartieService srvHistPartie = new HistoriquePartieService();
+		UtilisateursService srvUti = new UtilisateursService();
+		
+		Utilisateur j1 = srvUti.findById(1);
+		Utilisateur j2 = srvUti.findById(2);
+		
+		p.setJ1(j1);
+		p.setJ2(j2);
+		
+//		// UNE PARTIE
+
+	
 //		// UNE PARTIE
 			while (true) {
 //
@@ -39,19 +39,14 @@ public class Application {
 				// TP
 				// p.teleportation();
 
-				if (p.finPartie() == true) {
-					break;
-				}
+
+			if (p.isPartieFinie() == true) {
+				break;
 			}
-
-			p.getH().setDate(LocalDateTime.now());
-			p.getH().setJ1(j1);
-			p.getH().setJ2(j2);
-			p.getH().setMessages("TEST");
-//		p.getH().setParam(param);
-
-			srvHistPartie.save(p.getH()); //save (partie) => save(histo) + save(J1) + save(J2)
-
 		}
+
+		p.savePartieEtHistorique();
+		
+
 	}
 }

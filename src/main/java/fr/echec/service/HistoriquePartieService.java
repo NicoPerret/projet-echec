@@ -28,6 +28,7 @@ public class HistoriquePartieService {
 	}
 
 	public List<HistoriquePartie> findAll() {
+
 		List<HistoriquePartie> historiques = repoPartie.findAll();
 
 		if (historiques == null) {
@@ -38,6 +39,7 @@ public class HistoriquePartieService {
 	}
 
 	public void save(HistoriquePartie laPartie) throws HistoriquePartieNotFoundException {
+
 
 		if (laPartie == null) {
 			throw new HistoriquePartieNotFoundException();

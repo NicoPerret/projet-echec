@@ -1,9 +1,11 @@
 package fr.echec.classe.partie;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import fr.echec.application.FinPartie;
 import fr.echec.classe.historique.HistoriquePartie;
 import fr.echec.classe.historique.NotationCoup;
 import fr.echec.classe.jeu.Chrono;
@@ -14,35 +16,42 @@ import fr.echec.classe.mouvements.CoupsPossibles;
 import fr.echec.classe.mouvements.Deplacement;
 import fr.echec.classe.parametres.ParametresPartie;
 import fr.echec.enumerateur.CouleursPiece;
+import fr.echec.exception.HistoriquePartieNotFoundException;
+import fr.echec.service.HistoriquePartieService;
+import fr.echec.service.UtilisateursService;
 
 public class Partie {
 
 	// VARIABLES from BDD
 	protected Utilisateur j1;
 	protected Utilisateur j2;
-	private ParametresPartie parametre;
+
+	protected ParametresPartie parametre;
+
 
 	// VARIABLES
-	private int id;
-	private Plateau plateau;
-	private Chrono chronoJ1;
-	private Chrono chronoJ2;
-	private NotationCoup nt = new NotationCoup(0, 0);
-	private Scanner sc = new Scanner(System.in);
-	private int compteurTours = 1;
-	private int compteurCoups = 1;
-	private Deplacement d = new Deplacement();
-	private int coordDepart;
-	private Fen fen = new Fen();
-	private CouleursPiece couleurJoueurActif = CouleursPiece.BLANC;
-	private CoupsPossibles coupPossible = new CoupsPossibles();
-	private List<Integer> listeCoup = new ArrayList<>();
+	protected int id;
+	protected Plateau plateau;
+	protected Chrono chronoJ1;
+	protected Chrono chronoJ2;
+	protected NotationCoup nt = new NotationCoup(0, 0);
+	protected Scanner sc = new Scanner(System.in);
+	protected int compteurTours = 1;
+	protected int compteurCoups = 1;
+	protected Deplacement d = new Deplacement();
+	protected int coordDepart;
+	protected Fen fen = new Fen();
+	protected CouleursPiece couleurJoueurActif = CouleursPiece.BLANC;
+	protected CoupsPossibles coupPossible = new CoupsPossibles();
+	protected List<Integer> listeCoup = new ArrayList<>();
 	HistoriquePartie h = new HistoriquePartie();
-	private boolean verifChangerPiece = false;
-	private boolean surrJ1 = false;
-	private boolean surrJ2 = false;
-	//private JcJ jcj = new JcJ(parametre);
+
+	protected boolean verifChangerPiece = false;
+	protected boolean surrJ1 = false;
+	protected boolean surrJ2 = false;
 	
+	protected FinPartie finPartie = new FinPartie();
+
 	// GETTERS AND SETTERS
 
 	public int getId() {
@@ -290,8 +299,8 @@ public class Partie {
 		if (surrJ1 == true || surrJ2 == true) {
 			return;
 		}
-			System.out.println("Tour du Blanc : ");
-			System.out.println("Déplacer la piece : ");
+		System.out.println("Tour du Blanc : ");
+		System.out.println("Déplacer la piece : ");
 
 		int coordArrivee = 0;
 
@@ -383,6 +392,7 @@ public class Partie {
 
 		}
 		this.compteurTours++;
+
 	}
 
 	public void jouer() {
@@ -407,5 +417,18 @@ public class Partie {
 	}
 
 	
+	public void savePartieEtHistorique() throws HistoriquePartieNotFoundException {
+		HistoriquePartieService srvHistPartie = new HistoriquePartieService();
+		UtilisateursService srvUti = new UtilisateursService(); 
+		this.getH().setDate(LocalDateTime.now());
+		this.getH().setJ1(j1);
+		this.getH().setJ2(j2);
+		this.getH().setMessages("TEST");
+		srvHistPartie.save(this.getH());
+		srvUti.save(this.getJ1());
+		srvUti.save(this.getJ2());
+
+	}
+
 
 }
