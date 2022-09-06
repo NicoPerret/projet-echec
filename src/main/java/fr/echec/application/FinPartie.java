@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.echec.classe.jeu.Fen;
+import fr.echec.classe.jeu.Piece;
 import fr.echec.classe.jeu.Plateau;
 import fr.echec.classe.mouvements.CoupsPossibles;
 import fr.echec.classe.mouvements.Deplacement;
 import fr.echec.classe.mouvements.GestionEchec;
 import fr.echec.enumerateur.CouleursPiece;
+import fr.echec.enumerateur.TypePiece;
 
 public class FinPartie {
 
@@ -117,11 +119,26 @@ public class FinPartie {
 		return false;
 	}
 
-	public boolean isMatchNul(Plateau plateau) {
+	public boolean isMatchNulRepetition(Plateau plateau) {
 		listeFen.add(fen.creationFen(plateau));
 		return test.countFrequencies(listeFen);
 		
 
+	}
+	
+	public boolean isMatchNulmateriel(Plateau plateau) {
+		if (plateau.getPieces().size() >= 4) {
+			return false;
+			}
+		else {
+			for (Piece p : plateau.getPieces()) {
+				if (p.getNom() == TypePiece.PION ||p.getNom() == TypePiece.DAME ||p.getNom() == TypePiece.TOUR ) {
+					return false;
+				}
+			}
+			return true;
+		}
+		
 	}
 
 }

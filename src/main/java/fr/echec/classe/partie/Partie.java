@@ -29,7 +29,6 @@ public class Partie {
 
 	protected ParametresPartie parametre;
 
-
 	// VARIABLES
 	protected int id;
 	protected Plateau plateau;
@@ -50,7 +49,8 @@ public class Partie {
 	protected boolean verifChangerPiece = false;
 	protected boolean surrJ1 = false;
 	protected boolean surrJ2 = false;
-	
+	private boolean draw = false;
+
 	protected FinPartie finPartie = new FinPartie();
 
 	// GETTERS AND SETTERS
@@ -160,6 +160,14 @@ public class Partie {
 		this.surrJ2 = surrJ2;
 	}
 
+	public boolean isDraw() {
+		return draw;
+	}
+
+	public void setDraw(boolean draw) {
+		this.draw = draw;
+	}
+
 // Constructeur 
 
 	public Partie(ParametresPartie param) {
@@ -197,7 +205,7 @@ public class Partie {
 			this.chronoJ2.start();
 
 		}
-		System.out.println("Taper FF pour abbandonner");
+		System.out.println("Taper DRAW pour demander un match nul /  FF pour abbandonner");
 		System.out.println("Saisir une piece : ");
 		while (true) {
 
@@ -233,7 +241,20 @@ public class Partie {
 					break;
 				}
 
-			} else {
+			} 
+			
+			else if (saisie.equals("DRAW")) {
+				System.out.println("Votre adversaire propose un match null");
+				System.out.println("Saisir 1 pour accepter, 2 pour refuser");
+				saisie = sc.nextLine();
+				if (saisie.equals("1")) {
+					draw = true; 
+					break;
+				}
+				
+			} 
+			
+			else {
 				System.out.println("Mauvaise saisie : Piece non trouvée ou mauvaise couleur ");
 
 			}
@@ -315,7 +336,7 @@ public class Partie {
 	}
 
 	public void jouerPiece() {
-		if (surrJ1 == true || surrJ2 == true) {
+		if (surrJ1 || surrJ2|| draw) {
 			verifChangerPiece = true;
 			return;
 		}
@@ -366,7 +387,7 @@ public class Partie {
 	}
 
 	public void finTour() {
-		if (surrJ1 == true || surrJ2 == true) {
+		if (surrJ1 || surrJ2|| draw) {
 			verifChangerPiece = true;
 			return;
 		}
@@ -417,11 +438,10 @@ public class Partie {
 		this.finTour();
 	}
 
-	
 	public void savePartieEtHistorique() throws HistoriquePartieNotFoundException {
 		HistoriquePartieService srvHistPartie = new HistoriquePartieService();
-		UtilisateursService srvUti = new UtilisateursService(); 
-		
+		UtilisateursService srvUti = new UtilisateursService();
+
 		this.getH().setDate(LocalDateTime.now());
 		this.getH().setJ1(j1);
 		this.getH().setJ2(j2);
@@ -429,11 +449,7 @@ public class Partie {
 		srvHistPartie.save(this.getH());
 		srvUti.save(this.getJ1());
 		srvUti.save(this.getJ2());
-		
-		
-		
 
 	}
-
 
 }

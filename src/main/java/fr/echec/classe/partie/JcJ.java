@@ -106,11 +106,11 @@ public class JcJ extends Partie {
 				calculElo(j1, j2, resJ1, resJ2);
 				return true;
 			}
-			if (finPartie.isMatchNul(plateau)) {
-				System.out.println("Match nul ! ");
-				calculElo(j1, j2, resJ1, resJ2);
-				return true;
-			}
+		}
+		if (finPartie.isMatchNulRepetition(plateau) || finPartie.isMatchNulmateriel(plateau) || isDraw() == true) {
+			System.out.println("Match nul ! ");
+			calculElo(j1, j2, resJ1, resJ2);
+			return true;
 		}
 		
 		return false;
