@@ -14,6 +14,7 @@ import fr.echec.classe.jeu.Plateau;
 import fr.echec.classe.joueur.Utilisateur;
 import fr.echec.classe.mouvements.CoupsPossibles;
 import fr.echec.classe.mouvements.Deplacement;
+import fr.echec.classe.mouvements.GestionEchec;
 import fr.echec.classe.parametres.ParametresPartie;
 import fr.echec.enumerateur.CouleursPiece;
 import fr.echec.exception.HistoriquePartieNotFoundException;
@@ -370,7 +371,7 @@ public class Partie {
 			return;
 		}
 		h.ajouterCoup(" " + nt.getCoordDepartStandard() + " " + nt.getCoordArriveeStandard() + " ");
-		if (coupPossible.isEchec(plateau, couleurJoueurActif)) {
+		if (GestionEchec.isEchec(plateau, couleurJoueurActif)) {
 			h.ajouterCoup("+");
 		}
 

@@ -7,7 +7,7 @@ import fr.echec.classe.jeu.Plateau;
 import fr.echec.enumerateur.CouleursPiece;
 import fr.echec.enumerateur.TypePiece;
 
-public class GestionRoque extends GestionEchec{
+public class GestionRoque {
 	
 	protected boolean petitRoque(Piece roi, Piece tour, Plateau plateau) {
 		
@@ -19,18 +19,18 @@ public class GestionRoque extends GestionEchec{
 			return false;
 		}
 		
-		if (roi.getNom() == TypePiece.ROI && roi.isaBouge() == false && isEchec(plateau, couleurJoueur) == false
+		if (roi.getNom() == TypePiece.ROI && roi.isaBouge() == false && GestionEchec.isEchec(plateau, couleurJoueur) == false
 				&& tour.getNom() == TypePiece.TOUR && tour.isaBouge() == false) {
 			
 			if (couleurJoueur == CouleursPiece.BLANC 
-			    && plateau.getPieceCase(5) == null && casePlateauEchec(plateau, 5, CouleursPiece.BLANC) == false
-				&& plateau.getPieceCase(6) == null && casePlateauEchec(plateau, 5, CouleursPiece.BLANC) == false) {
+			    && plateau.getPieceCase(5) == null && GestionEchec.casePlateauEchec(plateau, 5, CouleursPiece.BLANC) == false
+				&& plateau.getPieceCase(6) == null && GestionEchec.casePlateauEchec(plateau, 5, CouleursPiece.BLANC) == false) {
 				
 				petitRoquePossible = true;
 					
 			} else if (couleurJoueur == CouleursPiece.NOIR 
-					&& plateau.getPieceCase(61) == null && casePlateauEchec(plateau, 61, CouleursPiece.NOIR) == false
-					&& plateau.getPieceCase(62) == null && casePlateauEchec(plateau, 62, CouleursPiece.NOIR) == false) {
+					&& plateau.getPieceCase(61) == null && GestionEchec.casePlateauEchec(plateau, 61, CouleursPiece.NOIR) == false
+					&& plateau.getPieceCase(62) == null && GestionEchec.casePlateauEchec(plateau, 62, CouleursPiece.NOIR) == false) {
 				
 				petitRoquePossible = true;
 				
@@ -50,19 +50,19 @@ public class GestionRoque extends GestionEchec{
 			return false;
 		}
 		
-		if (roi.getNom() == TypePiece.ROI && roi.isaBouge() == false && isEchec(plateau, couleurJoueur) == false
+		if (roi.getNom() == TypePiece.ROI && roi.isaBouge() == false && GestionEchec.isEchec(plateau, couleurJoueur) == false
 				&& tour.getNom() == TypePiece.TOUR && tour.isaBouge() == false) {
 			
 			if (couleurJoueur == CouleursPiece.BLANC 
 			    && plateau.getPieceCase(1) == null
-				&& plateau.getPieceCase(2) == null && casePlateauEchec(plateau, 2, CouleursPiece.BLANC) == false
-				&& plateau.getPieceCase(3) == null && casePlateauEchec(plateau, 3, CouleursPiece.BLANC) == false){
+				&& plateau.getPieceCase(2) == null && GestionEchec.casePlateauEchec(plateau, 2, CouleursPiece.BLANC) == false
+				&& plateau.getPieceCase(3) == null && GestionEchec.casePlateauEchec(plateau, 3, CouleursPiece.BLANC) == false){
 				
 				grandRoquePossible = true;
 					
 			} else if (couleurJoueur == CouleursPiece.NOIR 
-					&& plateau.getPieceCase(59) == null && casePlateauEchec(plateau, 59, CouleursPiece.NOIR) == false
-					&& plateau.getPieceCase(58) == null && casePlateauEchec(plateau, 58, CouleursPiece.NOIR) == false
+					&& plateau.getPieceCase(59) == null && GestionEchec.casePlateauEchec(plateau, 59, CouleursPiece.NOIR) == false
+					&& plateau.getPieceCase(58) == null && GestionEchec.casePlateauEchec(plateau, 58, CouleursPiece.NOIR) == false
 					&& plateau.getPieceCase(57) == null) {
 				
 				grandRoquePossible = true;

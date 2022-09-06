@@ -19,14 +19,14 @@ public class CoupsPossibles extends GestionRoque {
 		int coordPiece = piece.getCoordonnee();
 		
 		// Cases libres autour de la pièce
-		int[] casesDispoBordPlateau = trouveCasesDispoBordPlateau(piece);
+		int[] casesDispoBordPlateau = AnalysePositionPiece.trouveCasesDispoBordPlateau(piece);
 				
 		// Liste des coups réglementaires par pièce
-		List<Integer> coupsReglementaires = TrouveCoupsReglementaires(casesDispoBordPlateau, piece, plateau);
+		List<Integer> coupsReglementaires = AnalyseCoupsReglementaires.TrouveCoupsReglementaires(casesDispoBordPlateau, piece, plateau);
 			
 		// Place disponible en tenant compte du type de la pièce
 		List<Integer> destinationsDispo = 
-				destinationsDispoGlobal(casesDispoBordPlateau, true, plateau, piece); 
+				AnalysePlaceDisponible.destinationsDispoGlobal(casesDispoBordPlateau, true, plateau, piece); 
 		
 		
 		// On ajoute toutes les destinations dispos pour le type de la piece qui rentrent dans les cases dispos. 
@@ -35,7 +35,7 @@ public class CoupsPossibles extends GestionRoque {
 				 
 		for (int deplacement : coupsReglementaires) {
 			for (int destination : destinationsDispo) {
-				if (coordPiece + deplacement == destination && mvtEchec(plateau, piece, destination) == false) {
+				if (coordPiece + deplacement == destination && GestionEchec.mvtEchec(plateau, piece, deplacement) == false) {
 					destinationsJouables.add(coordPiece + deplacement);
 				}
 			}

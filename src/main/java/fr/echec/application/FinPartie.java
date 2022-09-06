@@ -5,9 +5,9 @@ import java.util.List;
 
 import fr.echec.classe.jeu.Fen;
 import fr.echec.classe.jeu.Plateau;
-import fr.echec.classe.joueur.Utilisateur;
 import fr.echec.classe.mouvements.CoupsPossibles;
 import fr.echec.classe.mouvements.Deplacement;
+import fr.echec.classe.mouvements.GestionEchec;
 import fr.echec.enumerateur.CouleursPiece;
 
 public class FinPartie {
@@ -100,7 +100,7 @@ public class FinPartie {
 		}else {
 			couleur = CouleursPiece.BLANC;
 		}
-		if(listeCoup.isEmpty() == true && coupsPossibles.isEchec(plateau, couleur)) {
+		if(listeCoup.isEmpty() == true && GestionEchec.isEchec(plateau, couleur)) {
 			
 			System.out.println("Echec et mat");
 			echecMat = true;

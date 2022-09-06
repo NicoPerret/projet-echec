@@ -5,7 +5,7 @@ import fr.echec.classe.jeu.Plateau;
 
 public class AnalysePositionPiece {
 
-	protected int[] trouveCasesDispoBordPlateau(Piece piece) {
+	protected static int[] trouveCasesDispoBordPlateau(Piece piece) {
 
 		// Renvoie le nombre de cases entre la piece et le bord du plateau
 		// [haut, bas, gauche, droite, HG, HD, BG, BD]
@@ -34,7 +34,7 @@ public class AnalysePositionPiece {
 
 	}
 
-	protected int trouvePieceVoisineDirection(int direction, int casesBordPlateau, Plateau plateau, Piece piece) {
+	protected static int trouvePieceVoisineDirection(int direction, int casesBordPlateau, Plateau plateau, Piece piece) {
 
 		// renvoie le nombre de cases jusqu'à la premiere pièce trouvée ou par défaut
 		// jusqu'au bord

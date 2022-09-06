@@ -14,7 +14,20 @@ public class Deplacement {
 	}
 
 	public void deplacement(Piece piece, int coord, Plateau p) {
-
+		
+		if (piece.getNom() == TypePiece.ROI && coord == piece.getCoordonnee()+2) {
+			jouerPetitRoque(piece, p);
+		} else if (piece.getNom() == TypePiece.ROI && coord == piece.getCoordonnee()-2) {
+			jouerGrandRoque(piece, p);
+		} else {
+			bougerPiece(piece, coord, p);
+			promotion(piece, p);
+		}
+		
+	}
+	
+	public void bougerPiece(Piece piece, int coord, Plateau p) {
+		
 		p.setCaseTableau("   ", piece.getCoordonnee());
 		p.setCaseTableau(piece.getNomPlateau(), coord);
 
@@ -23,16 +36,8 @@ public class Deplacement {
 			capture(p.getPieceCase(coord));
 		}
 		
-		if (piece.getNom() == TypePiece.ROI && coord == piece.getCoordonnee()+2) {
-			jouerPetitRoque(piece, p);
-		} else if (piece.getNom() == TypePiece.ROI && coord == piece.getCoordonnee()-2) {
-			jouerGrandRoque(piece, p);
-		} else {
 			p.getPieceCase(piece.getCoordonnee()).setCoordonnee(coord);
 			piece.setaBouge(true);
-			promotion(piece, p);
-		}
-		
 		
 	}
 
@@ -134,18 +139,9 @@ public class Deplacement {
 		
 		Piece tour = p.getPieceCase(roi.getCoordonnee()+3);
 		
-		p.setCaseTableau("   ", tour.getCoordonnee());
-		p.setCaseTableau(tour.getNomPlateau(), tour.getCoordonnee()-2);
+		bougerPiece(roi, roi.getCoordonnee()+2, p);
+		bougerPiece(tour, tour.getCoordonnee()-2, p);
 		
-		roi.setCoordonnee(roi.getCoordonnee()+2);
-		tour.setCoordonnee(tour.getCoordonnee()-2);
-		roi.setaBouge(true);
-		tour.setaBouge(true);
-		
-		p.getPieceCase(roi.getCoordonnee()).setCoordonnee(roi.getCoordonnee()+2);
-		p.getPieceCase(tour.getCoordonnee()).setCoordonnee(tour.getCoordonnee()-2);
-		p.getPieceCase(roi.getCoordonnee()+2).setaBouge(true);
-		p.getPieceCase(tour.getCoordonnee()-2).setaBouge(true);
 		
 	}
 	
@@ -153,18 +149,9 @@ public class Deplacement {
 		
 		Piece tour = p.getPieceCase(roi.getCoordonnee()-4);
 		
-		p.setCaseTableau("   ", tour.getCoordonnee());
-		p.setCaseTableau(tour.getNomPlateau(), tour.getCoordonnee()+3);
+		bougerPiece(roi, roi.getCoordonnee()-2, p);
+		bougerPiece(tour, tour.getCoordonnee()+3, p);
 		
-		roi.setCoordonnee(roi.getCoordonnee()-2);
-		tour.setCoordonnee(tour.getCoordonnee()+3);
-		roi.setaBouge(true);
-		tour.setaBouge(true);
-		
-		p.getPieceCase(roi.getCoordonnee()).setCoordonnee(roi.getCoordonnee()-2);
-		p.getPieceCase(tour.getCoordonnee()).setCoordonnee(tour.getCoordonnee()+3);
-		p.getPieceCase(roi.getCoordonnee()-2).setaBouge(true);
-		p.getPieceCase(tour.getCoordonnee()+3).setaBouge(true);
 	}
 	
 }

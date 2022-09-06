@@ -10,9 +10,9 @@ import fr.echec.classe.jeu.Plateau;
 import fr.echec.enumerateur.CouleursPiece;
 import fr.echec.enumerateur.TypePiece;
 
-public class AnalyseCoupsReglementaires extends AnalysePlaceDisponible {
+public class AnalyseCoupsReglementaires {
 	
-	public Map<TypePiece, int[]> createCoupsTypePiece() { // coup reglementaire par type de pieces
+	public static Map<TypePiece, int[]> createCoupsTypePiece() { // coup reglementaire par type de pieces
 		
 		Map<TypePiece, int[]> coupsTypePiece = new HashMap<TypePiece, int[]>();
 		
@@ -41,7 +41,7 @@ public class AnalyseCoupsReglementaires extends AnalysePlaceDisponible {
 	}
 	
 	
-	protected List<Integer> filtreCoupsReglementairesPion(List<Integer> coupsReglementairesPion, int[] casesDispoBordPlateau, Plateau plateau, Piece piece) {
+	protected static List<Integer> filtreCoupsReglementairesPion(List<Integer> coupsReglementairesPion, int[] casesDispoBordPlateau, Plateau plateau, Piece piece) {
 		
 		// Filtre les coups réglementaires pour le pion selon sa situation (couleur, position, prises...)
 		
@@ -93,8 +93,22 @@ public class AnalyseCoupsReglementaires extends AnalysePlaceDisponible {
 		
 	}
 	
+	protected static List<Integer> filtreCoupsReglementairesTour(List<Integer> coupsReglementairesTour, int[] casesDispoBordPlateau, Plateau plateau, Piece piece) {
+		// Pour éviter un mouvement +7 ou -7 en diagonal
+		if (casesDispoBordPlateau[3] < 7) { // à droite
+			coupsReglementairesTour.remove(Integer.valueOf(7));
+		}
+		if (casesDispoBordPlateau[2] < 7) { // à gauche
+			coupsReglementairesTour.remove(Integer.valueOf(-7));
+		}
+		
+		return coupsReglementairesTour;
+		
+	}
 	
-	protected List<Integer> TrouveCoupsReglementaires(int[] casesDispoBordPlateau, Piece piece, Plateau plateau) {
+	
+	
+	protected static List<Integer> TrouveCoupsReglementaires(int[] casesDispoBordPlateau, Piece piece, Plateau plateau) {
 		
 		Map<TypePiece, int[]> coupsTypePiece = createCoupsTypePiece();
 		
@@ -103,9 +117,11 @@ public class AnalyseCoupsReglementaires extends AnalysePlaceDisponible {
 		for (int coup : coupsTypePiece.get(piece.getNom())) {
 			coupsReglementaires.add(coup);
 		}
-		// On filtre dans le cas du pion
+		// On filtre dans le cas du pion ou la tour 
 		if (piece.getNom() == TypePiece.PION) {
 			filtreCoupsReglementairesPion(coupsReglementaires, casesDispoBordPlateau, plateau, piece);
+		} else if (piece.getNom() == TypePiece.TOUR) {
+			filtreCoupsReglementairesTour(coupsReglementaires, casesDispoBordPlateau, plateau, piece);
 		}
 		
 		return coupsReglementaires;	

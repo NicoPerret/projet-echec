@@ -7,9 +7,9 @@ import fr.echec.classe.jeu.Piece;
 import fr.echec.classe.jeu.Plateau;
 import fr.echec.enumerateur.TypePiece;
 
-public class AnalysePlaceDisponible extends AnalysePositionPiece {
+public class AnalysePlaceDisponible {
 
-	protected List<Integer> placeDispoStandard(int[] casesDispoBordPlateau, Plateau plateau, Piece piece) {
+	protected static List<Integer> placeDispoStandard(int[] casesDispoBordPlateau, Plateau plateau, Piece piece) {
 
 		int[] placeDispo = new int[8];
 
@@ -20,7 +20,7 @@ public class AnalysePlaceDisponible extends AnalysePositionPiece {
 		List<Integer> destinationsDispo = new ArrayList<>();
 
 		for (int i = 0; i < 8; i++) {
-			placeDispo[i] = trouvePieceVoisineDirection(directions[i], casesDispoBordPlateau[i], plateau, piece);
+			placeDispo[i] = AnalysePositionPiece.trouvePieceVoisineDirection(directions[i], casesDispoBordPlateau[i], plateau, piece);
 		}
 
 		for (int i = 0; i < 8; i++) {
@@ -33,7 +33,7 @@ public class AnalysePlaceDisponible extends AnalysePositionPiece {
 
 	}
 
-	protected List<Integer> placeDispoCavalier(int[] casesDispoBordPlateau, Plateau plateau, Piece piece) {
+	protected static List<Integer> placeDispoCavalier(int[] casesDispoBordPlateau, Plateau plateau, Piece piece) {
 		// Fonction spéciale pour les mouvements du cavalier
 
 		// mvts du cavalier : {6,10,15,17,-6,-10,-15,-17}
@@ -97,7 +97,7 @@ public class AnalysePlaceDisponible extends AnalysePositionPiece {
 	}
 	
 	
-	protected List<Integer> destinationsDispoGlobal(int[] casesDispoBordPlateau, boolean specifiquePiece, Plateau plateau, Piece piece) {
+	protected static List<Integer> destinationsDispoGlobal(int[] casesDispoBordPlateau, boolean specifiquePiece, Plateau plateau, Piece piece) {
 		
 		List<Integer> destinationsDispo = new ArrayList<>();
 		

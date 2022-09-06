@@ -10,13 +10,13 @@ import fr.echec.classe.jeu.Plateau;
 import fr.echec.enumerateur.CouleursPiece;
 import fr.echec.enumerateur.TypePiece;
 
-public class GestionEchec extends AnalyseCoupsReglementaires {
+public class GestionEchec {
 	
-	private boolean surMemeLigne(int coordRoi, int diffCoord) {
+	private static boolean surMemeLigne(int coordRoi, int diffCoord) {
 		return ((coordRoi + diffCoord) / 8 == coordRoi / 8);
 	}
 	
-	public boolean mvtEchec(Plateau plateau, Piece piece, int coup) {
+	public static boolean mvtEchec(Plateau plateau, Piece piece, int coup) {
 		
 		boolean mvtImpossibleEchec = false;
 		
@@ -45,7 +45,7 @@ public class GestionEchec extends AnalyseCoupsReglementaires {
 		
 		Deplacement dpltClasse = new Deplacement();
 		if (coup != 0) {
-			dpltClasse.deplacement(pieceSimul, coup, plateauSimul);
+			dpltClasse.bougerPiece(pieceSimul, pieceSimul.getCoordonnee()+coup, plateauSimul);
 		}
 		
 		// On repère le roi de la même couleur de la pièce.
@@ -57,10 +57,10 @@ public class GestionEchec extends AnalyseCoupsReglementaires {
 		
 		// On repère toutes les cases où une pièce adverse pourrait atteindre le roi.
 		
-		int[] roiCasesDispoBordPlateau = trouveCasesDispoBordPlateau(roi);
+		int[] roiCasesDispoBordPlateau = AnalysePositionPiece.trouveCasesDispoBordPlateau(roi);
 		
 		List<Integer> zoneDeRisque = 
-				destinationsDispoGlobal(roiCasesDispoBordPlateau, true ,plateauSimul, roi);
+				AnalysePlaceDisponible.destinationsDispoGlobal(roiCasesDispoBordPlateau, true ,plateauSimul, roi);
 		
 		// On fait la liste des pièces adverses effectivement présentes sur ces cases.
 		
@@ -75,7 +75,7 @@ public class GestionEchec extends AnalyseCoupsReglementaires {
 		
 		// Pour chaque pièce adverse trouvée, on regarde si elle peut effectivement atteindre le roi selon son type :
 		
-		Map<TypePiece, int[]> coupsTypePiece = createCoupsTypePiece();
+		Map<TypePiece, int[]> coupsTypePiece = AnalyseCoupsReglementaires.createCoupsTypePiece();
 		
 		for (Piece pieceAdverse : listePiecesAdversesDangereuses) {
 			
@@ -155,7 +155,7 @@ public class GestionEchec extends AnalyseCoupsReglementaires {
 		
 	}
 	
-	public boolean isEchec(Plateau plateau, CouleursPiece couleur) {
+	public static boolean isEchec(Plateau plateau, CouleursPiece couleur) {
 		// Renvoie si le joueur actuel est en échec
 		
 		// On repère la position du roi
@@ -177,7 +177,7 @@ public class GestionEchec extends AnalyseCoupsReglementaires {
 		
 	}
 	
-	public boolean casePlateauEchec(Plateau plateau, int casePlateau, CouleursPiece couleur) {
+	public static boolean casePlateauEchec(Plateau plateau, int casePlateau, CouleursPiece couleur) {
 		// Renvoie si une case du plateau donnée met le roi du joueur en échec
 		
 		Piece roi = null;
