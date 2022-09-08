@@ -12,29 +12,32 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import fr.echec.classe.historique.NotationCoup;
+import fr.echec.classe.jeu.Piece;
 import fr.echec.classe.jeu.Plateau;
 import fr.echec.classe.mouvements.Deplacement;
+import fr.echec.service.ProblemeService;
 
 @Entity
 @Table(name = "probleme")
 public class Probleme {
-	
+
+	private ProblemeService srvProbleme = new ProblemeService();
 
 	// VARIABLES from BDD
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "prob_id")
 	private int id;
-	
-	@Column (name = "prob_fen_depart",length = 100, nullable = false)
+
+	@Column(name = "prob_fen_depart", length = 100, nullable = false)
 	private String fenDepart;
-	
-	@Column (name = "prob_liste_deplacement",length = 100)
+
+	@Column(name = "prob_liste_deplacement", length = 100)
 	private String listeDeplacement;
-	
+
 	@Column(name = "prob_traitaublanc", nullable = false)
 	private boolean traitAuBlanc;
-	
+
 	@Column(name = "prob_difficulte", nullable = false)
 	private int difficulte;
 
@@ -84,16 +87,20 @@ public class Probleme {
 
 	// METHODES
 
-	// Jouer les coups par l'ordi
-	
-	public void coupOrdi() {
+	// Jouer les coups par l'ordi découper le string avec "", upperCase, convertir        //PROBLEMES : tailles des problemes inconstant (4, 5, 6 déplacements)
+	// en 64, prendre les 2 coordonnées et faire déplacement
+
+	public void coupOrdi(NotationCoup nt, Piece piece, Plateau p) {
 		Deplacement d = new Deplacement();
-		List coupOrdi = new ArrayList(); 
-		for(int i : listeDeplacement.length()) { 
-			if(coupOrdi[i]==){
-			// jouer le coup après le "/" converti en fen;
-			d.deplacement(p.getPieceCase(coorDepart), coorArrivee, p);
-		}
+		String str = listeDeplacement.toUpperCase();
+		String[] words = str.split(" ");
+		for (String word : words) {
+	    nt.conversionLettreTo64(word);
+	    System.out.println(word);    
+	}
+		int coorDepart = 0;
+		int coorArrivee = 0;
+		d.deplacement(p.getPieceCase(coorDepart), coorArrivee, p);
 	}
 	
 	// Verif coup joué est le bon
@@ -114,6 +121,7 @@ public class Probleme {
 		}
   else { System.out.println("Ce n'est pas le bon coup! Reessayer");
 	  }
-//	}
 	
-}}
+}
+	}
+
