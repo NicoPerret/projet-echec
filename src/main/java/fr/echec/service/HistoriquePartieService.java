@@ -2,23 +2,28 @@ package fr.echec.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import fr.echec.classe.historique.HistoriquePartie;
 import fr.echec.exception.HistoriquePartieNotFoundException;
 import fr.echec.exception.IdNegatifException;
 import fr.echec.repository.IHistoriquePartie;
-import fr.echec.repository.jpa.HistoriquePartieJpa;
 
+@Service
 public class HistoriquePartieService {
-	private IHistoriquePartie repoPartie = new HistoriquePartieJpa();
+	@Autowired
+	private IHistoriquePartie repoPartie;
 
-	public HistoriquePartie findById(int id) throws IdNegatifException, HistoriquePartieNotFoundException {
+	public Optional<HistoriquePartie> findById(int id) throws IdNegatifException, HistoriquePartieNotFoundException {
 
 		if (id <= 0) {
 			throw new IdNegatifException();
 		}
 
-		HistoriquePartie laPartie = repoPartie.findById(id);
+		Optional<HistoriquePartie> laPartie = repoPartie.findById(id);
 
 		if (laPartie == null) {
 			throw new HistoriquePartieNotFoundException(); //

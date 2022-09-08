@@ -1,21 +1,18 @@
 package fr.echec.classe.probleme;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 import fr.echec.classe.historique.NotationCoup;
-import fr.echec.classe.jeu.Piece;
 import fr.echec.classe.jeu.Plateau;
 import fr.echec.classe.mouvements.Deplacement;
-import fr.echec.service.ProblemeService;
 
 @Entity
 @Table(name = "probleme")
@@ -41,7 +38,9 @@ public class Probleme {
 	@Column(name = "prob_difficulte", nullable = false)
 	private int difficulte;
 
-	protected Deplacement d = new Deplacement();
+	@Transient
+	@Autowired
+	protected Deplacement d ;
 	
 // GETTERS ET SETTERS 
 

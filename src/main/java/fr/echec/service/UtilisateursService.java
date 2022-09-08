@@ -3,17 +3,17 @@ package fr.echec.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.echec.classe.historique.HistoriquePartie;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import fr.echec.classe.joueur.Utilisateur;
 import fr.echec.exception.HistoriquePartieNotFoundException;
 import fr.echec.exception.IdNegatifException;
-import fr.echec.repository.IHistoriquePartie;
 import fr.echec.repository.IUtilisateurs;
-import fr.echec.repository.jpa.HistoriquePartieJpa;
-import fr.echec.repository.jpa.UtilisateursJpa;
-
+@Service
 public class UtilisateursService {
-	private IUtilisateurs repoUtilisateur = new UtilisateursJpa();
+	@Autowired
+	private IUtilisateurs repoUtilisateur ;
 
 	public Utilisateur findById(int id) throws IdNegatifException, HistoriquePartieNotFoundException {
 

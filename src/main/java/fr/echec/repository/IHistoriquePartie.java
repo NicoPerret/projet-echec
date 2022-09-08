@@ -1,7 +1,9 @@
 package fr.echec.repository;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+
 import fr.echec.classe.historique.HistoriquePartie;
 
-public interface IHistoriquePartie extends IRepository<HistoriquePartie, Integer> {
+public interface IHistoriquePartie extends 	JpaRepository<HistoriquePartie, Integer> {
 
 }

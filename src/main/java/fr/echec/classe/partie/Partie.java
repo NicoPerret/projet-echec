@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import fr.echec.application.FinPartie;
 import fr.echec.classe.historique.HistoriquePartie;
 import fr.echec.classe.historique.NotationCoup;
@@ -52,6 +54,13 @@ public class Partie {
 	private boolean draw = false;
 
 	protected FinPartie finPartie = new FinPartie();
+	
+	@Autowired
+	HistoriquePartieService srvHistPartie;
+	
+	@Autowired
+	UtilisateursService srvUti ;
+
 
 	// GETTERS AND SETTERS
 
@@ -169,12 +178,13 @@ public class Partie {
 	}
 
 // Constructeur 
-
-	public Partie(ParametresPartie param) {
+	
+	public void setParam(ParametresPartie param) {
 		this.chronoJ1 = param.getChrono();
 		this.chronoJ2 = param.getChrono();
 		this.plateau = fen.creationPlateau(param.getFen());
 	}
+
 
 // METHODES 
 
@@ -442,9 +452,7 @@ public class Partie {
 	}
 
 	public void savePartieEtHistorique() throws HistoriquePartieNotFoundException {
-		HistoriquePartieService srvHistPartie = new HistoriquePartieService();
-		UtilisateursService srvUti = new UtilisateursService();
-
+	
 		this.getH().setDate(LocalDateTime.now());
 		this.getH().setJ1(j1);
 		this.getH().setJ2(j2);
