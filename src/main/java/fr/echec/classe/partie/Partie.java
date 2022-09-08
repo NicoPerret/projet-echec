@@ -205,10 +205,10 @@ public class Partie {
 			this.chronoJ2.start();
 
 		}
-		System.out.println("Taper DRAW pour demander un match nul /  FF pour abbandonner");
-		System.out.println("Saisir une piece : ");
+		
 		while (true) {
-
+			System.out.println("Taper DRAW pour demander un match nul /  FF pour abbandonner");
+			System.out.println("Saisir une piece : ");
 			String saisie = sc.nextLine();
 
 			coordDepart = nt.conversionLettreTo64(saisie);
@@ -250,6 +250,9 @@ public class Partie {
 				if (saisie.equals("1")) {
 					draw = true; 
 					break;
+				}
+				else {
+					System.out.println("Draw refusé");
 				}
 				
 			} 

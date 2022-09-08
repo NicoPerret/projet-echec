@@ -66,8 +66,8 @@ public class JcJ extends Partie {
 
 		// System.out.println(" Ancien Elo Joueur A : " + ra);
 		// System.out.println(" Ancien Elo Joueur B : " + rb);
-		// System.out.println("Changement A : " + differentielA);
-		// System.out.println("Changement B : " + differentielB);
+//		 System.out.println("Changement A : " + differentielA);
+//		 System.out.println("Changement B : " + differentielB);
 		System.out.println(" Nouveau Elo Joueur A : " + joueur1.getElo());
 		System.out.println(" Nouveau Elo Joueur B : " + joueur2.getElo());
 

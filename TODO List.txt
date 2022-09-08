@@ -1,7 +1,7 @@
 pb : jouer les coups par l'ordi
 pb : verif coup jouer est le bon
 
-prise passant
+changer conversionx2 en static
 
 
 html accueil

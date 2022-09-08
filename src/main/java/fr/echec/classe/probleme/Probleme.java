@@ -21,7 +21,7 @@ import fr.echec.service.ProblemeService;
 @Table(name = "probleme")
 public class Probleme {
 
-	private ProblemeService srvProbleme = new ProblemeService();
+//	private ProblemeService srvProbleme = new ProblemeService();
 
 	// VARIABLES from BDD
 	@Id
@@ -33,7 +33,7 @@ public class Probleme {
 	private String fenDepart;
 
 	@Column(name = "prob_liste_deplacement", length = 100)
-	private String listeDeplacement;
+	private String listeDeplacements;
 
 	@Column(name = "prob_traitaublanc", nullable = false)
 	private boolean traitAuBlanc;
@@ -41,6 +41,8 @@ public class Probleme {
 	@Column(name = "prob_difficulte", nullable = false)
 	private int difficulte;
 
+	protected Deplacement d = new Deplacement();
+	
 // GETTERS ET SETTERS 
 
 	public int getId() {
@@ -60,11 +62,11 @@ public class Probleme {
 	}
 
 	public String getListeDeplacement() {
-		return listeDeplacement;
+		return listeDeplacements;
 	}
 
-	public void setListeDeplacement(String listeDeplacement) {
-		this.listeDeplacement = listeDeplacement;
+	public void setListeDeplacement(String listeDeplacements) {
+		this.listeDeplacements = listeDeplacements;
 	}
 
 	public boolean isTraitAuBlanc() {
@@ -85,43 +87,44 @@ public class Probleme {
 
 	// CONSTRUCTEUR
 
+	// construire plateau en meme temps
+	
 	// METHODES
+//	String[] tabCoups = listeDeplacement.split(" ");
+//	for(int i = 0; i < tabCoups.size(); i++) {
+//		if (i%2 ==0) { //coup ordi
+//			coupOrdi(plateau, tabCoups[i]);
+//		}else { // coup joueur
+//			seleciontPiecePb()
+//			while()
+//				verifBonCoup(
+//		}
+//	}
 
 	// Jouer les coups par l'ordi découper le string avec "", upperCase, convertir        //PROBLEMES : tailles des problemes inconstant (4, 5, 6 déplacements)
 	// en 64, prendre les 2 coordonnées et faire déplacement
 
-	public void coupOrdi(NotationCoup nt, Piece piece, Plateau p) {
-		Deplacement d = new Deplacement();
-		String str = listeDeplacement.toUpperCase();
-		String[] words = str.split(" ");
-		for (String word : words) {
-	    nt.conversionLettreTo64(word);
-	    System.out.println(word);    
-	}
-		int coorDepart = 0;
-		int coorArrivee = 0;
-		d.deplacement(p.getPieceCase(coorDepart), coorArrivee, p);
+	public void coupOrdi(Plateau p, String coupAJouer) {
+		NotationCoup nt = new NotationCoup(0,0);
+		int coorDepart = nt.conversionLettreTo64(coupAJouer.substring(0, 2));
+		int coorArrivee = nt.conversionLettreTo64(coupAJouer.substring(2, 4));
+		this.d.deplacement(p.getPieceCase(coorDepart), coorArrivee, p);
 	}
 	
 	// Verif coup joué est le bon
 	
-	public void verifBonCoup(NotationCoup coupJoueur, Plateau p) {
-	Deplacement d = new Deplacement();
-	Scanner sc = new Scanner(System.in);
-	System.out.println("Saisissez une pièce");
-	String saisie = sc.nextLine();
-	int coorDepart = coupJoueur.conversionLettreTo64(saisie);
-	System.out.println("Déplacer la piece");
-	String saisie2 = sc.nextLine();
-	int coorArrivee = coupJoueur.conversionLettreTo64(saisie2);
-	
-	NotationCoup coupEnregistre = new NotationCoup(0, 0); // remplacer les 0 par les coordonnées enregistrées dans la BDD problème
-		if (coupJoueur.getCoordArriveeStandard().equals(coupEnregistre.getCoordArriveeStandard())== true) {
-			d.deplacement(p.getPieceCase(coorDepart), coorArrivee, p);
+	public boolean verifBonCoup(String coupJoueur, Plateau p, String coupAJouer) {
+		NotationCoup nt = new NotationCoup(0,0);
+		if (coupJoueur.equals(coupAJouer)) {
+			this.d.deplacement(	p.getPieceCase(nt.conversionLettreTo64(coupJoueur.substring(0, 2))),
+							nt.conversionLettreTo64(coupJoueur.substring(2, 4))
+							,p);
+			return true;
 		}
-  else { System.out.println("Ce n'est pas le bon coup! Reessayer");
-	  }
-	
-}
+		else {
+			System.out.println("Ce n'est pas le bon coup! Reessayer");
+			return false;
+		}
 	}
+}
 
