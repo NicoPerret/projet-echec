@@ -87,19 +87,22 @@ public class Probleme {
 
 	// CONSTRUCTEUR
 
-	// construire plateau en meme temps
+	Plateau p = new Plateau();
 	
 	// METHODES
-//	String[] tabCoups = listeDeplacement.split(" ");
-//	for(int i = 0; i < tabCoups.size(); i++) {
-//		if (i%2 ==0) { //coup ordi
-//			coupOrdi(plateau, tabCoups[i]);
-//		}else { // coup joueur
-//			seleciontPiecePb()
-//			while()
-//				verifBonCoup(
-//		}
-//	}
+	
+	
+	String[] tabCoups = listeDeplacements.split(" ");
+	for(int i = 0; i < tabCoups.size(); i++) {
+		if (i%2 ==0) { 								//tour de l'ordi
+			coupOrdi(p, tabCoups[i]);
+		}else { 									//tour du joueur
+			String coupJoueur.selectionPieceProbleme();
+			coupJoueur.jouerPieceProbleme();
+			while(true) {
+				verifBonCoup(coupJoueur, p, tabCoups[i]);
+		}
+	}}
 
 	// Jouer les coups par l'ordi découper le string avec "", upperCase, convertir        //PROBLEMES : tailles des problemes inconstant (4, 5, 6 déplacements)
 	// en 64, prendre les 2 coordonnées et faire déplacement
@@ -126,5 +129,5 @@ public class Probleme {
 			return false;
 		}
 	}
-}
+}}
 
