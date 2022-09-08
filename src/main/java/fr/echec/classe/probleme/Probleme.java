@@ -14,6 +14,7 @@ import javax.persistence.Table;
 import fr.echec.classe.historique.NotationCoup;
 import fr.echec.classe.jeu.Piece;
 import fr.echec.classe.jeu.Plateau;
+import fr.echec.classe.mouvements.CoupsPossibles;
 import fr.echec.classe.mouvements.Deplacement;
 import fr.echec.service.ProblemeService;
 
@@ -42,6 +43,10 @@ public class Probleme {
 	private int difficulte;
 
 	protected Deplacement d = new Deplacement();
+	protected Plateau p;
+	protected List<Integer> listeCoup = new ArrayList<>();
+	protected CoupsPossibles coupPossible = new CoupsPossibles();
+	protected int coordDepart;
 	
 // GETTERS ET SETTERS 
 
@@ -86,7 +91,6 @@ public class Probleme {
 	}
 
 	// CONSTRUCTEUR
-
 	// construire plateau en meme temps
 	
 	// METHODES
@@ -104,7 +108,7 @@ public class Probleme {
 	// Jouer les coups par l'ordi découper le string avec "", upperCase, convertir        //PROBLEMES : tailles des problemes inconstant (4, 5, 6 déplacements)
 	// en 64, prendre les 2 coordonnées et faire déplacement
 
-	public void coupOrdi(Plateau p, String coupAJouer) {
+	public void coupOrdi(String coupAJouer) {
 		NotationCoup nt = new NotationCoup(0,0);
 		int coorDepart = nt.conversionLettreTo64(coupAJouer.substring(0, 2));
 		int coorArrivee = nt.conversionLettreTo64(coupAJouer.substring(2, 4));
@@ -113,7 +117,7 @@ public class Probleme {
 	
 	// Verif coup joué est le bon
 	
-	public boolean verifBonCoup(String coupJoueur, Plateau p, String coupAJouer) {
+	public boolean verifBonCoup(String coupJoueur, String coupAJouer) {
 		NotationCoup nt = new NotationCoup(0,0);
 		if (coupJoueur.equals(coupAJouer)) {
 			this.d.deplacement(	p.getPieceCase(nt.conversionLettreTo64(coupJoueur.substring(0, 2))),
@@ -124,6 +128,80 @@ public class Probleme {
 		else {
 			System.out.println("Ce n'est pas le bon coup! Reessayer");
 			return false;
+		}
+	}
+	
+	public void selectionPieceProbleme() {
+		Scanner sc;
+		while (true) {
+			System.out.println("Saisir une piece : ");
+
+			String saisie = sc.nextLine();
+
+			int coordDepart = NotationCoup.conversionLettreTo64(saisie);
+
+			if (p.getPieceCase(coordDepart) != null) {
+				listeCoup = coupPossible.trouveDestinationsPossibles(p, p.getPieceCase(coordDepart));
+
+				if (listeCoup.isEmpty() == false) {
+					System.out.println("Coup(s) possible(s) : ");
+					NotationCoup.setCoordDepartStandard(saisie);
+					for (Integer i : listeCoup) {
+						System.out.println(NotationCoup.conversion64ToLettre(i));
+					}
+					break;
+				} else {
+					System.out.println("Aucun coup possible pour cette piece");
+				}
+			}
+			else {
+				System.out.println("Mauvaise saisie : Piece non trouvée ou mauvaise couleur ");
+			}
+
+		}
+
+	}
+	
+	public void jouerPieceProbleme() {
+		Scanner sc;
+		System.out.println("Saisir 0 pour changer de piece");
+
+		System.out.println("Déplacer la piece : ");
+
+		boolean verifIfSaisieCoupPossible = false;
+		boolean verifChangerPiece = false;
+		int coordArrivee = 0;
+
+		while (verifIfSaisieCoupPossible == false) {
+
+			String saisie = sc.nextLine();
+			coordArrivee = NotationCoup.conversionLettreTo64(saisie);
+
+			for (Integer i : listeCoup) {
+
+				if (coordArrivee == i) {
+
+					NotationCoup.setCoordArriveeStandard(saisie);
+					d.deplacement(p.getPieceCase(coordDepart), coordArrivee, p);
+					verifIfSaisieCoupPossible = true;
+					verifChangerPiece = true;
+
+					break;
+				}
+			}
+
+			if (verifIfSaisieCoupPossible == false) {
+				if (saisie.equals("0")) {
+					break;
+				} else {
+
+					System.out.println("Veuillez saisir un coup dans la liste ci-dessus");
+					System.out.println("Déplacement illégal");
+				}
+			}
+		}
+		if (verifChangerPiece) {
+			d.promotion(p.getPieceCase(coordArrivee), p);
 		}
 	}
 }

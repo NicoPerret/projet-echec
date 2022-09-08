@@ -1,7 +1,12 @@
 pb : jouer les coups par l'ordi
-pb : verif coup jouer est le bon
 
-changer conversionx2 en static
+changer conversionx2 en static notation coup
+
+spring
+
+jouerPiecePb
+
+
 
 
 html accueil
