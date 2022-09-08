@@ -2,22 +2,26 @@ package fr.echec.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import fr.echec.classe.probleme.Probleme;
 import fr.echec.exception.IdNegatifException;
 import fr.echec.exception.ProblemeNotFoundException;
 import fr.echec.repository.IProbleme;
-import fr.echec.repository.jpa.ProblemeJpa;
-
+@Service
 public class ProblemeService {
-	private IProbleme repoProbleme = new ProblemeJpa();
+	@Autowired
+	private IProbleme repoProbleme;
 
-	public Probleme findById(int id) throws IdNegatifException, ProblemeNotFoundException {
+	public Optional<Probleme> findById(int id) throws IdNegatifException, ProblemeNotFoundException {
 		if (id <= 0) {
 			throw new IdNegatifException();
 
 		}
-		Probleme leProbleme = repoProbleme.findById(id);
+		Optional<Probleme> leProbleme = repoProbleme.findById(id);
 
 		if (leProbleme == null) {
 			throw new ProblemeNotFoundException(); //

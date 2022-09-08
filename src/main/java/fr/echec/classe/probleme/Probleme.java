@@ -2,7 +2,6 @@ package fr.echec.classe.probleme;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,13 +9,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 import fr.echec.classe.historique.NotationCoup;
-import fr.echec.classe.jeu.Piece;
 import fr.echec.classe.jeu.Plateau;
 import fr.echec.classe.mouvements.CoupsPossibles;
 import fr.echec.classe.mouvements.Deplacement;
-import fr.echec.service.ProblemeService;
 
 @Entity
 @Table(name = "probleme")
@@ -42,12 +42,15 @@ public class Probleme {
 	@Column(name = "prob_difficulte", nullable = false)
 	private int difficulte;
 
-	protected Deplacement d = new Deplacement();
 	protected Plateau p;
 	protected List<Integer> listeCoup = new ArrayList<>();
 	protected CoupsPossibles coupPossible = new CoupsPossibles();
 	protected int coordDepart;
-	
+
+	@Transient
+	@Autowired
+	protected Deplacement d;
+
 // GETTERS ET SETTERS 
 
 	public int getId() {
@@ -92,7 +95,7 @@ public class Probleme {
 
 	// CONSTRUCTEUR
 	// construire plateau en meme temps
-	
+
 	// METHODES
 //	String[] tabCoups = listeDeplacement.split(" ");
 //	for(int i = 0; i < tabCoups.size(); i++) {
@@ -105,32 +108,31 @@ public class Probleme {
 //		}
 //	}
 
-	// Jouer les coups par l'ordi découper le string avec "", upperCase, convertir        //PROBLEMES : tailles des problemes inconstant (4, 5, 6 déplacements)
+	// Jouer les coups par l'ordi découper le string avec "", upperCase, convertir
+	// //PROBLEMES : tailles des problemes inconstant (4, 5, 6 déplacements)
 	// en 64, prendre les 2 coordonnées et faire déplacement
 
 	public void coupOrdi(String coupAJouer) {
-		NotationCoup nt = new NotationCoup(0,0);
+		NotationCoup nt = new NotationCoup(0, 0);
 		int coorDepart = nt.conversionLettreTo64(coupAJouer.substring(0, 2));
 		int coorArrivee = nt.conversionLettreTo64(coupAJouer.substring(2, 4));
 		this.d.deplacement(p.getPieceCase(coorDepart), coorArrivee, p);
 	}
-	
+
 	// Verif coup joué est le bon
-	
+
 	public boolean verifBonCoup(String coupJoueur, String coupAJouer) {
-		NotationCoup nt = new NotationCoup(0,0);
+		NotationCoup nt = new NotationCoup(0, 0);
 		if (coupJoueur.equals(coupAJouer)) {
-			this.d.deplacement(	p.getPieceCase(nt.conversionLettreTo64(coupJoueur.substring(0, 2))),
-							nt.conversionLettreTo64(coupJoueur.substring(2, 4))
-							,p);
+			this.d.deplacement(p.getPieceCase(nt.conversionLettreTo64(coupJoueur.substring(0, 2))),
+					nt.conversionLettreTo64(coupJoueur.substring(2, 4)), p);
 			return true;
-		}
-		else {
+		} else {
 			System.out.println("Ce n'est pas le bon coup! Reessayer");
 			return false;
 		}
 	}
-	
+
 	public void selectionPieceProbleme() {
 		Scanner sc;
 		while (true) {
@@ -153,15 +155,14 @@ public class Probleme {
 				} else {
 					System.out.println("Aucun coup possible pour cette piece");
 				}
-			}
-			else {
+			} else {
 				System.out.println("Mauvaise saisie : Piece non trouvée ou mauvaise couleur ");
 			}
 
 		}
 
 	}
-	
+
 	public void jouerPieceProbleme() {
 		Scanner sc;
 		System.out.println("Saisir 0 pour changer de piece");
@@ -205,4 +206,3 @@ public class Probleme {
 		}
 	}
 }
-

@@ -1,20 +1,19 @@
 package fr.echec.classe.partie;
 
+import org.springframework.stereotype.Service;
+
 import fr.echec.classe.joueur.Utilisateur;
 import fr.echec.classe.parametres.ParametresPartie;
 import fr.echec.enumerateur.CouleursPiece;
 
-
+@Service
 public class JcJ extends Partie {
 
 	// VARIABLES
 	protected CouleursPiece couleurJoueur1;
 	protected CouleursPiece couleurJoueur2;
 
-	// constructeur
-	public JcJ(ParametresPartie param) {
-		super(param);
-	}
+
 	// Methodes 
 	
 	public void calculElo(Utilisateur joueur1, Utilisateur joueur2, double sa, double sb) {
