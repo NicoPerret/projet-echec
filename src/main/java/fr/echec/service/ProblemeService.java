@@ -16,12 +16,12 @@ public class ProblemeService {
 	@Autowired
 	private IProbleme repoProbleme;
 
-	public Optional<Probleme> findById(int id) throws IdNegatifException, ProblemeNotFoundException {
+	public Probleme findById(int id) throws IdNegatifException, ProblemeNotFoundException {
 		if (id <= 0) {
 			throw new IdNegatifException();
 
 		}
-		Optional<Probleme> leProbleme = repoProbleme.findById(id);
+		Probleme leProbleme = repoProbleme.findById(id);
 
 		if (leProbleme == null) {
 			throw new ProblemeNotFoundException(); //

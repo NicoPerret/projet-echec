@@ -135,6 +135,7 @@ public class Probleme {
 		else if (coupAJouer.equals("O-O-O")) {
 			if(traitAuBlanc) {
 				roque.jouerGrandRoque(p.getPieceCase(3), p);
+
 			}else {
 				roque.jouerGrandRoque(p.getPieceCase(59), p);
 			}
