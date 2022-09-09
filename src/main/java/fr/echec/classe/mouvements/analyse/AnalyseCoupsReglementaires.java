@@ -1,4 +1,4 @@
-package fr.echec.classe.mouvements;
+package fr.echec.classe.mouvements.analyse;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,7 +12,7 @@ import fr.echec.enumerateur.TypePiece;
 
 public class AnalyseCoupsReglementaires {
 
-	public static Map<TypePiece, int[]> createCoupsTypePiece() { // coup reglementaire par type de pieces
+	public Map<TypePiece, int[]> createCoupsTypePiece() { // coup reglementaire par type de pieces
 
 		Map<TypePiece, int[]> coupsTypePiece = new HashMap<TypePiece, int[]>();
 
@@ -32,7 +32,7 @@ public class AnalyseCoupsReglementaires {
 
 	}
 
-	protected static List<Integer> filtreCoupsReglementairesPion(List<Integer> coupsReglementairesPion, int[] casesDispoBordPlateau, Plateau plateau, Piece piece) {
+	protected List<Integer> filtreCoupsReglementairesPion(List<Integer> coupsReglementairesPion, int[] casesDispoBordPlateau, Plateau plateau, Piece piece) {
 		
 		// Filtre les coups réglementaires pour le pion selon sa situation (couleur, position, prises...)
 		
@@ -118,7 +118,7 @@ public class AnalyseCoupsReglementaires {
 		
 	}
 
-	protected static List<Integer> filtreCoupsReglementairesTour(List<Integer> coupsReglementairesTour,
+	protected List<Integer> filtreCoupsReglementairesTour(List<Integer> coupsReglementairesTour,
 			int[] casesDispoBordPlateau, Plateau plateau, Piece piece) {
 		// Pour éviter un mouvement +7 ou -7 en diagonal
 		if (casesDispoBordPlateau[3] < 7) { // à droite
@@ -132,7 +132,7 @@ public class AnalyseCoupsReglementaires {
 
 	}
 
-	protected static List<Integer> TrouveCoupsReglementaires(int[] casesDispoBordPlateau, Piece piece,
+	protected List<Integer> TrouveCoupsReglementaires(int[] casesDispoBordPlateau, Piece piece,
 			Plateau plateau) {
 
 		Map<TypePiece, int[]> coupsTypePiece = createCoupsTypePiece();

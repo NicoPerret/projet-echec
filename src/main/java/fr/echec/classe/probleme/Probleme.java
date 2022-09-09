@@ -1,21 +1,16 @@
 package fr.echec.classe.probleme;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import fr.echec.classe.historique.NotationCoup;
-import fr.echec.classe.jeu.Piece;
 import fr.echec.classe.jeu.Plateau;
-import fr.echec.classe.mouvements.Deplacement;
-import fr.echec.service.ProblemeService;
+import fr.echec.classe.mouvements.deplacement.Deplacement;
 
 @Entity
 @Table(name = "probleme")
@@ -40,7 +35,8 @@ public class Probleme {
 
 	@Column(name = "prob_difficulte", nullable = false)
 	private int difficulte;
-
+	
+	@Transient
 	protected Deplacement d = new Deplacement();
 	
 // GETTERS ET SETTERS 
@@ -105,19 +101,17 @@ public class Probleme {
 	// en 64, prendre les 2 coordonnées et faire déplacement
 
 	public void coupOrdi(Plateau p, String coupAJouer) {
-		NotationCoup nt = new NotationCoup(0,0);
-		int coorDepart = nt.conversionLettreTo64(coupAJouer.substring(0, 2));
-		int coorArrivee = nt.conversionLettreTo64(coupAJouer.substring(2, 4));
+		int coorDepart = NotationCoup.conversionLettreTo64(coupAJouer.substring(0, 2));
+		int coorArrivee = NotationCoup.conversionLettreTo64(coupAJouer.substring(2, 4));
 		this.d.deplacement(p.getPieceCase(coorDepart), coorArrivee, p);
 	}
 	
 	// Verif coup joué est le bon
 	
 	public boolean verifBonCoup(String coupJoueur, Plateau p, String coupAJouer) {
-		NotationCoup nt = new NotationCoup(0,0);
 		if (coupJoueur.equals(coupAJouer)) {
-			this.d.deplacement(	p.getPieceCase(nt.conversionLettreTo64(coupJoueur.substring(0, 2))),
-							nt.conversionLettreTo64(coupJoueur.substring(2, 4))
+			this.d.deplacement(	p.getPieceCase(NotationCoup.conversionLettreTo64(coupJoueur.substring(0, 2))),
+							NotationCoup.conversionLettreTo64(coupJoueur.substring(2, 4))
 							,p);
 			return true;
 		}

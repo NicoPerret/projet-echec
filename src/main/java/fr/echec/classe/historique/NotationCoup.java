@@ -73,7 +73,7 @@ public class NotationCoup {
 
 	// Conversion du format 0-63 dans le format A1-H8
 	
-	public String conversion64ToLettre(int coordonnee64) {
+	public static String conversion64ToLettre(int coordonnee64) {
 		String coordonneeStandard = "";
 
 		String[] listeLignes = new String[] { "A", "B", "C", "D", "E", "F", "G", "H" };
@@ -81,7 +81,7 @@ public class NotationCoup {
 		return coordonneeStandard;
 	}
 	
-	public int conversionLettreTo64(String coordonneeLettre) {
+	public static int conversionLettreTo64(String coordonneeLettre) {
 		int coordonneeStandard = 0;
 		
 		if (coordonneeLettre.length() != 2) {
