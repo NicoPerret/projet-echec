@@ -1,4 +1,4 @@
-package fr.echec.classe.mouvements;
+package fr.echec.classe.mouvements.analyse;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -7,16 +7,21 @@ import java.util.Map;
 
 import fr.echec.classe.jeu.Piece;
 import fr.echec.classe.jeu.Plateau;
+import fr.echec.classe.mouvements.deplacement.Deplacement;
 import fr.echec.enumerateur.CouleursPiece;
 import fr.echec.enumerateur.TypePiece;
 
 public class GestionEchec {
 	
-	private static boolean surMemeLigne(int coordRoi, int diffCoord) {
+	private AnalysePositionPiece posPiece = new AnalysePositionPiece();
+	private AnalysePlaceDisponible placeDispo = new AnalysePlaceDisponible();
+	private AnalyseCoupsReglementaires coupsReglementaires = new AnalyseCoupsReglementaires();
+	
+	private boolean surMemeLigne(int coordRoi, int diffCoord) {
 		return ((coordRoi + diffCoord) / 8 == coordRoi / 8);
 	}
 	
-	public static boolean mvtEchec(Plateau plateau, Piece piece, int coup) {
+	public boolean mvtEchec(Plateau plateau, Piece piece, int coup) {
 		
 		boolean mvtImpossibleEchec = false;
 		
@@ -43,9 +48,8 @@ public class GestionEchec {
 		
 		// On simule le mouvement possible dans la copie de plateau.
 		
-		Deplacement dpltClasse = new Deplacement();
 		if (coup != 0) {
-			dpltClasse.bougerPiece(pieceSimul, pieceSimul.getCoordonnee()+coup, plateauSimul);
+			Deplacement.bougerPiece(pieceSimul, pieceSimul.getCoordonnee()+coup, plateauSimul);
 		}
 		
 		// On repère le roi de la même couleur de la pièce.
@@ -57,10 +61,10 @@ public class GestionEchec {
 		
 		// On repère toutes les cases où une pièce adverse pourrait atteindre le roi.
 		
-		int[] roiCasesDispoBordPlateau = AnalysePositionPiece.trouveCasesDispoBordPlateau(roi);
+		int[] roiCasesDispoBordPlateau = posPiece.trouveCasesDispoBordPlateau(roi);
 		
 		List<Integer> zoneDeRisque = 
-				AnalysePlaceDisponible.destinationsDispoGlobal(roiCasesDispoBordPlateau, true ,plateauSimul, roi);
+				placeDispo.destinationsDispoGlobal(roiCasesDispoBordPlateau, true ,plateauSimul, roi);
 		
 		// On fait la liste des pièces adverses effectivement présentes sur ces cases.
 		
@@ -75,7 +79,7 @@ public class GestionEchec {
 		
 		// Pour chaque pièce adverse trouvée, on regarde si elle peut effectivement atteindre le roi selon son type :
 		
-		Map<TypePiece, int[]> coupsTypePiece = AnalyseCoupsReglementaires.createCoupsTypePiece();
+		Map<TypePiece, int[]> coupsTypePiece = coupsReglementaires.createCoupsTypePiece();
 		
 		for (Piece pieceAdverse : listePiecesAdversesDangereuses) {
 			
@@ -155,7 +159,7 @@ public class GestionEchec {
 		
 	}
 	
-	public static boolean isEchec(Plateau plateau, CouleursPiece couleur) {
+	public boolean isEchec(Plateau plateau, CouleursPiece couleur) {
 		// Renvoie si le joueur actuel est en échec
 		
 		// On repère la position du roi
@@ -177,7 +181,7 @@ public class GestionEchec {
 		
 	}
 	
-	public static boolean casePlateauEchec(Plateau plateau, int casePlateau, CouleursPiece couleur) {
+	public boolean casePlateauEchec(Plateau plateau, int casePlateau, CouleursPiece couleur) {
 		// Renvoie si une case du plateau donnée met le roi du joueur en échec
 		
 		Piece roi = null;

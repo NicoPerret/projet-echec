@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import javax.persistence.Transient;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import fr.echec.application.FinPartie;
@@ -14,9 +16,9 @@ import fr.echec.classe.jeu.Chrono;
 import fr.echec.classe.jeu.Fen;
 import fr.echec.classe.jeu.Plateau;
 import fr.echec.classe.joueur.Utilisateur;
-import fr.echec.classe.mouvements.CoupsPossibles;
-import fr.echec.classe.mouvements.Deplacement;
-import fr.echec.classe.mouvements.GestionEchec;
+import fr.echec.classe.mouvements.analyse.CoupsPossibles;
+import fr.echec.classe.mouvements.analyse.GestionEchec;
+import fr.echec.classe.mouvements.deplacement.Deplacement;
 import fr.echec.classe.parametres.ParametresPartie;
 import fr.echec.enumerateur.CouleursPiece;
 import fr.echec.exception.HistoriquePartieNotFoundException;
@@ -60,7 +62,10 @@ public class Partie {
 	
 	@Autowired
 	UtilisateursService srvUti ;
-
+	
+	@Transient
+	@Autowired
+	private GestionEchec gestionEchec = new GestionEchec();
 
 	// GETTERS AND SETTERS
 
@@ -221,7 +226,7 @@ public class Partie {
 			System.out.println("Saisir une piece : ");
 			String saisie = sc.nextLine();
 
-			coordDepart = nt.conversionLettreTo64(saisie);
+			coordDepart = NotationCoup.conversionLettreTo64(saisie);
 
 			if (plateau.getPieceCase(coordDepart) != null
 					&& plateau.getPieceCase(coordDepart).getCouleur() == this.couleurJoueurActif) {
@@ -231,7 +236,7 @@ public class Partie {
 					System.out.println("Coup(s) possible(s) : ");
 					nt.setCoordDepartStandard(saisie);
 					for (Integer i : listeCoup) {
-						System.out.println(nt.conversion64ToLettre(i));
+						System.out.println(NotationCoup.conversion64ToLettre(i));
 					}
 					break;
 				} else {
@@ -294,7 +299,7 @@ public class Partie {
 
 			String saisie = sc.nextLine();
 
-			coordDepart = nt.conversionLettreTo64(saisie);
+			coordDepart = NotationCoup.conversionLettreTo64(saisie);
 
 			if (plateau.getPieceCase(coordDepart) != null
 					&& plateau.getPieceCase(coordDepart).getCouleur() == this.couleurJoueurActif) {
@@ -304,7 +309,7 @@ public class Partie {
 				nt.setCoordDepartStandard(saisie);
 
 				for (Integer i : listeCoup) {
-					System.out.println(nt.conversion64ToLettre(i));
+					System.out.println(NotationCoup.conversion64ToLettre(i));
 				}
 				break;
 
@@ -340,7 +345,7 @@ public class Partie {
 		int coordArrivee = 0;
 
 		String saisie = sc.nextLine();
-		coordArrivee = nt.conversionLettreTo64(saisie);
+		coordArrivee = NotationCoup.conversionLettreTo64(saisie);
 		nt.setCoordArriveeStandard(saisie);
 
 		// mettre promotion dans deplacement
@@ -364,7 +369,7 @@ public class Partie {
 		while (verifIfSaisieCoupPossible == false) {
 
 			String saisie = sc.nextLine();
-			coordArrivee = nt.conversionLettreTo64(saisie);
+			coordArrivee = NotationCoup.conversionLettreTo64(saisie);
 
 			for (Integer i : listeCoup) {
 
@@ -393,7 +398,7 @@ public class Partie {
 
 		}
 		if (verifChangerPiece) {
-			d.promotion(plateau.getPieceCase(coordArrivee), plateau);
+			//d.promotion(plateau.getPieceCase(coordArrivee), plateau);
 
 		}
 
@@ -405,7 +410,7 @@ public class Partie {
 			return;
 		}
 		h.ajouterCoup(" " + nt.getCoordDepartStandard() + " " + nt.getCoordArriveeStandard() + " ");
-		if (GestionEchec.isEchec(plateau, couleurJoueurActif)) {
+		if (gestionEchec.isEchec(plateau, couleurJoueurActif)) {
 			h.ajouterCoup("+");
 		}
 
