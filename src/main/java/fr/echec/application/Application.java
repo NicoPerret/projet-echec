@@ -63,7 +63,7 @@ public class Application {
 			prob.jouerPb(1);
 		} else if (typePartie == 2) {
 			RevoirPartie revoirPartie = ctx.getBean(RevoirPartie.class);
-			revoirPartie.revoirPartieApplication(1);
+			revoirPartie.revoirPartieApplication(4);
 		}
 
 		else if (typePartie == 3) {
