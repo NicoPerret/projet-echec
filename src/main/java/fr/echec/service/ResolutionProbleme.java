@@ -92,7 +92,7 @@ public class ResolutionProbleme {
 					NotationCoup.conversionLettreTo64(coupJoueur.substring(2, 4)), this.plateau);
 			return false;
 		} else {
-			System.out.println("Ce n'est pas le bon coup! Reessayer");
+			System.out.println("Ce n'est pas le bon coup ! Reessayez !");
 			return true;
 		}
 	}
@@ -107,6 +107,7 @@ public class ResolutionProbleme {
 		}
 		
 		while (true) {
+			System.out.println("Vous êtes le joueur "+ couleurJoueur);
 			System.out.println("Saisir une piece ou 0 poura voir un indice : ");
 
 			String saisie = sc.nextLine();

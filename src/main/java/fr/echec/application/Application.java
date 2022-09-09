@@ -26,7 +26,7 @@ public class Application {
 		// 2 ==> REVOIR PARTIE
 		// 3 ==> JCIA
 
-		int typePartie = 0;
+		int typePartie = 1;
 
 		if (typePartie == 0) {
 
@@ -60,10 +60,10 @@ public class Application {
 			// UN PROBLEME ('r6k/pp2r2p/4Rp1Q/3p4/8/1N1P2R1/PqP2bPP/7K','false','f2g3 e6e7
 			// b2b1 b3c1 b1c1 h6c1'),
 			ResolutionProbleme prob = ctx.getBean(ResolutionProbleme.class);
-			prob.jouerPb(1);
+			prob.jouerPb(2);
 		} else if (typePartie == 2) {
 			RevoirPartie revoirPartie = ctx.getBean(RevoirPartie.class);
-			revoirPartie.revoirPartieApplication(4);
+			revoirPartie.revoirPartieApplication(1);
 		}
 
 		else if (typePartie == 3) {

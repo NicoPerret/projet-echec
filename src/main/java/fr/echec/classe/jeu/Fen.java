@@ -95,10 +95,12 @@ public class Fen {
 		String str;
 		char piece = 0;
 		char p = 0;
-		int j = 0;
-		for (int i = plat.getPlateau().length - 1; i >= 0; i--) {
-			j++;
-			str = plat.getPlateau()[i];
+		int j = 8;
+		int[] a = new int[]{56,40,24,8,-8,-24,-40,-56}; 
+		int k = 0;
+		for (int i = 0 ; i< plat.getPlateau().length; i++) {
+			j--;
+			str = plat.getPlateau()[i+a[k]];
 			switch (str.charAt(0)) {
 			case 't':
 				piece = 'r';
@@ -128,6 +130,7 @@ public class Fen {
 			}
 			fen = fen + p;
 			if (j % 8 == 0 && i != 0) {
+				k++;
 				fen = fen + "/";
 			}
 		}

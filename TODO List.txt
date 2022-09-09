@@ -1,14 +1,8 @@
-revoir une partie coup par coup 
-	en avant ==> coup ordi
-	en arrière ==> enregistrer fen coup précédent
-
-Rajouter la promote dans historique
-
 
 pb mettre en bdd que le pb en gg !
 pb ajouter utilisateur
 
-pb mettre difficulte
+pb selectionner difficulte
 
 opti globale
 spring

@@ -53,10 +53,10 @@ public class RevoirPartie {
 		System.out.println("------------ joueurs -------------");
 		System.out.println("Joueur 1 : " + this.histPartie.getJ1().getPseudo()
 							+ " (elo : " + this.histPartie.getJ1().getElo() + ")"
-							+ " joue les " + this.histPartie.getJ1().getCouleur());
+							+ " joue les blancs");
 		System.out.println("Joueur 2 : " + this.histPartie.getJ2().getPseudo()
-							+ " (elo : " + this.histPartie.getJ1().getElo() + ")"
-							+ " joue les " + this.histPartie.getJ1().getCouleur());
+							+ " (elo : " + this.histPartie.getJ2().getElo() + ")"
+							+ " joue les noirs");
 		System.out.println("------------- date ---------------");
 		System.out.println(this.histPartie.getDate());
 		System.out.println("-------- Paramètres partie -------");
@@ -77,11 +77,11 @@ public class RevoirPartie {
 		System.out.println(listeCoups.length);
 	}
 	
-	public void defilementAvant() {
+	public boolean defilementAvant() {
 		
 		if (this.coupActuel >= this.nbCoups) {
 			System.out.println("C'est le dernier coup");
-			return;
+			return true;
 		}
 		
 		if (this.coupActuel >= this.listeFen.size()) {
@@ -95,7 +95,7 @@ public class RevoirPartie {
 		
 		
 		this.coupActuel +=1;
-		
+		return false;
 	}
 	
 	public void defilementArriere() {
@@ -131,8 +131,11 @@ public class RevoirPartie {
 	}
 	
 	public void finPartie() {
-		// On affiche les infos de fin de partie (Qui a gagné ? Pq ?)
-		// On demande confirmation avant de quitter ou retour arriere
+		if (this.histPartie.getJ1().getId() == this.histPartie.getVainqueurId()) {
+			System.out.println("Le vainqueur est "+ this.histPartie.getJ1().getPseudo());
+		}else {
+			System.out.println("Le vainqueur est "+ this.histPartie.getJ2().getPseudo());
+		}
 	}
 	
 	public void revoirPartieApplication(int id) {
@@ -154,7 +157,7 @@ public class RevoirPartie {
 			if (saisie == 0) {
 				stop = true;
 			} else if (saisie == 1) {
-				defilementAvant();
+				stop = defilementAvant();
 			} else if (saisie == 2) {
 				defilementArriere();
 			} else {
