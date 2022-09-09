@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import fr.echec.classe.historique.NotationCoup;
 import fr.echec.enumerateur.CouleursPiece;
+import fr.echec.finpartie.FinPartie;
 import fr.echec.ia.CoupOrdi;
 
 @Service

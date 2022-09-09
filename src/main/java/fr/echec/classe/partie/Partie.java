@@ -7,7 +7,6 @@ import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import fr.echec.application.FinPartie;
 import fr.echec.classe.historique.HistoriquePartie;
 import fr.echec.classe.historique.NotationCoup;
 import fr.echec.classe.jeu.Chrono;
@@ -21,6 +20,7 @@ import fr.echec.classe.parametres.ParametresPartie;
 import fr.echec.enumerateur.CouleursPiece;
 import fr.echec.enumerateur.TypePiece;
 import fr.echec.exception.HistoriquePartieNotFoundException;
+import fr.echec.finpartie.FinPartie;
 import fr.echec.service.HistoriquePartieService;
 import fr.echec.service.UtilisateursService;
 

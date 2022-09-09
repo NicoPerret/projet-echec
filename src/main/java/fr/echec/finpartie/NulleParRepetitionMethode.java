@@ -1,4 +1,4 @@
-package fr.echec.application;
+package fr.echec.finpartie;
 
 import java.util.ArrayList;
 import java.util.HashMap;
