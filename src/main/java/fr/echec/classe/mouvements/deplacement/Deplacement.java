@@ -18,7 +18,7 @@ public class Deplacement {
 	private PriseEnPassant priseEnPassant;
 	private boolean petitRoque;
 	private boolean grandRoque;
-	private boolean promote;
+	
 
 	// GETTERS ET SETTERS
 
@@ -37,12 +37,12 @@ public class Deplacement {
 	public void setGrandRoque(boolean grandRoque) {
 		this.grandRoque = grandRoque;
 	}
-	public boolean isPromote() {
-		return promote;
+	public Promotion getPromotion() {
+		return promotion;
 	}
 
-	public void setPromote(boolean promote) {
-		this.promote = promote;
+	public void setPromotion(Promotion promotion) {
+		this.promotion = promotion;
 	}
 	// CONSTRUCTEUR
 
@@ -51,7 +51,7 @@ public class Deplacement {
 	public void deplacement(Piece piece, int coord, Plateau p) {
 		petitRoque = false;
 		grandRoque = false;
-		promote = false;
+	
 		
 		if (piece.getNom() == TypePiece.ROI && coord == piece.getCoordonnee() + 2) {
 
@@ -79,12 +79,14 @@ public class Deplacement {
 
 			bougerPiece(piece, coord, p);
 			promotion.promotion(piece, p);
-			promote = true;
+			
 		}
 
 		priseEnPassant.gestionBooleenPriseEnPassant(piece, p);
 
 	}
+
+	
 
 	public static void bougerPiece(Piece piece, int coord, Plateau p) {
 
