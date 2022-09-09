@@ -25,7 +25,7 @@ import fr.echec.exception.HistoriquePartieNotFoundException;
 import fr.echec.service.HistoriquePartieService;
 import fr.echec.service.UtilisateursService;
 
-public class Partie {
+public abstract class Partie {
 
 	// VARIABLES from BDD
 	protected Utilisateur j1;
@@ -48,6 +48,8 @@ public class Partie {
 	protected CouleursPiece couleurJoueurActif = CouleursPiece.BLANC;
 	protected CoupsPossibles coupPossible = new CoupsPossibles();
 	protected List<Integer> listeCoup = new ArrayList<>();
+	
+	
 	HistoriquePartie h = new HistoriquePartie();
 	
 	
@@ -56,7 +58,8 @@ public class Partie {
 	protected boolean surrJ2 = false;
 	private boolean draw = false;
 
-	protected FinPartie finPartie = new FinPartie();
+	@Autowired
+	protected FinPartie finPartie;
 	
 	@Autowired
 	HistoriquePartieService srvHistPartie;
@@ -66,7 +69,7 @@ public class Partie {
 	
 	@Transient
 	@Autowired
-	private GestionEchec gestionEchec = new GestionEchec();
+	private GestionEchec gestionEchec;
 
 	// GETTERS AND SETTERS
 

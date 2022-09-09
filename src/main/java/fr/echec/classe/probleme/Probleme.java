@@ -106,6 +106,9 @@ public class Probleme {
 	public Probleme(Plateau plateau) {
 		this.p = plateau;
 	}
+	public Probleme() {
+		
+	}
 
 	// METHODES
 	public void jouerPb() {
@@ -155,13 +158,14 @@ public class Probleme {
 
 	// Sélection de la piece renvoi coord depart
 	public int selectionPieceProbleme() {
-		Scanner sc;
+		Scanner sc = new Scanner(System.in);
+		int coordDepart;
 		while (true) {
 			System.out.println("Saisir une piece : ");
 
 			String saisie = sc.nextLine();
 
-			int coordDepart = NotationCoup.conversionLettreTo64(saisie);
+			 coordDepart = NotationCoup.conversionLettreTo64(saisie);
 
 			if (p.getPieceCase(coordDepart) != null) {
 				listeCoup = coupPossible.trouveDestinationsPossibles(p, p.getPieceCase(coordDepart));
@@ -180,12 +184,13 @@ public class Probleme {
 			}
 
 		}
+		return coordDepart ;
 
 	}
 
 	// Sélection de la case darrivée renvoie coordArrivee
 	public int jouerPieceProbleme(int coordDepart) {
-		Scanner sc;
+		Scanner sc = new Scanner(System.in);
 		System.out.println("Saisir 0 pour changer de piece");
 
 		System.out.println("Déplacer la piece : ");
@@ -221,7 +226,7 @@ public class Probleme {
 			}
 		}
 		if (verifChangerPiece) {
-			d.promotion(p.getPieceCase(coordArrivee), p);
+			promo.promotion(p.getPieceCase(coordArrivee), p);
 		}
 		return coordArrivee;
 	}

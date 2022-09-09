@@ -2,14 +2,17 @@ package fr.echec.classe.mouvements.analyse;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import fr.echec.classe.jeu.Piece;
 import fr.echec.classe.jeu.Plateau;
 import fr.echec.enumerateur.CouleursPiece;
 import fr.echec.enumerateur.TypePiece;
-
+@Component
 public class GestionRoque {
-	
-	public GestionEchec gestionEchec = new GestionEchec();
+	@Autowired
+	public GestionEchec gestionEchec ;
 	
 	protected boolean petitRoque(Piece roi, Piece tour, Plateau plateau) {
 		

@@ -5,17 +5,24 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import fr.echec.classe.jeu.Piece;
 import fr.echec.classe.jeu.Plateau;
 import fr.echec.classe.mouvements.deplacement.Deplacement;
 import fr.echec.enumerateur.CouleursPiece;
 import fr.echec.enumerateur.TypePiece;
 
+@Component
 public class GestionEchec {
 	
-	private AnalysePositionPiece posPiece = new AnalysePositionPiece();
-	private AnalysePlaceDisponible placeDispo = new AnalysePlaceDisponible();
-	private AnalyseCoupsReglementaires coupsReglementaires = new AnalyseCoupsReglementaires();
+	@Autowired
+	private AnalysePositionPiece posPiece;
+	@Autowired
+	private AnalysePlaceDisponible placeDispo;
+	@Autowired
+	private AnalyseCoupsReglementaires coupsReglementaires;
 	
 	private boolean surMemeLigne(int coordRoi, int diffCoord) {
 		return ((coordRoi + diffCoord) / 8 == coordRoi / 8);

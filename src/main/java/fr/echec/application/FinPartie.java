@@ -3,6 +3,9 @@ package fr.echec.application;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import fr.echec.classe.jeu.Fen;
 import fr.echec.classe.jeu.Piece;
 import fr.echec.classe.jeu.Plateau;
@@ -12,23 +15,26 @@ import fr.echec.classe.mouvements.deplacement.Deplacement;
 import fr.echec.enumerateur.CouleursPiece;
 import fr.echec.enumerateur.TypePiece;
 
+@Service
 public class FinPartie {
 
 // VARIABLES 
+	@Autowired
+	private Deplacement deplacement ;
+	@Autowired
+	private CoupsPossibles coupsPossibles;
 
-	private Deplacement deplacement = new Deplacement();
-	private CoupsPossibles coupsPossibles = new CoupsPossibles();
 	
-	private ArrayList<String> listeFen = new ArrayList<>();
-	private NulleParRepetitionMethode test = new NulleParRepetitionMethode();
-
-	private Fen fen = new Fen(); 
+	@Autowired
+	private NulleParRepetitionMethode test;
+	@Autowired
+	private Fen fen ; 
+	@Autowired
+	private GestionEchec gestionEchec ;
+	
+	
 	private boolean nulle = false;
 	private boolean echecMat = false;
-	
-	private GestionEchec gestionEchec = new GestionEchec();
-	
-	
 
 // GETTERS ET SETTERS 
 
@@ -122,6 +128,7 @@ public class FinPartie {
 	}
 
 	public boolean isMatchNulRepetition(Plateau plateau) {
+		 ArrayList<String> listeFen = new ArrayList<>();
 		listeFen.add(fen.creationFen(plateau));
 		return test.countFrequencies(listeFen);
 		

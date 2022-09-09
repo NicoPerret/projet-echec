@@ -2,11 +2,14 @@ package fr.echec.classe.mouvements.deplacement;
 
 import java.util.Scanner;
 
+import org.springframework.stereotype.Component;
+
 import fr.echec.classe.jeu.Piece;
 import fr.echec.classe.jeu.Plateau;
 import fr.echec.enumerateur.CouleursPiece;
 import fr.echec.enumerateur.TypePiece;
 
+@Component
 public class Promotion {
 
 

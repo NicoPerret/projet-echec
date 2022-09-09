@@ -1,7 +1,9 @@
 package fr.echec.classe.jeu;
 
-// affichage temps restant si defaite au temps
+import org.springframework.stereotype.Component;
 
+// affichage temps restant si defaite au temps
+@Component
 public class Chrono {
 
 	// VARIABLES
@@ -110,6 +112,9 @@ public class Chrono {
 	public Chrono (long tempsRestantMin,long tempsRestantSec, long increment){
 		this.setTempsRestant(tempsRestantMin, tempsRestantSec);
 		this.setIncrement(increment);
+	}
+	
+	public Chrono() {
 	}
 }
 

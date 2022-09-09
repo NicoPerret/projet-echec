@@ -17,13 +17,13 @@ public class HistoriquePartieService {
 	@Autowired
 	private IHistoriquePartie repoPartie;
 
-	public Optional<HistoriquePartie> findById(int id) throws IdNegatifException, HistoriquePartieNotFoundException {
+	public HistoriquePartie findById(int id) throws IdNegatifException, HistoriquePartieNotFoundException {
 
 		if (id <= 0) {
 			throw new IdNegatifException();
 		}
 
-		Optional<HistoriquePartie> laPartie = repoPartie.findById(id);
+		HistoriquePartie laPartie = repoPartie.findById(id);
 
 		if (laPartie == null) {
 			throw new HistoriquePartieNotFoundException(); //

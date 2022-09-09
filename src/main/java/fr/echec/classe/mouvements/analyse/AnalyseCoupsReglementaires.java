@@ -5,11 +5,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Component;
+
 import fr.echec.classe.jeu.Piece;
 import fr.echec.classe.jeu.Plateau;
 import fr.echec.enumerateur.CouleursPiece;
 import fr.echec.enumerateur.TypePiece;
-
+@Component
 public class AnalyseCoupsReglementaires {
 
 	public Map<TypePiece, int[]> createCoupsTypePiece() { // coup reglementaire par type de pieces

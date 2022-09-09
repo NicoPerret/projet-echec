@@ -3,6 +3,8 @@ package fr.echec.classe.jeu;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+@Component
 public class Plateau {
 	
 	// VARIABLES

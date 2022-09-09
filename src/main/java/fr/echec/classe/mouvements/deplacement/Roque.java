@@ -1,8 +1,10 @@
 package fr.echec.classe.mouvements.deplacement;
 
+import org.springframework.stereotype.Component;
+
 import fr.echec.classe.jeu.Piece;
 import fr.echec.classe.jeu.Plateau;
-
+@Component
 public class Roque {
 	
 	public void jouerPetitRoque(Piece roi, Plateau p) {

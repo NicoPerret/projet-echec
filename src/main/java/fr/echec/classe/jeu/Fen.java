@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import fr.echec.enumerateur.CouleursPiece;
 import fr.echec.enumerateur.TypePiece;
-
+@Component
 public class Fen {
 
 	public Plateau creationPlateau(String fen) {

@@ -3,16 +3,23 @@ package fr.echec.classe.mouvements.analyse;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import fr.echec.classe.jeu.Piece;
 import fr.echec.classe.jeu.Plateau;
-
+@Component
 public class CoupsPossibles {
-	
-	private AnalysePositionPiece posPiece = new AnalysePositionPiece();
-	private AnalysePlaceDisponible placeDispo = new AnalysePlaceDisponible();
-	private AnalyseCoupsReglementaires coupsReglo = new AnalyseCoupsReglementaires();
-	public GestionEchec gestionEchec = new GestionEchec();
-	private GestionRoque gestionRoque = new GestionRoque();
+	@Autowired
+	private AnalysePositionPiece posPiece ;
+	@Autowired
+	private AnalysePlaceDisponible placeDispo ;
+	@Autowired
+	private AnalyseCoupsReglementaires coupsReglo ;
+	@Autowired
+	public GestionEchec gestionEchec ;
+	@Autowired
+	private GestionRoque gestionRoque;
 	
 	public List<Integer> trouveDestinationsPossibles(Plateau plateau, Piece piece) {
 		 

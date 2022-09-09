@@ -1,8 +1,10 @@
 package fr.echec.classe.mouvements.analyse;
 
+import org.springframework.stereotype.Component;
+
 import fr.echec.classe.jeu.Piece;
 import fr.echec.classe.jeu.Plateau;
-
+@Component
 public class AnalysePositionPiece {
 
 	protected int[] trouveCasesDispoBordPlateau(Piece piece) {

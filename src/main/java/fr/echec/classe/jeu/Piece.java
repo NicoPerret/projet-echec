@@ -1,13 +1,17 @@
 package fr.echec.classe.jeu;
 
+import org.springframework.stereotype.Component;
+
 import fr.echec.enumerateur.CouleursPiece;
 import fr.echec.enumerateur.TypePiece;
-
+@Component
 public class Piece {
 
 	// VARIABLES
 	private int coordonnee = -1;
+	
 	private TypePiece nom;
+	
 	private CouleursPiece couleur;
 	private boolean enVie = true;
 	private int valeurMateriel; // NB : pion = 1 point, fou = 3 points, cavalier = 3 points, tour = 5 points,
@@ -105,6 +109,9 @@ public class Piece {
 			break;
 
 		}
+	}
+	public Piece() {
+		
 	}
 
 	
