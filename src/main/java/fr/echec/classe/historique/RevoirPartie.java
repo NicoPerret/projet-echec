@@ -1,23 +1,34 @@
 package fr.echec.classe.historique;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.echec.classe.jeu.Fen;
 import fr.echec.classe.jeu.Plateau;
+import fr.echec.classe.mouvements.deplacement.Deplacement;
 import fr.echec.classe.parametres.ParametresPartie;
 import fr.echec.service.HistoriquePartieService;
 
 @Service
 public class RevoirPartie {
 	
+	private String[] listeCoups;
+	private List<String> listeFen = new ArrayList<>();
+	private int nbCoups;
+	private int coupActuel = 0;
+	
 	@Autowired
 	private HistoriquePartieService srvHistPartie;
-	
 	@Autowired
 	protected Fen fen;
 	@Autowired
 	protected Plateau plateau;
+	@Autowired
+	protected Deplacement dplt;
 	
 	ParametresPartie param = new ParametresPartie();
 	
@@ -50,7 +61,7 @@ public class RevoirPartie {
 		System.out.println(this.histPartie.getDate());
 		System.out.println("-------- Paramètres partie -------");
 		System.out.println(this.histPartie.getParam()); // Faut voir quoi mettre...
-		System.out.println();
+		System.out.println("==================================");
 		
 	}
 	
@@ -60,25 +71,63 @@ public class RevoirPartie {
 		// Récupérer le fen de départ dans param
 		String fen_depart = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR";
 		this.plateau = fen.creationPlateau(fen_depart);
-		// System.out.println(plateau);
-		// Generer le plateau, joueurs, ...
+		
+		this.listeCoups = this.histPartie.getListeCoups().toUpperCase().split(" ");
+		this.nbCoups = this.listeCoups.length - 1;
+		System.out.println(listeCoups.length);
 	}
 	
 	public void defilementAvant() {
-		// avancer
+		
+		if (this.coupActuel >= this.nbCoups) {
+			System.out.println("C'est le dernier coup");
+			return;
+		}
+		
+		if (this.coupActuel >= this.listeFen.size()) {
+			this.listeFen.add(this.fen.creationFen(plateau));
+		}
+		
+		String mouvAFaire = this.listeCoups[coupActuel];
+		
+		this.dplt.deplacement(this.plateau.getPieceCase(NotationCoup.conversionLettreTo64(mouvAFaire.substring(0, 2))),
+				NotationCoup.conversionLettreTo64(mouvAFaire.substring(2, 4)), this.plateau);
+		
+		
+		this.coupActuel +=1;
+		
 	}
 	
 	public void defilementArriere() {
-		 // reculer
+
+		if (this.coupActuel <= 0) {
+			System.out.println("C'est le premier coup");
+			return;
+		}
+		
+		this.coupActuel -= 1;
+		
+		this.plateau = fen.creationPlateau(this.listeFen.get(coupActuel));
 	}
 	
-	public void demanderUnTrucAuMonsieur() {
-		// quand on fait un scanner
+	public int interactionUtil() {
+		
+		System.out.println("1 : coup suivant / 2 : coup précédent / 0 : stop");
+		Scanner sc = new Scanner(System.in);
+		
+		int saisie = sc.nextInt();
+		
+		//sc.close();
+		
+		return saisie;
 	}
 	
-	public void affichagePlateauEnCours() {
-		// On affiche le plateau à un instant t
-		// On affiche aussi le numéro du coup (ex : 12 / 50)
+	public void affichagePlateauEnCours(int coup) {
+		
+		System.out.println("==================================");
+		System.out.println(this.plateau);
+		System.out.println("Coup " + this.coupActuel + " / " + this.nbCoups);
+		
 	}
 	
 	public void finPartie() {
@@ -89,11 +138,32 @@ public class RevoirPartie {
 	public void revoirPartieApplication(int id) {
 		// C'est ce qu'on appelle depuis application
 		
+		boolean stop = false;
+		
 		trouveHistoriquePartie(id);
 		
 		donneInfosPartie();
 		
 		generationPartie();
+		
+		while (!stop) {
+			
+			affichagePlateauEnCours(this.coupActuel);
+			int saisie = interactionUtil();
+			
+			if (saisie == 0) {
+				stop = true;
+			} else if (saisie == 1) {
+				defilementAvant();
+			} else if (saisie == 2) {
+				defilementArriere();
+			} else {
+				System.out.println("Mauvaise saisie !");
+			}
+			
+		}
+		
+		finPartie();
 		
 	}
 
