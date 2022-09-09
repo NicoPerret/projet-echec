@@ -51,7 +51,7 @@ public class ResolutionProbleme {
 		// probleme service findById
 		probleme = srvProbleme.findById(id);
 		
-		int coordArrivee;
+		int coordArrivee = -1;
 		int coordDepart;
 		boolean verif;
 		this.plateau = fen.creationPlateau(probleme.getFenDepart());
@@ -64,8 +64,16 @@ public class ResolutionProbleme {
 			} else { // tour du joueur
 				while (verif) {
 					do {
-						coordDepart = selectionPieceProbleme();
-						coordArrivee = jouerPieceProbleme(coordDepart);
+						coordDepart = selectionPieceProbleme(tabCoups[i]);
+						if(coordDepart == -1) {
+							System.out.println("Vous avez Abandonner le problème");
+							return;
+						}
+						coordArrivee = jouerPieceProbleme();
+						if (coordArrivee == -2) {
+							System.out.println("Vous avez Abandonner le problème");
+							return;
+						}
 					} while (coordArrivee == -1);
 					String coupJoueur = NotationCoup.conversion64ToLettre(coordDepart)
 							+ NotationCoup.conversion64ToLettre(coordArrivee);
@@ -73,6 +81,7 @@ public class ResolutionProbleme {
 				}
 			}
 		}
+		System.out.println("GG tu as résolu ce problème !");
 	}
 
 	// Verif coup joué est le bon
@@ -89,7 +98,7 @@ public class ResolutionProbleme {
 	}
 
 	// Sélection de la piece renvoi coord depart
-	public int selectionPieceProbleme() {
+	public int selectionPieceProbleme(String coupAJouer) {
 		Scanner sc = new Scanner(System.in);
 		int coordDepart;
 		CouleursPiece couleurJoueur = CouleursPiece.BLANC;
@@ -98,11 +107,19 @@ public class ResolutionProbleme {
 		}
 		
 		while (true) {
-			System.out.println("Saisir une piece : ");
+			System.out.println("Saisir une piece ou 0 poura voir un indice : ");
 
 			String saisie = sc.nextLine();
 
-			 coordDepart = NotationCoup.conversionLettreTo64(saisie);
+			if (saisie.equals("FF")){
+				coordDepart = -1;
+				break;
+			}else if(saisie.equals("0")){
+				System.out.println("La pièce a déplacé est celle case : " + coupAJouer.substring(0, 2));
+				System.out.println("Saisir une piece : ");
+				saisie = sc.nextLine();
+			}
+			coordDepart = NotationCoup.conversionLettreTo64(saisie);
 
 			if (	this.plateau.getPieceCase(coordDepart) != null
 					&& this.plateau.getPieceCase(coordDepart).getCouleur() == couleurJoueur) {
@@ -126,29 +143,28 @@ public class ResolutionProbleme {
 	}
 
 	// Sélection de la case darrivée renvoie coordArrivee
-	public int jouerPieceProbleme(int coordDepart) {
+	public int jouerPieceProbleme() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Saisir 0 pour changer de piece");
 
 		System.out.println("Déplacer la piece : ");
 
 		boolean verifIfSaisieCoupPossible = false;
-		boolean verifChangerPiece = false;
 		int coordArrivee = -1;
 		while (verifIfSaisieCoupPossible == false) {
 
 			String saisie = sc.nextLine();
+			if (saisie.equals("FF")){
+				coordArrivee = -2;
+				break;
+			}
+			
 			coordArrivee = NotationCoup.conversionLettreTo64(saisie);
 
 			for (Integer i : listeCoup) {
 
 				if (coordArrivee == i) {
-					
-					// NotationCoup.setCoordArriveeStandard(saisie);
-					//d.deplacement(this.plateau.getPieceCase(coordDepart), coordArrivee, this.plateau);
 					verifIfSaisieCoupPossible = true;
-					verifChangerPiece = true;
-
 					break;
 				}
 			}
