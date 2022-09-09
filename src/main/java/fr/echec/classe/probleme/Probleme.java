@@ -15,10 +15,13 @@ import javax.persistence.Transient;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import fr.echec.classe.historique.NotationCoup;
+import fr.echec.classe.jeu.Piece;
 import fr.echec.classe.jeu.Plateau;
 import fr.echec.classe.mouvements.analyse.CoupsPossibles;
 import fr.echec.classe.mouvements.deplacement.Deplacement;
 import fr.echec.classe.mouvements.deplacement.Promotion;
+import fr.echec.classe.mouvements.deplacement.Roque;
+import fr.echec.enumerateur.CouleursPiece;
 
 @Entity
 @Table(name = "probleme")
@@ -111,7 +114,7 @@ public class Probleme {
 	}
 
 	// METHODES
-	public void jouerPb() {
+	public void jouerPb() { // utlisateur idPb
 		int coordArrivee;
 		int coordDepart;
 		boolean verif = true;
@@ -136,11 +139,30 @@ public class Probleme {
 	}
 
 	// Coup joué par l'ordi
+	
+	@Autowired
+	Roque roque;
 	public void coupOrdi(String coupAJouer) {
-		int coorDepart = NotationCoup.conversionLettreTo64(coupAJouer.substring(0, 2));
-		int coorArrivee = NotationCoup.conversionLettreTo64(coupAJouer.substring(2, 4));
-
-		this.d.deplacement(p.getPieceCase(coorDepart), coorArrivee, p);
+		if(coupAJouer.equals("O-O")) {
+			if(traitAuBlanc) {
+				roque.jouerPetitRoque(p.getPieceCase(3), p);
+			}else {
+				roque.jouerPetitRoque(p.getPieceCase(59), p);
+			}
+		}
+		else if (coupAJouer.equals("O-O-O")) {
+			if(traitAuBlanc) {
+				roque.jouerGrandRoque(p.getPieceCase(3), p);
+			}else {
+				roque.jouerGrandRoque(p.getPieceCase(59), p);
+			}
+		}else {
+			int coordDepart = NotationCoup.conversionLettreTo64(coupAJouer.substring(0, 2));
+			int coordArrivee = NotationCoup.conversionLettreTo64(coupAJouer.substring(2, 4));
+	
+			this.d.deplacement(p.getPieceCase(coordDepart), coordArrivee, p);
+			promo.promotionAutomatique(p.getPieceCase(coordArrivee), p, coupAJouer.charAt(5));
+		}
 	}
 
 	// Verif coup joué est le bon
@@ -160,6 +182,11 @@ public class Probleme {
 	public int selectionPieceProbleme() {
 		Scanner sc = new Scanner(System.in);
 		int coordDepart;
+		CouleursPiece couleurJoueur = CouleursPiece.BLANC;
+		if (probleme.isTraitAuBlanc(){
+			couleurJoueur = CouleursPiece.NOIR;
+		}
+		
 		while (true) {
 			System.out.println("Saisir une piece : ");
 
@@ -167,7 +194,8 @@ public class Probleme {
 
 			 coordDepart = NotationCoup.conversionLettreTo64(saisie);
 
-			if (p.getPieceCase(coordDepart) != null) {
+			if (	p.getPieceCase(coordDepart) != null
+					&& p.getPieceCase(coordDepart).getCouleur() == couleurJoueur) {
 				listeCoup = coupPossible.trouveDestinationsPossibles(p, p.getPieceCase(coordDepart));
 
 				if (listeCoup.isEmpty() == false) {
