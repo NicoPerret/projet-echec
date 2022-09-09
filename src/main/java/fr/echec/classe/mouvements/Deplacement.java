@@ -8,13 +8,40 @@ import fr.echec.enumerateur.CouleursPiece;
 import fr.echec.enumerateur.TypePiece;
 
 public class Deplacement {
+	// VARIABLES 
+	private boolean petitRoque = false;
+	private boolean grandRoque = false; 
+
+	// GETTERS ET SETTERS 
+
+	public boolean isPetitRoque() {
+		return petitRoque;
+	}
+	
+	public void setPetitRoque(boolean petitRoque) {
+		this.petitRoque = petitRoque;
+	}
+	
+	public boolean isGrandRoque() {
+		return grandRoque;
+	}
+	
+	public void setGrandRoque(boolean grandRoque) {
+		this.grandRoque = grandRoque;
+	}
+	// CONSTRUCTEUR 
+
+	// METHODES
+	
+	
 	public int read() {
 		Scanner sc = new Scanner(System.in);
 		return sc.nextInt();
 	}
 
 	public void deplacement(Piece piece, int coord, Plateau p) {
-		
+		petitRoque = false;
+		grandRoque = false;
 		if (piece.getNom() == TypePiece.ROI && coord == piece.getCoordonnee()+2) {
 			jouerPetitRoque(piece, p);
 		} else if (piece.getNom() == TypePiece.ROI && coord == piece.getCoordonnee()-2) {
@@ -147,6 +174,7 @@ public class Deplacement {
 		
 		bougerPiece(roi, roi.getCoordonnee()+2, p);
 		bougerPiece(tour, tour.getCoordonnee()-2, p);
+		petitRoque = true;
 		
 		
 	}
@@ -157,7 +185,7 @@ public class Deplacement {
 		
 		bougerPiece(roi, roi.getCoordonnee()-2, p);
 		bougerPiece(tour, tour.getCoordonnee()+3, p);
-		
+		grandRoque = true;
 	}
 	
 	// Prise en passant
@@ -187,5 +215,7 @@ public class Deplacement {
 		bougerPiece(pion, coord, p);
 		
 	}
+
+	
 	
 }

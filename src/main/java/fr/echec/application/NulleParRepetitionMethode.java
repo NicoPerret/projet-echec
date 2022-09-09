@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Test {
-
+import org.springframework.stereotype.Component;
+@Component
+public class NulleParRepetitionMethode {
 	public boolean countFrequencies(ArrayList<String> list) {
 		// hashmap to store the frequency of element
-
+		
 		Map<String, Integer> hm = (Map<String, Integer>) new HashMap();
 
 		for (String i : list) {

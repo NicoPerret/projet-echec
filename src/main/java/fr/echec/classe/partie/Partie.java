@@ -403,8 +403,16 @@ public class Partie {
 		if (surrJ1 || surrJ2|| draw) {
 			verifChangerPiece = true;
 			return;
+		} 
+		// IF PEtit then OO else if groque o-O-o else 
+		if (d.isGrandRoque()) {
+			h.ajouterCoup(" O-O-O ");
+		}else if (d.isPetitRoque()) {
+			h.ajouterCoup(" O-O ");
+		}else {
+			h.ajouterCoup(" " + nt.getCoordDepartStandard() + " " + nt.getCoordArriveeStandard() + " ");
+			
 		}
-		h.ajouterCoup(" " + nt.getCoordDepartStandard() + " " + nt.getCoordArriveeStandard() + " ");
 		if (GestionEchec.isEchec(plateau, couleurJoueurActif)) {
 			h.ajouterCoup("+");
 		}

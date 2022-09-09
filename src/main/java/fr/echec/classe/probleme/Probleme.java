@@ -42,9 +42,13 @@ public class Probleme {
 	@Column(name = "prob_difficulte", nullable = false)
 	private int difficulte;
 
+	@Transient
 	protected Plateau p;
+	@Transient
 	protected List<Integer> listeCoup = new ArrayList<>();
+	@Transient
 	protected CoupsPossibles coupPossible = new CoupsPossibles();
+	@Transient
 	protected int coordDepart;
 
 	@Transient
