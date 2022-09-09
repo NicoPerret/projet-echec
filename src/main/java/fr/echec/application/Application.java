@@ -17,8 +17,10 @@ public class Application {
 
 	public static void main(String[] args) throws HistoriquePartieNotFoundException, IdNegatifException, ProblemeNotFoundException {
 		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
+
 		int typePartie = 2;
 		if (typePartie==0) {
+
 
 			ParametresPartie param = new ParametresPartie();
 

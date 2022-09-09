@@ -252,7 +252,7 @@ public abstract class Partie {
 
 			} else if (saisie.equals("FF")) {
 
-				if (this.couleurJoueurActif.toString() == "BLANC") {
+				if (this.couleurJoueurActif == CouleursPiece.BLANC) {
 					surrJ1 = true;
 
 					break;
@@ -424,7 +424,7 @@ public abstract class Partie {
 		}else {
 			h.ajouterCoup(nt.getCoordDepartStandard() + nt.getCoordArriveeStandard());
 			
-			if (d.isPromote()) {
+			if (d.getPromotion().isPromote()) {
 				TypePiece type = plateau.getPieceCase(NotationCoup.conversionLettreTo64(nt.getCoordArriveeStandard())).getNom();
 				switch (type) {
 				case   CAVALIER:
@@ -443,8 +443,8 @@ public abstract class Partie {
 				default:
 					break;
 				}
-				h.ajouterCoup(" ");
 			}
+			h.ajouterCoup(" ");
 		}
 
 		if (gestionEchec.isEchec(plateau, couleurJoueurActif)) {

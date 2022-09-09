@@ -11,6 +11,24 @@ import fr.echec.enumerateur.TypePiece;
 
 @Component
 public class Promotion {
+	
+	// VARIABLES 
+	
+	private boolean promote;
+
+	// GETTERS ET SETTERS 
+	
+	public boolean isPromote() {
+		return promote;
+	}
+	
+	public void setPromote(boolean promote) {
+		this.promote = promote;
+	}
+
+	// CONSTRUCTEUR 
+
+	// METHODES
 
 	public int read() {
 		Scanner sc = new Scanner(System.in);
@@ -18,6 +36,7 @@ public class Promotion {
 	}
 
 	public void promotion(Piece piece, Plateau p) {
+		promote = false;
 		if (piece.getNom() == TypePiece.PION)
 			if (piece.getCouleur() == CouleursPiece.BLANC) {
 				if (piece.getCoordonnee() == 56 || piece.getCoordonnee() == 57 || piece.getCoordonnee() == 58
@@ -29,6 +48,7 @@ public class Promotion {
 					System.out.println("2 - Cavalier");
 					System.out.println("3 - Tour");
 					System.out.println("4 - Dame");
+					promote = true;
 					int promotion = read();
 					switch (promotion) {
 					case 1:
@@ -69,6 +89,7 @@ public class Promotion {
 					System.out.println("2 - Cavalier");
 					System.out.println("3 - Tour");
 					System.out.println("4 - Dame");
+					promote = true;
 					int promotion = read();
 					switch (promotion) {
 					case 1:
@@ -101,4 +122,5 @@ public class Promotion {
 			}
 	}
 
+	
 }
