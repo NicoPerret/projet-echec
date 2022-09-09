@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.echec.classe.historique.NotationCoup;
+import fr.echec.classe.jeu.Fen;
 import fr.echec.classe.jeu.Plateau;
 import fr.echec.classe.mouvements.analyse.CoupsPossibles;
 import fr.echec.classe.mouvements.deplacement.Deplacement;
@@ -31,13 +32,16 @@ public class ResolutionProbleme {
 	protected CoupOrdi coupOrdi;
 
 	@Autowired
-	protected Plateau p;
+	protected Plateau plateau;
 	
 	@Autowired
 	protected CoupsPossibles coupPossible;
 	
 	@Autowired
 	protected ProblemeService srvProbleme;
+	
+	@Autowired
+	protected Fen fen;
 	
 	protected List<Integer> listeCoup = new ArrayList<>();
 	protected Probleme probleme = new Probleme();
@@ -49,13 +53,15 @@ public class ResolutionProbleme {
 		
 		int coordArrivee;
 		int coordDepart;
-		boolean verif = true;
-		String[] tabCoups = probleme.getListeDeplacement().split(" ");
+		boolean verif;
+		this.plateau = fen.creationPlateau(probleme.getFenDepart());
+		String[] tabCoups = probleme.getListeDeplacement().toUpperCase().split(" ");
 		for (int i = 0; i < tabCoups.length; i++) {
+			verif = true;
+			System.out.println(this.plateau);
 			if (i % 2 == 0) { // tour de l'ordi
-				coupOrdi.coupOrdi(tabCoups[i], p, probleme.isTraitAuBlanc());
+				coupOrdi.coupOrdi(tabCoups[i], this.plateau, probleme.isTraitAuBlanc());
 			} else { // tour du joueur
-
 				while (verif) {
 					do {
 						coordDepart = selectionPieceProbleme();
@@ -73,12 +79,12 @@ public class ResolutionProbleme {
 
 	public boolean verifBonCoup(String coupJoueur, String coupAJouer) {
 		if (coupJoueur.equals(coupAJouer)) {
-			this.d.deplacement(p.getPieceCase(NotationCoup.conversionLettreTo64(coupJoueur.substring(0, 2))),
-					NotationCoup.conversionLettreTo64(coupJoueur.substring(2, 4)), p);
-			return true;
+			this.d.deplacement(this.plateau.getPieceCase(NotationCoup.conversionLettreTo64(coupJoueur.substring(0, 2))),
+					NotationCoup.conversionLettreTo64(coupJoueur.substring(2, 4)), this.plateau);
+			return false;
 		} else {
 			System.out.println("Ce n'est pas le bon coup! Reessayer");
-			return false;
+			return true;
 		}
 	}
 
@@ -98,9 +104,9 @@ public class ResolutionProbleme {
 
 			 coordDepart = NotationCoup.conversionLettreTo64(saisie);
 
-			if (	p.getPieceCase(coordDepart) != null
-					&& p.getPieceCase(coordDepart).getCouleur() == couleurJoueur) {
-				listeCoup = coupPossible.trouveDestinationsPossibles(p, p.getPieceCase(coordDepart));
+			if (	this.plateau.getPieceCase(coordDepart) != null
+					&& this.plateau.getPieceCase(coordDepart).getCouleur() == couleurJoueur) {
+				listeCoup = coupPossible.trouveDestinationsPossibles(this.plateau, this.plateau.getPieceCase(coordDepart));
 
 				if (listeCoup.isEmpty() == false) {
 					System.out.println("Coup(s) possible(s) : ");
@@ -116,7 +122,6 @@ public class ResolutionProbleme {
 			}
 
 		}
-		sc.close();
 		return coordDepart ;
 	}
 
@@ -138,9 +143,9 @@ public class ResolutionProbleme {
 			for (Integer i : listeCoup) {
 
 				if (coordArrivee == i) {
-
+					
 					// NotationCoup.setCoordArriveeStandard(saisie);
-					d.deplacement(p.getPieceCase(coordDepart), coordArrivee, p);
+					//d.deplacement(this.plateau.getPieceCase(coordDepart), coordArrivee, this.plateau);
 					verifIfSaisieCoupPossible = true;
 					verifChangerPiece = true;
 
@@ -157,10 +162,7 @@ public class ResolutionProbleme {
 				}
 			}
 		}
-		if (verifChangerPiece) {
-			promo.promotion(p.getPieceCase(coordArrivee), p);
-		}
-		sc.close();
+		
 		return coordArrivee;
 	}
 }
