@@ -16,8 +16,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import fr.echec.classe.historique.NotationCoup;
 import fr.echec.classe.jeu.Plateau;
-import fr.echec.classe.mouvements.CoupsPossibles;
-import fr.echec.classe.mouvements.Deplacement;
+import fr.echec.classe.mouvements.analyse.CoupsPossibles;
+import fr.echec.classe.mouvements.deplacement.Deplacement;
+import fr.echec.classe.mouvements.deplacement.Promotion;
 
 @Entity
 @Table(name = "probleme")
@@ -43,13 +44,21 @@ public class Probleme {
 	@Column(name = "prob_difficulte", nullable = false)
 	private int difficulte;
 
+	@Transient
 	protected Plateau p;
+	@Transient
 	protected List<Integer> listeCoup = new ArrayList<>();
+	@Transient
 	protected CoupsPossibles coupPossible = new CoupsPossibles();
+
 
 	@Transient
 	@Autowired
 	protected Deplacement d;
+	
+	@Transient
+	@Autowired
+	protected Promotion promo;
 
 // GETTERS ET SETTERS 
 
@@ -125,18 +134,18 @@ public class Probleme {
 
 	// Coup joué par l'ordi
 	public void coupOrdi(String coupAJouer) {
-		NotationCoup nt = new NotationCoup(0, 0);
-		int coorDepart = nt.conversionLettreTo64(coupAJouer.substring(0, 2));
-		int coorArrivee = nt.conversionLettreTo64(coupAJouer.substring(2, 4));
+		int coorDepart = NotationCoup.conversionLettreTo64(coupAJouer.substring(0, 2));
+		int coorArrivee = NotationCoup.conversionLettreTo64(coupAJouer.substring(2, 4));
+
 		this.d.deplacement(p.getPieceCase(coorDepart), coorArrivee, p);
 	}
 
 	// Verif coup joué est le bon
+
 	public boolean verifBonCoup(String coupJoueur, String coupAJouer) {
-		NotationCoup nt = new NotationCoup(0, 0);
 		if (coupJoueur.equals(coupAJouer)) {
-			this.d.deplacement(p.getPieceCase(nt.conversionLettreTo64(coupJoueur.substring(0, 2))),
-					nt.conversionLettreTo64(coupJoueur.substring(2, 4)), p);
+			this.d.deplacement(p.getPieceCase(NotationCoup.conversionLettreTo64(coupJoueur.substring(0, 2))),
+					NotationCoup.conversionLettreTo64(coupJoueur.substring(2, 4)), p);
 			return true;
 		} else {
 			System.out.println("Ce n'est pas le bon coup! Reessayer");
@@ -159,7 +168,6 @@ public class Probleme {
 
 				if (listeCoup.isEmpty() == false) {
 					System.out.println("Coup(s) possible(s) : ");
-					NotationCoup.setCoordDepartStandard(saisie);
 					for (Integer i : listeCoup) {
 						System.out.println(NotationCoup.conversion64ToLettre(i));
 					}
@@ -194,7 +202,7 @@ public class Probleme {
 
 				if (coordArrivee == i) {
 
-					NotationCoup.setCoordArriveeStandard(saisie);
+					//NotationCoup.setCoordArriveeStandard(saisie);
 					d.deplacement(p.getPieceCase(coordDepart), coordArrivee, p);
 					verifIfSaisieCoupPossible = true;
 					verifChangerPiece = true;

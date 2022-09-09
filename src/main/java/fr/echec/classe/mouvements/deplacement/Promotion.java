@@ -1,4 +1,4 @@
-package fr.echec.classe.mouvements;
+package fr.echec.classe.mouvements.deplacement;
 
 import java.util.Scanner;
 
@@ -7,54 +7,19 @@ import fr.echec.classe.jeu.Plateau;
 import fr.echec.enumerateur.CouleursPiece;
 import fr.echec.enumerateur.TypePiece;
 
-public class Deplacement {
+public class Promotion {
+
+
+	
+
+	
 	public int read() {
 		Scanner sc = new Scanner(System.in);
 		return sc.nextInt();
 	}
 
-	public void deplacement(Piece piece, int coord, Plateau p) {
-		
-		if (piece.getNom() == TypePiece.ROI && coord == piece.getCoordonnee()+2) {
-			jouerPetitRoque(piece, p);
-		} else if (piece.getNom() == TypePiece.ROI && coord == piece.getCoordonnee()-2) {
-			jouerGrandRoque(piece, p);
-		} else if (piece.getNom() == TypePiece.PION 
-				&& (coord - piece.getCoordonnee()) % 2 == 1 &&  p.getPieceCase(coord) == null) {
-				// Si déplacement en diagonal (impair) et que la case de destination est vide
-				jouerPriseEnPassant(piece, coord, p);
-		}else {
-			bougerPiece(piece, coord, p);
-			promotion(piece, p);
-		}
-		
-		gestionBooleenPriseEnPassant(piece, p);
-		
-	}
+
 	
-	public void bougerPiece(Piece piece, int coord, Plateau p) {
-		
-		if (p.getPieceCase(coord) != null) {
-			capture(p.getPieceCase(coord), p);
-		}
-		
-		p.setCaseTableau("   ", piece.getCoordonnee());
-		p.setCaseTableau(piece.getNomPlateau(), coord);
-		
-		p.getPieceCase(piece.getCoordonnee()).setCoordonnee(coord);
-		piece.setaBouge(true);;
-		
-	}
-
-	public void capture(Piece piece, Plateau p) {
-		
-		p.setCaseTableau("   ", piece.getCoordonnee());
-		piece.setCoordonnee(-1);
-		piece.setEnVie(false);
-		
-	}
-
-//sous-fonction "Promotion"
 	public void promotion(Piece piece, Plateau p) {
 		if (piece.getNom() == TypePiece.PION)
 			if (piece.getCouleur() == CouleursPiece.BLANC) {
@@ -139,53 +104,5 @@ public class Deplacement {
 			}
 	}
 
-//	 sous-fonction Petit Roque et Grand Roque
-	
-	public void jouerPetitRoque(Piece roi, Plateau p) {
-		
-		Piece tour = p.getPieceCase(roi.getCoordonnee()+3);
-		
-		bougerPiece(roi, roi.getCoordonnee()+2, p);
-		bougerPiece(tour, tour.getCoordonnee()-2, p);
-		
-		
-	}
-	
-	public void jouerGrandRoque(Piece roi, Plateau p) {
-		
-		Piece tour = p.getPieceCase(roi.getCoordonnee()-4);
-		
-		bougerPiece(roi, roi.getCoordonnee()-2, p);
-		bougerPiece(tour, tour.getCoordonnee()+3, p);
-		
-	}
-	
-	// Prise en passant
-	
-	public void gestionBooleenPriseEnPassant(Piece pion, Plateau p) {
-		
-		CouleursPiece couleur = pion.getCouleur();
-		
-		for (Piece piece : p.getPieces()) {
-			if (piece.getCouleur() == couleur && piece.getNom() == TypePiece.PION) {
-				piece.setPriseEnPassantPossible(false);
-			}
-		}
-		
-		pion.setPriseEnPassantPossible(true);
-		
-	}
-	
-	public void jouerPriseEnPassant(Piece pion, int coord, Plateau p) {
-		
-		if (coord == pion.getCoordonnee()+7 || coord == pion.getCoordonnee()-9) {
-			capture(p.getPieceCase(pion.getCoordonnee() -1), p); // prise en passant à gauche
-		} else if (coord == pion.getCoordonnee()+9 || coord == pion.getCoordonnee()-7) {
-			capture(p.getPieceCase(pion.getCoordonnee() +1), p); // prise en passant à droite
-		}
-		
-		bougerPiece(pion, coord, p);
-		
-	}
-	
+
 }

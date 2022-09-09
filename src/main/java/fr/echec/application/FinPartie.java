@@ -6,9 +6,9 @@ import java.util.List;
 import fr.echec.classe.jeu.Fen;
 import fr.echec.classe.jeu.Piece;
 import fr.echec.classe.jeu.Plateau;
-import fr.echec.classe.mouvements.CoupsPossibles;
-import fr.echec.classe.mouvements.Deplacement;
-import fr.echec.classe.mouvements.GestionEchec;
+import fr.echec.classe.mouvements.analyse.CoupsPossibles;
+import fr.echec.classe.mouvements.analyse.GestionEchec;
+import fr.echec.classe.mouvements.deplacement.Deplacement;
 import fr.echec.enumerateur.CouleursPiece;
 import fr.echec.enumerateur.TypePiece;
 
@@ -20,11 +20,13 @@ public class FinPartie {
 	private CoupsPossibles coupsPossibles = new CoupsPossibles();
 	
 	private ArrayList<String> listeFen = new ArrayList<>();
-	private Test test = new Test();
+	private NulleParRepetitionMethode test = new NulleParRepetitionMethode();
 
 	private Fen fen = new Fen(); 
 	private boolean nulle = false;
 	private boolean echecMat = false;
+	
+	private GestionEchec gestionEchec = new GestionEchec();
 	
 	
 
@@ -104,7 +106,7 @@ public class FinPartie {
 		}else {
 			couleur = CouleursPiece.BLANC;
 		}
-		if(listeCoup.isEmpty() == true && GestionEchec.isEchec(plateau, couleur)) {
+		if(listeCoup.isEmpty() == true && gestionEchec.isEchec(plateau, couleur)) {
 			
 			System.out.println("Echec et mat");
 			echecMat = true;
