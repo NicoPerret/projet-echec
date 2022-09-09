@@ -1,25 +1,9 @@
-Nico :
-pb : jouer les coups par l'ordi /!\ roque ok
-pb : promotion ordi ok 
-pb : gestion couleur joueur ok
-pb : indice ==> donner case de départ de la pièce à jouer
-pb : recup depuis bdd findById()
-
-
-FM :
-pb : ResolutionProbleme Service
-pb : ResPb Service save resultatProblem (import du joueur et de l'id pb)
-
-Francois :
 revoir une partie coup par coup 
 	en avant ==> coup ordi
 	en arrière ==> enregistrer fen coup précédent
 
-
-Felix :
 Rajouter la promote dans historique
-reformater historique
-IA Aleat
+
 
 
 
