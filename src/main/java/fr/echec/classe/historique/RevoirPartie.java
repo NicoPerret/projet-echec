@@ -9,7 +9,7 @@ import fr.echec.service.HistoriquePartieService;
 public class RevoirPartie {
 	@Autowired
 	private HistoriquePartieService srvHistPartie;
-	@Autowired
+	
 	private HistoriquePartie histPartie;
 	
 	
