@@ -15,7 +15,7 @@ public class Application {
 
 	public static void main(String[] args) throws HistoriquePartieNotFoundException, IdNegatifException {
 		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
-		boolean typePartie = false;
+		boolean typePartie = true;
 		if (typePartie) {
 
 			ParametresPartie param = new ParametresPartie();
@@ -41,6 +41,7 @@ public class Application {
 				if (p.isPartieFinie() == true) {
 					break;
 				}
+				System.out.println(p.getH().getListeCoups());
 			}
 
 			p.savePartieEtHistorique();
@@ -52,6 +53,8 @@ public class Application {
 			p.setListeDeplacement("f2g3 e6e7 b2b1 b3c1 b1c1 h6c1");
 			p.jouerPb();
 		}
+		
+		
 
 		ctx.close();
 

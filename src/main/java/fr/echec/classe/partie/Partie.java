@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import javax.persistence.Transient;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 import fr.echec.application.FinPartie;
@@ -21,6 +19,7 @@ import fr.echec.classe.mouvements.analyse.GestionEchec;
 import fr.echec.classe.mouvements.deplacement.Deplacement;
 import fr.echec.classe.parametres.ParametresPartie;
 import fr.echec.enumerateur.CouleursPiece;
+import fr.echec.enumerateur.TypePiece;
 import fr.echec.exception.HistoriquePartieNotFoundException;
 import fr.echec.service.HistoriquePartieService;
 import fr.echec.service.UtilisateursService;
@@ -71,7 +70,7 @@ public abstract class Partie {
 	@Autowired
 	UtilisateursService srvUti ;
 	
-	@Transient
+	
 	@Autowired
 	private GestionEchec gestionEchec;
 
@@ -423,8 +422,29 @@ public abstract class Partie {
 		}else if (d.isPetitRoque()) {
 			h.ajouterCoup(" O-O ");
 		}else {
-			h.ajouterCoup(" " + nt.getCoordDepartStandard() + " " + nt.getCoordArriveeStandard() + " ");
+			h.ajouterCoup(nt.getCoordDepartStandard() + nt.getCoordArriveeStandard());
 			
+			if (d.isPromote()) {
+				TypePiece type = plateau.getPieceCase(NotationCoup.conversionLettreTo64(nt.getCoordArriveeStandard())).getNom();
+				switch (type) {
+				case   CAVALIER:
+					h.ajouterCoup("K");
+					break;
+				case DAME : 
+				h.ajouterCoup("Q");
+					break;
+				case FOU:
+					h.ajouterCoup("B");
+					break;
+			
+				case TOUR:
+					h.ajouterCoup("R");
+					break;
+				default:
+					break;
+				}
+				h.ajouterCoup(" ");
+			}
 		}
 
 		if (gestionEchec.isEchec(plateau, couleurJoueurActif)) {
@@ -437,7 +457,7 @@ public abstract class Partie {
 			this.chronoJ1.runnig();
 			this.chronoJ1.stop();
 			this.chronoJ1.getAffichageTempsRestant(chronoJ1.getTempsRestant());
-			h.ajouterCoup("/");
+			
 
 		} else {
 
@@ -446,7 +466,7 @@ public abstract class Partie {
 			this.chronoJ2.getAffichageTempsRestant(chronoJ2.getTempsRestant());
 
 			compteurCoups++;
-			h.ajouterCoup(" " + compteurCoups + " : ");
+			
 
 		}
 		this.compteurTours++;
