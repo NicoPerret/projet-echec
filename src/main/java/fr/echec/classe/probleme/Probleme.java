@@ -2,6 +2,7 @@ package fr.echec.classe.probleme;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -45,7 +46,6 @@ public class Probleme {
 	protected Plateau p;
 	protected List<Integer> listeCoup = new ArrayList<>();
 	protected CoupsPossibles coupPossible = new CoupsPossibles();
-	protected int coordDepart;
 
 	@Transient
 	@Autowired
@@ -94,33 +94,36 @@ public class Probleme {
 	}
 
 	// CONSTRUCTEUR
-<<<<<<< HEAD
-	// construire plateau en meme temps
+	public Probleme(Plateau plateau) {
+		this.p = plateau;
+	}
 
-=======
-
-	Plateau p = new Plateau();
-	
->>>>>>> FMM
 	// METHODES
-	
-	
-	String[] tabCoups = listeDeplacements.split(" ");
-	for(int i = 0; i < tabCoups.size(); i++) {
-		if (i%2 ==0) { 								//tour de l'ordi
-			coupOrdi(p, tabCoups[i]);
-		}else { 									//tour du joueur
-			String coupJoueur.selectionPieceProbleme();
-			coupJoueur.jouerPieceProbleme();
-			while(true) {
-				verifBonCoup(coupJoueur, p, tabCoups[i]);
+	public void jouerPb() {
+		int coordArrivee;
+		int coordDepart;
+		boolean verif = true;
+		String[] tabCoups = listeDeplacements.split(" ");
+		for(int i = 0; i < tabCoups.length; i++) {
+			if (i%2 ==0) { //tour de l'ordi
+				coupOrdi(tabCoups[i]);
+			}
+			else { //tour du joueur
+				
+				while(verif) {
+					do{
+						coordDepart = selectionPieceProbleme();
+						coordArrivee = jouerPieceProbleme(coordDepart);
+					}while (coordArrivee == -1);
+					String coupJoueur = NotationCoup.conversion64ToLettre(coordDepart)
+							+ NotationCoup.conversion64ToLettre(coordArrivee);
+					verif = verifBonCoup(coupJoueur, tabCoups[i]);
+				}
+			}
 		}
-	}}
+	}
 
-	// Jouer les coups par l'ordi découper le string avec "", upperCase, convertir
-	// //PROBLEMES : tailles des problemes inconstant (4, 5, 6 déplacements)
-	// en 64, prendre les 2 coordonnées et faire déplacement
-
+	// Coup joué par l'ordi
 	public void coupOrdi(String coupAJouer) {
 		NotationCoup nt = new NotationCoup(0, 0);
 		int coorDepart = nt.conversionLettreTo64(coupAJouer.substring(0, 2));
@@ -129,7 +132,6 @@ public class Probleme {
 	}
 
 	// Verif coup joué est le bon
-
 	public boolean verifBonCoup(String coupJoueur, String coupAJouer) {
 		NotationCoup nt = new NotationCoup(0, 0);
 		if (coupJoueur.equals(coupAJouer)) {
@@ -142,8 +144,8 @@ public class Probleme {
 		}
 	}
 
-
-	public void selectionPieceProbleme() {
+	// Sélection de la piece renvoi coord depart
+	public int selectionPieceProbleme() {
 		Scanner sc;
 		while (true) {
 			System.out.println("Saisir une piece : ");
@@ -173,7 +175,8 @@ public class Probleme {
 
 	}
 
-	public void jouerPieceProbleme() {
+	// Sélection de la case darrivée renvoie coordArrivee
+	public int jouerPieceProbleme(int coordDepart) {
 		Scanner sc;
 		System.out.println("Saisir 0 pour changer de piece");
 
@@ -181,8 +184,7 @@ public class Probleme {
 
 		boolean verifIfSaisieCoupPossible = false;
 		boolean verifChangerPiece = false;
-		int coordArrivee = 0;
-
+		int coordArrivee = -1;
 		while (verifIfSaisieCoupPossible == false) {
 
 			String saisie = sc.nextLine();
@@ -196,7 +198,7 @@ public class Probleme {
 					d.deplacement(p.getPieceCase(coordDepart), coordArrivee, p);
 					verifIfSaisieCoupPossible = true;
 					verifChangerPiece = true;
-
+					
 					break;
 				}
 			}
@@ -205,7 +207,6 @@ public class Probleme {
 				if (saisie.equals("0")) {
 					break;
 				} else {
-
 					System.out.println("Veuillez saisir un coup dans la liste ci-dessus");
 					System.out.println("Déplacement illégal");
 				}
@@ -214,5 +215,6 @@ public class Probleme {
 		if (verifChangerPiece) {
 			d.promotion(p.getPieceCase(coordArrivee), p);
 		}
+		return coordArrivee;
 	}
 }
