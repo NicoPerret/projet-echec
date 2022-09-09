@@ -22,13 +22,13 @@ public class Probleme {
 	@Column(name = "prob_fen_depart", length = 100, nullable = false)
 	private String fenDepart;
 
-	@Column(name = "prob_liste_deplacement", length = 100)
+	@Column(name = "prob_liste_deplacements", length = 100)
 	private String listeDeplacements;
 
 	@Column(name = "prob_traitaublanc", nullable = false)
 	private boolean traitAuBlanc;
 
-	@Column(name = "prob_difficulte", nullable = false)
+	@Column(name = "prob_difficulte")
 	private int difficulte;
 
 
