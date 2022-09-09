@@ -1,12 +1,9 @@
-pb : jouer les coups par l'ordi
+pb : jouer les coups par l'ordi /!\ roque
+boolean pour roque
 
-changer conversionx2 en static notation coup
+
 
 spring
-
-jouerPiecePb
-
-
 
 
 html accueil
