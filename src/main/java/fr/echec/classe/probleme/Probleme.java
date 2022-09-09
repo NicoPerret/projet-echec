@@ -120,33 +120,7 @@ public class Probleme {
 		}
 	}
 
-	// Coup joué par l'ordi
 	
-	@Autowired
-	Roque roque;
-	public void coupOrdi(String coupAJouer) {
-		if(coupAJouer.equals("O-O")) {
-			if(traitAuBlanc) {
-				roque.jouerPetitRoque(p.getPieceCase(3), p);
-			}else {
-				roque.jouerPetitRoque(p.getPieceCase(59), p);
-			}
-		}
-		else if (coupAJouer.equals("O-O-O")) {
-			if(traitAuBlanc) {
-				roque.jouerGrandRoque(p.getPieceCase(3), p);
-
-			}else {
-				roque.jouerGrandRoque(p.getPieceCase(59), p);
-			}
-		}else {
-			int coordDepart = NotationCoup.conversionLettreTo64(coupAJouer.substring(0, 2));
-			int coordArrivee = NotationCoup.conversionLettreTo64(coupAJouer.substring(2, 4));
-	
-			this.d.deplacement(p.getPieceCase(coordDepart), coordArrivee, p);
-			promo.promotionAutomatique(p.getPieceCase(coordArrivee), p, coupAJouer.charAt(5));
-		}
-	}
 
 	// Verif coup joué est le bon
 
