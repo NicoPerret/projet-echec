@@ -17,34 +17,5 @@ import fr.echec.repository.IResultatProbleme;
 @Service
 public class ResultatProblemeService {
 
-	@Autowired
-	private IResultatProbleme repoResultatProbleme;
-
-	@Autowired
-	protected Plateau p;
-
-	@Autowired
-	protected List<Integer> listeCoup;
-
-	@Autowired
-	protected CoupsPossibles coupPossible;
-
-	@Autowired
-	protected Deplacement d;
-
-	@Autowired
-	protected Promotion promo;
-	
-	@Autowired
-	protected Probleme probleme;
-
-	public void save(Probleme probleme) throws ProblemeNotFoundException {
-		if (probleme == null) {
-			throw new ProblemeNotFoundException();
-		}
-
-		repoResultatProbleme.save(probleme);
-
-	}
 
 }
