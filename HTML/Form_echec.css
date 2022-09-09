@@ -38,7 +38,7 @@ fieldset {
     grid-template-columns: 50% 50%;
     border: solid 1px black;
     box-sizing: border-box;
-    background: white;
+    background: blue;
 }
 
 .grilleCentralePlateauEtBoutons{
@@ -89,6 +89,7 @@ fieldset {
     grid-template-columns: repeat(1, 50px); 
     grid-template-rows: repeat(8, 50px);
     text-align: center;
+    background: green;
 }
 .grillePlateau1a8 div{
     height: 50px;
@@ -112,6 +113,7 @@ fieldset {
     display: flex;
     flex-direction: row;
     justify-content: center; 
+    background: green;
 }
 .flexPlateauAaH div{
     width: 50px;
@@ -130,4 +132,9 @@ fieldset {
 .divHistoriqueEtChat {
     height: 50%;
     border: solid 1px black;
+}
+
+.piecesCapturees {
+    border: solid 1px black;
+    background: yellow;
 }
