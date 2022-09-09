@@ -20,7 +20,7 @@ public class FinPartie {
 	private CoupsPossibles coupsPossibles = new CoupsPossibles();
 	
 	private ArrayList<String> listeFen = new ArrayList<>();
-	private Test test = new Test();
+	private NulleParRepetitionMethode test = new NulleParRepetitionMethode();
 
 	private Fen fen = new Fen(); 
 	private boolean nulle = false;

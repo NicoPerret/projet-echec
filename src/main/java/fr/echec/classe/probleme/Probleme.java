@@ -44,9 +44,13 @@ public class Probleme {
 	@Column(name = "prob_difficulte", nullable = false)
 	private int difficulte;
 
+	@Transient
 	protected Plateau p;
+	@Transient
 	protected List<Integer> listeCoup = new ArrayList<>();
+	@Transient
 	protected CoupsPossibles coupPossible = new CoupsPossibles();
+
 
 	@Transient
 	@Autowired
@@ -54,7 +58,7 @@ public class Probleme {
 	
 	@Transient
 	@Autowired
-	protected Promotion p;
+	protected Promotion promo;
 
 // GETTERS ET SETTERS 
 

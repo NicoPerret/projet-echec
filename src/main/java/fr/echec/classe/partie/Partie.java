@@ -49,7 +49,8 @@ public class Partie {
 	protected CoupsPossibles coupPossible = new CoupsPossibles();
 	protected List<Integer> listeCoup = new ArrayList<>();
 	HistoriquePartie h = new HistoriquePartie();
-
+	
+	
 	protected boolean verifChangerPiece = false;
 	protected boolean surrJ1 = false;
 	protected boolean surrJ2 = false;
@@ -408,9 +409,19 @@ public class Partie {
 		if (surrJ1 || surrJ2|| draw) {
 			verifChangerPiece = true;
 			return;
+		} 
+		// IF PEtit then OO else if groque o-O-o else 
+		if (d.isGrandRoque()) {
+			h.ajouterCoup(" O-O-O ");
+		}else if (d.isPetitRoque()) {
+			h.ajouterCoup(" O-O ");
+		}else {
+			h.ajouterCoup(" " + nt.getCoordDepartStandard() + " " + nt.getCoordArriveeStandard() + " ");
+			
 		}
-		h.ajouterCoup(" " + nt.getCoordDepartStandard() + " " + nt.getCoordArriveeStandard() + " ");
+
 		if (gestionEchec.isEchec(plateau, couleurJoueurActif)) {
+
 			h.ajouterCoup("+");
 		}
 

@@ -8,11 +8,17 @@ import fr.echec.enumerateur.CouleursPiece;
 import fr.echec.enumerateur.TypePiece;
 
 public class Promotion {
+
+
+	
+
 	
 	public int read() {
 		Scanner sc = new Scanner(System.in);
 		return sc.nextInt();
 	}
+
+
 	
 	public void promotion(Piece piece, Plateau p) {
 		if (piece.getNom() == TypePiece.PION)
@@ -97,5 +103,6 @@ public class Promotion {
 				}
 			}
 	}
+
 
 }

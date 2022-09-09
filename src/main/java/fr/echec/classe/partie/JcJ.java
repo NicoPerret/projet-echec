@@ -87,6 +87,7 @@ public class JcJ extends Partie {
 				resJ1 = 0;
 				resJ2 = 1;
 				calculElo(j1, j2, resJ1, resJ2);
+				h.ajouterCoup("#");
 				return true;
 
 			}
@@ -99,6 +100,7 @@ public class JcJ extends Partie {
 				resJ1 = 1;
 				resJ2 = 0;
 				calculElo(j1, j2, resJ1, resJ2);
+				h.ajouterCoup("#");
 				return true;
 			}
 			if(fin) {
