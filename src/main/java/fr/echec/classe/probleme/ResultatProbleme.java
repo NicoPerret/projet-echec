@@ -1,3 +1,4 @@
+
 package fr.echec.classe.probleme;
 
 import java.time.LocalDateTime;
@@ -64,3 +65,4 @@ public class ResultatProbleme {
 
 	// METHODES
 }
+
