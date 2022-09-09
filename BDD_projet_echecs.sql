@@ -30,7 +30,7 @@ CREATE TABLE probleme(
     prob_fen_depart VARCHAR(100) NOT NULL,
     prob_liste_deplacements VARCHAR(100),
     prob_traitaublanc BOOLEAN NOT NULL,
-    prob_difficulte INT NOT NULL
+    prob_difficulte INT
 );
 
 CREATE TABLE resultatProbleme (
@@ -113,7 +113,7 @@ VALUES
     ('DameNoir', 'rnb1kbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR');
 
 
-INSERT INTO probleme (prob_fen_depart, prob_traitaublanc, prob_liste_deplacement)
+INSERT INTO probleme (prob_fen_depart, prob_traitaublanc, prob_liste_deplacements)
 VALUES
 ('r6k/pp2r2p/4Rp1Q/3p4/8/1N1P2R1/PqP2bPP/7K','false','f2g3 e6e7 b2b1 b3c1 b1c1 h6c1'),
 ('5rk1/1p3ppp/pq3b2/8/8/1P1Q1N2/P4PPP/3R2K1','true','d3d6 f8d8 d6d8 f6d8'),
