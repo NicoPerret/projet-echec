@@ -2,10 +2,10 @@ package fr.echec.application;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import fr.echec.classe.historique.RevoirPartie;
 import fr.echec.classe.joueur.Utilisateur;
 import fr.echec.classe.parametres.ParametresPartie;
 import fr.echec.classe.partie.JcJ;
-import fr.echec.classe.probleme.Probleme;
 import fr.echec.config.AppConfig;
 import fr.echec.exception.HistoriquePartieNotFoundException;
 import fr.echec.exception.IdNegatifException;
@@ -17,8 +17,8 @@ public class Application {
 
 	public static void main(String[] args) throws HistoriquePartieNotFoundException, IdNegatifException, ProblemeNotFoundException {
 		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
-		boolean typePartie = false;
-		if (typePartie) {
+		int typePartie = 2;
+		if (typePartie==0) {
 
 			ParametresPartie param = new ParametresPartie();
 
@@ -46,10 +46,13 @@ public class Application {
 			}
 
 			p.savePartieEtHistorique();
-		} else {
+		} else if (typePartie==1) {
 			// UN PROBLEME  ('r6k/pp2r2p/4Rp1Q/3p4/8/1N1P2R1/PqP2bPP/7K','false','f2g3 e6e7 b2b1 b3c1 b1c1 h6c1'),
 			ResolutionProbleme prob = ctx.getBean(ResolutionProbleme.class);
 			prob.jouerPb(1);
+		} else if (typePartie==2) {
+			RevoirPartie revoirPartie = ctx.getBean(RevoirPartie.class);
+			revoirPartie.revoirPartieApplication(1);
 		}
 
 		ctx.close();
