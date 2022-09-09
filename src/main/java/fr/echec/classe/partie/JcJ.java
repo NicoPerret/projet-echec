@@ -3,7 +3,6 @@ package fr.echec.classe.partie;
 import org.springframework.stereotype.Service;
 
 import fr.echec.classe.joueur.Utilisateur;
-import fr.echec.classe.parametres.ParametresPartie;
 import fr.echec.enumerateur.CouleursPiece;
 
 @Service

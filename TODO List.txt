@@ -4,12 +4,23 @@ revoir une partie coup par coup
 
 Rajouter la promote dans historique
 
+pb annoncer vainqueur
+pb indice
+pb mettre en bdd que le pb en gg !
+pb ajouter utilisateur
 
+pb mettre difficulte
 
-
+opti globale
 spring
+
 
 html accueil
 html plateau
 html parametrePartie
 html historiquePartie
+
+
+
+Outil pour formater les pb en notre ecrire
+IA intelligente

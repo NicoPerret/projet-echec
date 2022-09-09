@@ -30,7 +30,7 @@ CREATE TABLE probleme(
     prob_fen_depart VARCHAR(100) NOT NULL,
     prob_liste_deplacements VARCHAR(100),
     prob_traitaublanc BOOLEAN NOT NULL,
-    prob_difficulte INT
+    prob_difficulte INT DEFAULT '-1'
 );
 
 CREATE TABLE resultatProbleme (
