@@ -43,7 +43,6 @@ public class Application {
 				if (p.isPartieFinie() == true) {
 					break;
 				}
-				System.out.println(p.getH().getListeCoups());
 			}
 
 			p.savePartieEtHistorique();
@@ -52,8 +51,6 @@ public class Application {
 			ResolutionProbleme prob = ctx.getBean(ResolutionProbleme.class);
 			prob.jouerPb(1);
 		}
-		
-		
 
 		ctx.close();
 
