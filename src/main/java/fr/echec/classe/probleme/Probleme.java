@@ -47,21 +47,6 @@ public class Probleme {
 	@Column(name = "prob_difficulte", nullable = false)
 	private int difficulte;
 
-	@Transient
-	protected Plateau p = new Plateau();
-	@Transient
-	protected List<Integer> listeCoup = new ArrayList<>();
-	@Transient
-	protected CoupsPossibles coupPossible = new CoupsPossibles();
-
-
-	@Transient
-	
-	protected Deplacement d = new Deplacement();
-	
-	@Transient
-	
-	protected Promotion promo = new Promotion();
 
 // GETTERS ET SETTERS 
 
@@ -106,9 +91,6 @@ public class Probleme {
 	}
 
 	// CONSTRUCTEUR
-	public Probleme(Plateau plateau) {
-		this.p = plateau;
-	}
 	public Probleme() {
 		
 	}
@@ -152,7 +134,7 @@ public class Probleme {
 		}
 		else if (coupAJouer.equals("O-O-O")) {
 			if(traitAuBlanc) {
-				roque.jouerGrandRoque(p.getPieceCase(3), p);
+				roque.jouerGrandRoque(p.getPieceCase(3), p);	
 			}else {
 				roque.jouerGrandRoque(p.getPieceCase(59), p);
 			}
@@ -161,7 +143,7 @@ public class Probleme {
 			int coordArrivee = NotationCoup.conversionLettreTo64(coupAJouer.substring(2, 4));
 	
 			this.d.deplacement(p.getPieceCase(coordDepart), coordArrivee, p);
-			promo.promotion(p.getPieceCase(coordArrivee), p);
+			promo.promotionAutomatique(p.getPieceCase(coordArrivee), p, coupAJouer.charAt(5));
 		}
 	}
 
