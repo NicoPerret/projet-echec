@@ -43,7 +43,7 @@ public class HistoriquePartie {
 	
 	@Column (name = "hsp_liste_coups", nullable = false)
 	@Lob
-	private String listeCoups = "1 : ";//peut etre stocker sous une liste de string et concatener pour la bdd
+	private String listeCoups = "";//peut etre stocker sous une liste de string et concatener pour la bdd
 	
 	@Column(name = "hsp_date")
 	private LocalDateTime date; // a revoir avec bon format pour la bdd

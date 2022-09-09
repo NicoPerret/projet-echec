@@ -47,21 +47,6 @@ public class Probleme {
 	@Column(name = "prob_difficulte", nullable = false)
 	private int difficulte;
 
-	@Transient
-	protected Plateau p = new Plateau();
-	@Transient
-	protected List<Integer> listeCoup = new ArrayList<>();
-	@Transient
-	protected CoupsPossibles coupPossible = new CoupsPossibles();
-
-
-	@Transient
-	
-	protected Deplacement d = new Deplacement();
-	
-	@Transient
-	
-	protected Promotion promo = new Promotion();
 
 // GETTERS ET SETTERS 
 
@@ -106,9 +91,6 @@ public class Probleme {
 	}
 
 	// CONSTRUCTEUR
-	public Probleme(Plateau plateau) {
-		this.p = plateau;
-	}
 	public Probleme() {
 		
 	}
