@@ -1,5 +1,8 @@
 package fr.echec.classe.historique;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class NotationCoup {
 
 	/*
@@ -21,9 +24,8 @@ public class NotationCoup {
 
 	// constructeur
 
-	public NotationCoup(int coordDepart64, int coordArrivee64) {
-		this.coordDepart64 = coordDepart64;
-		this.coordArrivee64 = coordArrivee64;
+	public NotationCoup() {
+	
 	}
 
 	// get-set methodes

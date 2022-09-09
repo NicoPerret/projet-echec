@@ -1,6 +1,5 @@
 package fr.echec.classe.partie;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -19,7 +18,6 @@ import fr.echec.classe.mouvements.deplacement.Deplacement;
 import fr.echec.classe.parametres.ParametresPartie;
 import fr.echec.enumerateur.CouleursPiece;
 import fr.echec.enumerateur.TypePiece;
-import fr.echec.exception.HistoriquePartieNotFoundException;
 import fr.echec.finpartie.FinPartie;
 import fr.echec.service.HistoriquePartieService;
 import fr.echec.service.UtilisateursService;
@@ -37,42 +35,46 @@ public abstract class Partie {
 	protected Plateau plateau;
 	protected Chrono chronoJ1;
 	protected Chrono chronoJ2;
-	protected NotationCoup nt = new NotationCoup(0, 0);
-	protected Scanner sc = new Scanner(System.in);
 	protected int compteurTours = 1;
 	protected int compteurCoups = 1;
-	@Autowired
-	protected Deplacement d ;
 	protected int coordDepart;
-	@Autowired
-	protected Fen fen ;
 	protected CouleursPiece couleurJoueurActif = CouleursPiece.BLANC;
-	
-	@Autowired
-	protected CoupsPossibles coupPossible;
+
+	protected Scanner sc = new Scanner(System.in);
 	protected List<Integer> listeCoup = new ArrayList<>();
-	
-	
 	protected HistoriquePartie h = new HistoriquePartie();
-	
-	
+
+	// LOL LES BOOLEANS
 	protected boolean verifChangerPiece = false;
 	protected boolean surrJ1 = false;
 	protected boolean surrJ2 = false;
 	private boolean draw = false;
 
+	// AUTOWIRED
+
+	@Autowired
+	protected NotationCoup nt;
+
+	@Autowired
+	protected Deplacement d;
+
+	@Autowired
+	protected CoupsPossibles coupPossible;
+
+	@Autowired
+	protected Fen fen;
+
 	@Autowired
 	protected FinPartie finPartie;
-	
-	@Autowired
-	HistoriquePartieService srvHistPartie;
-	
-	@Autowired
-	UtilisateursService srvUti ;
-	
-	
+
 	@Autowired
 	private GestionEchec gestionEchec;
+
+	@Autowired
+	protected HistoriquePartieService srvHistPartie;
+
+	@Autowired
+	protected UtilisateursService srvUti;
 
 	// GETTERS AND SETTERS
 
@@ -190,13 +192,12 @@ public abstract class Partie {
 	}
 
 // Constructeur 
-	
+
 	public void setParam(ParametresPartie param) {
 		this.chronoJ1 = param.getChrono();
 		this.chronoJ2 = param.getChrono();
 		this.plateau = fen.creationPlateau(param.getFen());
 	}
-
 
 // METHODES 
 
@@ -227,7 +228,7 @@ public abstract class Partie {
 			this.chronoJ2.start();
 
 		}
-		
+
 		while (true) {
 			System.out.println("Taper DRAW pour demander un match nul /  FF pour abbandonner");
 			System.out.println("Saisir une piece : ");
@@ -263,22 +264,21 @@ public abstract class Partie {
 					break;
 				}
 
-			} 
-			
+			}
+
 			else if (saisie.equals("DRAW")) {
 				System.out.println("Votre adversaire propose un match null");
 				System.out.println("Saisir 1 pour accepter, 2 pour refuser");
 				saisie = sc.nextLine();
 				if (saisie.equals("1")) {
-					draw = true; 
+					draw = true;
 					break;
-				}
-				else {
+				} else {
 					System.out.println("Draw refusé");
 				}
-				
-			} 
-			
+
+			}
+
 			else {
 				System.out.println("Mauvaise saisie : Piece non trouvée ou mauvaise couleur ");
 
@@ -361,7 +361,7 @@ public abstract class Partie {
 	}
 
 	public void jouerPiece() {
-		if (surrJ1 || surrJ2|| draw) {
+		if (surrJ1 || surrJ2 || draw) {
 			verifChangerPiece = true;
 			return;
 		}
@@ -405,38 +405,39 @@ public abstract class Partie {
 
 		}
 		if (verifChangerPiece) {
-			//d.promotion(plateau.getPieceCase(coordArrivee), plateau);
+			// d.promotion(plateau.getPieceCase(coordArrivee), plateau);
 
 		}
 
 	}
 
 	public void finTour() {
-		if (surrJ1 || surrJ2|| draw) {
+		if (surrJ1 || surrJ2 || draw) {
 			verifChangerPiece = true;
 			return;
-		} 
-		// IF PEtit then OO else if groque o-O-o else 
+		}
+		// IF PEtit then OO else if groque o-O-o else
 		if (d.isGrandRoque()) {
 			h.ajouterCoup(" O-O-O ");
-		}else if (d.isPetitRoque()) {
+		} else if (d.isPetitRoque()) {
 			h.ajouterCoup(" O-O ");
-		}else {
+		} else {
 			h.ajouterCoup(nt.getCoordDepartStandard() + nt.getCoordArriveeStandard());
-			
+
 			if (d.getPromotion().isPromote()) {
-				TypePiece type = plateau.getPieceCase(NotationCoup.conversionLettreTo64(nt.getCoordArriveeStandard())).getNom();
+				TypePiece type = plateau.getPieceCase(NotationCoup.conversionLettreTo64(nt.getCoordArriveeStandard()))
+						.getNom();
 				switch (type) {
-				case   CAVALIER:
+				case CAVALIER:
 					h.ajouterCoup("K");
 					break;
-				case DAME : 
-				h.ajouterCoup("Q");
+				case DAME:
+					h.ajouterCoup("Q");
 					break;
 				case FOU:
 					h.ajouterCoup("B");
 					break;
-			
+
 				case TOUR:
 					h.ajouterCoup("R");
 					break;
@@ -457,7 +458,6 @@ public abstract class Partie {
 			this.chronoJ1.runnig();
 			this.chronoJ1.stop();
 			this.chronoJ1.getAffichageTempsRestant(chronoJ1.getTempsRestant());
-			
 
 		} else {
 
@@ -466,7 +466,6 @@ public abstract class Partie {
 			this.chronoJ2.getAffichageTempsRestant(chronoJ2.getTempsRestant());
 
 			compteurCoups++;
-			
 
 		}
 		this.compteurTours++;
@@ -494,16 +493,5 @@ public abstract class Partie {
 		this.finTour();
 	}
 
-	public void savePartieEtHistorique() throws HistoriquePartieNotFoundException {
 	
-		this.getH().setDate(LocalDateTime.now());
-		this.getH().setJ1(j1);
-		this.getH().setJ2(j2);
-		this.getH().setMessages("TEST");
-		srvHistPartie.save(this.getH());
-		srvUti.save(this.getJ1());
-		srvUti.save(this.getJ2());
-
-	}
-
 }
