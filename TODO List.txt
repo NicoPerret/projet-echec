@@ -1,10 +1,21 @@
 pb : jouer les coups par l'ordi /!\ roque
-boolean pour roque
+pb : promotion ordi
+pb : ResolutionProbleme Service
+pb : gestion couleur joueur
+pb : indice ==> donner case de départ de la pièce à jouer
+pb : reccup depuis bdd
+pb : save resultatProblem (import du joueur et de l'id pb)
 
+revoir une partie coup par coup 
+	en avant ==> coup ordi
+	en arrière ==> enregistrer fen coup précédent
 
+Rajouter la promote dans historique
+reformater historique
 
 spring
 
+IA Aleat 
 
 html accueil
 html plateau

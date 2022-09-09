@@ -45,7 +45,7 @@ public class Probleme {
 	private int difficulte;
 
 	@Transient
-	protected Plateau p;
+	protected Plateau p = new Plateau();
 	@Transient
 	protected List<Integer> listeCoup = new ArrayList<>();
 	@Transient
@@ -53,12 +53,12 @@ public class Probleme {
 
 
 	@Transient
-	@Autowired
-	protected Deplacement d;
+	
+	protected Deplacement d = new Deplacement();
 	
 	@Transient
-	@Autowired
-	protected Promotion promo;
+	
+	protected Promotion promo = new Promotion();
 
 // GETTERS ET SETTERS 
 

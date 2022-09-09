@@ -5,6 +5,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import fr.echec.classe.joueur.Utilisateur;
 import fr.echec.classe.parametres.ParametresPartie;
 import fr.echec.classe.partie.JcJ;
+import fr.echec.classe.probleme.Probleme;
 import fr.echec.config.AppConfig;
 import fr.echec.exception.HistoriquePartieNotFoundException;
 import fr.echec.exception.IdNegatifException;
@@ -13,12 +14,10 @@ import fr.echec.service.UtilisateursService;
 public class Application {
 
 	public static void main(String[] args) throws HistoriquePartieNotFoundException, IdNegatifException {
-		AnnotationConfigApplicationContext ctx =
-				new AnnotationConfigApplicationContext(AppConfig.class);
-		boolean typePartie = true;
+		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
+		boolean typePartie = false;
 		if (typePartie) {
-			
-			
+
 			ParametresPartie param = new ParametresPartie();
 
 			JcJ p = ctx.getBean(JcJ.class);
@@ -33,7 +32,7 @@ public class Application {
 			p.setJ2(j2);
 			// UNE PARTIE
 			while (true) {
-			// Jouer
+				// Jouer
 				p.jouer();
 
 				// TP
@@ -46,18 +45,15 @@ public class Application {
 
 			p.savePartieEtHistorique();
 		} else {
-			// UN PROBLEME
-
-			ctx.close();
+			// UN PROBLEME  ('r6k/pp2r2p/4Rp1Q/3p4/8/1N1P2R1/PqP2bPP/7K','false','f2g3 e6e7 b2b1 b3c1 b1c1 h6c1'),
+			Probleme p = new Probleme();
+			p.setFenDepart("r6k/pp2r2p/4Rp1Q/3p4/8/1N1P2R1/PqP2bPP/7K");
+			p.setTraitAuBlanc(false);
+			p.setListeDeplacement("f2g3 e6e7 b2b1 b3c1 b1c1 h6c1");
+			p.jouerPb();
 		}
 
-//		String a = "00sHx,q3k1nr/1pp1nQpp/3p4/1P2p3/4P3/B1PP1b2/B5PP/5K2 b k - 0 17,e8d7 a2e6 d7d8 f7f8,1760,80,83,72,mate mateIn2 middlegame short,https://lichess.org/yyznGmXs/black#34,Italian_Game,Italian_Game_Classical_Variation\r\n";
-//		String[] words = a.split(",");
-//		
-//		for (String s : words) {
-//			System.out.println(s);
-//		}
-//
-//		
-}
+		ctx.close();
+
+	}
 }
