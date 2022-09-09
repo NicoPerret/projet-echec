@@ -42,15 +42,19 @@ public abstract class Partie {
 	protected Scanner sc = new Scanner(System.in);
 	protected int compteurTours = 1;
 	protected int compteurCoups = 1;
-	protected Deplacement d = new Deplacement();
+	@Autowired
+	protected Deplacement d ;
 	protected int coordDepart;
-	protected Fen fen = new Fen();
+	@Autowired
+	protected Fen fen ;
 	protected CouleursPiece couleurJoueurActif = CouleursPiece.BLANC;
-	protected CoupsPossibles coupPossible = new CoupsPossibles();
+	
+	@Autowired
+	protected CoupsPossibles coupPossible;
 	protected List<Integer> listeCoup = new ArrayList<>();
 	
 	
-	HistoriquePartie h = new HistoriquePartie();
+	protected HistoriquePartie h = new HistoriquePartie();
 	
 	
 	protected boolean verifChangerPiece = false;
