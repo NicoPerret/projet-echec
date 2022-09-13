@@ -4,8 +4,6 @@ pb ajouter utilisateur
 
 pb selectionner difficulte
 
-rajouter le elo pour la difficulte dans BDD de problemes (prob_difficulte)
-
 opti globale
 spring
 
