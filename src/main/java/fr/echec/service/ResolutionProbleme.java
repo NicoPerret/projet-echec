@@ -2,6 +2,7 @@ package fr.echec.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,13 +46,39 @@ public class ResolutionProbleme {
 	
 	protected List<Integer> listeCoup = new ArrayList<>();
 	protected Probleme probleme = new Probleme();
+	
+	List<Probleme> listeProblemes = new ArrayList();
+	Random hasard = new Random();
+	
+	int readInt() {
+		Scanner sc = new Scanner(System.in);
+	    return sc.nextInt();
+	}
 
-	public void jouerPb(int id) throws IdNegatifException, ProblemeNotFoundException { // utlisateur idPb
+	public void jouerPb(int id, int difficulte) throws IdNegatifException, ProblemeNotFoundException { // utlisateur idPb
 		
 		// probleme service findById
 		probleme = srvProbleme.findById(id);
+		System.out.println("Choisissez voutre difficulté :");
+		System.out.println("1 - EASY (elo 0 à 800");
+		System.out.println("2 - MEDIUM (elo 800 à 1200");
+		System.out.println("3 - HARD (elo supérieur à 1200");
+		probleme.setDifficulte(readInt());
+		switch (difficulte) {
+		case 1 :
+			listeProblemes = srvProbleme.FindByDifficultyBetween(0, 800); // mettre le elo du probleme entre parenthèses
+			break;
+		case 2 :
+			listeProblemes = srvProbleme.FindByDifficultyBetween(800, 1200);
+			break;
+		case 3 :
+			listeProblemes = srvProbleme.FindByDifficultyBetween(1200, 2000);
+			break;
+			
+		}
+		probleme.setId(hasard.nextInt(listeProblemes.size()));
 		
-		int coordArrivee = -1;
+		int coordArrivee;
 		int coordDepart;
 		boolean verif;
 		this.plateau = fen.creationPlateau(probleme.getFenDepart());
@@ -64,16 +91,8 @@ public class ResolutionProbleme {
 			} else { // tour du joueur
 				while (verif) {
 					do {
-						coordDepart = selectionPieceProbleme(tabCoups[i]);
-						if(coordDepart == -1) {
-							System.out.println("Vous avez Abandonner le problème");
-							return;
-						}
-						coordArrivee = jouerPieceProbleme();
-						if (coordArrivee == -2) {
-							System.out.println("Vous avez Abandonner le problème");
-							return;
-						}
+						coordDepart = selectionPieceProbleme();
+						coordArrivee = jouerPieceProbleme(coordDepart);
 					} while (coordArrivee == -1);
 					String coupJoueur = NotationCoup.conversion64ToLettre(coordDepart)
 							+ NotationCoup.conversion64ToLettre(coordArrivee);
@@ -81,7 +100,6 @@ public class ResolutionProbleme {
 				}
 			}
 		}
-		System.out.println("GG tu as résolu ce problème !");
 	}
 
 	// Verif coup joué est le bon
@@ -98,7 +116,7 @@ public class ResolutionProbleme {
 	}
 
 	// Sélection de la piece renvoi coord depart
-	public int selectionPieceProbleme(String coupAJouer) {
+	public int selectionPieceProbleme() {
 		Scanner sc = new Scanner(System.in);
 		int coordDepart;
 		CouleursPiece couleurJoueur = CouleursPiece.BLANC;
@@ -107,20 +125,16 @@ public class ResolutionProbleme {
 		}
 		
 		while (true) {
+<<<<<<< Updated upstream
 			System.out.println("Vous êtes le joueur "+ couleurJoueur);
 			System.out.println("Saisir une piece ou 0 poura voir un indice : ");
+=======
+			System.out.println("Saisir une piece : ");
+>>>>>>> Stashed changes
 
 			String saisie = sc.nextLine();
 
-			if (saisie.equals("FF")){
-				coordDepart = -1;
-				break;
-			}else if(saisie.equals("0")){
-				System.out.println("La pièce a déplacé est celle case : " + coupAJouer.substring(0, 2));
-				System.out.println("Saisir une piece : ");
-				saisie = sc.nextLine();
-			}
-			coordDepart = NotationCoup.conversionLettreTo64(saisie);
+			 coordDepart = NotationCoup.conversionLettreTo64(saisie);
 
 			if (	this.plateau.getPieceCase(coordDepart) != null
 					&& this.plateau.getPieceCase(coordDepart).getCouleur() == couleurJoueur) {
@@ -144,28 +158,29 @@ public class ResolutionProbleme {
 	}
 
 	// Sélection de la case darrivée renvoie coordArrivee
-	public int jouerPieceProbleme() {
+	public int jouerPieceProbleme(int coordDepart) {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Saisir 0 pour changer de piece");
 
 		System.out.println("Déplacer la piece : ");
 
 		boolean verifIfSaisieCoupPossible = false;
+		boolean verifChangerPiece = false;
 		int coordArrivee = -1;
 		while (verifIfSaisieCoupPossible == false) {
 
 			String saisie = sc.nextLine();
-			if (saisie.equals("FF")){
-				coordArrivee = -2;
-				break;
-			}
-			
 			coordArrivee = NotationCoup.conversionLettreTo64(saisie);
 
 			for (Integer i : listeCoup) {
 
 				if (coordArrivee == i) {
+					
+					// NotationCoup.setCoordArriveeStandard(saisie);
+					//d.deplacement(this.plateau.getPieceCase(coordDepart), coordArrivee, this.plateau);
 					verifIfSaisieCoupPossible = true;
+					verifChangerPiece = true;
+
 					break;
 				}
 			}

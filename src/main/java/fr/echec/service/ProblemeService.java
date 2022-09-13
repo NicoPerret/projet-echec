@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import fr.echec.classe.probleme.Probleme;
@@ -55,5 +56,10 @@ public class ProblemeService {
 		}
 		
 		repoProbleme.deleteById(id);
+	}
+	
+	public List<Probleme> FindByDifficultyBetween (float a, float b) {
+		List<Probleme> listeProblemes = repoProbleme.FindByDifficultyBetween(a, b);
+		return listeProblemes;
 	}
 }
