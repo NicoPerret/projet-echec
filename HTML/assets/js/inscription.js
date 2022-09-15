@@ -20,16 +20,43 @@ btnvalid.addEventListener('click', () => {
     const nom = document.getElementById("nom").value;
     const prenom = document.getElementById("prenom").value;
     const email = document.getElementById("mail").value;
+    if (identifiant==""){
+        alert("Veuillez saisir un identifiant");
+        return;
+    }
+    if (motdepasse==""){
+        alert("Veuillez saisir un mot de passe");
+        return;
+    }
+    if (confirmeMotdepasse==""){
+        alert("Veuillez confirmer votre mot de passe");
+        return;
+    }
+    if (pseudo==""){
+        alert("Veuillez saisir un pseudo");
+        return;
+    }
+    if (nom==""){
+        alert("Veuillez saisir votre nom");
+        return;
+    }
+    if (prenom==""){
+        alert("Veuillez saisir votre prenom");
+        return;
+    }
+    if (email==""){
+        alert("Veuillez saisir une adresse e-mail");
+        return;
+    }
     verifId(identifiant);
     verifMdp(motdepasse);
     verifEmail(email);
 
     if (enregistrerId == true && enregistrerMdp == true && enregistrerEmail == true) {
         document.location.href = 'PageAccueil.html';
-        alert("Bienvenue!");         //penser a enregistrer les coordonnées dans la BDD
+        //penser a enregistrer les coordonnées dans la BDD
     }
-})
-
+    })
 
 
 function verifId() {
