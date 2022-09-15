@@ -125,12 +125,12 @@ public class ResolutionProbleme {
 		}
 		
 		while (true) {
-<<<<<<< Updated upstream
+
 			System.out.println("Vous êtes le joueur "+ couleurJoueur);
 			System.out.println("Saisir une piece ou 0 poura voir un indice : ");
-=======
+
 			System.out.println("Saisir une piece : ");
->>>>>>> Stashed changes
+
 
 			String saisie = sc.nextLine();
 

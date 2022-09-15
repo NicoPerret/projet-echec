@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/testcharte.css" />
+    <title>Accueil</title>
+    <link rel="i=shorcut icon" href="RoiNoir.png">
+</head>
+<body>
+        <header>
+            <h1>Projet echec</h1>
+            <p>Une image stylée</p>
+        </header>
+        
+        <div class ="gauche"></div>
+        <div class="milieu" style="text-align: center; border: solid 1px black;">
+            <p>
+                <h2>
+                    Nom du joueur
+                </h2>
+            </p>
+            <p>
+                <label for="choix-partie">Quelle partie voulez-vous jouer ?</label>
+            </p>
+            <p>
+                <select name="partie" id="choix-partie">
+                    <option value="">--Choisissez une option--</option>
+                    <option value = "JCJ">JCJ </option>
+                    <option value = "JCIA">JCIA </option>
+                    <option value = "Pb">Résoudre un Problème </option>
+                </select>
+            </p>
+            <p>
+                <a href="PageJeu.html" target="_self"><button>Jouer !</button></a>
+            </p>
+        </div>
+        <div class="droite" style="text-align: center; border: solid 1px black;">
+            <div>
+                <div>Elo</div>
+                <div>Historique dernieres parties</div>
+                <div><a href="PageHistoriqueParties.html" target="_self"><button>Aller à l'historique</button></a></div>
+            </div>
+        </div>
+        <footer>
+            contact @projetechec
+        </footer>
+</body>
+</html>

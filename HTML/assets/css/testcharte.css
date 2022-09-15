@@ -1,0 +1,34 @@
+body {
+   background: rgb(202, 202, 204);
+   display: grid;
+
+   grid-template-areas:
+      'header header header header'
+      'gauche milieu milieu droite'
+      'footer footer footer footer';
+}
+
+.gauche {
+   grid-area: gauche;
+}
+
+.milieu {
+   grid-area: milieu;
+
+}
+
+.droite {
+   grid-area: droite;
+}
+
+header {
+   text-align: center;
+   grid-area: header;
+   margin: 20px;
+}
+
+footer {
+   margin: 100px;
+   text-align: center;
+   grid-area: footer;
+}
