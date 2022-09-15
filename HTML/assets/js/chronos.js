@@ -1,27 +1,26 @@
 var h1 = document.getElementById('h1');
 var h2 = document.getElementById('h2');
 
-var sec = 0;
-var min = 5;
-var secJ2 = 0;
-var minJ2 = 5;
+var secJ1 = 300;
+
+var secJ2 = 300;
+
+var increment = 2;
+;
+
 
 var t;
 var tJ2;
 
 function tick() {
-    if (sec == 0 && min > 0) {
-        sec = 60;
-        min--;
-    }
-    sec--;
+    secJ1--;
 }
 
 function add() {
     tick();
     h1.textContent =
-        (min > 9 ? min : "0" + min)
-        + ":" + (sec > 9 ? sec : "0" + sec);
+    ( secJ1/60 > 9 ? Math.trunc(secJ1/60) : "0" + Math.trunc(secJ1/60))
+        + ":" + (secJ1%60 > 9 ? secJ1%60 : "0" + secJ1%60);
     timerJ1();
 }
 
@@ -29,24 +28,27 @@ function timerJ1() {
     t = setTimeout(add, 1000);
 }
 
-function stopJ1() {
+// function timer(t){
+//     t = setTimeout(add, 1000);
+// }
+
+
+function stopJ1(t) {
     clearTimeout(t);
     timerJ2();
+    secJ1 += increment;
 }
 
 function tickJ2() {
-    if (secJ2 == 0 && minJ2 > 0) {
-        secJ2 = 60;
-        minJ2--;
-    }
+   
     secJ2--;
 }
 
 function addJ2() {
     tickJ2();
     h2.textContent =
-        (minJ2 > 9 ? minJ2 : "0" + minJ2)
-        + ":" + (secJ2 > 9 ? secJ2 : "0" + secJ2);
+    ( secJ2/60 > 9 ? Math.trunc(secJ2/60) : "0" + Math.trunc(secJ2/60))
+    + ":" + (secJ2%60 > 9 ? secJ2%60 : "0" + secJ2%60);
     timerJ2();
 }
 
@@ -57,6 +59,7 @@ function timerJ2() {
 function stopJ2() {
     clearTimeout(tJ2);
     timerJ1();
+    secJ2 += increment;
 }
 
-export{timerJ1, stopJ1, stopJ2}
+export{timerJ1, stopJ1, stopJ2, secJ1,secJ2}

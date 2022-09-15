@@ -1,4 +1,4 @@
-import { timerJ1, stopJ1, stopJ2 } from "./chronos.js";
+import { timerJ1, stopJ1, stopJ2, secJ1,secJ2 } from "./chronos.js";
 
 for (let i = 0; i < 8; i++) {
     const c = document.createElement('div');
