@@ -1,19 +1,26 @@
+Francois
+html accueil : form pour jouer, recup typePartie, ajouter parametre partie
+Nico
+html jeu : revoir les grid en flex, image des pieces, bouger les pieces + AJOUTER LE BRUIT 'POC'
+html jeu noir ? nouvelle page ou la meme ?
+Felix
+html historiquePartie : table limiter à x parties
+FM
+html connexion/inscription : form, verif info, id unique, email unique
+
+nav a gauche avec lien rapide vers les autres pages
+
+
+pb selectionner difficulte A VERIF
 
 pb mettre en bdd que le pb en gg !
 pb ajouter utilisateur
 
-pb selectionner difficulte
-
 opti globale
 spring
 
-
-html accueil
-html plateau
-html parametrePartie
-html historiquePartie
-
-
+html revoir partie : jeu + bouton navigation (a mettre dans  jeu aussi ?)
+html charte graphique
 
 Outil pour formater les pb en notre ecrire
-IA intelligente
+IA intelligente , api

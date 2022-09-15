@@ -1,80 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="Form_echec.css" />
+    <link rel="stylesheet" href="assets/css/jeu.css" />
+    <script type="module" defer src="assets/js/jeu.js"></script>
     <title>Echec</title>
     <link rel="i=shorcut icon" href="RoiNoir.png">
 </head>
 
 <body>
-    <div class="conteneur">
-        <div class="gauche">Il n'y a rien à gauche de la page</div>
-        <div class="milieu">
-            <div class="grilleCentralePlateauEtBoutons">
-                <div class="grilleCentral5Verti">
-                    <div class="grilleCentraleNomChrono">
-                        <div style="text-align: left;border: solid 1px black;">Nom adversaire</div>
-                        <div style="text-align: right;border: solid 1px black;">Chrono adversaire</div>
-                    </div>
-                    <div class="piecesCapturees">Pieces capturées</div>
-                    <div class="flexPlateau">
-                        <div class="grillePlateau">
-                            <div class="grillePlateau1a8"></div>
-                        
-                            <div class="grillePlateauPrincipal"></div>
-                            <div></div>
-                            <div class="flexPlateauAaH"></div>
-                        </div>
-                    </div>
-                    <div class="grilleCentraleNomChrono">
-                        <div style="text-align: left;border: solid 1px black;">Mon nom</div>
-                        <div style="text-align: right;border: solid 1px black;">Mon chrono</div>
-                    </div>
-                    <div class="piecesCapturees">Pieces capturées</div>
+    <div class="gauche">Il n'y a rien à gauche de la page</div>
+    <div class="milieu">
+        <div class="grilleCentralePlateauEtBoutons">
+            <div class="grilleCentral5Verti">
+                <div class="grilleCentraleNomChrono">
+                    <div style="text-align: left;border: solid 1px black;">Nom adversaire</div>
+                    <div style="text-align: right;border: solid 1px black;">Chrono adversaire</div>
                 </div>
-                <div class="flexAbandonnerNul">
-                    <button style="margin:5px">Abandonner</button>
-                    <button style="margin:5px">Nul</button>
+                <div class="piecesCapturees">Pieces capturées</div>
+                <div class="flexPlateau">
+                    <div class="grillePlateau">
+                        <div class="grillePlateau1a8"></div>
+
+                        <div class="grillePlateauPrincipal"></div>
+                        <div></div>
+                        <div class="flexPlateauAaH"></div>
+                    </div>
                 </div>
+                <div class="grilleCentraleNomChrono">
+                    <div style="text-align: left;border: solid 1px black;">Mon nom</div>
+                    <div style="text-align: right;border: solid 1px black;">Mon chrono</div>
+                </div>
+                <div class="piecesCapturees">Pieces capturées</div>
+            </div>
+            <div class="flexAbandonnerNul">
+                <button style="margin:5px">Abandonner</button>
+                <button style="margin:5px">Nul</button>
             </div>
         </div>
-        <div class="droite">
-            <div class="divHistoriqueEtChat">Historique Coups</div>
-            <div class="divHistoriqueEtChat">Chat</div>
-        </div>
     </div>
-
-
-    <script>
-        for (let i = 0 ; i<8 ; i++){
-            const c = document.createElement('div');
-            c.innerHTML = 8-i;
-            document.querySelector('.grillePlateau1a8').append(c);
-        }
-    </script>
-    <script>
-        const cases = [];
-        const lettres = ['A','B','C','D','E','F','G','H'];
-        for (let i = 0; i < 64; i++) {
-            const c = document.createElement('div');
-
-            c.setAttribute('id', lettres[(i%8)] + (8 -Math.floor(i/8,1)));
-            cases.splice(0, 0, c);
-            document.querySelector('.grillePlateauPrincipal').append(c);
-
-        }
-    </script>
-    <script>
-        for (let i = 0 ; i<8 ; i++){
-            const c = document.createElement('div');
-
-            c.innerHTML = lettres[i];
-            document.querySelector('.flexPlateauAaH').append(c);
-        }
-    </script>
-
+    <div class="droite">
+        <div class="divHistoriqueEtChat">Historique Coups</div>
+        <div class="divHistoriqueEtChat">Chat</div>
+    </div>
 </body>
 </html>

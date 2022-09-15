@@ -1,0 +1,19 @@
+body{
+    background	: rgb(202, 202, 204);
+    display: flex;
+}
+
+.gauche{
+    float: left;
+    width:25%;
+ }
+ .milieu{
+    display: inline-block;
+    width:50%;
+ }
+ .droite{
+    float: right;
+    width:25%;
+ }
+
+ 
