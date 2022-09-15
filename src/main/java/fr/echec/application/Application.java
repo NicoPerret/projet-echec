@@ -26,7 +26,7 @@ public class Application {
 		// 2 ==> REVOIR PARTIE
 		// 3 ==> JCIA
 
-		int typePartie = 1;
+		int typePartie = 3;
 
 		if (typePartie == 0) {
 
@@ -63,7 +63,7 @@ public class Application {
 			prob.jouerPb(2);
 		} else if (typePartie == 2) {
 			RevoirPartie revoirPartie = ctx.getBean(RevoirPartie.class);
-			revoirPartie.revoirPartieApplication(1);
+			revoirPartie.revoirPartieApplication(4);
 		}
 
 		else if (typePartie == 3) {
