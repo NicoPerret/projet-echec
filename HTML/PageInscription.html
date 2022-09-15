@@ -9,19 +9,19 @@
     <title>Page Inscription</title>
     <!-- icone de la page (onglet) -->
     <link rel="i=shorcut icon" href="RoiNoir.png">
+    <script type="module" defer src="assets/js/inscription.js"></script>
 </head>
 
 <body>
     <section>
         <fieldset>
             <div>
-                <p>
                     <h2 style="text-align: center;">Inscription</h2>
-                </p>
+
                 <table>
                     <tr>
                         <td><label>Identifiant : </label></td>
-                        <td><input type="text" id="identifiant" placeholder="Entrez votre identifiant"></td>
+                        <td><input type="text" id="ident" placeholder="Entrez votre identifiant"></td>
                     </tr>
                     <tr>
                         <td><label>Mot de passe : </label></td>
@@ -45,18 +45,20 @@
                     </tr>
                     <tr>
                         <td><label>Email : </label></td>
-                        <td><input type="email" id="email" placeholder="Entrez votre email"></td>
+                        <td><input type="email" id="mail" placeholder="Entrez votre email"></td>
                     </tr>
                     <tr>
                         <td><label>Etes vous coach ? </label></td>
                         <td><input type="checkbox" id="coach"></td>
                     </tr>
                 </table>
+            
             </div>
             <div style="text-align:center">
-                <a href="PageAccueil.html" target="_self"><button>Se connecter</button></a>
+                <button class = "inscription">Se connecter</button>
             </div>
         </fieldset>
+
     </section>
 </body>
 </html>
