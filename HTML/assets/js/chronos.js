@@ -1,11 +1,4 @@
-var h1 = document.getElementsByTagName('h1')[0];
-var startJ1 = document.getElementById('strtJ1');
-var stopJ1 = document.getElementById('stpJ1');
-var resetJ1 = document.getElementById('rstJ1');
-
-var startJ2 = document.getElementById('strtJ2');
-var stopJ2 = document.getElementById('stpJ2');
-var resetJ2 = document.getElementById('rstJ2');
+var h1 = document.getElementById('h1');
 var h2 = document.getElementById('h2');
 
 var sec = 0;
@@ -22,37 +15,24 @@ function tick() {
         min--;
     }
     sec--;
-
 }
+
 function add() {
     tick();
     h1.textContent =
         (min > 9 ? min : "0" + min)
         + ":" + (sec > 9 ? sec : "0" + sec);
-    timer();
+    timerJ1();
 }
 
-function timer() {
+function timerJ1() {
     t = setTimeout(add, 1000);
 }
 
-startJ1.onclick = function () {
-    timer();
-   
-}
-
-
-stopJ1.onclick = function () {
+function stopJ1() {
     clearTimeout(t);
     timerJ2();
 }
-
-resetJ1.onclick = function () {
-    h1.textContent = "00:00";
-    sec = 0; min = 5;
-    clearTimeout(t);
-}
-
 
 function tickJ2() {
     if (secJ2 == 0 && minJ2 > 0) {
@@ -60,7 +40,6 @@ function tickJ2() {
         minJ2--;
     }
     secJ2--;
-
 }
 
 function addJ2() {
@@ -70,21 +49,14 @@ function addJ2() {
         + ":" + (secJ2 > 9 ? secJ2 : "0" + secJ2);
     timerJ2();
 }
+
 function timerJ2() {
     tJ2 = setTimeout(addJ2, 1000);
 }
 
-
-
-startJ2.onclick = timerJ2;
-
-stopJ2.onclick = function () {
+function stopJ2() {
     clearTimeout(tJ2);
-    timer();
+    timerJ1();
 }
 
-resetJ2.onclick = function () {
-    h2.textContent = "00:00";
-    secJ2 = 0; minJ2 = 5;
-    clearTimeout(tJ2);
-}
+export{timerJ1, stopJ1, stopJ2}

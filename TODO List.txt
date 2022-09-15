@@ -1,14 +1,15 @@
-Francois
-html accueil : form pour jouer, recup typePartie, ajouter parametre partie
-Nico
-html jeu : revoir les grid en flex, image des pieces, bouger les pieces + AJOUTER LE BRUIT 'POC'
-html jeu noir ? nouvelle page ou la meme ?
-Felix
-html historiquePartie : table limiter à x parties
-FM
-html connexion/inscription : form, verif info, id unique, email unique
 
-nav a gauche avec lien rapide vers les autres pages
+html accueil : 
+
+html jeu : AJOUTER LE BRUIT 'POC'
+html jeu noir ? nouvelle page ou la meme ?
+
+html historiquePartie : table limiter à x parties
+
+html connexion/inscription : case non vide
+
+html chronos retourner si chronos = 0 
+html ajouter incrément
 
 
 pb selectionner difficulte A VERIF

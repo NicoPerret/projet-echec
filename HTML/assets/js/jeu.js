@@ -1,3 +1,4 @@
+import { timerJ1, stopJ1, stopJ2 } from "./chronos.js";
 
 for (let i = 0; i < 8; i++) {
     const c = document.createElement('div');
@@ -26,14 +27,16 @@ for (let i = 0; i < 8; i++) {
 const bonjour = document.querySelector('div[name="D5"]');
 const img = document.createElement('img');
 img.setAttribute('id', 'roi-noir');
-img.setAttribute('src','RoiNoir.png');
-img.setAttribute('draggable','true');
+img.setAttribute('src','assets/SpritePiecesPNG/RoiBlanc.png');
+
+
+img.setAttribute('draggable','true'); 
 bonjour.append(img);
 
 const bonjour2 = document.querySelector('div[name="D4"]');
 const img2 = document.createElement('img');
 img2.setAttribute('id', 'roi-noir2');
-img2.setAttribute('src','RoiNoir.png');
+img2.setAttribute('src','assets/SpritePiecesPNG/RoiNoir.png');
 img2.setAttribute('draggable','true');
 bonjour2.append(img2);
 
@@ -42,14 +45,18 @@ document.addEventListener('drop', (e) => {
 });
 
 let possibilites = [];
+let cpt = 1;
+let bool = true;
 
 for (let i of document.querySelectorAll('.grillePlateauPrincipal div img')) {
     i.addEventListener('dragstart', (e) => {
         e.dataTransfer.setData("piece-id", e.target.id);
-
         possibilites = [];
         possibilites.push("C3", "C2", "F1");
-
+        if (bool){
+            bool = false;
+            timerJ1();
+        }
         for (let pos of possibilites) {
             document.querySelector(`div[name="${ pos }"]`).style.background = "green";
         }
@@ -86,10 +93,17 @@ for (let div of document.querySelectorAll('.grillePlateauPrincipal div')) {
         
             target.innerHTML = '';
             target.append(piece);
-            target.style.background = "";
-            for (let pos of possibilites) {
-                document.querySelector(`div[name="${ pos }"]`).style.background = "";
+            //exécution bruit POC  
+            
+            if (cpt %2==0){
+                stopJ2();
+            }else{
+                stopJ1();
             }
+            cpt++;
+        }
+        for (let pos of possibilites) {
+            document.querySelector(`div[name="${ pos }"]`).style.background = "";
         }
     });
 }
