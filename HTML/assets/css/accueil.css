@@ -9,9 +9,11 @@ body{
     float: left;
     width:25%;
  }
+ 
  .milieu{
     display: inline-block;
     width:50%;
+	height: 100vh;
  }
  .droite{
     float: right;
@@ -51,54 +53,34 @@ body{
 	border: 1px solid #d85000;
 }
  
- /* ================ POP UP ================ */ 
+ /* ================ PARAMETRES ================ */ 
  
- .popup-content > form > table {
+ .parametres-content > form > table {
 	 display: none;
  }
  
- .popup-content > form > table.open {
+ .parametres-content > form > table.open {
 	 display: flex;
  }
 
-
-.popup-overlay {
+.parametres-container {
 	display: none;
-	background-color: black;
-	opacity: 0.5;
-	height: 100vh;
-	width: 100vw;
-	position: fixed;
-	top: 0;
-	left: 0;
-}
-
-.popup-container {
-	display: none;
-	height: 100vh;
-	width: 100vw;
-	position: fixed;
-	top: 0;
-	left: 0;
 	justify-content: center;
     align-items: center;
+	margin-top: 20px;
 }
 
-.popup-overlay.open {
-	display: block;
-}
-
-.popup-container.open {
+.parametres-container.open {
 	display: flex;
 }
 
-.popup {
+.parametres {
 	background-color:white;
 	border-radius: 32px;
 	overflow: hidden;
 }
 
-.popup-header {
+.parametres-header {
 	background-color: #2E86C1;
 	color: white;
 	font-size: 18px;
@@ -108,18 +90,18 @@ body{
 	
 }
 
-.popup-content{
+.parametres-content{
 	/* width:100%;
 	height:100%; */
 	padding: 15px 20px 30px 20px;
 }
 
-.popup-content > form > table > thead > tr > th {
+.parametres-content > form > table > thead > tr > th {
 	text-align: center;
     width: 100%;
 } 
 
-.popup-content > form > table > tbody > tr > td {
+.parametres-content > form > table > tbody > tr > td {
 	padding: 10px;
 	text-align: left;
 	font-size: 20px;
@@ -129,7 +111,7 @@ body{
  /* ================  Menu à gauche ================ */ 
  
  
-.gauche {
+nav {
     
     background: #CCCCCC;
     grid-column: 1;
@@ -137,18 +119,18 @@ body{
     padding: 0;
 }
 
-.gauche > ul {
+nav > ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-.gauche > ul > li,
-.gauche > ul > li > a {
+nav > ul > li,
+nav > ul > li > a {
     transition: 0.25s ease-in-out all;
 }
 
-.gauche > ul > li > a {
+nav > ul > li > a {
     display: block;
     color: initial;
     padding: 10px;
@@ -156,22 +138,22 @@ body{
     /* transition: 0.25s ease-in-out color; */
 }
 
-.gauche > ul > li:hover {
+nav > ul > li:hover {
     background: #AD2317;
 }
 
-.gauche > ul > li:hover > a {
+nav > ul > li:hover > a {
     color: white;
 }
 
-.gauche > ul > li > a:active {
+nav > ul > li > a:active {
     color: #cc6300
 }
 
-.gauche > ul > li.active {
+nav > ul > li.active {
     background: #333;
 }
 
-.gauche > ul > li.active > a {
+nav > ul > li.active > a {
     color: white;
 }

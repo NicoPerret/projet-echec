@@ -1,57 +1,57 @@
 
 document
-.querySelector('button.open-popup-jcj')
+.querySelector('button.open-parametres-jcj')
 .addEventListener('click', () => {
-    document
-	.querySelector('.popup-overlay')
+	const listTab =  document.querySelectorAll('.parametres-content > form > table');
+	for (let tab of listTab) {
+		tab.classList.remove('open');
+	}
+	document
+	.querySelector('.parametres-container')
 	.classList.add('open');
 	document
-	.querySelector('.popup-container')
-	.classList.add('open');
-	document
-	.querySelector('.popup-content > form > table.jcj')
+	.querySelector('.parametres-content > form > table.jcj')
 	.classList.add('open');
 });
 
 document
-.querySelector('button.open-popup-jcia')
+.querySelector('button.open-parametres-jcia')
 .addEventListener('click', () => {
-    document
-	.querySelector('.popup-overlay')
+	const listTab =  document.querySelectorAll('.parametres-content > form > table');
+	for (let tab of listTab) {
+		tab.classList.remove('open');
+	}
+	document
+	.querySelector('.parametres-container')
 	.classList.add('open');
 	document
-	.querySelector('.popup-container')
-	.classList.add('open');
-	document
-	.querySelector('.popup-content > form > table.jcia')
+	.querySelector('.parametres-content > form > table.jcia')
 	.classList.add('open');
 });
 
 document
-.querySelector('button.open-popup-probleme')
+.querySelector('button.open-parametres-probleme')
 .addEventListener('click', () => {
-    document
-	.querySelector('.popup-overlay')
+	const listTab =  document.querySelectorAll('.parametres-content > form > table');
+	for (let tab of listTab) {
+		tab.classList.remove('open');
+	}
+	document
+	.querySelector('.parametres-container')
 	.classList.add('open');
 	document
-	.querySelector('.popup-container')
-	.classList.add('open');
-	document
-	.querySelector('.popup-content > form > table.probleme')
+	.querySelector('.parametres-content > form > table.probleme')
 	.classList.add('open');
 });
 
 document
-.querySelector('button.close-popup')
+.querySelector('button.close-parametres')
 .addEventListener('click', () => {
-    document.
-	querySelector('.popup-overlay').
-	classList.remove('open');
 	document.
-	querySelector('.popup-container').
+	querySelector('.parametres-container').
 	classList.remove('open');
 	
-	const listTab =  document.querySelectorAll('.popup-content > form > table');
+	const listTab =  document.querySelectorAll('.parametres-content > form > table');
 	for (let tab of listTab) {
 		tab.classList.remove('open');
 	}
