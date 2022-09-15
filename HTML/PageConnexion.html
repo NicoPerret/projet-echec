@@ -9,34 +9,34 @@
     <title>Page Connexion</title>
     <!-- icone de la page (onglet) -->
     <link rel="i=shorcut icon" href="RoiNoir.png">
+    <script type="module" defer src="assets/js/connexion.js"></script>
 </head>
 
 <body>
     <section>
         <fieldset>
             <!-- <legend style="color: white;">Connexion</legend> -->
-            <div>
+            <div class = "fenetre">
                 <p>
                     <h2 style="text-align: center;">Connexion</h2>
                 </p>
                 <table>
                     <tr>
                         <td><label>Identifiant : </label></td>
-                        <td><input type="text" name="identifiant" placeholder="Entrez votre identifiant"/></td>
+                        <td><input type="text" id="ident" placeholder="Entrez votre identifiant"/></td>
                     </tr>
                     <tr>
                         <td><label>Mot de passe : </label></td>
-                        <td><input type="password" name="mdp" placeholder="Entrez votre mdp"/></td>
+                        <td><input type="password" id="mdp" placeholder="Entrez votre mdp"/></td>
                     </tr>
                 </table>
             </div>
-            <div id="validation" style="text-align:center">
+            <div name="validation" style="text-align:center">
                 <p>
-                    <a href="PageAccueil.html" target="_self"><button>Se connecter</button></a>
-                    <a href="PageInscription.html" target="_self"><button>S'inscrire</button></a>
-                    <!-- <input type="button" name="mdpOublie" type="submit" id="mdpOublie" value="Mot de passe oublié"/> -->
+                    <button class = "boutonconnexion" >Se connecter</button>
+                    <button class = "boutoninscription">S'inscrire</button>
                 </p>
-                <p >
+                <p>
                     <a href="PageInscription.html" target="_self" style="color:white;">Mot de passe oublié</a>
                 </p>
             </div> 
