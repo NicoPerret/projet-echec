@@ -1,8 +1,5 @@
-html accueil : tableau
-html jeu noir ? nouvelle page ou la meme ?
-html connexion/inscription : case non vide
-html ajouter incrément
-
+html accueil : 
+html rotation : changer couleurJoueur
 html charte graphique
 
 html chronos retourner si chronos = 0 

@@ -10,7 +10,6 @@ const cases = [];
 const lettres = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
 for (let i = 0; i < 64; i++) {
     const c = document.createElement('div');
-
     c.setAttribute('name', lettres[(i % 8)] + (8 - Math.floor(i / 8, 1)));
     cases.splice(0, 0, c);
 
@@ -23,13 +22,20 @@ for (let i = 0; i < 8; i++) {
     c.innerHTML = lettres[i];
     document.querySelector('.grillePlateauAaH').append(c);
 }
+const couleurJoueur = "noir"
+if (couleurJoueur == "blanc"){
+    document.querySelector(".grillePlateauPrincipal").classList.add('blanc');
+}else{
+    document.querySelector(".grillePlateauPrincipal").classList.add('noir');
+    document.querySelector(".grillePlateauPrincipal").classList.add('rotationY');
+    document.querySelector(".grillePlateau1a8").classList.add('rotationY');
+    document.querySelector(".grillePlateauAaH").classList.add('rotationX');
+}
 
-const bonjour = document.querySelector('div[name="D5"]');
+const bonjour = document.querySelector('div[name="C8"]');
 const img = document.createElement('img');
 img.setAttribute('id', 'roi-noir');
 img.setAttribute('src','assets/SpritePiecesPNG/RoiBlanc.png');
-
-
 img.setAttribute('draggable','true'); 
 bonjour.append(img);
 
@@ -63,6 +69,11 @@ for (let i of document.querySelectorAll('.grillePlateauPrincipal div img')) {
     });
 }
 
+const audio = new Audio('assets/Ah.mp3');
+document.getElementById('h1').innerHTML = ( secJ1/60 > 9 ? Math.trunc(secJ1/60) : "0" + Math.trunc(secJ1/60))
++ ":" + (secJ1%60 > 9 ? secJ1%60 : "0" + secJ1%60);
+document.getElementById('h2').innerHTML = ( secJ2/60 > 9 ? Math.trunc(secJ2/60) : "0" + Math.trunc(secJ2/60))
++ ":" + (secJ2%60 > 9 ? secJ2%60 : "0" + secJ2%60);
 
 for (let div of document.querySelectorAll('.grillePlateauPrincipal div')) {
     div.addEventListener('dragenter', (e) => {
@@ -94,7 +105,8 @@ for (let div of document.querySelectorAll('.grillePlateauPrincipal div')) {
             target.innerHTML = '';
             target.append(piece);
             //exécution bruit POC  
-            
+            audio.play();
+
             if (cpt %2==0){
                 stopJ2();
             }else{
