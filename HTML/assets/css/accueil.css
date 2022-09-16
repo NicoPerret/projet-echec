@@ -57,10 +57,12 @@ body{
  
  .parametres-content > form > table {
 	 display: none;
+	 padding-bottom: 15px;
  }
  
  .parametres-content > form > table.open {
 	 display: flex;
+	 flex-direction:column;
  }
 
 .parametres-container {
@@ -91,20 +93,19 @@ body{
 }
 
 .parametres-content{
-	/* width:100%;
-	height:100%; */
 	padding: 15px 20px 30px 20px;
 }
 
-.parametres-content > form > table > thead > tr > th {
+.parametres-content > form > table > tbody > tr > th {
 	text-align: center;
-    width: 100%;
+	font-size: 30px;
+	padding: 15px;
 } 
 
 .parametres-content > form > table > tbody > tr > td {
-	padding: 10px;
 	text-align: left;
 	font-size: 20px;
+	padding: 10px;
 }
 
 
