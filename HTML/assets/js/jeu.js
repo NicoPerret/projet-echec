@@ -1,4 +1,4 @@
-import { timerJ1, stopJ1, stopJ2, secJ1,secJ2 } from "./chronos.js";
+import { timerJ1, stopJ1, stopJ2, secJ1, secJ2 } from "./chronos.js";
 
 const couleurJoueur = "blanc"
 const audio = new Audio('assets/372.mp3');
@@ -27,21 +27,21 @@ for (let i = 0; i < 8; i++) {
     document.querySelector('.grillePlateauAaH').append(c);
 }
 
-if (couleurJoueur == "blanc"){
+if (couleurJoueur == "blanc") {
     document.querySelector(".grillePlateauPrincipal").classList.add('blanc');
-}else{
+} else {
     document.querySelector(".grillePlateauPrincipal").classList.add('noir');
     document.querySelector(".grillePlateauPrincipal").classList.add('rotationY');
     document.querySelector(".grillePlateau1a8").classList.add('rotationY');
     document.querySelector(".grillePlateauAaH").classList.add('rotationX');
 }
 
-if (typePartie == '1v1'){
-    document.getElementById('h1').innerHTML = ( secJ1/60 > 9 ? Math.trunc(secJ1/60) : "0" + Math.trunc(secJ1/60))
-    + ":" + (secJ1%60 > 9 ? secJ1%60 : "0" + secJ1%60);
-    document.getElementById('h2').innerHTML = ( secJ2/60 > 9 ? Math.trunc(secJ2/60) : "0" + Math.trunc(secJ2/60))
-    + ":" + (secJ2%60 > 9 ? secJ2%60 : "0" + secJ2%60);
-}else{
+if (typePartie == '1v1') {
+    document.getElementById('h1').innerHTML = (secJ1 / 60 > 9 ? Math.trunc(secJ1 / 60) : "0" + Math.trunc(secJ1 / 60))
+        + ":" + (secJ1 % 60 > 9 ? secJ1 % 60 : "0" + secJ1 % 60);
+    document.getElementById('h2').innerHTML = (secJ2 / 60 > 9 ? Math.trunc(secJ2 / 60) : "0" + Math.trunc(secJ2 / 60))
+        + ":" + (secJ2 % 60 > 9 ? secJ2 % 60 : "0" + secJ2 % 60);
+} else {
     document.querySelector(".btnNul").classList.add("caché");
 }
 
@@ -49,15 +49,15 @@ if (typePartie == '1v1'){
 const bonjour = document.querySelector('div[name="C8"]');
 const img = document.createElement('img');
 img.setAttribute('id', 'roi-noir');
-img.setAttribute('src','assets/SpritePiecesPNG/RoiBlanc.png');
-img.setAttribute('draggable','true'); 
+img.setAttribute('src', 'assets/SpritePiecesPNG/RoiBlanc.png');
+img.setAttribute('draggable', 'true');
 bonjour.append(img);
 
 const bonjour2 = document.querySelector('div[name="D4"]');
 const img2 = document.createElement('img');
 img2.setAttribute('id', 'roi-noir2');
-img2.setAttribute('src','assets/SpritePiecesPNG/RoiNoir.png');
-img2.setAttribute('draggable','true');
+img2.setAttribute('src', 'assets/SpritePiecesPNG/RoiNoir.png');
+img2.setAttribute('draggable', 'true');
 bonjour2.append(img2);
 
 document.addEventListener('drop', (e) => {
@@ -73,12 +73,12 @@ for (let i of document.querySelectorAll('.grillePlateauPrincipal div img')) {
         e.dataTransfer.setData("piece-id", e.target.id);
         possibilites = [];
         possibilites.push("C3", "C2", "F1");
-        if (bool){
+        if (bool) {
             bool = false;
             timerJ1();
         }
         for (let pos of possibilites) {
-            document.querySelector(`div[name="${ pos }"]`).style.background = "green";
+            document.querySelector(`div[name="${pos}"]`).style.background = "green";
         }
     });
 }
@@ -109,22 +109,36 @@ for (let div of document.querySelectorAll('.grillePlateauPrincipal div')) {
 
         if (possibilites.find(pos => pos === target.getAttribute('name'))) {
             const pieceId = e.dataTransfer.getData("piece-id");
-            const piece = document.querySelector(`#${ pieceId }`);
-        
+            const piece = document.querySelector(`#${pieceId}`);
+
             target.innerHTML = '';
             target.append(piece);
             //exécution bruit POC  
             audio.play();
 
-            if (cpt %2==0){
+            if (cpt % 2 == 0) {
                 stopJ2();
-            }else{
+            } else {
                 stopJ1();
             }
             cpt++;
         }
         for (let pos of possibilites) {
-            document.querySelector(`div[name="${ pos }"]`).style.background = "";
+            document.querySelector(`div[name="${pos}"]`).style.background = "";
         }
     });
-}
+};
+
+document
+    .querySelector(".divHistoriqueEtChat input")
+    .addEventListener('keydown', function (event) {
+        if (event.keyCode == 13) {
+            const p = document.createElement('p');
+            p.innerHTML = this.value;
+            document.querySelector(".listeMessages").append(p);
+            this.value = "";
+            
+            this.scrollTop = this.scrollHeight;
+        }
+    }
+    );

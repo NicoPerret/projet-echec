@@ -146,9 +146,12 @@
 }
 
 .listeMessages{
+    scroll-padding-bottom: revert-layer;
     background : grey;
     border-radius: 8px;
     padding : 5px;
+    text-align: left;
+    overflow-y : scroll;
 }
 
 img {
