@@ -1,31 +1,9 @@
- /* ================ Style global de la page ================ */ 
-
-body{
-    background	: rgb(202, 202, 204);
-    display: flex;
-}
-
-.gauche{
-    float: left;
-    width:10%;
- }
- 
- .milieu{
-    display: inline-block;
-    width:80%;
-	height: 100vh;
- }
- .droite{
-    float: right;
-    width:10%;
-	text-align: center;
- }
- 
-/* ================ Milieu de page ================ */
 
 section.affichage{
-	border: 1px solid grey;
+	border: 10px solid black;
 	background-color:rgb(180, 180, 180);
+	height: 75vh;
+	overflow-y: scroll;
 }
 
 .affichage-header {
@@ -55,3 +33,9 @@ section.affichage{
 td, th {
 	border: solid 1px black;
 }
+
+tbody > tr:hover{
+	background-color:red;
+	cursor: pointer;
+}
+
