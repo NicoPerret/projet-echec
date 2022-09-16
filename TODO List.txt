@@ -1,16 +1,11 @@
-
-html accueil : 
-
-html jeu : AJOUTER LE BRUIT 'POC'
+html accueil : tableau
 html jeu noir ? nouvelle page ou la meme ?
-
-html historiquePartie : table limiter à x parties
-
 html connexion/inscription : case non vide
-
-html chronos retourner si chronos = 0 
 html ajouter incrément
 
+html charte graphique
+
+html chronos retourner si chronos = 0 
 
 pb selectionner difficulte A VERIF
 
@@ -20,8 +15,10 @@ pb ajouter utilisateur
 opti globale
 spring
 
+html historiquePartie : table limiter à x parties
 html revoir partie : jeu + bouton navigation (a mettre dans  jeu aussi ?)
-html charte graphique
+
+html jeu : AJOUTER LE BRUIT 'POC'
 
 Outil pour formater les pb en notre ecrire
 IA intelligente , api
