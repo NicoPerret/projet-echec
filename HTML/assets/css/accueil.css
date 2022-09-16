@@ -118,3 +118,11 @@ select{
 	background-color: #ffffffd3;
 	color: rgb(0, 0, 0);
  }
+
+body{
+	background-image: url(/assets/echecs.jpg);
+	height :100% vh;
+	width : 100% vw;
+
+}
+
