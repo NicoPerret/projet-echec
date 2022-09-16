@@ -15,7 +15,14 @@ connect.addEventListener('click', () => {
 // const motdepasse = document.querySelector('.fenetre > input.mdp');
 const identifiant = document.getElementById('ident').value;
 const motdepasse = document.getElementById('mdp').value;
-
+if (identifiant==""){
+    alert("Veuillez saisir un identifiant");
+    return;
+}
+    if (motdepasse==""){
+        alert("Veuillez saisir un mot de passe");
+        return;
+    }
 if (identifiant==idtest && motdepasse==mdptest){
     document.location.href='PageAccueil.html';
 }
