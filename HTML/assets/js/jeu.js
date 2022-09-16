@@ -1,7 +1,7 @@
 import { timerJ1, stopJ1, stopJ2, secJ1,secJ2 } from "./chronos.js";
 
 const couleurJoueur = "blanc"
-const audio = new Audio('assets/9759.mp3');
+const audio = new Audio('assets/372.mp3');
 
 const typePartie = "1v1";
 
