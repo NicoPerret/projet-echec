@@ -1,5 +1,23 @@
-html accueil : 
-html rotation : changer couleurJoueur
+html accueil : revoir affichage elo + historique partie
+		+ popup pb choix difficulte et choix id pb
+
+html jeu : historique coups tableau 2 colonnes
+		+ chat
+		+ ne pas mettre chrono si 1via
+		+ enlever bouton nul si pb
+
+html menu : - connexion
+		- inscription
+		+ jeu => aller chercher joueur pour spectateur
+		+ parametres, modif profil
+		+ page stat
+		+ pb si l'utilisateur veux choisir son pb
+		+ deconnexion
+
+html pb filtre de recherche resolu ou non
+
+html stat : %v-d-n, %v avec blanc, %v avec noir, ? evolution elo ?, %v-d-n type partie
+
 html charte graphique
 
 html chronos retourner si chronos = 0 

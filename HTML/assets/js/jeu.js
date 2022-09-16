@@ -70,6 +70,7 @@ for (let i of document.querySelectorAll('.grillePlateauPrincipal div img')) {
 }
 
 const audio = new Audio('assets/Ah.mp3');
+
 document.getElementById('h1').innerHTML = ( secJ1/60 > 9 ? Math.trunc(secJ1/60) : "0" + Math.trunc(secJ1/60))
 + ":" + (secJ1%60 > 9 ? secJ1%60 : "0" + secJ1%60);
 document.getElementById('h2').innerHTML = ( secJ2/60 > 9 ? Math.trunc(secJ2/60) : "0" + Math.trunc(secJ2/60))
