@@ -71,3 +71,10 @@ div.droite table {
 .milieu h2, div.milieu > h2 ~p{
 	color: white;
 }
+
+body{
+	background-image: url(/assets/echecs.jpg);
+	height :100% vh;
+	width : 100% vw;
+
+}
