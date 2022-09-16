@@ -21,6 +21,7 @@ section.affichage{
 	padding-right: 15px; 
 }
 
+/*
 .tableau-problemes {
 	width:100%;
     background-color:rgb(220, 220, 220);
@@ -33,6 +34,7 @@ section.affichage{
 td, th {
 	border: solid 1px black;
 }
+*/
 
 tbody > tr:hover{
 	background-color:red;

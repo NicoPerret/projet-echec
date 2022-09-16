@@ -49,7 +49,30 @@ footer {
 
 }
 
+.tab-standard {
+	width:100%;
+    background-color: black;
+	/*color:rgb(230, 230, 230);*/
+	color: white;
+	text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+	text-align: center;
+	border: solid 1px black;
+	padding:0;
+}
 
+.tab-standard th{
+	font-size:18px;
+	color:orange;
+	text-shadow: 2px 2px 5px red;
+	padding: 5px;
+}
+
+.tab-standard tr:nth-child(odd) {
+    background-color: rgb(116, 112, 112);
+}
+
+.tab-standard tr:nth-child(even) {
+    background-color: rgb(158, 158, 158);
 
 
 .grosBouton {
