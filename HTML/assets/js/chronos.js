@@ -6,7 +6,7 @@ var secJ1 = 300;
 var secJ2 = 300;
 
 var increment = 2;
-;
+
 
 
 var t;
@@ -28,16 +28,39 @@ function timerJ1() {
     t = setTimeout(add, 1000);
 }
 
-// function timer(t){
-//     t = setTimeout(add, 1000);
-// }
-
-
-function stopJ1(t) {
+function stopJ1() {
     clearTimeout(t);
     timerJ2();
     secJ1 += increment;
 }
+
+
+
+// function stop(t,sec,h,t2){
+//     clearTimeout(t);
+//     timer(t2);
+//     sec += increment;
+// }
+
+// function timer(t,h){
+//     t = setTimeout(add(t,sec,h), 1000);
+// }
+
+// function add(t,sec,h){
+//     tick(t);
+//     h.textContent =
+//     ( sec/60 > 9 ? Math.trunc(sec/60) : "0" + Math.trunc(sec/60))
+//         + ":" + (sec%60 > 9 ? sec%60 : "0" + sec%60);
+//     timer(t);
+// }
+
+// function tick(sec){
+//     sec--;
+// }
+
+
+
+
 
 function tickJ2() {
    
