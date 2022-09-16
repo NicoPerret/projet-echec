@@ -1,74 +1,21 @@
- /* ================ Style global de la page ================ */ 
-
-body{
-    background	: rgb(202, 202, 204);
-    display: flex;
-}
-
-.gauche{
-    float: left;
-    width:25%;
- }
- 
- .milieu{
-    display: inline-block;
-    width:50%;
-	height: 100vh;
- }
- .droite{
-    float: right;
-    width:25%;
-	text-align: center;
-	border: solid 1px black;
-	box-sizing: border-box;
- }
- 
-/* ================ Milieu de page ================ */
-
-.milieu {
-	text-align: center;
-	border: solid 1px black;
-	width: 100%;
-}
-
-.milieu > div.zoneBouton {
+.milieu>div.zoneBouton {
 	display: flex;
 	padding: 20px;
 	justify-content: center;
-    
+
+}
+.parametres-content>form>table {
+	display: none;
 }
 
-.milieu > div.zoneBouton > button {
-	box-shadow: 0 0 0 1px black;
-	border: 1px solid #ccc;
-	border-radius: 32px;
-	text-align: center;
-	font-size: 30px;
-	padding: 15px 40px 15px 40px;
-	margin: 15px;
+.parametres-content>form>table.open {
+	display: flex;
 }
-
-.milieu > div.zoneBouton > button:hover {
-	box-shadow: 0 0 9px #d85000;
-	border: 1px solid #d85000;
-}
- 
- /* ================ PARAMETRES ================ */ 
- 
- .parametres-content > form > table {
-	 display: none;
-	 padding-bottom: 15px;
- }
- 
- .parametres-content > form > table.open {
-	 display: flex;
-	 flex-direction:column;
- }
 
 .parametres-container {
 	display: none;
 	justify-content: center;
-    align-items: center;
+	align-items: center;
 	margin-top: 20px;
 }
 
@@ -77,84 +24,43 @@ body{
 }
 
 .parametres {
-	background-color:white;
+	background-color: rgba(255, 255, 255, 0.685);
 	border-radius: 32px;
 	overflow: hidden;
 }
 
 .parametres-header {
-	background-color: #2E86C1;
+	background-color: #33a3eeab;
 	color: white;
 	font-size: 18px;
 	padding: 10px;
 	display: flex;
 	justify-content: center;
-	
+
 }
 
-.parametres-content{
+.parametres-content {
+	/* width:100%;
+	height:100%; */
 	padding: 15px 20px 30px 20px;
 }
 
-.parametres-content > form > table > tbody > tr > th {
+.parametres-content>form>table>thead>tr>th {
 	text-align: center;
-	font-size: 30px;
-	padding: 15px;
-} 
+	width: 100%;
+}
 
-.parametres-content > form > table > tbody > tr > td {
+.parametres-content>form>table>tbody>tr>td {
+	padding: 10px;
 	text-align: left;
 	font-size: 20px;
+}
+div.droite table {
 	padding: 10px;
+	width: 100%;
 }
 
-
- /* ================  Menu à gauche ================ */ 
- 
- 
-nav {
-    
-    background: #CCCCCC;
-    grid-column: 1;
-    grid-row: 2;
-    padding: 0;
-}
-
-nav > ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-nav > ul > li,
-nav > ul > li > a {
-    transition: 0.25s ease-in-out all;
-}
-
-nav > ul > li > a {
-    display: block;
-    color: initial;
-    padding: 10px;
-    text-decoration: none;
-    /* transition: 0.25s ease-in-out color; */
-}
-
-nav > ul > li:hover {
-    background: #AD2317;
-}
-
-nav > ul > li:hover > a {
-    color: white;
-}
-
-nav > ul > li > a:active {
-    color: #cc6300
-}
-
-nav > ul > li.active {
-    background: #333;
-}
-
-nav > ul > li.active > a {
-    color: white;
+.probleme a {
+	color: black;
+	text-decoration: none;
 }
