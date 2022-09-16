@@ -1,25 +1,16 @@
-html accueil : revoir affichage elo + historique partie
-		+ popup pb choix difficulte et choix id pb
-
-html jeu : historique coups tableau 2 colonnes
-		+ chat
-		+ ne pas mettre chrono si 1via
-		+ enlever bouton nul si pb
-
-html menu : - connexion
-		- inscription
-		+ jeu => aller chercher joueur pour spectateur
-		+ parametres, modif profil
+html footer centrage et position
+html jeu : 	message
+		enlever chat si pb ou 1via
+html active en java + ajout menu sur toutes les pages
+html menu : + remplacer accueil par nom du site
+		- supprimer connexion
+		- supprimer inscription
+		+ jeu => aller chercher joueur pour spectateur :  popup 
+		+ modif profil
 		+ page stat
-		+ pb si l'utilisateur veux choisir son pb
-		+ deconnexion
-
-html pb filtre de recherche resolu ou non
-
-html stat : %v-d-n, %v avec blanc, %v avec noir, ? evolution elo ?, %v-d-n type partie
-
-html charte graphique
-
+html pb : filte nb, filte difficulte
+deconnexion renvoie vers connexion
+css charte graphique : petit bouton, titre (font), tableau, paragraphe (font)
 html chronos retourner si chronos = 0 
 
 pb selectionner difficulte A VERIF
@@ -29,11 +20,6 @@ pb ajouter utilisateur
 
 opti globale
 spring
-
-html historiquePartie : table limiter à x parties
-html revoir partie : jeu + bouton navigation (a mettre dans  jeu aussi ?)
-
-html jeu : AJOUTER LE BRUIT 'POC'
 
 Outil pour formater les pb en notre ecrire
 IA intelligente , api
