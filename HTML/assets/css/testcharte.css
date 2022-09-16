@@ -3,10 +3,10 @@ body {
 	display: grid;
 
 	grid-template-areas:
-		'gauche header header droite'
-		'gauche milieu milieu droite'
-		'gauche footer footer droite';
-	grid-template-columns: 25% 25% 25% 25%;
+		'gauche header droite'
+		'gauche milieu droite'
+		'gauche footer droite';
+	grid-template-columns: 20% 55% 25%;
 	margin: 0;
 }
 
