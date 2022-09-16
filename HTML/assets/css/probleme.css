@@ -1,0 +1,57 @@
+ /* ================ Style global de la page ================ */ 
+
+body{
+    background	: rgb(202, 202, 204);
+    display: flex;
+}
+
+.gauche{
+    float: left;
+    width:10%;
+ }
+ 
+ .milieu{
+    display: inline-block;
+    width:80%;
+	height: 100vh;
+ }
+ .droite{
+    float: right;
+    width:10%;
+	text-align: center;
+ }
+ 
+/* ================ Milieu de page ================ */
+
+section.affichage{
+	border: 1px solid grey;
+	background-color:rgb(180, 180, 180);
+}
+
+.affichage-header {
+	padding-left: 10px;
+}
+
+.filtre-box {
+	display: flex;
+	border: 1px solid grey;
+	background-color: rgb(190, 190, 230);
+	padding: 5px 10px 5px 10px;
+}
+
+.filtre-box > div {
+	padding-right: 15px; 
+}
+
+.tableau-problemes {
+	width:100%;
+    background-color:rgb(220, 220, 220);
+	text-align: center;
+    padding: 5px;
+	border: solid 1px black;
+	padding:0;
+}
+
+td, th {
+	border: solid 1px black;
+}
