@@ -58,11 +58,10 @@ document
 	
 });
 
-for (let i = 0; i <=5; i ++ ){
+for (let i = 0; i <5; i ++ ){
 
     const utilisateur = "J1";
     const adversaire = "J2";
-    
     const resultat = "V";
   
     
@@ -72,7 +71,6 @@ for (let i = 0; i <=5; i ++ ){
     // Modifier le contenu de la ligne du tableau
     tableRow.innerHTML = `<td>${utilisateur}</td>`;
     tableRow.innerHTML += `<td>${adversaire}</td>`;
-   
     tableRow.innerHTML += `<td>${resultat}</td>`;
     
     
