@@ -1,5 +1,9 @@
 import { timerJ1, stopJ1, stopJ2, secJ1,secJ2 } from "./chronos.js";
 
+const couleurJoueur = "noir"
+const audio = new Audio('assets/Ah.mp3');
+const typePartie = "1v1";
+
 for (let i = 0; i < 8; i++) {
     const c = document.createElement('div');
     c.innerHTML = 8 - i;
@@ -22,7 +26,7 @@ for (let i = 0; i < 8; i++) {
     c.innerHTML = lettres[i];
     document.querySelector('.grillePlateauAaH').append(c);
 }
-const couleurJoueur = "noir"
+
 if (couleurJoueur == "blanc"){
     document.querySelector(".grillePlateauPrincipal").classList.add('blanc');
 }else{
@@ -31,6 +35,16 @@ if (couleurJoueur == "blanc"){
     document.querySelector(".grillePlateau1a8").classList.add('rotationY');
     document.querySelector(".grillePlateauAaH").classList.add('rotationX');
 }
+
+if (typePartie == '1v1'){
+    document.getElementById('h1').innerHTML = ( secJ1/60 > 9 ? Math.trunc(secJ1/60) : "0" + Math.trunc(secJ1/60))
+    + ":" + (secJ1%60 > 9 ? secJ1%60 : "0" + secJ1%60);
+    document.getElementById('h2').innerHTML = ( secJ2/60 > 9 ? Math.trunc(secJ2/60) : "0" + Math.trunc(secJ2/60))
+    + ":" + (secJ2%60 > 9 ? secJ2%60 : "0" + secJ2%60);
+}else{
+    document.querySelector(".btnNul").classList.add("caché");
+}
+
 
 const bonjour = document.querySelector('div[name="C8"]');
 const img = document.createElement('img');
@@ -69,13 +83,6 @@ for (let i of document.querySelectorAll('.grillePlateauPrincipal div img')) {
     });
 }
 
-const audio = new Audio('assets/Ah.mp3');
-
-document.getElementById('h1').innerHTML = ( secJ1/60 > 9 ? Math.trunc(secJ1/60) : "0" + Math.trunc(secJ1/60))
-+ ":" + (secJ1%60 > 9 ? secJ1%60 : "0" + secJ1%60);
-document.getElementById('h2').innerHTML = ( secJ2/60 > 9 ? Math.trunc(secJ2/60) : "0" + Math.trunc(secJ2/60))
-+ ":" + (secJ2%60 > 9 ? secJ2%60 : "0" + secJ2%60);
-
 for (let div of document.querySelectorAll('.grillePlateauPrincipal div')) {
     div.addEventListener('dragenter', (e) => {
         e.preventDefault();
@@ -98,6 +105,7 @@ for (let div of document.querySelectorAll('.grillePlateauPrincipal div')) {
 
     div.addEventListener('drop', (e) => {
         const target = e.target.closest('div');
+        console.log(target)
 
         if (possibilites.find(pos => pos === target.getAttribute('name'))) {
             const pieceId = e.dataTransfer.getData("piece-id");

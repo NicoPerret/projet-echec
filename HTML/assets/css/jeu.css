@@ -136,10 +136,34 @@ body{
 .flexAbandonnerNul button{
     margin:5px;
 }
+.caché {
+    visibility : collapse;
+}
 
 .divHistoriqueEtChat {
     height: 50%;
     border: solid 1px black;
+}
+
+.divHistoriqueEtChat table{
+    width : 100%;
+    text-align: center;
+}
+
+
+.chat{
+    display: grid;
+    grid-template-rows: 10% 80% 10%;
+}
+
+.titre{
+    text-align: center;
+}
+
+.listeMessages{
+    background : grey;
+    border-radius: 8px;
+    padding : 5px;
 }
 
 img {
