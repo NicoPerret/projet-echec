@@ -35,15 +35,36 @@
         </div>
         <div class="flexAbandonnerNul">
             <button>Abandonner</button>
-            <button>Nul</button>
+            <button class="btnNul">Nul</button>
             <button name="reculer">-</button>
             <button name="avancer">+</button>
         </div>
     </div>
 
     <div class="droite">
-        <div class="divHistoriqueEtChat">Historique Coups</div>
-        <div class="divHistoriqueEtChat">Chat</div>
+        <div class="divHistoriqueEtChat">
+            <table class="historiqueCoups">
+                <thead>
+                    <tr>
+                        <th>Tour N° :</th>
+                        <th>Coups Blancs</th>
+                        <th>Coups Noirs</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Blancs 1</td>
+                        <td>Noirs 1</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="divHistoriqueEtChat chat">
+            <div class="titre">CHAT</div>
+            <div class ="listeMessages">Listes des messages</div>
+            <input type="text" placeholder="Mon message">
+        </div>
     </div>
 </body>
 

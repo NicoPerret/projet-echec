@@ -1,22 +1,3 @@
-body {
-    background: rgb(202, 202, 204);
-    display: flex;
-}
-
-.gauche {
-    
-    width: 25%;
-}
-
-.milieu {
-    width: 50%;
-    text-align: center;
-}
-
-.droite {
-   
-    width: 25%;
-}
 
 table {
     margin: 0 auto;

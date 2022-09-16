@@ -1,22 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/accueil.css" />
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="assets/css/testcharte.css" />
+	<link rel="stylesheet" href="assets/css/accueil.css" />
 	<script defer src="assets/js/accueil.js"></script>
-    <title>Accueil</title>
-    <link rel="i=shorcut icon" href="RoiNoir.png">
+	<title>Accueil</title>
+	<link rel="i=shorcut icon" href="RoiNoir.png">
 </head>
 
 <body>
-		
+	<header>
+		<h1>Projet echec</h1>
+		<p>Une image stylée</p>
+	</header>
+
 	<!-- le menu -->
-	<div class ="gauche">
-	
+	<div class="gauche">
+
 		<nav>
-	
+
 			<ul>
 				<li class="active">
 					<a href="PageAccueil.html">Accueil</a>
@@ -29,11 +35,11 @@
 				<li>
 					<a href="PageInscription.html">Inscription</a>
 				</li>
-				
+
 				<li>
 					<a href="PageHistoriqueParties.html">Historique</a>
 				</li>
-				
+
 				<li>
 					<a href="PageJeu.html">Jeu en cours</a>
 				</li>
@@ -52,73 +58,73 @@
 					<a href="PageAccueil.html">Deconnexion</a>
 				</li>
 			</ul>
-		
+
 		</nav>
-	
+
 	</div>
-	
+
 	<!-- Choix mode de jeu -->
 	<div class="milieu">
 		<h2>
-			   Bienvenue, joueur !
+			Bienvenue, joueur !
 		</h2>
 		<p>
 			Veuillez choisir un mode de jeu :
 		</p>
-		
+
 		<div class="zoneBouton">
-		<button class="open-parametres-jcj">JCJ</button>
-		<button class="open-parametres-jcia">JCIA</button>
-		<button class="open-parametres-probleme">Probleme</button>
+			<button class="open-parametres-jcj grosBouton">JCJ</button>
+			<button class="open-parametres-jcia grosBouton">JCIA</button>
+			<button class="open-parametres-probleme grosBouton">Probleme</button>
 		</div>
-		
+
 		<!-- Afficher les paramètres de partie -->
-		<div class="parametres-container"> 
-			
-			<div class="parametres"> 
-			
-				<div class="parametres-header"> 
+		<div class="parametres-container">
+
+			<div class="parametres">
+
+				<div class="parametres-header">
 					Type de partie
 				</div>
-			
-				<div class="parametres-content"> 
-					
+
+				<div class="parametres-content">
+
 					<form>
-					
+
 						<table class="jcj">
-							
+
 							<tr>
 								<th colspan="2">
 									<label>Jouer contre un autre joueur</label>
 								</th>
-								
+
 							</tr>
-							
+
 							<tr>
 								<td><label>Pseudo adversaire / aléatoire </label></td>
-								<td><input type="text" name="choix-adversaire" value="aleatoire"/></td>
+								<td><input type="text" name="choix-adversaire" value="aleatoire" /></td>
 							</tr>
 							<tr>
 								<td><label>Mode de jeu : </label></td>
 								<td><select name="mode-jeu">
-									<option value = "bullet">Bullet</option>
-									<option value = "blitz">Blitz</option>
-									<option value = "rapide">Rapide</option>
-								</select></td>
+										<option value="bullet">Bullet</option>
+										<option value="blitz">Blitz</option>
+										<option value="rapide">Rapide</option>
+									</select></td>
 							</tr>
 							<tr>
 								<td><label>Handicap : </label></td>
 								<td><select name="handicap">
-									<option value = "aucun">aucun </option>
-									<option value = "type1">type1 </option>
-									<option value = "type2">type2 </option>
-								</select></td>
+										<option value="aucun">aucun </option>
+										<option value="type1">type1 </option>
+										<option value="type2">type2 </option>
+									</select></td>
 							</tr>
-							
+
 						</table>
-						
+
 						<table class="jcia">
-							
+
 							<tr>
 								<th colspan="2"><label>Jouer contre une IA</label></th>
 							</tr>
@@ -126,16 +132,18 @@
 							<tr>
 								<td><label>Choix difficulté : </label></td>
 								<td><select name="difficulte">
-									<option value = "facile">facile </option>
-									<option value = "moyen">moyen </option>
-									<option value = "difficile">difficile </option>
-								</select></td>
+										<option value="facile">Facile </option>
+										<option value="moyen">Moyen </option>
+										<option value="difficile">Difficile </option>
+									</select></td>
+
 							</tr>
-						
-						</table>
-						
-						<table class="probleme">
 							
+
+						</table>
+
+						<table class="probleme">
+
 							<tr>
 								<th colspan="2"><label name="description">Jouer un problème</label></th>
 							</tr>
@@ -143,36 +151,70 @@
 							<tr>
 								<td><label>Choix difficulté : </label></td>
 								<td><select name="difficulte">
-									<option value = "facile">facile </option>
-									<option value = "moyen">moyen </option>
-									<option value = "difficile">difficile </option>
-								</select></td>
+										<option value="facile">Facile </option>
+										<option value="moyen">Moyen </option>
+										<option value="difficile">Difficile </option>
+									</select></td>
 							</tr>
-							
+							<tr>
+								<td colspan = "2" style="text-align: center ;">Ou</td>
+							</tr>
+							<tr>
+								<td colspan = "2" style="text-align: center ;">
+									<p>Liste des problèmes
+									<button>
+										<a href="PageProbleme.html">Go !</a>
+
+									</button>
+								</p>
+								</td>
+							</tr>
+
 						</table>
-					
+
 					</form>
-					
+
 					<button class="close-parametres">Annuler</button>
-					
+
 					<a href="PageJeu.html" target="_self"><button>Jouer !</button></a>
-					
+
 				</div>
 			</div>
-		
+
 		</div>
-		
+
 	</div>
-	
+
 	<div class="droite">
-		<div>
-			<div>Elo</div>
-			<div>Historique dernieres parties</div>
-			<div><a href="PageHistoriqueParties.html" target="_self"><button>Aller à l'historique</button></a></div>
-		</div>
+
+		<div>Elo</div>
+
+		<table>
+			<thead>
+				<tr>
+					<td>Utilisateur</td>
+					<td>Adversaire</td>
+
+					<td>Resultat</td>
+
+				</tr>
+			</thead>
+			<tbody class="historique">
+				<tr>
+
+				</tr>
+			</tbody>
+		</table>
+
+		<div><a href="PageHistoriqueParties.html" target="_self"><button>Aller à l'historique</button></a></div>
+
 	</div>
-	
-	
-	
+
+	<footer>
+		contact @projetechec
+	</footer>
+
+
 </body>
+
 </html>

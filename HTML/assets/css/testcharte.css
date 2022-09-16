@@ -13,7 +13,7 @@ body {
 .gauche {
 	grid-area: gauche;
 	background-color: #33a3eeab;
-height: 100vh;
+	height: 100vh;
 
 }
 
@@ -21,14 +21,13 @@ height: 100vh;
 	grid-area: milieu;
 	text-align: center;
 
-
-
 }
 
 .droite {
 	grid-area: droite;
 	text-align: center;
 	color: white;
+	justify-content: center;
 }
 
 header {
@@ -46,19 +45,14 @@ footer {
 	position: absolute;
 	bottom: 0;
 	width: 100vw;
-	
+
 
 }
 
 
-.milieu>div.zoneBouton {
-	display: flex;
-	padding: 20px;
-	justify-content: center;
 
-}
 
-.milieu>div.zoneBouton>button {
+.grosBouton {
 	box-shadow: 0 0 0 1px black;
 	border: 1px solid #ccc;
 	border-radius: 32px;
@@ -66,66 +60,16 @@ footer {
 	font-size: 30px;
 	padding: 15px 40px 15px 40px;
 	margin: 15px;
+	background-color: #33a3eeab;
+	color: white;
 }
 
-.milieu>div.zoneBouton>button:hover {
+.grosBouton:hover {
 	box-shadow: 0 0 9px #d85000;
 	border: 1px solid #d85000;
 }
 
-/* ================ PARAMETRES ================ */
 
-.parametres-content>form>table {
-	display: none;
-}
-
-.parametres-content>form>table.open {
-	display: flex;
-}
-
-.parametres-container {
-	display: none;
-	justify-content: center;
-	align-items: center;
-	margin-top: 20px;
-}
-
-.parametres-container.open {
-	display: flex;
-}
-
-.parametres {
-	background-color: rgba(255, 255, 255, 0.685);
-	border-radius: 32px;
-	overflow: hidden;
-}
-
-.parametres-header {
-	background-color: #33a3eeab;
-	color: white;
-	font-size: 18px;
-	padding: 10px;
-	display: flex;
-	justify-content: center;
-
-}
-
-.parametres-content {
-	/* width:100%;
-	height:100%; */
-	padding: 15px 20px 30px 20px;
-}
-
-.parametres-content>form>table>thead>tr>th {
-	text-align: center;
-	width: 100%;
-}
-
-.parametres-content>form>table>tbody>tr>td {
-	padding: 10px;
-	text-align: left;
-	font-size: 20px;
-}
 
 
 /* ================  Menu à gauche ================ */
@@ -157,13 +101,10 @@ nav>ul>li>a {
 	padding: 10px;
 	text-decoration: none;
 	margin: 10px 0 10px 0;
-	/* transition: 0.25s ease-in-out color; */
+	transition: 0.25s ease-in-out color;
 }
 
-/* nav>ul>li.centre>a:hover {
-	background: rgba(4, 0, 248, 0.397);
 
-} */
 
 nav>ul>li>a:hover {
 	background: rgba(4, 0, 248, 0.397);
@@ -187,12 +128,6 @@ nav>ul>li.active>a {
 	color: white;
 }
 
-div.zoneBouton>button {
-	background-color: #33a3eeab;
-	color: white;
-}
 
-div.milieu h2,
-p {
-	color: white;
-}
+
+

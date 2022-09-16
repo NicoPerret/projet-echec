@@ -57,3 +57,27 @@ document
 	}
 	
 });
+
+for (let i = 0; i <=5; i ++ ){
+
+    const utilisateur = "J1";
+    const adversaire = "J2";
+    
+    const resultat = "V";
+  
+    
+    // Fabriquer la ligne du tableau
+    const tableRow = document.createElement('tr');
+    
+    // Modifier le contenu de la ligne du tableau
+    tableRow.innerHTML = `<td>${utilisateur}</td>`;
+    tableRow.innerHTML += `<td>${adversaire}</td>`;
+   
+    tableRow.innerHTML += `<td>${resultat}</td>`;
+    
+    
+    
+    
+    
+    document.querySelector('tbody.historique').append(tableRow);
+}
