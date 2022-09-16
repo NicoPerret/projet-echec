@@ -1,0 +1,36 @@
+body {
+    background: rgb(202, 202, 204);
+    display: flex;
+}
+
+.gauche {
+    
+    width: 25%;
+}
+
+h1{
+    color : black;
+}
+.milieu {
+    width: 50%;
+    text-align: center;
+    color : white;
+}
+
+.droite {
+   
+    width: 25%;
+}
+
+table {
+    margin: 0 auto;
+
+    background-color: rgb(86, 85, 85);
+}
+
+
+td {
+    text-align: center;
+    padding: 5px;
+}
+

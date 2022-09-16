@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/accueil.css" />
+    <link rel="stylesheet" href="assets/css/testcharte.css" />
+    <link rel="stylesheet" href="assets/css/profil.css" />
 	<script defer src="assets/js/profil.js"></script>
     <title>Profil</title>
     <link rel="i=shorcut icon" href="RoiNoir.png">
@@ -39,7 +40,7 @@
 				</li>
 
 				<li>
-					<a href="PageJeu.html">Profil</a>
+					<a href="PageProfil.html">Profil</a>
 				</li>
 
 				<li>
@@ -55,25 +56,37 @@
     <div class =  "milieu">
         <h1>Mon profil</h1>
         <table class="stats">
-            <thead>
+            <thead></thead>
                 <tr>
-                    <td>Pseudo</td> <button>Modifier</button>
+                    <td>Pseudo</td>
+                    <td><input id ="pseudo" type = "text" value = Test disabled></input></td>
                 </tr>
-            </thead>
+
+                     <td>Mot de passe</td>
+                    <td><input id = "mdp" type = "password" value = Test disabled = 'disabled'></input></td>
+                    
+                </tr>
             <tbody>
                 <tr>
                     <td>Prenom</td>
+                    <td><input id = "prenom" type = "text" value = Test disabled = 'disabled'></input></td>
                     
                 </tr>
                 <tr>
                     <td>Nom</td>
+                    <td><input id = "nom" type = "text" value = Test disabled = 'disabled'></input></td>
                 </tr>
                 <tr>
                     <td>Adresse e-mail</td>
+                    <td><input id = "mail" type = "email" value = Test@test.fr disabled = 'disabled'></input></td>
+                </tr>
+                <tr>
+                    <td>Elo</td>
+                    <td>800</td>
                 </tr>
             </tbody>
         </table>
-
+        <button id = "modifier">Modifier</button>
     </div>
     <div class = "droite">
 
