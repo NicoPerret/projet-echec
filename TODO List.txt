@@ -1,3 +1,8 @@
+RestController
+FEN
+
+
+
 html footer centrage et position
 html jeu : 	message
 		enlever chat si pb ou 1via
@@ -5,9 +10,9 @@ html active en java + ajout menu sur toutes les pages
 html menu : + remplacer accueil par nom du site
 		- supprimer connexion
 		- supprimer inscription
-		+ jeu => aller chercher joueur pour spectateur :  popup 
-		+ modif profil
-		+ page stat
+		+ jeu => aller chercher joueur pour spectateur :  popup
+		-> ameliorer modif profil
+		-> ameliorer page stat
 html pb : filte nb, filte difficulte
 deconnexion renvoie vers connexion
 css charte graphique : petit bouton, titre (font), tableau, paragraphe (font)
@@ -19,7 +24,10 @@ pb mettre en bdd que le pb en gg !
 pb ajouter utilisateur
 
 opti globale
-spring
 
 Outil pour formater les pb en notre ecrire
 IA intelligente , api
+
+(Angular)
+Authentification
+Chat
