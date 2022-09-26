@@ -41,4 +41,5 @@ public class PartieRestController {
 	public Utilisateur findById(Integer id) throws IdNegatifException, UtilisateurNotFoundException {
 		return srvUtilisateurs.findById(id);
 	}
+	
 }

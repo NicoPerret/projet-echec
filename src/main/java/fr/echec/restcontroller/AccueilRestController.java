@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -47,6 +48,20 @@ public class AccueilRestController {
 	@GetMapping("")
 	public List<PenalitePiece> findAll() {
 		return srvPenalitePiece.findAll();
+	}
+	
+	@PostMapping("/PageJeu") // bouton JcJ
+	public void jouerJoueur() {
+	return;
+	}
+	
+	@PostMapping("/PageJeu") // bouton JcIA
+	public void jouerIA() {
+		return;
+	}
+	@PostMapping("/PageJeu") // bouton Probleme
+	public void jouerProbleme() {
+		return;
 	}
 	
 
