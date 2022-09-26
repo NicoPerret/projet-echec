@@ -12,6 +12,6 @@ public interface IProbleme extends JpaRepository<Probleme, Integer> {
 	public Probleme findById(int id);
 	
 	@Query(value ="select p from Probleme p where p.difficulte between ?1 and ?2")
-	public List<Probleme> FindByDifficultyBetween (float a, float b);
+	public List<Probleme> findByDifficultyBetween (int a, int b);
 	
 }

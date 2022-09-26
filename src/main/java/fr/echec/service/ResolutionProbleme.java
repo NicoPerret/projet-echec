@@ -34,53 +34,59 @@ public class ResolutionProbleme {
 
 	@Autowired
 	protected Plateau plateau;
-	
+
 	@Autowired
 	protected CoupsPossibles coupPossible;
-	
+
 	@Autowired
 	protected ProblemeService srvProbleme;
-	
+
 	@Autowired
 	protected Fen fen;
-	
+
 	protected List<Integer> listeCoup = new ArrayList<>();
 	protected Probleme probleme = new Probleme();
-	
-	List<Probleme> listeProblemes = new ArrayList();
+
+	List<Probleme> listeProblemes = new ArrayList<>();
 	Random hasard = new Random();
-	
+
 	int readInt() {
 		Scanner sc = new Scanner(System.in);
-	    return sc.nextInt();
+		return sc.nextInt();
 	}
 
-	public void jouerPb(int id) throws IdNegatifException, ProblemeNotFoundException { // utlisateur idPb
-		
+	public void jouerPb(int difficulte) throws IdNegatifException, ProblemeNotFoundException {
 		// probleme service findById
+		Scanner sc = new Scanner(System.in);
 		System.out.println("Choisissez voutre difficulté :");
-		System.out.println("1 - EASY (elo 0 à 800");
-		System.out.println("2 - MEDIUM (elo 800 à 1200");
-		System.out.println("3 - HARD (elo supérieur à 1200");
-		int difficulte = readInt();
-		
-		switch (difficulte) {
-		case 1 :
-			listeProblemes = srvProbleme.FindByDifficultyBetween(0, 800); // mettre le elo du probleme entre parenthèses
+		System.out.println("1 - EASY (elo 0 à 800)");
+		System.out.println("2 - MEDIUM (elo 800 à 1200)");
+		System.out.println("3 - HARD (elo supérieur à 1200)");
+		int diff = sc.nextInt();
+
+		//switch(difficulte) {
+		switch (diff) {
+		case 1:
+			listeProblemes = srvProbleme.findByDifficultyBetween(0, 800); // mettre le elo du probleme entre parenthèses
 			break;
-		case 2 :
-			listeProblemes = srvProbleme.FindByDifficultyBetween(800, 1200);
+		case 2:
+			listeProblemes = srvProbleme.findByDifficultyBetween(800, 1200);
 			break;
-		case 3 :
-			listeProblemes = srvProbleme.FindByDifficultyBetween(1200, 2000);
+		case 3:
+			listeProblemes = srvProbleme.findByDifficultyBetween(1200, 2000);
 			break;
-			
 		}
-		probleme.setId(hasard.nextInt(listeProblemes.size()));
-		
+		int a = hasard.nextInt(listeProblemes.size());
+		System.out.println(a);
+		jouerPbId(a);
+		return;
+	}
+
+	public void jouerPbId(int id) throws IdNegatifException, ProblemeNotFoundException { // utlisateur idPb
 		int coordArrivee;
 		int coordDepart;
 		boolean verif;
+		this.probleme = srvProbleme.findById(id);
 		this.plateau = fen.creationPlateau(probleme.getFenDepart());
 		String[] tabCoups = probleme.getListeDeplacement().toUpperCase().split(" ");
 		for (int i = 0; i < tabCoups.length; i++) {
@@ -100,6 +106,7 @@ public class ResolutionProbleme {
 				}
 			}
 		}
+		System.out.println("GG t'as gagné, t'es le best !");
 	}
 
 	// Verif coup joué est le bon
@@ -120,25 +127,25 @@ public class ResolutionProbleme {
 		Scanner sc = new Scanner(System.in);
 		int coordDepart;
 		CouleursPiece couleurJoueur = CouleursPiece.BLANC;
-		if (probleme.isTraitAuBlanc()){
+		if (probleme.isTraitAuBlanc()) {
 			couleurJoueur = CouleursPiece.NOIR;
 		}
-		
+
 		while (true) {
 
-			System.out.println("Vous êtes le joueur "+ couleurJoueur);
+			System.out.println("Vous êtes le joueur " + couleurJoueur);
 			System.out.println("Saisir une piece ou 0 poura voir un indice : ");
 
 			System.out.println("Saisir une piece : ");
 
-
 			String saisie = sc.nextLine();
 
-			 coordDepart = NotationCoup.conversionLettreTo64(saisie);
+			coordDepart = NotationCoup.conversionLettreTo64(saisie);
 
-			if (	this.plateau.getPieceCase(coordDepart) != null
+			if (this.plateau.getPieceCase(coordDepart) != null
 					&& this.plateau.getPieceCase(coordDepart).getCouleur() == couleurJoueur) {
-				listeCoup = coupPossible.trouveDestinationsPossibles(this.plateau, this.plateau.getPieceCase(coordDepart));
+				listeCoup = coupPossible.trouveDestinationsPossibles(this.plateau,
+						this.plateau.getPieceCase(coordDepart));
 
 				if (listeCoup.isEmpty() == false) {
 					System.out.println("Coup(s) possible(s) : ");
@@ -154,7 +161,7 @@ public class ResolutionProbleme {
 			}
 
 		}
-		return coordDepart ;
+		return coordDepart;
 	}
 
 	// Sélection de la case darrivée renvoie coordArrivee
@@ -165,7 +172,6 @@ public class ResolutionProbleme {
 		System.out.println("Déplacer la piece : ");
 
 		boolean verifIfSaisieCoupPossible = false;
-		boolean verifChangerPiece = false;
 		int coordArrivee = -1;
 		while (verifIfSaisieCoupPossible == false) {
 
@@ -173,14 +179,8 @@ public class ResolutionProbleme {
 			coordArrivee = NotationCoup.conversionLettreTo64(saisie);
 
 			for (Integer i : listeCoup) {
-
 				if (coordArrivee == i) {
-					
-					// NotationCoup.setCoordArriveeStandard(saisie);
-					//d.deplacement(this.plateau.getPieceCase(coordDepart), coordArrivee, this.plateau);
 					verifIfSaisieCoupPossible = true;
-					verifChangerPiece = true;
-
 					break;
 				}
 			}
@@ -194,7 +194,7 @@ public class ResolutionProbleme {
 				}
 			}
 		}
-		
+
 		return coordArrivee;
 	}
 }

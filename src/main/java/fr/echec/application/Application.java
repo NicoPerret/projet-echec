@@ -21,9 +21,9 @@ public class Application {
 
 	public static void main(String[] args)
 			throws IdNegatifException, ProblemeNotFoundException, UtilisateurNotFoundException, HistoriquePartieNotFoundException {
-		
-		
+
 		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(JpaConfig.class);
+
 
 		// 0 ==> JCJ
 		// 1 ==> PROBLEMES
@@ -32,6 +32,7 @@ public class Application {
 		// 4 ==> JCIA STOCKFISH
 
 		int typePartie = 0;
+
 
 		if (typePartie == 0) {
 
@@ -79,7 +80,7 @@ public class Application {
 			// b2b1 b3c1 b1c1 h6c1'),
 			ResolutionProbleme prob = ctx.getBean(ResolutionProbleme.class);
 
-			prob.jouerPb(2);
+			prob.jouerPbId(15);
 
 		} else if (typePartie == 2) {
 			RevoirPartie revoirPartie = ctx.getBean(RevoirPartie.class);
