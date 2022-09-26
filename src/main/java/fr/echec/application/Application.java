@@ -8,7 +8,7 @@ import fr.echec.classe.joueur.Utilisateur;
 import fr.echec.classe.parametres.ParametresPartie;
 import fr.echec.classe.partie.JcIA;
 import fr.echec.classe.partie.JcJ;
-import fr.echec.config.AppConfig;
+import fr.echec.config.JpaConfig;
 import fr.echec.enumerateur.CouleursPiece;
 import fr.echec.exception.HistoriquePartieNotFoundException;
 import fr.echec.exception.IdNegatifException;
@@ -21,7 +21,9 @@ public class Application {
 
 	public static void main(String[] args)
 			throws IdNegatifException, ProblemeNotFoundException, UtilisateurNotFoundException, HistoriquePartieNotFoundException {
-		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
+		
+		
+		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(JpaConfig.class);
 
 		// 0 ==> JCJ
 		// 1 ==> PROBLEMES
@@ -64,13 +66,13 @@ public class Application {
 					statsJ2.calculStats(p.getJ2());
 					break;
 				}
-				Utilisateur J1 = srvUti.findById(1);
-				Utilisateur J2 = srvUti.findById(2);
-				
-				
-				statsJ1.calculStats(J1);
-				statsJ2.calculStats(J2);
 			}
+			Utilisateur J1 = srvUti.findById(1);
+			Utilisateur J2 = srvUti.findById(2);
+			
+			
+			statsJ1.calculStats(J1);
+			statsJ2.calculStats(J2);
 
 		} else if (typePartie == 1) {
 			// UN PROBLEME ('r6k/pp2r2p/4Rp1Q/3p4/8/1N1P2R1/PqP2bPP/7K','false','f2g3 e6e7
@@ -130,8 +132,8 @@ public class Application {
 		}
 		
 	
-		
+	
 		ctx.close();
-
+		System.exit(0);
 	}
 }
