@@ -2,7 +2,9 @@ import { timerJ1, stopJ1, stopJ2, secJ1, secJ2 } from "./chronos.js";
 
 const couleurJoueur = "blanc"
 const audio = new Audio('assets/372.mp3');
-const typePartie = "1v2";
+const typePartie = "1v1";
+
+const piecesCapturees = ['fn1', 'pb2', 'pn4', 'pb1', 'cb2', 'dn ', 'pb6', 'pn1'];
 
 for (let i = 0; i < 8; i++) {
     const c = document.createElement('div');
@@ -43,6 +45,59 @@ if (typePartie == '1v1') {
         + ":" + (secJ2 % 60 > 9 ? secJ2 % 60 : "0" + secJ2 % 60);
 } else {
     document.querySelector(".btnNul").classList.add("caché");
+	document.querySelector(".chat").classList.add("caché");
+}
+
+for (let typePiece of ['p', 't', 'c', 'f', 'd', 'r']) {
+
+    const typePieceDivBlanc = document.createElement('div');
+    const typePieceDivNoir = document.createElement('div');
+    typePieceDivBlanc.setAttribute('nom', typePiece + "b");
+    typePieceDivNoir.setAttribute('nom', typePiece + "n");
+
+    if (couleurJoueur == "blanc") {
+        document.querySelector('div[nom=piecesCaptureesHaut]').append(typePieceDivBlanc);
+        document.querySelector('div[nom=piecesCaptureesBas]').append(typePieceDivNoir);
+    } else {
+        document.querySelector('div[nom=piecesCaptureesHaut').append(typePieceDivNoir);
+        document.querySelector('div[nom=piecesCaptureesBas]').append(typePieceDivBlanc);
+    }
+
+}
+
+for (let piece of piecesCapturees) {
+    // Ex : piece = "pb2"
+    const img = document.createElement('img');
+    let typePieceImg = "";
+    let couleurPieceImg = "";
+    let numPieceImg = piece[2];
+    const nomDiv = piece[0] + piece [1];
+
+    if (piece[0]=='p') {
+        typePieceImg="Pion";
+    } else if (piece[0]=='t') {
+        typePieceImg="Tour";
+    } else if (piece[0]=='c') {
+        typePieceImg="Cavalier";
+    } else if (piece[0]=='f') {
+        typePieceImg="Fou";
+    } else if (piece[0]=='d') {
+        typePieceImg="Dame";
+    } else if (piece[0]=='r') {
+        typePieceImg="Roi";
+    }
+
+    if (piece[1]=='b'){
+        couleurPieceImg = "Blanc";
+    } else {
+        couleurPieceImg = "Noir";
+    }
+
+    img.setAttribute('id', piece);
+    img.setAttribute('src', 'assets/SpritePiecesPNG/' + typePieceImg + couleurPieceImg + ".png");
+
+    document.querySelector('div[nom=' + nomDiv + ']').append(img);
+
 }
 
 
