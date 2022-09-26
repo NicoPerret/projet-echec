@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import fr.echec.classe.partie.JcIA;
 import fr.echec.classe.partie.Partie;
 import fr.echec.enumerateur.CouleursPiece;
 import fr.echec.enumerateur.TypePiece;
@@ -141,7 +142,7 @@ public class Fen {
 		return fen;
 	}
 	
-	public String creationFenIA(Partie partie) {
+	public String creationFenIA(JcIA partie) {
 		Plateau plat = partie.getPlateau();
 		
 		// position piece

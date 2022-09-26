@@ -27,7 +27,7 @@ public class Application {
 		// 3 ==> JCIA FACILE 
 		// 4 ==> JCIA STOCKFISH
 
-		int typePartie = 3;
+		int typePartie = 4;
 
 		if (typePartie == 0) {
 

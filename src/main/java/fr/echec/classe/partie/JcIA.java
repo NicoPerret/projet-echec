@@ -21,7 +21,7 @@ public class JcIA extends Partie {
 	protected int niveauIA;
 	int coordArrivee;
 	String coupJoueParIa;
-	String coupStockfish;
+	String coupStockfish ="";
 	@Autowired
 	protected CoupOrdi coupOrdi;
 	@Autowired
@@ -81,15 +81,15 @@ public class JcIA extends Partie {
 
 			while (true) {
 				
-				fen = creationFenIA(this);
-				timer.schedule(new TimerTask() {
-					  @Override
-					  public void run() {
+				String fenURL = fen.creationFenIA(this);
+				System.out.println(fenURL);
+			
+					 
 						  coupStockfish = restTemplate
-								  .getForObject("https://www.chessdb.cn/cdb.php?action=querybest&board=" + fen, String.class);
+								  .getForObject("https://www.chessdb.cn/cdb.php?action=querybest&board=" + fenURL, String.class);
 					    
-					  }
-					}, 1000);
+					 
+				
 
 				System.out.println(coupStockfish);
 

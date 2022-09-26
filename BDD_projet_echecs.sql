@@ -42,7 +42,7 @@ CREATE TABLE resultatProbleme (
 
 CREATE TABLE parametres (
     par_id SERIAL PRIMARY KEY,
-    par_penaltie_piece_id INT NOT NULL,
+    par_penalite_piece_id INT NOT NULL,
     par_chrono INT NOT NULL
 );
 

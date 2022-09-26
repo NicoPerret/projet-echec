@@ -122,8 +122,9 @@ select{
 
 body{
 	background-image: url(/assets/echecs.jpg);
-	height :100% vh;
-	width : 100% vw;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
 
 }
 
