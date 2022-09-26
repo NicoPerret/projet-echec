@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import fr.echec.classe.partie.Partie;
 import fr.echec.enumerateur.CouleursPiece;
 import fr.echec.enumerateur.TypePiece;
 @Component
@@ -92,6 +93,9 @@ public class Fen {
 
 	public String creationFen(Plateau plat) {
 		String fen = "";
+		//Plateau plat = partie.getPlateau();
+		
+		// position piece
 		String str;
 		char piece = 0;
 		char p = 0;
@@ -136,5 +140,41 @@ public class Fen {
 		}
 		return fen;
 	}
-
+	
+	public String creationFenIA(Partie partie) {
+		Plateau plat = partie.getPlateau();
+		
+		// position piece
+		String fen = creationFen(plat);
+		fen += " ";
+		
+		// trait
+		if (partie.getCouleurJoueurActif() == CouleursPiece.BLANC) {
+			fen += "w ";
+		}else {
+			fen += "b ";
+		}
+		
+		// roque
+		if(plat.getPieceCase(3).isaBouge()==false) {
+			if(plat.getPieceCase(0).isaBouge()==false) {
+				fen+="K";
+			}
+			if(plat.getPieceCase(7).isaBouge()==false) {
+				fen+="Q";
+			}
+		}
+		if(plat.getPieceCase(59).isaBouge()==false) {
+			if(plat.getPieceCase(56).isaBouge()==false) {
+				fen+="k";
+			}
+			if(plat.getPieceCase(63).isaBouge()==false) {
+				fen+="q";
+			}
+		}
+		if(fen.charAt(fen.length()-1) == ' ') {
+			fen+="-";
+		}
+		return fen;
+	}
 }
