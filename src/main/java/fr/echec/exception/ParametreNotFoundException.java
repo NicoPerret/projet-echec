@@ -1,6 +1,7 @@
 package fr.echec.exception;
 
-public class ProblemeNotFoundException extends Exception {
+public class ParametreNotFoundException extends Exception {
+
 	private static final long serialVersionUID = 1L;
 
 }
