@@ -9,13 +9,15 @@ import org.springframework.stereotype.Service;
 import fr.echec.classe.joueur.Utilisateur;
 import fr.echec.exception.HistoriquePartieNotFoundException;
 import fr.echec.exception.IdNegatifException;
+import fr.echec.exception.UtilisateurNotFoundException;
 import fr.echec.repository.IUtilisateurs;
+
 @Service
 public class UtilisateursService {
 	@Autowired
 	private IUtilisateurs repoUtilisateur ;
 
-	public Utilisateur findById(int id) throws IdNegatifException, HistoriquePartieNotFoundException {
+	public Utilisateur findById(int id) throws IdNegatifException, UtilisateurNotFoundException {
 
 		if (id <= 0) {
 			throw new IdNegatifException();
@@ -24,10 +26,14 @@ public class UtilisateursService {
 		Utilisateur utilisateur = repoUtilisateur.findById(id);
 
 		if (utilisateur == null) {
-			throw new HistoriquePartieNotFoundException(); //
+			throw new UtilisateurNotFoundException(); //
 		}
 
 		return utilisateur;
+	}
+	
+	public Utilisateur findByIdFetchHistorique(int id) throws UtilisateurNotFoundException {
+		return repoUtilisateur.findByIdFetchingHistorique(id).orElseThrow(UtilisateurNotFoundException::new);
 	}
 
 	public List<Utilisateur> findAll() {
@@ -41,11 +47,11 @@ public class UtilisateursService {
 		return utilisateur;
 	}
 
-	public void save(Utilisateur utilisateur) throws HistoriquePartieNotFoundException {
+	public void save(Utilisateur utilisateur) throws UtilisateurNotFoundException {
 
 
 		if (utilisateur == null) {
-			throw new HistoriquePartieNotFoundException();
+			throw new UtilisateurNotFoundException();
 		}
 
 		repoUtilisateur.save(utilisateur);
