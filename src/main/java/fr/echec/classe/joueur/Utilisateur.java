@@ -42,7 +42,7 @@ public class Utilisateur {
 	@Column(name = "uti_elo", nullable = false)
 	protected int elo;
 	
-	@Column (name = "uti_email",length = 50, nullable = false)
+	@Column (name = "uti_email",length = 50, nullable = false, unique = true)
 	protected String email;
 	
 	@ManyToMany(mappedBy = "joueurs", fetch = FetchType.EAGER)
