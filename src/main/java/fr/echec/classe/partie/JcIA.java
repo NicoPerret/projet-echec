@@ -82,7 +82,7 @@ public class JcIA extends Partie {
 			while (true) {
 				
 				String fenURL = fen.creationFenIA(this);
-				System.out.println(fenURL);
+				
 			
 					 
 						  coupStockfish = restTemplate
@@ -91,8 +91,7 @@ public class JcIA extends Partie {
 					 
 				
 
-				System.out.println(coupStockfish);
-
+				
 				if (coupStockfish.equals("nobestmove") == false) {
 					break;
 				}
