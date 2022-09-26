@@ -55,15 +55,15 @@ public class ResolutionProbleme {
 	    return sc.nextInt();
 	}
 
-	public void jouerPb(int id, int difficulte) throws IdNegatifException, ProblemeNotFoundException { // utlisateur idPb
+	public void jouerPb(int id) throws IdNegatifException, ProblemeNotFoundException { // utlisateur idPb
 		
 		// probleme service findById
-		probleme = srvProbleme.findById(id);
 		System.out.println("Choisissez voutre difficulté :");
 		System.out.println("1 - EASY (elo 0 à 800");
 		System.out.println("2 - MEDIUM (elo 800 à 1200");
 		System.out.println("3 - HARD (elo supérieur à 1200");
-		probleme.setDifficulte(readInt());
+		int difficulte = readInt();
+		
 		switch (difficulte) {
 		case 1 :
 			listeProblemes = srvProbleme.FindByDifficultyBetween(0, 800); // mettre le elo du probleme entre parenthèses
