@@ -24,7 +24,8 @@ public class Application {
 		// 0 ==> JCJ
 		// 1 ==> PROBLEMES
 		// 2 ==> REVOIR PARTIE
-		// 3 ==> JCIA
+		// 3 ==> JCIA FACILE 
+		// 4 ==> JCIA STOCKFISH
 
 		int typePartie = 3;
 
@@ -60,7 +61,7 @@ public class Application {
 			// UN PROBLEME ('r6k/pp2r2p/4Rp1Q/3p4/8/1N1P2R1/PqP2bPP/7K','false','f2g3 e6e7
 			// b2b1 b3c1 b1c1 h6c1'),
 			ResolutionProbleme prob = ctx.getBean(ResolutionProbleme.class);
-			prob.jouerPb(2);
+			prob.jouerPb(2,2);
 		} else if (typePartie == 2) {
 			RevoirPartie revoirPartie = ctx.getBean(RevoirPartie.class);
 			revoirPartie.revoirPartieApplication(4);
@@ -80,8 +81,30 @@ public class Application {
 
 			while (true) {
 
-				p.jouerContreIa();
+				p.jouerContreIaFacile();
 
+				if (p.isPartieFinieIA() == true) {
+					break;
+				}
+				System.out.println(p.getH().getListeCoups());
+			}
+		}
+		else if (typePartie == 4) {
+			ParametresPartie param = new ParametresPartie();
+			JcIA p = ctx.getBean(JcIA.class);
+			p.setParam(param);
+			
+			UtilisateursService srvUti = ctx.getBean(UtilisateursService.class);
+			
+			Utilisateur j1 = srvUti.findById(1);
+			
+			p.setJ1(j1);
+			p.setCouleurJoueurActif(CouleursPiece.BLANC);
+			
+			while (true) {
+				
+				p.jouerContreIaStockfish();
+				
 				if (p.isPartieFinieIA() == true) {
 					break;
 				}
