@@ -2,16 +2,15 @@ package fr.echec.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import fr.echec.classe.probleme.Probleme;
 import fr.echec.exception.IdNegatifException;
 import fr.echec.exception.ProblemeNotFoundException;
 import fr.echec.repository.IProbleme;
+
 @Service
 public class ProblemeService {
 	@Autowired
@@ -54,12 +53,11 @@ public class ProblemeService {
 		if (id <= 0) {
 			throw new IdNegatifException();
 		}
-		
 		repoProbleme.deleteById(id);
 	}
 	
-	public List<Probleme> FindByDifficultyBetween (float a, float b) {
-		List<Probleme> listeProblemes = repoProbleme.FindByDifficultyBetween(a, b);
+	public List<Probleme> findByDifficultyBetween (int a, int b) {
+		List<Probleme> listeProblemes = repoProbleme.findByDifficultyBetween(a, b);
 		return listeProblemes;
 	}
 }
