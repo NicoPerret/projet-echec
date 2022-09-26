@@ -1,11 +1,36 @@
-RestController
+RestController :
+
+Accueil ==> Elo joueur / historique du joueur / Parametre partie
+	==> POST un pour chaque bouton jouer
+
+Historique 	==> GET historique / elo et nom Joueur
+		==> POST Historique 
+
+Partie 	==> GET UtilisateurS / Paramètres partie
+	==> POST  Coups joué ? / Chronos / Bouton ff/nulle / CHAT ? / Afficher pièce capturée
+
+Inscription/Connexion 	==> POST Utilisateur
+
+Probleme 	==> GET Probleme / historique de probleme
+		==> POST id probleme selectionné
+
+Profil	==> GET Utilisateur
+	==> POST Utilisateur
+
+Statistiques 	==> GET Utilisateur / Statistiques
+
+
+
 FEN
+
+
 
 
 
 html footer centrage et position
 html jeu : 	message
 		enlever chat si pb ou 1via
+		Image pièces capturées cachées
 html active en java + ajout menu sur toutes les pages
 html menu : + remplacer accueil par nom du site
 		- supprimer connexion
@@ -18,10 +43,14 @@ deconnexion renvoie vers connexion
 css charte graphique : petit bouton, titre (font), tableau, paragraphe (font)
 html chronos retourner si chronos = 0 
 
+html historique : Bouton pour revoir une partie 
+
 pb selectionner difficulte A VERIF
 
 pb mettre en bdd que le pb en gg !
 pb ajouter utilisateur
+
+Classe Statistiques
 
 opti globale
 
