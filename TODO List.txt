@@ -1,6 +1,6 @@
 RestController :
 
-Accueil ==> Elo joueur / historique du joueur / Parametre partie
+Accueil ==> GET : Elo joueur / historique du joueur / Parametre partie
 	==> POST un pour chaque bouton jouer
 
 Historique 	==> GET historique / elo et nom Joueur
@@ -20,7 +20,19 @@ Profil	==> GET Utilisateur
 Statistiques 	==> GET Utilisateur / Statistiques
 
 
+<<<<<<< HEAD
 MATCHMAKING
+=======
+=> creer service paramètresPartie
+=> creer service penalité piece
+
+
+
+FEN
+
+
+
+>>>>>>> FMM
 
 
 html footer centrage et position

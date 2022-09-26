@@ -12,13 +12,14 @@ import fr.echec.enumerateur.CouleursPiece;
 import fr.echec.exception.HistoriquePartieNotFoundException;
 import fr.echec.exception.IdNegatifException;
 import fr.echec.exception.ProblemeNotFoundException;
+import fr.echec.exception.UtilisateurNotFoundException;
 import fr.echec.service.ResolutionProbleme;
 import fr.echec.service.UtilisateursService;
 
 public class Application {
 
 	public static void main(String[] args)
-			throws HistoriquePartieNotFoundException, IdNegatifException, ProblemeNotFoundException {
+			throws IdNegatifException, ProblemeNotFoundException, UtilisateurNotFoundException, HistoriquePartieNotFoundException {
 		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
 
 		// 0 ==> JCJ
@@ -61,7 +62,11 @@ public class Application {
 			// UN PROBLEME ('r6k/pp2r2p/4Rp1Q/3p4/8/1N1P2R1/PqP2bPP/7K','false','f2g3 e6e7
 			// b2b1 b3c1 b1c1 h6c1'),
 			ResolutionProbleme prob = ctx.getBean(ResolutionProbleme.class);
+<<<<<<< HEAD
 			prob.jouerPb(2,2);
+=======
+			prob.jouerPb(2,1);
+>>>>>>> FMM
 		} else if (typePartie == 2) {
 			RevoirPartie revoirPartie = ctx.getBean(RevoirPartie.class);
 			revoirPartie.revoirPartieApplication(4);
