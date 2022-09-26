@@ -58,8 +58,8 @@ public class HistoriquePartie {
 	@ManyToMany
 	@JoinTable(
 			name = "historique_joueur",
-			joinColumns = @JoinColumn(name = "histjou_utlisateur_id"),
-			inverseJoinColumns = @JoinColumn(name = "histjou_historique_partie_id"))
+			joinColumns = @JoinColumn(name = "histjou_historique_partie_id"),
+			inverseJoinColumns = @JoinColumn(name = "histjou_utilisateur_id"))
 	protected List<Utilisateur> joueurs;
 	
 	// VARIABLES
@@ -130,6 +130,14 @@ public class HistoriquePartie {
 		this.param = param;
 	}
 	
+	public List<Utilisateur> getJoueurs() {
+		return joueurs;
+	}
+
+	public void setJoueurs(List<Utilisateur> joueurs) {
+		this.joueurs = joueurs;
+	}
+
 	// Methodes
 	public void ajouterCoup(String coup) {
 		this.listeCoups= this.listeCoups.concat(coup);
