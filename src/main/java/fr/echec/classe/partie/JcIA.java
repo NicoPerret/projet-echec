@@ -2,7 +2,6 @@ package fr.echec.classe.partie;
 
 import java.util.Random;
 import java.util.Timer;
-import java.util.TimerTask;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

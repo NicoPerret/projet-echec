@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import fr.echec.classe.joueur.Utilisateur;
 import fr.echec.enumerateur.CouleursPiece;
 import fr.echec.exception.HistoriquePartieNotFoundException;
+import fr.echec.exception.UtilisateurNotFoundException;
 
 @Service
 public class JcJ extends Partie {
@@ -95,7 +96,7 @@ public class JcJ extends Partie {
 		return false;
 	}
 
-	public void savePartieEtHistorique() throws HistoriquePartieNotFoundException {
+	public void savePartieEtHistorique() throws HistoriquePartieNotFoundException, UtilisateurNotFoundException {
 
 		this.getH().setDate(LocalDateTime.now());
 		this.getH().setJ1(j1);

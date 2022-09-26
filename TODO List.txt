@@ -1,6 +1,6 @@
 RestController :
 
-Accueil ==> GET : Elo joueur / historique du joueur / Parametre partie
+Accueil ==> Elo joueur / historique du joueur / Parametre partie
 	==> POST un pour chaque bouton jouer
 
 Historique 	==> GET historique / elo et nom Joueur
@@ -19,20 +19,8 @@ Profil	==> GET Utilisateur
 
 Statistiques 	==> GET Utilisateur / Statistiques
 
+Classe Statistiques
 
-<<<<<<< HEAD
-MATCHMAKING
-=======
-=> creer service paramètresPartie
-=> creer service penalité piece
-
-
-
-FEN
-
-
-
->>>>>>> FMM
 
 
 html footer centrage et position
@@ -55,10 +43,8 @@ pb selectionner difficulte A VERIF
 
 pb mettre en bdd que le pb en gg !
 pb ajouter utilisateur
+pb choisir un pb ==> id et aleat 
 
-Classe Statistiques
-
-opti globale
 
 Outil pour formater les pb en notre ecriture
 
@@ -66,3 +52,4 @@ Outil pour formater les pb en notre ecriture
 (Angular)
 Authentification
 Chat
+MATCHMAKING 
