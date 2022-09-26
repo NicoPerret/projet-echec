@@ -3,6 +3,7 @@ package fr.echec.application;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import fr.echec.classe.historique.RevoirPartie;
+import fr.echec.classe.historique.Statistiques;
 import fr.echec.classe.joueur.Utilisateur;
 import fr.echec.classe.parametres.ParametresPartie;
 import fr.echec.classe.partie.JcIA;
@@ -28,7 +29,7 @@ public class Application {
 		// 3 ==> JCIA FACILE 
 		// 4 ==> JCIA STOCKFISH
 
-		int typePartie = 4;
+		int typePartie = 0;
 
 		if (typePartie == 0) {
 
@@ -41,9 +42,13 @@ public class Application {
 
 			Utilisateur j1 = srvUti.findById(1);
 			Utilisateur j2 = srvUti.findById(2);
-
+			
+			Statistiques statsJ1 = ctx.getBean(Statistiques.class);
+			Statistiques statsJ2 = ctx.getBean(Statistiques.class);
 			p.setJ1(j1);
 			p.setJ2(j2);
+			
+			
 			// UNE PARTIE
 			while (true) {
 				// Jouer
@@ -53,11 +58,20 @@ public class Application {
 				// p.teleportation();
 
 				if (p.isPartieFinie() == true) {
+					
+					p.savePartieEtHistorique();
+					statsJ1.calculStats(p.getJ1());
+					statsJ2.calculStats(p.getJ2());
 					break;
 				}
+				Utilisateur J1 = srvUti.findById(1);
+				Utilisateur J2 = srvUti.findById(2);
+				
+				
+				statsJ1.calculStats(J1);
+				statsJ2.calculStats(J2);
 			}
 
-			p.savePartieEtHistorique();
 		} else if (typePartie == 1) {
 			// UN PROBLEME ('r6k/pp2r2p/4Rp1Q/3p4/8/1N1P2R1/PqP2bPP/7K','false','f2g3 e6e7
 			// b2b1 b3c1 b1c1 h6c1'),
@@ -114,7 +128,9 @@ public class Application {
 				System.out.println(p.getH().getListeCoups());
 			}
 		}
-
+		
+	
+		
 		ctx.close();
 
 	}

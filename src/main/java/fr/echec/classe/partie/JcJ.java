@@ -1,6 +1,8 @@
 package fr.echec.classe.partie;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
@@ -102,6 +104,11 @@ public class JcJ extends Partie {
 		this.getH().setJ1(j1);
 		this.getH().setJ2(j2);
 		this.getH().setMessages("TEST");
+		List<Utilisateur> joueurs = new ArrayList<>();
+		joueurs.add(j1);
+		joueurs.add(j2);
+		this.getH().setJoueurs(joueurs);
+		
 		srvHistPartie.save(this.getH());
 		srvUti.save(this.getJ1());
 		srvUti.save(this.getJ2());

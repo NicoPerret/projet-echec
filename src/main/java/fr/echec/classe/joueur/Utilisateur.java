@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -44,7 +45,7 @@ public class Utilisateur {
 	@Column (name = "uti_email",length = 50, nullable = false)
 	protected String email;
 	
-	@ManyToMany(mappedBy = "joueurs")
+	@ManyToMany(mappedBy = "joueurs", fetch = FetchType.EAGER)
 	protected List<HistoriquePartie> historiqueParties;
 	
 	// VARIABLES
@@ -102,6 +103,12 @@ public class Utilisateur {
 	}
 	
 	
+	public List<HistoriquePartie> getHistoriqueParties() {
+		return historiqueParties;
+	}
+	public void setHistoriqueParties(List<HistoriquePartie> historiqueParties) {
+		this.historiqueParties = historiqueParties;
+	}
 	//Methodes
 	public void jouer() {
 	}
