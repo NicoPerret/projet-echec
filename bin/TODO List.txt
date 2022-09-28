@@ -1,0 +1,27 @@
+! reprendre structure bdd ! tous ensemble
+
+fct Grand roque b/n
+
+gestion deplacement tour - gestion echec tour
+ajouter roque dans déplacement /!\ condition echec
+
+changer choix piece pour deplacement
+
+modif couleur => enum
+
+
+ajouter utilisateurs dans partie
+prise passant
+gestion echec et mat
+gestion nul
+gestion pat
+fct concat notationsCoup en String
+historique coup
+pb : fct creation des pb
+pb : jouer les coups par l'ordi
+pb : verif coup jouer est le bon
+
+html accueil
+html plateau
+html parametrePartie
+html historiquePartie

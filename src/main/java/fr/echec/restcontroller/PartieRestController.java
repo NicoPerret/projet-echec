@@ -11,7 +11,6 @@ import fr.echec.classe.joueur.Utilisateur;
 import fr.echec.classe.parametres.ParametresPartie;
 import fr.echec.exception.IdNegatifException;
 import fr.echec.exception.UtilisateurNotFoundException;
-import fr.echec.service.HistoriquePartieService;
 import fr.echec.service.ParametresPartieService;
 import fr.echec.service.UtilisateursService;
 
@@ -22,22 +21,19 @@ public class PartieRestController {
 	@Autowired
 	private UtilisateursService srvUtilisateurs;
 	@Autowired
-	private HistoriquePartieService srvHistoriquePartie;
-	@Autowired
 	private ParametresPartieService srvParametresPartie;
-	@Autowired
-	private Utilisateur utilisateur;
-	
-	
-	@GetMapping("")
+
+	@GetMapping("/parametre")
 	public List<ParametresPartie> listeParametresPartie() {
 		return srvParametresPartie.findAll();
 	}
-	@GetMapping("")
+	
+	@GetMapping("/utilisateur")
 	public List<Utilisateur> listeUtilisateurs() {
 		return srvUtilisateurs.findAll();
 	}
-	@GetMapping("")
+	
+	@GetMapping("/id")
 	public Utilisateur findById(Integer id) throws IdNegatifException, UtilisateurNotFoundException {
 		return srvUtilisateurs.findById(id);
 	}

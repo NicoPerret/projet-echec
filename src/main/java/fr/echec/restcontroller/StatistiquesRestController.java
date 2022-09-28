@@ -17,7 +17,7 @@ public class StatistiquesRestController {
 	@Autowired
 	private UtilisateursService srvUtilisateurs;
 	
-	@GetMapping("")
+	@GetMapping("/id")
 	public Utilisateur findById(Integer id) throws IdNegatifException, UtilisateurNotFoundException {
 	return srvUtilisateurs.findById(id);
 	

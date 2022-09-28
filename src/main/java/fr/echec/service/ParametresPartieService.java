@@ -3,11 +3,14 @@ package fr.echec.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import fr.echec.classe.parametres.ParametresPartie;
 import fr.echec.exception.IdNegatifException;
 import fr.echec.exception.ParametreNotFoundException;
 import fr.echec.repository.IParametresPartie;
 
+@Service
 public class ParametresPartieService {
 
 	private IParametresPartie repoParametresPartie;

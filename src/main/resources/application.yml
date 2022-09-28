@@ -1,0 +1,19 @@
+server:
+  servlet:
+    context-path: /projet-echecs
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+    password: root
+    url: jdbc:postgresql://localhost:5432/echecs
+    username: postgres
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp

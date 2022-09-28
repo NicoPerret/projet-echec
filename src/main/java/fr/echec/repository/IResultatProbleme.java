@@ -16,7 +16,7 @@ public interface IResultatProbleme extends JpaRepository<ResultatProbleme, Integ
 	public void save(Probleme probleme);
 
 
-@Query("select * from ResultatProbleme where res_utilisateur_id = ?1")
-public Optional<ResultatProbleme> findByIdFetchingUtilisateur(int id);
+//@Query("select * from ResultatProbleme where res_utilisateur_id = ?1")
+//public Optional<ResultatProbleme> findByIdFetchingUtilisateur(int id);
 
 }

@@ -16,53 +16,56 @@ import fr.echec.service.PenalitePieceService;
 import fr.echec.service.UtilisateursService;
 
 @RestController
-@RequestMapping("/PageAccueil")
 public class AccueilRestController {
-	
+
 	@Autowired
 	private UtilisateursService srvUtilisateurs;
 	@Autowired
 	private PenalitePieceService srvPenalitePiece;
-	@Autowired
-	private Utilisateur utilisateur;
 
+	private Utilisateur utilisateur;
 	
-	@GetMapping("")
+	@GetMapping("/connexion2")
+	public String connexion(){
+		return "connexion";
+	}
+
+	@GetMapping("/id")
 	public Utilisateur findById(Integer id) throws IdNegatifException, UtilisateurNotFoundException {
 		utilisateur = srvUtilisateurs.findById(id);
 		return utilisateur;
-	
-}
-	@GetMapping("")
+	}
+
+	@GetMapping("/elo")
 	public Integer getElo(Integer id, Integer elo) throws IdNegatifException, UtilisateurNotFoundException {
 		utilisateur = srvUtilisateurs.findById(id);
 		elo = utilisateur.getElo();
 		return elo;
 	}
-	
-	@GetMapping("")
+
+	@GetMapping("/historique")
 	public Utilisateur getHistoriqueJoueur(Integer id) throws UtilisateurNotFoundException {
 		return srvUtilisateurs.findByIdFetchHistorique(id);
 	}
-	
-	@GetMapping("")
+
+	@GetMapping("/all")
 	public List<PenalitePiece> findAll() {
 		return srvPenalitePiece.findAll();
 	}
-	
-	@PostMapping("/PageJeu") // bouton JcJ
+
+	@PostMapping("/JeuJoueur") // bouton JcJ
 	public void jouerJoueur() {
-	return;
+		return;
 	}
-	
-	@PostMapping("/PageJeu") // bouton JcIA
+
+	@PostMapping("/JeuIA") // bouton JcIA
 	public void jouerIA() {
 		return;
 	}
-	@PostMapping("/PageJeu") // bouton Probleme
+
+	@PostMapping("/JeuPb") // bouton Probleme
 	public void jouerProbleme() {
 		return;
 	}
-	
 
 }

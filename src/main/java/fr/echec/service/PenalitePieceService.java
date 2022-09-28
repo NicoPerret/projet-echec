@@ -3,13 +3,14 @@ package fr.echec.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import fr.echec.classe.parametres.PenalitePiece;
-import fr.echec.classe.probleme.Probleme;
 import fr.echec.exception.IdNegatifException;
 import fr.echec.exception.PenaliteNotFoundException;
-import fr.echec.exception.ProblemeNotFoundException;
 import fr.echec.repository.IPenalitePiece;
 
+@Service
 public class PenalitePieceService {
 
 	private IPenalitePiece repoPenalitePiece;

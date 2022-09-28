@@ -18,44 +18,42 @@ import fr.echec.exception.IdNegatifException;
 import fr.echec.exception.ProblemeNotFoundException;
 import fr.echec.service.ProblemeService;
 import fr.echec.service.ResultatProblemeService;
-import fr.formation.model.Produit;
 
 @RestController
 @RequestMapping("/PageProbleme")
 public class ProblemeRestController {
-	
+
 	@Autowired
 	private ProblemeService srvProbleme;
-	
+
 	@Autowired
 	private ResultatProblemeService srvResultatProbleme;
-	
-	@GetMapping("")
+
+	@GetMapping("/pb")
 	public List<Probleme> listeProblemes() {
 		return srvProbleme.findAll();
 
 	}
 
-	@GetMapping("")
+	@GetMapping("/id")
 	public Probleme findById(Integer id) throws IdNegatifException, ProblemeNotFoundException {
 		return srvProbleme.findById(id);
 
 	}
-	@GetMapping("")
+
+	@GetMapping("/pbRes")
 	public List<ResultatProbleme> listeProblemesResolus() {
 		return srvResultatProbleme.findAll();
-	
-}
-	
-	@PostMapping("")
-	public Probleme choix(@RequestBody Probleme probleme, BindingResult br) throws IdNegatifException, ProblemeNotFoundException {
-			if (br.hasErrors()) {
-				throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-			}
-			return srvProbleme.findById(probleme.getId());
+
 	}
 
-
-
+	@PostMapping("/choix")
+	public Probleme choix(@RequestBody Probleme probleme, BindingResult br)
+			throws IdNegatifException, ProblemeNotFoundException {
+		if (br.hasErrors()) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+		}
+		return srvProbleme.findById(probleme.getId());
+	}
 
 }

@@ -16,7 +16,6 @@ import fr.echec.classe.joueur.Utilisateur;
 import fr.echec.exception.IdNegatifException;
 import fr.echec.exception.UtilisateurNotFoundException;
 import fr.echec.service.UtilisateursService;
-import fr.formation.model.Produit;
 
 @RestController
 @RequestMapping("/PageProfil")
@@ -25,12 +24,12 @@ public class ProfilRestController {
 	@Autowired
 	private UtilisateursService srvUtilisateurs;
 	
-	@GetMapping("")
+	@GetMapping("/id")
 	public Utilisateur findById(Integer id) throws IdNegatifException, UtilisateurNotFoundException {
 	return srvUtilisateurs.findById(id);
 	
 }
-	@PostMapping("")
+	@PostMapping("/save")
 	public Utilisateur sauvegarder(@Valid @RequestBody Utilisateur utilisateur, BindingResult br) throws UtilisateurNotFoundException, IdNegatifException {
 		if (br.hasErrors()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);

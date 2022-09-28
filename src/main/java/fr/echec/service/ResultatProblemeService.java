@@ -39,9 +39,9 @@ public class ResultatProblemeService {
 
 		return resultatsPb;
 	}
-	public ResultatProbleme findByIdFetchUtilisateur(int id) throws UtilisateurNotFoundException, ResultatProblemeNotFoundException {
-		return repoResultatProbleme.findByIdFetchingUtilisateur(id).orElseThrow(ResultatProblemeNotFoundException::new);
-	}
+//	public ResultatProbleme findByIdFetchUtilisateur(int id) throws UtilisateurNotFoundException, ResultatProblemeNotFoundException {
+//		return repoResultatProbleme.findByIdFetchingUtilisateur(id).orElseThrow(ResultatProblemeNotFoundException::new);
+//	}
 	
 
 }

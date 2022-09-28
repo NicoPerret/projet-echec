@@ -57,4 +57,8 @@ public class UtilisateursService {
 		repoUtilisateur.save(utilisateur);
 
 	}
+	
+	public Utilisateur findByPseudo(String pseudo) {
+		return repoUtilisateur.findByPseudo(pseudo);
+	}
 }

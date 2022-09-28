@@ -1,6 +1,7 @@
 package fr.echec.classe.joueur;
 
-
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -13,13 +14,21 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import fr.echec.classe.historique.HistoriquePartie;
 import fr.echec.enumerateur.CouleursPiece;
 
 
 @Entity
 @Table(name = "utilisateurs")
-public class Utilisateur {
+//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+public class Utilisateur implements UserDetails{
+
+	private static final long serialVersionUID = 1L;
+
 	// VARIABLES from BDD
 	
 	@Id
@@ -40,10 +49,14 @@ public class Utilisateur {
 	protected String prenom;
 	
 	@Column(name = "uti_elo", nullable = false)
-	protected int elo;
+	protected int elo = 800;
 	
 	@Column (name = "uti_email",length = 50, nullable = false, unique = true)
 	protected String email;
+	
+	@Column (name = "uti_role",length = 10, nullable = false)
+	protected String role = "Utilisateur";
+	
 	
 	@ManyToMany(mappedBy = "joueurs", fetch = FetchType.EAGER)
 	protected List<HistoriquePartie> historiqueParties;
@@ -101,37 +114,55 @@ public class Utilisateur {
 	public void setCouleur(CouleursPiece couleur) {
 		this.couleur = couleur;
 	}
-	
-	
 	public List<HistoriquePartie> getHistoriqueParties() {
 		return historiqueParties;
 	}
 	public void setHistoriqueParties(List<HistoriquePartie> historiqueParties) {
 		this.historiqueParties = historiqueParties;
 	}
+	
+	//Constructeurs
+	public Utilisateur() {
+	}
+	
+	public Utilisateur(String pseudo, String mdp, String nom, String prenom, String email, String role) {
+		this.pseudo = pseudo;
+		this.mdp = mdp;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.role = role;
+	}
+	
 	//Methodes
-	public void jouer() {
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return Arrays.asList(new SimpleGrantedAuthority("ROLE_"+role.toUpperCase()));
+		//return Arrays.asList(new SimpleGrantedAuthority("ROLE_"+getClass().getSimpleName().toUpperCase()));
 	}
-	
-	public void ecrireChat(){
+	@Override
+	public String getPassword() {
+		return mdp;
 	}
-	
-	public void regarderSpectateur (String nom) {
-		
+	@Override
+	public String getUsername() {
+		return pseudo;
 	}
-	
-	public void choisirRegles() {
-		//System.out.println("Choisissez votre mode de jeu : ");
-		//choixMode();
-		// if mode 1vs1 --> n° adversaire ou aléatoire
-		//System.out.println("Choisissez votre temps : ");
-		//decompte({
-		//int temps = readInt();
-		//System.out.println("Vous êtes prêt à jouer");
-		}
-	
-	public void recupererHistorique() {
-		
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+	@Override
+	public boolean isEnabled() {
+		return true;
 	}
 
 }
