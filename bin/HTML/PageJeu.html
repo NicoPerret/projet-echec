@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/testcharte.css" />
+    <link rel="stylesheet" href="assets/css/jeu.css" />
+    <script type="module" defer src="assets/js/jeu.js"></script>
+    <title>Echec</title>
+    <link rel="i=shorcut icon" href="RoiNoir.png">
+</head>
+
+<body>
+    <header>
+        pouet
+    </header>
+
+    <div class="gauche">
+        <nav>
+
+			<ul>
+				<li> 
+					<a href="PageAccueil.html">Projet Echecs</a>
+				</li>
+
+				<li>
+					<a href="PageHistoriqueParties.html">Historique</a>
+				</li>
+
+				<li class="active">
+					<a href="PageJeu.html">Jeu en cours</a>
+				</li>
+				
+				<li>
+					<a href="PageProbleme.html">Probleme</a>
+				</li>
+				<li>
+					<a href="PageProfil.html">Profil</a>
+				</li>
+
+				<li>
+					<a href="PageStats.html">Mes statistiques</a>
+				</li>
+				<li>
+					<a href="PageAccueil.html">Deconnexion</a>
+				</li>
+			</ul>
+
+		</nav>
+    </div>
+
+    <div class="milieu">
+        <div class="grilleCentral5Verti">
+            <div class="grilleCentraleNomChrono">
+                <div>Nom adversaire</div>
+                <div id="h2"></div>
+            </div>
+            <div class="piecesCapturees" nom="piecesCaptureesHaut"><p>Pieces capturées</p></div>
+            <div class="grillePlateau">
+                <div class="grille8 grillePlateau1a8"></div>
+                <div class="grillePlateauPrincipal"></div>
+                <div></div>
+                <div class="grille8 grillePlateauAaH"></div>
+            </div>
+            <div class="grilleCentraleNomChrono">
+                <div>Mon nom</div>
+                <div id="h1"></div>
+            </div>
+            <div class="piecesCapturees" nom="piecesCaptureesBas"><p>Pieces capturées</p></div>
+        </div>
+        <div class="flexAbandonnerNul">
+            <button>Abandonner</button>
+            <button class="btnNul">Nul</button>
+            <button name="reculer">-</button>
+            <button name="avancer">+</button>
+        </div>
+    </div>
+
+    <div class="droite">
+        <div class="divHistoriqueEtChat">
+            <table class="historiqueCoups">
+                <thead>
+                    <tr>
+                        <th>Tour N° :</th>
+                        <th>Coups Blancs</th>
+                        <th>Coups Noirs</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Blancs 1</td>
+                        <td>Noirs 1</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="divHistoriqueEtChat chat">
+            <div class="titre">CHAT</div>
+            <div class="listeMessages"></div>
+            <input type="text" placeholder="Mon message">
+        </div>
+    </div>
+
+    <footer>footer</footer>
+</body>
+
+</html>

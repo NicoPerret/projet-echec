@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence	version="2.0"
+				xmlns="http://java.sun.com/xml/ns/persistence"
+				xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	
+	
+	<persistence-unit name="EshopUnit" transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+		<class>fr.echec.classe.historique.HistoriquePartie</class>
+		<class>fr.echec.classe.joueur.Utilisateur</class>
+		<class>fr.echec.classe.probleme.Probleme</class>
+		<class>fr.echec.classe.parametres.PenalitePiece</class>
+		<class>fr.echec.classe.probleme.ResultatProbleme</class>
+		<class>fr.echec.classe.parametres.ParametresPartie</class>
+
+		<properties>
+      		<!-- Listes des propriétés liées à l’implémentation (Hibernate, OpenJPA, ...) -->
+      		<property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/echecs" />
+		    <property name="hibernate.connection.driver" value="org.postgresql.Driver" />
+		    <property name="hibernate.connection.user" value="postgres" />
+		    <property name="hibernate.connection.password" value="postgres" />
+		
+		    <!-- Permet d'exécuter les requêtes DDL pour la génération de la base de données -->
+		    <!-- Valeurs possibles : validate, update, create, create-drop -->
+		    <property name="hibernate.hbm2ddl.auto" value="update" />
+			
+		    <!-- On imprime les requêtes SQL générées par Hibernate dans la console -->
+		    <property name="hibernate.show_sql" value="true" />
+		</properties>
+	</persistence-unit>
+	
+	
+</persistence>

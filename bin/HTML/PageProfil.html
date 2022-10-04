@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/testcharte.css" />
+    <link rel="stylesheet" href="assets/css/profil.css" />
+	<script defer src="assets/js/profil.js"></script>
+    <title>Profil</title>
+    <link rel="i=shorcut icon" href="RoiNoir.png">
+</head>
+<body>
+    <div class ="gauche">
+        <nav>
+
+			<ul>
+				<li>
+					<a href="PageAccueil.html">Projet Echecs</a>
+				</li>
+
+				<li>
+					<a href="PageHistoriqueParties.html">Historique</a>
+				</li>
+
+				<li>
+					<a href="PageJeu.html">Jeu en cours</a>
+				</li>
+				
+				<li>
+					<a href="PageProbleme.html">Probleme</a>
+				</li>
+				<li class="active">
+					<a href="PageProfil.html">Profil</a>
+				</li>
+
+				<li>
+					<a href="PageStats.html">Mes statistiques</a>
+				</li>
+				<li>
+					<a href="PageConnexion.html">Deconnexion</a>
+				</li>
+			</ul>
+
+		</nav>
+    </div>
+    <div class =  "milieu">
+        <h1>Mon profil</h1>
+
+        <form method = POST>
+        <table class="stats">
+            <thead></thead>
+                <tr>
+                    <td>Pseudo</td>
+                    <td><input id ="pseudo" type = "text" value = 'Test' disabled></input></td>
+                </tr>
+
+                     <td>Mot de passe</td>
+                    <td><input id = "mdp" type = "password" value = 'Test' disabled></input></td>
+                    
+                </tr>
+            <tbody>
+                <tr>
+                    <td>Prenom</td>
+                    <td><input id = "prenom" type = "text" value = 'Test' disabled></input></td>
+                    
+                </tr>
+                <tr>
+                    <td>Nom</td>
+                    <td><input id = "nom" type = "text" value = 'Test' disabled></input></td>
+                </tr>
+                <tr>
+                    <td>Adresse e-mail</td>
+                    <td><input id = "mail" type = "email" value = 'Test@test.fr' disabled></input></td>
+                </tr>
+                <tr>
+                    <td>Elo</td>
+                    <td>800</td>
+                </tr>
+            </tbody>
+        </table>
+        <button id = "modifier">Modifier</button>
+        <button id = "valider" disabled>Valider</button>
+    </div>
+    <div class = "droite">
+
+    </div>
+</form>
+</body>
+</html>

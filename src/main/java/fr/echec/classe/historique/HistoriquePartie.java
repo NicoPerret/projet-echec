@@ -15,55 +15,55 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import fr.echec.classe.JsonViews;
 import fr.echec.classe.joueur.Utilisateur;
 import fr.echec.classe.parametres.ParametresPartie;
-
 
 @Entity
 @Table(name = "historiquepartie")
 public class HistoriquePartie {
 
 	// VARIABLES to BDD
+	@JsonView(JsonViews.Common.class)
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "hsp_id")
 	private int id;
-	
+	@JsonView(JsonViews.Common.class)
 	@ManyToOne
-	@JoinColumn (name = "hsp_id_J1", nullable = false)
+	@JoinColumn(name = "hsp_id_J1", nullable = false)
 	private Utilisateur j1;
-	
+	@JsonView(JsonViews.Common.class)
 	@ManyToOne
-	@JoinColumn (name = "hsp_id_J2", nullable = false)
+	@JoinColumn(name = "hsp_id_J2", nullable = false)
 	private Utilisateur j2;
-	
-	@Column (name = "hsp_messages", nullable = false)
+	@JsonView(JsonViews.Common.class)
+	@Column(name = "hsp_messages", nullable = false)
 	@Lob
 	private String messages; // a revoir avec la classe message
-	
-	@Column (name = "hsp_liste_coups", nullable = false)
+	@JsonView(JsonViews.Common.class)
+	@Column(name = "hsp_liste_coups", nullable = false)
 	@Lob
-	private String listeCoups = "";//peut etre stocker sous une liste de string et concatener pour la bdd
-	
+	private String listeCoups = "";// peut etre stocker sous une liste de string et concatener pour la bdd
+	@JsonView(JsonViews.Common.class)
 	@Column(name = "hsp_date")
 	private LocalDateTime date; // a revoir avec bon format pour la bdd
-	
+	@JsonView(JsonViews.Common.class)
 	@Column(name = "hsp_vainqueur_id")
 	private int vainqueurId;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "hsp_param_id")
-	private ParametresPartie param; 
-	
+	private ParametresPartie param;
+
 	@ManyToMany
-	@JoinTable(
-			name = "historique_joueur",
-			joinColumns = @JoinColumn(name = "histjou_historique_partie_id"),
-			inverseJoinColumns = @JoinColumn(name = "histjou_utilisateur_id"))
+	@JoinTable(name = "historique_joueur", joinColumns = @JoinColumn(name = "histjou_historique_partie_id"), inverseJoinColumns = @JoinColumn(name = "histjou_utilisateur_id"))
 	protected List<Utilisateur> joueurs;
-	
+
 	// VARIABLES
-	
+
 	// GETTERS - SETTERS
 
 	public Utilisateur getJ1() {
@@ -109,27 +109,27 @@ public class HistoriquePartie {
 	public String getMessages() {
 		return messages;
 	}
-	
+
 	public void setMessages(String messages) {
 		this.messages = messages;
 	}
-	
+
 	public String getListeCoups() {
 		return listeCoups;
 	}
-	
+
 	public void setListeCoups(String listeCoups) {
 		this.listeCoups = listeCoups;
 	}
-	
+
 	public ParametresPartie getParam() {
 		return param;
 	}
-	
+
 	public void setParam(ParametresPartie param) {
 		this.param = param;
 	}
-	
+
 	public List<Utilisateur> getJoueurs() {
 		return joueurs;
 	}
@@ -140,8 +140,7 @@ public class HistoriquePartie {
 
 	// Methodes
 	public void ajouterCoup(String coup) {
-		this.listeCoups= this.listeCoups.concat(coup);
+		this.listeCoups = this.listeCoups.concat(coup);
 	}
-
 
 }

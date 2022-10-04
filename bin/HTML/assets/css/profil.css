@@ -1,0 +1,13 @@
+
+table {
+    margin: 0 auto;
+
+    background-color: rgb(86, 85, 85);
+}
+
+
+td {
+    text-align: center;
+    padding: 5px;
+}
+

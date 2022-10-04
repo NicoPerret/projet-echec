@@ -27,7 +27,7 @@ public class AppliConsoleService implements CommandLineRunner {
 	ResolutionProbleme prob;
 	@Autowired
 	RevoirPartie revoirPartie;
-	
+
 	@Override
 	public void run(String... args) throws Exception {
 
@@ -37,7 +37,7 @@ public class AppliConsoleService implements CommandLineRunner {
 		// 3 ==> JCIA FACILE
 		// 4 ==> JCIA STOCKFISH
 
-		int typePartie = 0;
+		int typePartie = -1;
 
 		if (typePartie == 0) {
 
@@ -46,8 +46,8 @@ public class AppliConsoleService implements CommandLineRunner {
 			p.setParam(param);
 
 			Utilisateur j1 = srvUti.findById(3);
-			Utilisateur j2 = srvUti.findById(2);			
-			
+			Utilisateur j2 = srvUti.findById(2);
+
 			p.setJ1(j1);
 			p.setJ2(j2);
 

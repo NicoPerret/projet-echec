@@ -1,0 +1,46 @@
+body {
+  background: rgba(0, 0, 0, 0.767);
+  display: grid;
+
+  grid-template-areas:
+    "gauche header droite"
+    "gauche milieu droite"
+    "gauche footer droite";
+  grid-template-columns: 15% 60% 25%;
+  margin: 0;
+}
+
+.gauche {
+  grid-area: gauche;
+  background-color: #33a3eeab;
+  height: 100vh;
+}
+
+.milieu {
+  grid-area: milieu;
+  text-align: center;
+}
+
+.droite {
+  grid-area: droite;
+  text-align: center;
+  color: white;
+  justify-content: center;
+}
+
+.header {
+  text-align: center;
+  grid-area: header;
+  margin: 20px;
+  color: white;
+}
+
+.footer {
+  margin-bottom: 50px;
+  text-align: center;
+  grid-area: footer;
+  color: white;
+  position: absolute;
+  bottom: 0;
+  width: 100vw;
+}

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="assets/css/testcharte.css" />
+    <link rel="stylesheet" href="assets/css/probleme.css" />
+	<script defer src="assets/js/probleme.js"></script>
+    <title>Problèmes</title>
+    <link rel="i=shorcut icon" href="RoiNoir.png">
+</head>
+
+<body>
+	
+	<header>
+		Projet echec
+	</header>
+	
+	<!-- le menu -->
+	<div class="gauche">
+
+		<nav>
+
+			<ul>
+				<li>
+					<a href="PageAccueil.html">Projet Echecs</a>
+				</li>
+
+				<li>
+					<a href="PageHistoriqueParties.html">Historique</a>
+				</li>
+
+				<li>
+					<a href="PageJeu.html">Jeu en cours</a>
+				</li>
+				
+				<li class="active">
+					<a href="PageProbleme.html">Probleme</a>
+				</li>
+				<li>
+					<a href="PageProfil.html">Profil</a>
+				</li>
+
+				<li>
+					<a href="PageStats.html">Mes statistiques</a>
+				</li>
+				<li>
+					<a href="PageConnexion.html">Deconnexion</a>
+				</li>
+			</ul>
+
+		</nav>
+
+	</div>
+	
+	<!-- Choix mode de jeu -->
+	<div class="milieu">
+		
+		<section class="affichage">
+		
+			<div class="affichage-header">
+				<h1>Liste des problèmes</h1>
+			</div>
+			
+			<div class="filtre-box">
+				
+				<div class="filtre-nb-pb">
+					Montrer 
+					<select name="nb-pb">
+						<option value = "10" selected>10</option>
+						<option value = "50">50</option>
+						<option value = "100">100</option>
+					</select>
+					Problèmes
+				</div>
+				
+				<div class="filtre-difficulte">
+					Niveau de difficulté 
+					<select name="difficulte">
+						<option value = "tous" selected>Tous</option>
+						<option value = "facile">Facile</option>
+						<option value = "moyen">Moyen</option>
+						<option value = "moyen">Difficile</option>
+					</select>
+				</div>
+				
+				<div class="filtre-resolution">
+					Problème résolu 
+					<select name="resolution">
+						<option value = "tous" selected>Tous</option>
+						<option value = "oui">OUI</option>
+						<option value = "non">NON</option>
+					</select>
+				</div>
+			
+			</div>
+			
+			<div class="affichage-content">
+				<table class="tableau-problemes tab-standard">
+					<thead>
+						<tr>
+							<th class="num-pb">Numéro du problème</th>
+							<th class="apercu-pb">Aperçu</th>
+							<th class="difficulte-pb">Difficulté</th>
+							<th class="resultat-pb">Résolu ?</th>
+						</tr>
+					</thead>
+						
+					<tbody>
+
+					</tbody>
+				
+				</table>
+			</div>
+			
+			
+			
+		</section>
+		
+	</div>
+	
+	<div class="droite">
+		
+	</div>
+	
+	<footer>
+		contact @projetechec
+	</footer>
+	
+	
+	
+</body>
+</html>
