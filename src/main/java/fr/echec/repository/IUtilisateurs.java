@@ -12,7 +12,7 @@ public interface IUtilisateurs extends JpaRepository<Utilisateur, Integer> {
 	public Utilisateur findById(int id);
 
 	@Query("select u from Utilisateur u left join fetch u.historiqueParties where u.id = ?1")
-	public Optional<Utilisateur> findByIdFetchingHistorique(int id);
-	
+	public Optional<Utilisateur> findByIdFetchingHistoriqueParties(int id);
+
 	public Utilisateur findByPseudo(String pseudo);
 }

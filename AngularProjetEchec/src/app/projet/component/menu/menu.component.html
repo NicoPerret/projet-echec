@@ -23,7 +23,7 @@
       <li>
         <a routerLink="/statistiques">Mes statistiques</a>
       </li>
-      <li>
+      <li *ngIf="connecte">
         <a routerLink="/deconnexion">Deconnexion</a>
       </li>
     </ul>

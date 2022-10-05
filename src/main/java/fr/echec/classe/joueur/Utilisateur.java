@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -55,11 +54,11 @@ public class Utilisateur implements UserDetails {
 
 	@Column(name = "uti_email", length = 50, nullable = false, unique = true)
 	protected String email;
-
+	@JsonView(JsonViews.Common.class)
 	@Column(name = "uti_role", length = 10, nullable = false)
 	protected String role = "Utilisateur";
-	@JsonView(JsonViews.Common.class)
-	@ManyToMany(mappedBy = "joueurs", fetch = FetchType.EAGER)
+
+	@ManyToMany(mappedBy = "joueurs")
 	protected List<HistoriquePartie> historiqueParties;
 
 	// VARIABLES

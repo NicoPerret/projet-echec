@@ -22,6 +22,8 @@ public class AppliConsoleService implements CommandLineRunner {
 	@Autowired
 	UtilisateursService srvUti;
 	@Autowired
+	UtilisateursService srvUtilisateur;
+	@Autowired
 	Statistiques stats;
 	@Autowired
 	ResolutionProbleme prob;
@@ -37,7 +39,7 @@ public class AppliConsoleService implements CommandLineRunner {
 		// 3 ==> JCIA FACILE
 		// 4 ==> JCIA STOCKFISH
 
-		int typePartie = -1;
+		int typePartie = 0;
 
 		if (typePartie == 0) {
 
@@ -65,8 +67,8 @@ public class AppliConsoleService implements CommandLineRunner {
 					break;
 				}
 			}
-			Utilisateur J1 = srvUti.findById(3);
-			Utilisateur J2 = srvUti.findById(2);
+			Utilisateur J1 = srvUtilisateur.findByIdFetchHistorique(3);
+			Utilisateur J2 = srvUtilisateur.findByIdFetchHistorique(2);
 
 			stats.calculStats(J1);
 			stats.calculStats(J2);
@@ -120,5 +122,4 @@ public class AppliConsoleService implements CommandLineRunner {
 		}
 
 	}
-
 }

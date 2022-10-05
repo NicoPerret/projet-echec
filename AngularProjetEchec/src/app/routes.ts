@@ -12,7 +12,11 @@ import { ProfilComponent } from './projet/component/profil/profil.component';
 import { StatistiquesComponent } from './projet/component/statistiques/statistiques.component';
 
 export const routes: Routes = [
-  { path: 'acceuil', component: AcceuilComponent },
+  {
+    path: 'acceuil',
+    component: AcceuilComponent,
+    canActivate: [UserGuardService],
+  },
   {
     path: 'deconnexion',
     component: DeconnexionComponent,
@@ -20,6 +24,11 @@ export const routes: Routes = [
   },
   {
     path: 'connexion',
+    component: LoginComponent,
+    canActivate: [AnonymousGuardService],
+  },
+  {
+    path: '',
     component: LoginComponent,
     canActivate: [AnonymousGuardService],
   },

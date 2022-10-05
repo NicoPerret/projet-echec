@@ -3,19 +3,21 @@ package fr.echec.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.echec.classe.joueur.Utilisateur;
-import fr.echec.exception.HistoriquePartieNotFoundException;
 import fr.echec.exception.IdNegatifException;
 import fr.echec.exception.UtilisateurNotFoundException;
 import fr.echec.repository.IUtilisateurs;
 
 @Service
+@Transactional
 public class UtilisateursService {
 	@Autowired
-	private IUtilisateurs repoUtilisateur ;
+	private IUtilisateurs repoUtilisateur;
 
 	public Utilisateur findById(int id) throws IdNegatifException, UtilisateurNotFoundException {
 
@@ -31,13 +33,13 @@ public class UtilisateursService {
 
 		return utilisateur;
 	}
-	
+
 	public Utilisateur findByIdFetchHistorique(int id) throws UtilisateurNotFoundException {
-		return repoUtilisateur.findByIdFetchingHistorique(id).orElseThrow(UtilisateurNotFoundException::new);
+		return repoUtilisateur.findByIdFetchingHistoriqueParties(id).orElseThrow(UtilisateurNotFoundException::new);
 	}
 
 	public List<Utilisateur> findAll() {
-		
+
 		List<Utilisateur> utilisateur = repoUtilisateur.findAll();
 
 		if (utilisateur == null) {
@@ -49,7 +51,6 @@ public class UtilisateursService {
 
 	public void save(Utilisateur utilisateur) throws UtilisateurNotFoundException {
 
-
 		if (utilisateur == null) {
 			throw new UtilisateurNotFoundException();
 		}
@@ -57,7 +58,7 @@ public class UtilisateursService {
 		repoUtilisateur.save(utilisateur);
 
 	}
-	
+
 	public Utilisateur findByPseudo(String pseudo) {
 		return repoUtilisateur.findByPseudo(pseudo);
 	}

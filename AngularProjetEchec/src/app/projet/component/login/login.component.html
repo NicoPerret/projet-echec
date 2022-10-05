@@ -1,5 +1,44 @@
-<div>
-  <div>Login <input [(ngModel)]="login" /></div>
-  <div>Password <input [(ngModel)]="password" /></div>
-  <div><button (click)="send()">Login</button></div>
-</div>
+<section>
+  <fieldset>
+    <!-- <legend style="color: white;">Connexion</legend> -->
+    <div class="fenetre">
+      <h2 style="text-align: center">Connexion</h2>
+
+      <table>
+        <tr>
+          <td><label>Identifiant : </label></td>
+          <td>
+            <input
+              [(ngModel)]="login"
+              type="text"
+              id="ident"
+              placeholder="Entrez votre identifiant"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td><label>Mot de passe : </label></td>
+          <td>
+            <input
+              [(ngModel)]="password"
+              type="password"
+              id="mdp"
+              placeholder="Entrez votre mdp"
+            />
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div name="validation" style="text-align: center">
+      <p>
+        <button (click)="send()" class="boutonconnexion">Se connecter</button>
+        <button routerLink="/inscription" class="boutoninscription">
+          S'inscrire
+        </button>
+      </p>
+      <p>
+        <a target="_self" style="color: white">Mot de passe oublié</a>
+      </p>
+    </div>
+  </fieldset>
+</section>
