@@ -1,0 +1,44 @@
+.grillePlateauPrincipal {
+  display: grid;
+  grid-row: 1;
+  grid-column: 2;
+  grid-template-columns: repeat(8, 50px);
+  grid-template-rows: repeat(8, 50px);
+  text-align: center;
+}
+
+.grillePlateauPrincipal div {
+  background: white;
+  border: solid 1px black;
+  box-sizing: border-box;
+}
+
+.noir div:nth-child(-2n + 7),
+.noir div:nth-child(9) ~ div:nth-child(-2n + 16),
+.noir div:nth-child(15) ~ div:nth-child(-2n + 23),
+.noir div:nth-child(25) ~ div:nth-child(-2n + 32),
+.noir div:nth-child(31) ~ div:nth-child(-2n + 39),
+.noir div:nth-child(41) ~ div:nth-child(-2n + 48),
+.noir div:nth-child(47) ~ div:nth-child(-2n + 55),
+.noir div:nth-child(57) ~ div:nth-child(-2n + 64) {
+  background: rgb(71, 71, 71);
+}
+
+.blanc div:nth-child(-2n + 8),
+.blanc div:nth-child(8) ~ div:nth-child(-2n + 15),
+.blanc div:nth-child(16) ~ div:nth-child(-2n + 24),
+.blanc div:nth-child(24) ~ div:nth-child(-2n + 31),
+.blanc div:nth-child(32) ~ div:nth-child(-2n + 40),
+.blanc div:nth-child(40) ~ div:nth-child(-2n + 47),
+.blanc div:nth-child(48) ~ div:nth-child(-2n + 56),
+.blanc div:nth-child(56) ~ div:nth-child(-2n + 63) {
+  background: rgb(71, 71, 71);
+}
+
+.noir {
+  transform: scale(-1, -1);
+}
+
+.noir div {
+  transform: scale(-1, -1);
+}
