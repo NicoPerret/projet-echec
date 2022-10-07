@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -37,6 +37,7 @@ import { StatistiquesComponent } from './projet/component/statistiques/statistiq
     StatistiquesComponent,
   ],
   imports: [
+    ReactiveFormsModule,
     BrowserModule,
     RouterModule.forRoot(routes),
     HttpClientModule,

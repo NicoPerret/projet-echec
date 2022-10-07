@@ -1,69 +1,95 @@
 <section>
-  <fieldset>
-    <div>
-      <h2 style="text-align: center">Inscription</h2>
+  <form (ngSubmit)="inscription()" [formGroup]="form">
+    <fieldset>
+      <div>
+        <h2 style="text-align: center">Inscription</h2>
+        <table>
+          <ng-container formGroupName="loginGroup">
+            <tr>
+              <td><label>Pseudo : </label></td>
+              <td>
+                <input
+                  type="text"
+                  id="pseudo"
+                  placeholder="Entrez votre pseudo"
+                  formControlName="pseudo"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td><label>Nom : </label></td>
+              <td>
+                <input
+                  type="text"
+                  id="nom"
+                  placeholder="Entrez votre nom"
+                  formControlName="nom"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td><label>Prénom : </label></td>
+              <td>
+                <input
+                  type="text"
+                  id="prenom"
+                  placeholder="Entrez votre prénom"
+                  formControlName="prenom"
+                />
+              </td>
+            </tr>
+          </ng-container>
+          <ng-container formGroupName="mdpGroup">
+            <tr>
+              <td><label>Mot de passe : </label></td>
+              <td>
+                <input
+                  type="password"
+                  id="mdp"
+                  placeholder="Entrez votre mot de passe"
+                  formControlName="mdp"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td><label>Confirmation du mot de passe : </label></td>
+              <td>
+                <input
+                  type="password"
+                  id="confirmmdp"
+                  placeholder="Confirmer votre mot de passe"
+                  formControlName="confirmmdp"
+                />
+              </td>
+            </tr>
+          </ng-container>
 
-      <table>
-        <tr>
-          <td><label>Identifiant : </label></td>
-          <td>
-            <input
-              type="text"
-              id="ident"
-              placeholder="Entrez votre identifiant"
-            />
-          </td>
-        </tr>
-        <tr>
-          <td><label>Mot de passe : </label></td>
-          <td>
-            <input
-              type="password"
-              id="mdp"
-              placeholder="Entrez votre mot de passe"
-            />
-          </td>
-        </tr>
-        <tr>
-          <td><label>Confirmation du mot de passe : </label></td>
-          <td>
-            <input
-              type="password"
-              id="confirmmdp"
-              placeholder="Confirmer votre mot de passe"
-            />
-          </td>
-        </tr>
-        <tr>
-          <td><label>Pseudo : </label></td>
-          <td>
-            <input type="text" id="pseudo" placeholder="Entrez votre pseudo" />
-          </td>
-        </tr>
-        <tr>
-          <td><label>Nom : </label></td>
-          <td><input type="text" id="nom" placeholder="Entrez votre nom" /></td>
-        </tr>
-        <tr>
-          <td><label>Prénom : </label></td>
-          <td>
-            <input type="text" id="prenom" placeholder="Entrez votre prénom" />
-          </td>
-        </tr>
-        <tr>
-          <td><label>Email : </label></td>
-          <td>
-            <input type="email" id="mail" placeholder="Entrez votre email" />
-          </td>
-        </tr>
-        <tr>
-          <td><label>Etes vous coach ? </label></td>
-          <td><input type="checkbox" id="coach" /></td>
-        </tr>
-      </table>
-    </div>
-    <div style="text-align: center">
-      <button class="inscription petitBouton">S'inscrire</button>
-    </div>
-  </fieldset>
+          <tr>
+            <td><label>Email : </label></td>
+            <td>
+              <input
+                type="email"
+                id="mail"
+                placeholder="Entrez votre email"
+                formControlName="emailCtrl"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td><label>Etes vous coach ? </label></td>
+            <td><input type="checkbox" id="coach" /></td>
+          </tr>
+        </table>
+      </div>
+      <div style="text-align: center">
+        <button
+          type="submit"
+          [disabled]="form.invalid"
+          class="inscription petitBouton"
+        >
+          S'inscrire
+        </button>
+      </div>
+    </fieldset>
+  </form>
 </section>
