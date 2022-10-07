@@ -23,6 +23,8 @@ import { TableauAaHComponent } from './projet/component/jeu/plateau/tableau-aa-h
 import { Plateau64casesComponent } from './projet/component/jeu/plateau/plateau64cases/plateau64cases.component';
 import { PlateauComponent } from './projet/component/jeu/plateau/plateau.component';
 import { ColonneBoutonsComponent } from './projet/component/jeu/colonne-boutons/colonne-boutons.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,8 @@ import { ColonneBoutonsComponent } from './projet/component/jeu/colonne-boutons/
     RouterModule.forRoot(routes),
     HttpClientModule,
     FormsModule,
+    BrowserAnimationsModule,
+    DragDropModule,
   ],
   providers: [
     {
