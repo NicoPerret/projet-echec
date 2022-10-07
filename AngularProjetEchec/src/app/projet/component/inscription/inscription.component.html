@@ -14,6 +14,16 @@
                   placeholder="Entrez votre pseudo"
                   formControlName="pseudo"
                 />
+                <span
+                  *ngIf="
+                    form.get('loginGroup.pseudo')?.hasError('pseudoDiffNom')
+                  "
+                  >Le pseudo doit être différent du nom</span
+                >
+                <span
+                  *ngIf="form.get('loginGrouo.pseudo')?.hasError('pseudoExist')"
+                  >ce pseudo existe déjà</span
+                >
               </td>
             </tr>
             <tr>
@@ -60,6 +70,12 @@
                   placeholder="Confirmer votre mot de passe"
                   formControlName="confirmmdp"
                 />
+                <span
+                  *ngIf="
+                    form.get('mdpGroup.confirmmdp')?.hasError('mdpIdentique')
+                  "
+                  >le mot de passe doit être identique</span
+                >
               </td>
             </tr>
           </ng-container>

@@ -10,7 +10,7 @@ export class DeconnexionComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit(): void {}
-  disconect() {
+  disconnect() {
     sessionStorage.clear();
     this.router.navigateByUrl('/connexion');
   }

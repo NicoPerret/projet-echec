@@ -4,6 +4,7 @@ import { Utilisateur } from './../../model/utilisateur';
 import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
+  AsyncValidatorFn,
   FormControl,
   FormGroup,
   ValidationErrors,
@@ -11,6 +12,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { map, Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-inscription',
@@ -24,7 +27,8 @@ export class InscriptionComponent implements OnInit {
   constructor(
     private srvUtilisateur: UtilisateurService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private httpClient: HttpClient
   ) {}
 
   ngOnInit(): void {
@@ -88,6 +92,17 @@ export class InscriptionComponent implements OnInit {
     } else {
       return null;
     }
+  }
+  pseudoExist(): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      return this.httpClient
+        .get('http://localhost:8080/echecs/api/inscription' + control.value)
+        .pipe(
+          map((boolResultatDuGet: any) => {
+            return boolResultatDuGet ? { pseudoExist: true } : null;
+          })
+        );
+    };
   }
 
   chargeUtil(): Utilisateur {

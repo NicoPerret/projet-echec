@@ -1,3 +1,68 @@
-<h1>{{ utilisateur.pseudo }}</h1>
-
-<p>Elo : {{ utilisateur.elo }}</p>
+<form method="POST">
+  <table class="">
+    <thead></thead>
+    <tr>
+      <td>Pseudo</td>
+      <td>
+        <input
+          id="pseudo"
+          type="text"
+          value="{{ utilisateur.pseudo }}"
+          disabled
+        />/>
+      </td>
+    </tr>
+    <tr>
+      <td>Mot de passe</td>
+      <td>
+        <input
+          id="mdp"
+          type="password"
+          value="{{ utilisateur.mdp }}"
+          disabled
+        />/>
+      </td>
+    </tr>
+    <tbody>
+      <tr>
+        <td>Prenom</td>
+        <td>
+          <input
+            id="prenom"
+            type="text"
+            value="{{ utilisateur.prenom }}"
+            disabled
+          />/>
+        </td>
+      </tr>
+      <tr>
+        <td>Nom</td>
+        <td>
+          <input
+            id="nom"
+            type="text"
+            value="{{ utilisateur.nom }}"
+            disabled
+          />/>
+        </td>
+      </tr>
+      <tr>
+        <td>Adresse e-mail</td>
+        <td>
+          <input
+            id="mail"
+            type="email"
+            value="{{ utilisateur.email }}"
+            disabled
+          />/>
+        </td>
+      </tr>
+      <tr>
+        <td>Elo</td>
+        <td>{{ utilisateur.elo }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <button id="modifier">Modifier</button>
+  <button id="valider" disabled>Valider</button>
+</form>

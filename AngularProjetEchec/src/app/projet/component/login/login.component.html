@@ -1,57 +1,56 @@
 <section>
   <form (ngSubmit)="send()" #monForm="ngForm">
-    <fieldset>
-      <div class="fenetre">
-        <h2 style="text-align: center">Connexion</h2>
+    <>
+    <div class="fenetre">
+      <h2 style="text-align: center">Connexion</h2>
 
-        <table>
-          <tr>
-            <td><label>Identifiant : </label></td>
-            <td>
-              <input
-                name="login"
-                [(ngModel)]="login"
-                type="text"
-                id="ident"
-                placeholder="Entrez votre identifiant"
-                required
-                #inputCtrl="ngModel"
-              />
-            </td>
-          </tr>
-          <tr>
-            <td><label>Mot de passe : </label></td>
-            <td>
-              <input
-                name="password"
-                [(ngModel)]="password"
-                type="password"
-                id="mdp"
-                placeholder="Entrez votre mdp"
-                required
-                #inputCtrl="ngModel"
-              />
-            </td>
-          </tr>
-        </table>
-      </div>
-      <div name="validation" style="text-align: center">
-        <p>
-          <button
-            type="submit"
-            class="boutonconnexion"
-            [disabled]="monForm.invalid"
-          >
-            Se connecter
-          </button>
-          <button routerLink="/inscription" class="boutoninscription">
-            S'inscrire
-          </button>
-        </p>
-        <p>
-          <a target="_self" style="color: white">Mot de passe oublié</a>
-        </p>
-      </div>
-    </fieldset>
+      <table>
+        <tr>
+          <td><label>Identifiant : </label></td>
+          <td>
+            <input
+              name="login"
+              [(ngModel)]="login"
+              type="text"
+              id="ident"
+              placeholder="Entrez votre identifiant"
+              required
+              #inputCtrl="ngModel"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td><label>Mot de passe : </label></td>
+          <td>
+            <input
+              name="password"
+              [(ngModel)]="password"
+              type="password"
+              id="mdp"
+              placeholder="Entrez votre mdp"
+              required
+              #inputCtrl="ngModel"
+            />
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div name="validation" style="text-align: center">
+      <p>
+        <button
+          type="submit"
+          class="boutonconnexion"
+          [disabled]="monForm.invalid"
+        >
+          Se connecter
+        </button>
+        <button routerLink="/inscription" class="boutoninscription">
+          S'inscrire
+        </button>
+      </p>
+      <p>
+        <a target="_self" style="color: white">Mot de passe oublié</a>
+      </p>
+    </div>
   </form>
 </section>
