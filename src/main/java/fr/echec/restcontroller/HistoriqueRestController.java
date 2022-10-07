@@ -11,7 +11,7 @@ import fr.echec.exception.UtilisateurNotFoundException;
 import fr.echec.service.UtilisateursService;
 
 @RestController
-@RequestMapping("/PageHistoriqueParties")
+@RequestMapping("/api/historique")
 public class HistoriqueRestController {
 	@Autowired
 	private UtilisateursService srvUtilisateurs;
