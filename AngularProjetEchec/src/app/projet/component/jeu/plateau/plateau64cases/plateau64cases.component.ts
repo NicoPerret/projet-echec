@@ -1,11 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
-
+import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
+declare function dragDrop(): any;
 @Component({
   selector: 'app-plateau64cases',
   templateUrl: './plateau64cases.component.html',
   styleUrls: ['./plateau64cases.component.css'],
 })
-export class Plateau64casesComponent implements OnInit {
+export class Plateau64casesComponent implements OnInit, AfterViewInit {
   @Input()
   couleur!: string;
 
@@ -13,6 +13,9 @@ export class Plateau64casesComponent implements OnInit {
   public nombres = [8, 7, 6, 5, 4, 3, 2, 1];
 
   constructor() {}
+  ngAfterViewInit(): void {
+    dragDrop();
+  }
 
   ngOnInit(): void {}
 }
