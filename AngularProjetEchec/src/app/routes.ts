@@ -17,12 +17,12 @@ export const routes: Routes = [
   {
     path: 'accueil',
     component: AcceuilComponent,
-    canActivate: [UserGuardService, CoachGuardService, AdminGuardService],
+    canActivate: [UserGuardService],
   },
   {
     path: 'deconnexion',
     component: DeconnexionComponent,
-    canActivate: [UserGuardService, CoachGuardService, AdminGuardService],
+    canActivate: [UserGuardService],
   },
   {
     path: 'connexion',
@@ -42,22 +42,22 @@ export const routes: Routes = [
   {
     path: 'historique',
     component: HistoriqueComponent,
-    canActivate: [UserGuardService, CoachGuardService, AdminGuardService],
+    canActivate: [UserGuardService],
   },
   {
     path: 'jeu',
     component: JeuComponent,
-    canActivate: [UserGuardService, CoachGuardService, AdminGuardService],
+    canActivate: [UserGuardService],
   },
   {
     path: 'probleme',
     component: ProblemeComponent,
-    canActivate: [UserGuardService, CoachGuardService, AdminGuardService],
+    canActivate: [UserGuardService],
   },
   {
     path: 'profil',
     component: ProfilComponent,
-    canActivate: [UserGuardService, CoachGuardService, AdminGuardService],
+    canActivate: [UserGuardService],
   },
   {
     path: 'statistiques',
