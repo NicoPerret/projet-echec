@@ -1,0 +1,26 @@
+section.affichage{
+	border: 10px solid black;
+	background-color:rgb(180, 180, 180);
+	height: 75vh;
+	overflow-y: scroll;
+}
+
+.affichage-header {
+	padding-left: 10px;
+}
+
+.filtre-box {
+	display: flex;
+	border: 1px solid grey;
+	background-color: rgb(190, 190, 230);
+	padding: 5px 10px 5px 10px;
+}
+
+.filtre-box > div {
+	padding-right: 15px;
+}
+
+tbody > tr:hover{
+	background-color:red;
+	cursor: pointer;
+}
