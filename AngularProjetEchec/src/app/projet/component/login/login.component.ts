@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
           'token',
           'Basic ' + btoa(this.login + ':' + this.password)
         );
-        this.router.navigateByUrl('/acceuil');
+        this.router.navigateByUrl('/accueil');
       },
       error: (err) => {
         console.log(err);
