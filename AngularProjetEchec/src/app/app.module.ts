@@ -23,6 +23,7 @@ import { TableauAaHComponent } from './projet/component/jeu/plateau/tableau-aa-h
 import { Plateau64casesComponent } from './projet/component/jeu/plateau/plateau64cases/plateau64cases.component';
 import { PlateauComponent } from './projet/component/jeu/plateau/plateau.component';
 import { ColonneBoutonsComponent } from './projet/component/jeu/colonne-boutons/colonne-boutons.component';
+import { RxStompService } from '@stomp/ng2-stompjs';
 
 @NgModule({
   declarations: [
@@ -55,8 +56,9 @@ import { ColonneBoutonsComponent } from './projet/component/jeu/colonne-boutons/
   ],
   providers: [
     {
-      provide: HTTP_INTERCEPTORS,
+      provide: [HTTP_INTERCEPTORS, RxStompService],
       useClass: AuthenticationInterceptor,
+
       multi: true,
     },
   ],

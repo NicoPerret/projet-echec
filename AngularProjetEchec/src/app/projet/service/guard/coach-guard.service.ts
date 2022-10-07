@@ -21,12 +21,12 @@ export class CoachGuardService implements CanActivate {
     | UrlTree
     | Observable<boolean | UrlTree>
     | Promise<boolean | UrlTree> {
-      if (sessionStorage.getItem('compte')) {
-        let compte = JSON.parse(sessionStorage.getItem('compte')!);
-        if (compte.role == 'ROLE_COACH') {
-          return true;
-        }
+    if (sessionStorage.getItem('compte')) {
+      let compte = JSON.parse(sessionStorage.getItem('compte')!);
+      if (compte.role == 'ROLE_COACH') {
+        return true;
       }
-      return this.router.parseUrl('/login?admin=false');
+    }
+    return this.router.parseUrl('/login?admin=false');
   }
 }
