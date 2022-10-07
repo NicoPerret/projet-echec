@@ -13,7 +13,7 @@ import { StatistiquesComponent } from './projet/component/statistiques/statistiq
 
 export const routes: Routes = [
   {
-    path: 'acceuil',
+    path: 'accueil',
     component: AcceuilComponent,
     canActivate: [UserGuardService],
   },
