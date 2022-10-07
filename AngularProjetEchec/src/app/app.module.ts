@@ -18,6 +18,11 @@ import { InscriptionComponent } from './projet/component/inscription/inscription
 import { ProblemeComponent } from './projet/component/probleme/probleme.component';
 import { ProfilComponent } from './projet/component/profil/profil.component';
 import { StatistiquesComponent } from './projet/component/statistiques/statistiques.component';
+import { Tableau1a8Component } from './projet/component/jeu/plateau/tableau1a8/tableau1a8.component';
+import { TableauAaHComponent } from './projet/component/jeu/plateau/tableau-aa-h/tableau-aa-h.component';
+import { Plateau64casesComponent } from './projet/component/jeu/plateau/plateau64cases/plateau64cases.component';
+import { PlateauComponent } from './projet/component/jeu/plateau/plateau.component';
+import { ColonneBoutonsComponent } from './projet/component/jeu/colonne-boutons/colonne-boutons.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +40,11 @@ import { StatistiquesComponent } from './projet/component/statistiques/statistiq
     ProblemeComponent,
     ProfilComponent,
     StatistiquesComponent,
+    Tableau1a8Component,
+    TableauAaHComponent,
+    Plateau64casesComponent,
+    PlateauComponent,
+    ColonneBoutonsComponent,
   ],
   imports: [
     BrowserModule,

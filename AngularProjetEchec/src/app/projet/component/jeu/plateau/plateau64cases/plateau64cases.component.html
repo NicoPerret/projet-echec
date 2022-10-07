@@ -1,0 +1,5 @@
+<div class="grillePlateauPrincipal" [ngClass]="couleur">
+  <ng-container *ngFor="let n of nombres">
+    <div *ngFor="let l of lettres" id="{{ l }}{{ n }}">{{ l }}{{ n }}</div>
+  </ng-container>
+</div>

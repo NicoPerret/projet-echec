@@ -39,7 +39,7 @@ public class AppliConsoleService implements CommandLineRunner {
 		// 3 ==> JCIA FACILE
 		// 4 ==> JCIA STOCKFISH
 
-		int typePartie = 0;
+		int typePartie = -1;
 
 		if (typePartie == 0) {
 

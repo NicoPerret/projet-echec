@@ -1,0 +1,15 @@
+.grillePlateau {
+  display: grid;
+  grid-template-columns: 50px 400px;
+  grid-template-rows: 400px 50px;
+  margin: 0 auto;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+/* Deja dans plateau 1a 8 et aah donc a revoir si on peut mettre en commun*/
+.grille8 {
+  display: grid;
+  text-align: center;
+  background: grey;
+}
