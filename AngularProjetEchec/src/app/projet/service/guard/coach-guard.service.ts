@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class AdminGuardService implements CanActivate {
+export class CoachGuardService implements CanActivate {
   constructor() {}
   canActivate(
     route: ActivatedRouteSnapshot,
