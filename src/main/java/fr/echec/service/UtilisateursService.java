@@ -62,4 +62,14 @@ public class UtilisateursService {
 	public Utilisateur findByPseudo(String pseudo) {
 		return repoUtilisateur.findByPseudo(pseudo);
 	}
+
+	public void deleteById(Integer id) throws IdNegatifException {
+		if (id <= 0) {
+			throw new IdNegatifException();
+		}
+
+		repoUtilisateur.deleteById(id);
+	}
+
 }
+

@@ -2,6 +2,7 @@ package fr.echec.restcontroller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,8 +19,8 @@ public class HistoriqueRestController {
 
 	private Utilisateur utilisateur;
 
-	@GetMapping("/id")
-	public Utilisateur findById(Integer id) throws IdNegatifException, UtilisateurNotFoundException {
+	@GetMapping("/{id}")
+	public Utilisateur findById(@PathVariable("id")Integer id) throws IdNegatifException, UtilisateurNotFoundException {
 		utilisateur = srvUtilisateurs.findById(id);
 		return utilisateur;
 	}

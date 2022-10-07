@@ -13,8 +13,6 @@ import fr.echec.classe.probleme.ResultatProbleme;
 public interface IResultatProbleme extends JpaRepository<ResultatProbleme, Integer> {
 	public  ResultatProbleme findById(int id);
 
-	public void save(Probleme probleme);
-
 
 //@Query("select * from ResultatProbleme where res_utilisateur_id = ?1")
 //public Optional<ResultatProbleme> findByIdFetchingUtilisateur(int id);
