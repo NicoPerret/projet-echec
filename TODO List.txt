@@ -1,3 +1,29 @@
+Angular : 	Config Security webService
+		GuardCoach et GuardAdmin
+		Formulaire Inscription
+			==> Pseudo unique	
+			==> Vérif mdp (min 5 car / au moins un chiffre et une maj)
+			==> Pseudo != nom && prenom
+			==> champs obligatoires
+		Formulaire Connexion
+		CSS à revoir
+		HTML existant 
+		Service en angular + RestController
+			==> Utlisateur (avec tous les para)
+			==> Historiques
+			==> Statistiques
+			==> Problemes
+			==> Jeu 
+
+
+
+
+
+
+
+
+
+
 RestController :
 
 Accueil ==> Elo joueur / historique du joueur / Parametre partie

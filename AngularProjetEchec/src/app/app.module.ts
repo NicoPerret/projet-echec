@@ -9,9 +9,9 @@ import { AuthenticationInterceptor } from './projet/interceptor/authentication.i
 import { LoginComponent } from './projet/component/login/login.component';
 import { DeconnexionComponent } from './projet/component/deconnexion/deconnexion.component';
 import { AcceuilComponent } from './projet/component/acceuil/acceuil.component';
-import { MenuComponent } from './projet/component/menu/menu.component';
-import { HeaderComponent } from './projet/component/header/header.component';
-import { FooterComponent } from './projet/component/footer/footer.component';
+import { MenuComponent } from './projet/component/elements-commun/menu/menu.component';
+import { HeaderComponent } from './projet/component/elements-commun/header/header.component';
+import { FooterComponent } from './projet/component/elements-commun/footer/footer.component';
 import { HistoriqueComponent } from './projet/component/historique/historique.component';
 import { JeuComponent } from './projet/component/jeu/jeu.component';
 import { InscriptionComponent } from './projet/component/inscription/inscription.component';
