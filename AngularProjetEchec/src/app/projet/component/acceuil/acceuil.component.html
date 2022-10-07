@@ -1,1 +1,122 @@
-<h1>Bonjour {{ utilisateur.pseudo }} ! Comment ça va bg? :)</h1>
+
+<div class="milieu">
+  <h2>
+    Bienvenue, joueur !
+  </h2>
+  <p>
+    Veuillez choisir un mode de jeu :
+  </p>
+
+  <div class="zoneBouton">
+    <button class="open-parametres-jcj grosBouton">JCJ</button>
+    <button class="open-parametres-jcia grosBouton">JCIA</button>
+    <button class="open-parametres-probleme grosBouton">Probleme</button>
+  </div>
+
+  <!-- Afficher les paramètres de partie -->
+  <div class="parametres-container">
+
+    <div class="parametres">
+
+      <div class="parametres-header">
+        Type de partie
+      </div>
+
+      <div class="parametres-content">
+
+        <form>
+
+          <table class="jcj">
+
+            <tr>
+              <th colspan="2">
+                <label>Jouer contre un autre joueur</label>
+              </th>
+
+            </tr>
+
+            <tr>
+              <td><label>Pseudo adversaire / aléatoire </label></td>
+              <td><input type="text" name="choix-adversaire" value="aleatoire" /></td>
+            </tr>
+            <tr>
+              <td><label>Mode de jeu : </label></td>
+              <td><select name="mode-jeu">
+                  <option value="bullet">Bullet</option>
+                  <option value="blitz">Blitz</option>
+                  <option value="rapide">Rapide</option>
+                </select></td>
+            </tr>
+            <tr>
+              <td><label>Handicap : </label></td>
+              <td><select name="handicap">
+                  <option value="aucun">aucun </option>
+                  <option value="type1">type1 </option>
+                  <option value="type2">type2 </option>
+                </select></td>
+            </tr>
+
+          </table>
+
+          <table class="jcia">
+
+            <tr>
+              <th colspan="2"><label>Jouer contre une IA</label></th>
+            </tr>
+
+            <tr>
+              <td><label>Choix difficulté : </label></td>
+              <td><select name="difficulte">
+                  <option value="facile">Facile </option>
+                  <option value="moyen">Moyen </option>
+                  <option value="difficile">Difficile </option>
+                </select></td>
+
+            </tr>
+
+
+          </table>
+
+          <table class="probleme">
+
+            <tr>
+              <th colspan="2"><label name="description">Jouer un problème</label></th>
+            </tr>
+
+            <tr>
+              <td><label>Choix difficulté : </label></td>
+              <td><select name="difficulte">
+                  <option value="facile">Facile </option>
+                  <option value="moyen">Moyen </option>
+                  <option value="difficile">Difficile </option>
+                </select></td>
+            </tr>
+            <tr>
+              <td colspan = "2" style="text-align: center ;">Ou</td>
+            </tr>
+            <tr>
+              <td colspan = "2" style="text-align: center ;">
+                <p>Liste des problèmes
+                <button class="petitBouton">
+                  <a href="PageProbleme.html"></a>
+                  Go !
+                </button>
+              </p>
+              </td>
+            </tr>
+
+          </table>
+
+        </form>
+
+        <button class="close-parametres petitBouton">Annuler</button>
+
+        <a href="PageJeu.html" target="_self"><button  class="petitBouton">Jouer !</button></a>
+
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
