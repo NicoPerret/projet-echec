@@ -10,8 +10,6 @@ CREATE TABLE utilisateurs (
     uti_prenom VARCHAR(20) NOT NULL,
     uti_elo INT DEFAULT 800,
     uti_email VARCHAR(50) NOT NULL,
-    uti_coach BOOLEAN DEFAULT FALSE,
-    uti_admin BOOLEAN DEFAULT FALSE
 );
 
 CREATE TABLE  historiquePartie (
