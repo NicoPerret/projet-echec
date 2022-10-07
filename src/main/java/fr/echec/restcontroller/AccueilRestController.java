@@ -16,6 +16,7 @@ import fr.echec.service.PenalitePieceService;
 import fr.echec.service.UtilisateursService;
 
 @RestController
+@RequestMapping("/api/accueil")
 public class AccueilRestController {
 
 	@Autowired

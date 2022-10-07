@@ -7,6 +7,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import fr.echec.classe.JsonViews;
+
 @Entity
 @Table(name = "probleme")
 public class Probleme {
@@ -17,18 +21,23 @@ public class Probleme {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "prob_id")
+	@JsonView(JsonViews.Common.class)
 	private int id;
 
 	@Column(name = "prob_fen_depart", length = 100, nullable = false)
+	@JsonView(JsonViews.Common.class)
 	private String fenDepart;
 
 	@Column(name = "prob_liste_deplacements", length = 100)
+	@JsonView(JsonViews.Common.class)
 	private String listeDeplacements;
 
 	@Column(name = "prob_traitaublanc", nullable = false)
+	@JsonView(JsonViews.Common.class)
 	private boolean traitAuBlanc;
 
 	@Column(name = "prob_difficulte")
+	@JsonView(JsonViews.Common.class)
 	private int difficulte;
 
 

@@ -13,10 +13,10 @@ export class HistoriquePartie {
     this._date = value;
   }
   public get listCoups(): string | undefined {
-    return this._listCoups;
+    return this._listeCoups;
   }
   public set listCoups(value: string | undefined) {
-    this._listCoups = value;
+    this._listeCoups = value;
   }
   public get messages(): string | undefined {
     return this._messages;
@@ -47,7 +47,7 @@ export class HistoriquePartie {
     private _j1?: Utilisateur,
     private _j2?: Utilisateur,
     private _messages?: string,
-    private _listCoups?: string,
+    private _listeCoups?: string,
     private _date?: Date,
     private _vainqueur?: Utilisateur
   ) {}

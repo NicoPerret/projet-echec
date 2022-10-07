@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +21,7 @@ import fr.echec.service.ProblemeService;
 import fr.echec.service.ResultatProblemeService;
 
 @RestController
-@RequestMapping("/PageProbleme")
+@RequestMapping("/api/probleme")
 public class ProblemeRestController {
 
 	@Autowired
@@ -29,14 +30,14 @@ public class ProblemeRestController {
 	@Autowired
 	private ResultatProblemeService srvResultatProbleme;
 
-	@GetMapping("/pb")
+	@GetMapping("")
 	public List<Probleme> listeProblemes() {
 		return srvProbleme.findAll();
 
 	}
 
-	@GetMapping("/id")
-	public Probleme findById(Integer id) throws IdNegatifException, ProblemeNotFoundException {
+	@GetMapping("/{id}")
+	public Probleme findById(@PathVariable("id")Integer id) throws IdNegatifException, ProblemeNotFoundException {
 		return srvProbleme.findById(id);
 
 	}

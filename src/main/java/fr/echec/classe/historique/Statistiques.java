@@ -15,6 +15,9 @@ import javax.persistence.Transient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import fr.echec.classe.JsonViews;
 import fr.echec.classe.joueur.Utilisateur;
 import fr.echec.exception.HistoriquePartieNotFoundException;
 import fr.echec.exception.UtilisateurNotFoundException;
@@ -30,16 +33,20 @@ public class Statistiques {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "stat_id")
+	@JsonView(JsonViews.Common.class)
 	private Integer id;
 
 	@OneToOne
 	@JoinColumn(name = "stat_utilisateur_id", nullable = false)
+	@JsonView(JsonViews.Common.class)
 	private Utilisateur utilisateur;
 
 	@Column(name = "stat_taux_victoire")
+	@JsonView(JsonViews.Common.class)
 	private float tauxVictoire;
 
 	@Column(name = "stat_parties_jouees")
+	@JsonView(JsonViews.Common.class)
 	private int partiesJouees;
 
 	@Autowired
