@@ -15,7 +15,20 @@ public class SecurityWebServiceConfig {
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		// @formatter:off
-		return http.antMatcher("/api/**")
+		return http.cors()
+	            .and()
+	            .headers()
+	                .frameOptions().disable()
+	                .and()
+	            .csrf().disable()
+	            .authorizeRequests()
+	                .antMatchers("/stomp").permitAll() // On autorise l'appel handshake entre le client et le serveur
+	                .anyRequest()
+	                    .authenticated()
+				
+				
+				.and()
+				.antMatcher("/api/**")
 					.csrf().disable()
 			   .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 			   .and()
