@@ -43,4 +43,5 @@ export class UtilisateurService {
     return this.httpClient.get<Utilisateur>(
       `${UtilisateurService.URL}/${id}/historique`
     );
+  }
 }

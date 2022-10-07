@@ -1,5 +1,6 @@
+import { UtilisateurService } from './../../../service/service/utilisateur.service';
 import { Utilisateur } from './../../model/utilisateur';
-import { MdpValidator } from './../../../projet/validator/mdp-validator';
+
 import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
@@ -9,6 +10,7 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-inscription',
@@ -18,7 +20,12 @@ import {
 export class InscriptionComponent implements OnInit {
   form!: FormGroup;
   utilisateur!: Utilisateur;
-  constructor() {}
+
+  constructor(
+    private srvUtilisateur: UtilisateurService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -59,7 +66,6 @@ export class InscriptionComponent implements OnInit {
       ),
     });
   }
-  inscription() {}
 
   mdpIdentique(control: AbstractControl): ValidationErrors | null {
     let group = control as FormGroup;
@@ -93,5 +99,11 @@ export class InscriptionComponent implements OnInit {
     this.utilisateur.pseudo = this.form.get('pseudo')?.value;
 
     return this.utilisateur;
+  }
+
+  inscription() {
+    this.srvUtilisateur.create(this.chargeUtil()).subscribe((data) => {
+      this.router.navigateByUrl('/profil?action=create&id=' + data.id);
+    });
   }
 }
