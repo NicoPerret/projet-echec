@@ -11,7 +11,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 public class SecurityWebServiceConfig {
-	
+
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		// @formatter:off
@@ -24,7 +24,7 @@ public class SecurityWebServiceConfig {
 			   		.antMatchers(HttpMethod.GET).hasAnyRole("USER", "COACH", "ADMIN")
 			   		.antMatchers(HttpMethod.POST).hasAnyRole("USER", "COACH", "ADMIN")
 			   		.antMatchers(HttpMethod.PUT).hasAnyRole("COACH", "ADMIN")
-			   		.antMatchers(HttpMethod.DELETE).hasAnyRole("COACH", "ADMIN")
+			   		.antMatchers(HttpMethod.DELETE).hasAnyRole( "ADMIN")
 			   		.anyRequest().authenticated()
 			   .and()
 			   		//plus de formulaire on envoie dans le header de la requete le login, password
@@ -34,8 +34,7 @@ public class SecurityWebServiceConfig {
 	// @formatter:on
 
 	}
-	
-	
+
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();

@@ -62,6 +62,6 @@ export const routes: Routes = [
   {
     path: 'statistiques',
     component: StatistiquesComponent,
-    canActivate: [UserGuardService, CoachGuardService, AdminGuardService],
+    canActivate: [UserGuardService],
   },
 ];

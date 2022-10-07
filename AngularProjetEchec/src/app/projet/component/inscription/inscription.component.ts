@@ -50,7 +50,6 @@ export class InscriptionComponent implements OnInit {
       emailCtrl: new FormControl('', [
         Validators.required,
         Validators.minLength(2),
-        Validators.pattern('[@]*'),
       ]),
 
       mdpGroup: new FormGroup(

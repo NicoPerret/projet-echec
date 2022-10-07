@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./jeu.component.css'],
 })
 export class JeuComponent implements OnInit {
-  public couleurJoueur = 'noir'; //a definir a la création de la game
+  public couleurJoueur = 'blanc'; //a definir a la création de la game
 
   // private audio = new Audio('assets/372.mp3');
 
