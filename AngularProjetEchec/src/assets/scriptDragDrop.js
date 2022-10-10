@@ -1,6 +1,16 @@
 function dragDrop() {
-  const bonjour = document.querySelector("#C8");
-  const img = document.createElement("img");
+  // for (let piece of ){
+  //   let bonjour = document.querySelector("#C8");
+  //   let img = document.createElement("img");
+  //   img.setAttribute("style", "max-width: 100%;");
+  //   img.setAttribute("id", );
+  //   img.setAttribute("src", "assets/SpritePiecesPNG/RoiBlanc.png");
+  //   img.setAttribute("draggable", "true");
+  //   bonjour.append(img);
+  // }
+
+  let bonjour = document.querySelector("#C8");
+  let img = document.createElement("img");
   img.setAttribute("style", "max-width: 100%;");
   img.setAttribute("id", "roi-blanc");
   img.setAttribute("src", "assets/SpritePiecesPNG/RoiBlanc.png");
@@ -20,11 +30,24 @@ function dragDrop() {
   let bool = true;
   let audio = new Audio("assets/372.mp3");
 
+  // @hostlistener a mettre sur le component
+
   for (let i of document.querySelectorAll("img")) {
     i.addEventListener("dragstart", (e) => {
       e.dataTransfer.setData("piece-id", e.target.id);
+      console.log(i.parentNode.id);
       possibilites = [];
       possibilites.push("C3", "C2", "F1", "A5");
+      // (async () => {
+      //   let posts = await fetch(
+      //     `http://localhost:8080/projet-echecs/api/coupspossibles/coord=${coordDepart}`
+      //   ).then((resp) => resp.json());
+
+      //   for (let post of posts.filter((post) => post.id < 5)) {
+      //     console.log(post.title);
+      //   }
+      // })();
+
       if (bool) {
         bool = false;
         // timerJ1();
