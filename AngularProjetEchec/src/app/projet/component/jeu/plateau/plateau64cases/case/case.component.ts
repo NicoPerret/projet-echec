@@ -1,3 +1,4 @@
+import { outputAst } from '@angular/compiler';
 import { Component, HostListener, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -9,7 +10,10 @@ export class CaseComponent implements OnInit {
   @Input()
   name!: string;
 
+  private caseDepart: string = '';
+
   @HostListener('mousedown') onClick() {
+    this.caseDepart = this.name;
     console.log(this.name);
   }
 

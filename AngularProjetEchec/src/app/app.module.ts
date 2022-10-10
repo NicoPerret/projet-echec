@@ -1,3 +1,4 @@
+import { CaseComponent } from './projet/component/jeu/plateau/plateau64cases/case/case.component';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -26,13 +27,12 @@ import { ColonneBoutonsComponent } from './projet/component/jeu/colonne-boutons/
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { DemoWebsocketComponent } from './projet/component/demo-websocket/demo-websocket/demo-websocket.component';
-import { CaseComponent } from './projet/component/jeu/plateau/plateau64cases/case/case.component';
+import { ChatComponent } from './projet/component/chat/chat.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-
     DeconnexionComponent,
     AccueilComponent,
     MenuComponent,
@@ -51,6 +51,7 @@ import { CaseComponent } from './projet/component/jeu/plateau/plateau64cases/cas
     ColonneBoutonsComponent,
     DemoWebsocketComponent,
     CaseComponent,
+    ChatComponent,
   ],
   imports: [
     ReactiveFormsModule,

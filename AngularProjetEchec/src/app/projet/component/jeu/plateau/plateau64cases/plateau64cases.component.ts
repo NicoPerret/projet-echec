@@ -1,11 +1,5 @@
 import { verifyHostBindings } from '@angular/compiler';
-import {
-  AfterViewInit,
-  Component,
-  HostListener,
-  Input,
-  OnInit,
-} from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import * as SockJS from 'sockjs-client';
 import { Stomp } from '@stomp/stompjs';
 import { Utilisateur } from 'src/app/projet/model/utilisateur';
@@ -25,6 +19,7 @@ export class Plateau64casesComponent implements OnInit, AfterViewInit {
   name!: string;
   private stompClient: any;
   private listePieces!: any[];
+  private listeCoups!: string[];
 
   public lettres = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
   public nombres = [8, 7, 6, 5, 4, 3, 2, 1];
@@ -98,7 +93,6 @@ export class Plateau64casesComponent implements OnInit, AfterViewInit {
     this.stompClient.send(
       '/gkz/coup-possible',
       {},
-
       JSON.stringify({ coup: 'E2' })
     );
   }

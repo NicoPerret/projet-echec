@@ -1,4 +1,4 @@
-/*
+
 package fr.echec.config;
 
 import org.springframework.context.annotation.Configuration;
@@ -23,4 +23,4 @@ public class WebSocketBrokerConfig implements WebSocketMessageBrokerConfigurer {
 	}
 
 }
-*/
+

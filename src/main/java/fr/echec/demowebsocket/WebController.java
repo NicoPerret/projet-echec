@@ -8,6 +8,7 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 
+import fr.echec.classe.historique.Message;
 import fr.echec.classe.historique.NotationCoup;
 import fr.echec.classe.jeu.Fen;
 import fr.echec.classe.jeu.Piece;
@@ -47,8 +48,15 @@ public class WebController {
 	@MessageMapping("/hello")
 	@SendTo("/topic/hi")
 	public Hello greetings(User user) throws Exception {
-		return new Hello("Hi" + user.getName() + "!");
+		return new Hello(user.getName());
 	}
+	
+	@MessageMapping("/hello2")
+	@SendTo("/topic/hi")
+	public Hello messagerie(Message message) throws Exception {
+		return new Hello(message.getMessage());
+	}
+	
 
 	@MessageMapping("/initialisation")
 	@SendTo("/topic/hi")
