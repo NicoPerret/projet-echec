@@ -8,7 +8,7 @@ import { routes } from './routes';
 import { AuthenticationInterceptor } from './projet/interceptor/authentication.interceptor';
 import { LoginComponent } from './projet/component/login/login.component';
 import { DeconnexionComponent } from './projet/component/deconnexion/deconnexion.component';
-import { AcceuilComponent } from './projet/component/acceuil/acceuil.component';
+import { AccueilComponent } from './projet/component/accueil/accueil.component';
 import { MenuComponent } from './projet/component/elements-commun/menu/menu.component';
 import { HeaderComponent } from './projet/component/elements-commun/header/header.component';
 import { FooterComponent } from './projet/component/elements-commun/footer/footer.component';
@@ -32,7 +32,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     LoginComponent,
 
     DeconnexionComponent,
-    AcceuilComponent,
+    AccueilComponent,
     MenuComponent,
     HeaderComponent,
     FooterComponent,

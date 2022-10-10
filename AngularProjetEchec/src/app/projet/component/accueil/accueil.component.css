@@ -4,11 +4,8 @@
 	justify-content: center;
 
 }
-.parametres-content>form>table {
-	display: none;
-}
 
-.parametres-content>form>table.open {
+.parametres-content>form>table {
 	display: flex;
 }
 

@@ -1,3 +1,4 @@
+/*
 package fr.echec.config;
 
 import java.util.HashMap;
@@ -54,3 +55,4 @@ public class WebSocketBrokerConfig implements WebSocketMessageBrokerConfigurer {
 	}
 
 }
+*/

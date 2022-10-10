@@ -34,8 +34,8 @@ public class ResultatProblemeRestController {
 	@Autowired
 	private ResultatProblemeService srvResultatProbleme;
 	
-	@GetMapping("/{id}")
-	public ResultatProbleme findById(@PathVariable("id") Integer id) throws IdNegatifException, ResultatProblemeNotFoundException {
+	@GetMapping("/id")
+	public ResultatProbleme findById(Integer id) throws IdNegatifException, ResultatProblemeNotFoundException {
 		return srvResultatProbleme.findById(id);
 		
 }

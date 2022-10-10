@@ -15,7 +15,9 @@ public class SecurityWebServiceConfig {
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		// @formatter:off
-		return http.cors()
+		return http
+				/*
+				.cors()
 	            .and()
 	            .headers()
 	                .frameOptions().disable()
@@ -28,6 +30,7 @@ public class SecurityWebServiceConfig {
 				
 				
 				.and()
+				*/
 				.antMatcher("/api/**")
 					.csrf().disable()
 			   .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)

@@ -2,7 +2,7 @@ import { LoginComponent } from './projet/component/login/login.component';
 import { InscriptionComponent } from './projet/component/inscription/inscription.component';
 import { HistoriqueComponent } from './projet/component/historique/historique.component';
 import { DeconnexionComponent } from './projet/component/deconnexion/deconnexion.component';
-import { AcceuilComponent } from './projet/component/acceuil/acceuil.component';
+import { AccueilComponent } from './projet/component/accueil/accueil.component';
 import { Routes } from '@angular/router';
 import { AnonymousGuardService } from './projet/service/guard/anymous-guard.service';
 import { UserGuardService } from './projet/service/guard/user-guard.service';
@@ -16,7 +16,7 @@ import { StatistiquesComponent } from './projet/component/statistiques/statistiq
 export const routes: Routes = [
   {
     path: 'accueil',
-    component: AcceuilComponent,
+    component: AccueilComponent,
     canActivate: [UserGuardService],
   },
   {
