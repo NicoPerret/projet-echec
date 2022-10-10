@@ -28,7 +28,9 @@ export class DemoWebsocketComponent implements OnInit {
   }
 
   connect() {
-    const socket = new SockJS('http://localhost:8080/gkz-stomp-endpoint');
+    const socket = new SockJS(
+      'http://localhost:8080/projet-echecs/gkz-stomp-endpoint'
+    );
     this.stompClient = Stomp.over(socket);
 
     const _this = this;
@@ -37,6 +39,8 @@ export class DemoWebsocketComponent implements OnInit {
       console.log('Connected: ' + frame);
 
       _this.stompClient.subscribe('/topic/hi', function (hello: any) {
+        console.log(hello);
+
         _this.showGreeting(JSON.parse(hello.body).greeting);
       });
     });

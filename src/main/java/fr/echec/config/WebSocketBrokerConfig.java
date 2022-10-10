@@ -18,7 +18,7 @@ public class WebSocketBrokerConfig implements WebSocketMessageBrokerConfigurer {
 
 	@Override
 	public void registerStompEndpoints(StompEndpointRegistry registry) {
-		registry.addEndpoint("gkz-stomp-endpoint").setAllowedOrigins("http://localhost:4200");
+		registry.addEndpoint("gkz-stomp-endpoint").setAllowedOrigins("http://localhost:4200").withSockJS();
 	}
 
 }

@@ -32,7 +32,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    component: AcceuilComponent,
+    component: LoginComponent,
     canActivate: [AnonymousGuardService],
   },
   {
