@@ -1,4 +1,11 @@
-import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import { verifyHostBindings } from '@angular/compiler';
+import {
+  AfterViewInit,
+  Component,
+  HostListener,
+  Input,
+  OnInit,
+} from '@angular/core';
 declare function dragDrop(): any;
 @Component({
   selector: 'app-plateau64cases',
@@ -18,4 +25,6 @@ export class Plateau64casesComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {}
+
+  @HostListener('mouseDown') onClick() {}
 }
