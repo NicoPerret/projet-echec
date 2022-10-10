@@ -42,8 +42,26 @@
     >
       Send
     </button>
+    <button id="send" class="btn btn-default" type="button" (click)="init()">
+      Init
+    </button>
+    <button
+      id="send"
+      class="btn btn-default"
+      type="button"
+      (click)="coupPossible()"
+    >
+      CoupPossible
+    </button>
+    <button
+      id="send"
+      class="btn btn-default"
+      type="button"
+      (click)="deplacement()"
+    >
+      Déplacement
+    </button>
   </form>
-
   <table id="conversation" class="table table-striped" style="margin-top: 20px">
     <thead>
       <tr>

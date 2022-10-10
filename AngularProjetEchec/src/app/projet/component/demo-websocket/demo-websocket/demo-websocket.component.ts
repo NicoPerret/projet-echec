@@ -62,6 +62,21 @@ export class DemoWebsocketComponent implements OnInit {
       JSON.stringify({ name: this.name })
     );
   }
+  init() {
+    this.stompClient.send('/gkz/initialisation', {});
+  }
+  deplacement() {
+    this.stompClient.send('/gkz//jouer-coup', {}),
+      JSON.stringify({ coup: 'E4' });
+  }
+  coupPossible() {
+    this.stompClient.send(
+      '/gkz/coup-possible',
+      {},
+
+      JSON.stringify({ coup: 'E2' })
+    );
+  }
 
   showGreeting(message: any) {
     this.greetings.push(message);
