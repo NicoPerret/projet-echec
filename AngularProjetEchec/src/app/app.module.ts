@@ -26,6 +26,7 @@ import { ColonneBoutonsComponent } from './projet/component/jeu/colonne-boutons/
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { DemoWebsocketComponent } from './projet/component/demo-websocket/demo-websocket/demo-websocket.component';
+import { CaseComponent } from './projet/component/jeu/plateau/plateau64cases/case/case.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { DemoWebsocketComponent } from './projet/component/demo-websocket/demo-w
     PlateauComponent,
     ColonneBoutonsComponent,
     DemoWebsocketComponent,
+    CaseComponent,
   ],
   imports: [
     ReactiveFormsModule,

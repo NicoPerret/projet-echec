@@ -1,6 +1,11 @@
 <div class="grillePlateauPrincipal" [ngClass]="couleur">
   <ng-container *ngFor="let n of nombres">
-    <div *ngFor="let l of lettres" id="{{ l }}{{ n }}">
+    <div
+      app-case
+      *ngFor="let l of lettres"
+      id="{{ l }}{{ n }}"
+      name="{{ l }}{{ n }}"
+    >
       <!-- <img src="assets/SpritePiecesPNG/RoiBlanc.png" /> -->
     </div>
   </ng-container>

@@ -2,6 +2,7 @@ package fr.echec.classe.jeu;
 
 import org.springframework.stereotype.Component;
 
+import fr.echec.classe.historique.NotationCoup;
 import fr.echec.enumerateur.CouleursPiece;
 import fr.echec.enumerateur.TypePiece;
 @Component
@@ -9,6 +10,7 @@ public class Piece {
 
 	// VARIABLES
 	private int coordonnee = -1;
+	private String coordonneeLettre ="";
 	
 	private TypePiece nom;
 	
@@ -27,6 +29,15 @@ public class Piece {
 
 	public void setCoordonnee(int coordonnee) {
 		this.coordonnee = coordonnee;
+		this.coordonneeLettre = NotationCoup.conversion64ToLettre(coordonnee);
+	}
+	
+	public String getCoordonneeLettre() {
+		return coordonneeLettre;
+	}
+
+	public void setCoordonneeLettre(String coordonneeLettre) {
+		this.coordonneeLettre = coordonneeLettre;
 	}
 
 	public TypePiece getNom() {
@@ -83,6 +94,8 @@ public class Piece {
 	public void setPriseEnPassantPossible(boolean priseEnPassantPossible) {
 		this.priseEnPassantPossible = priseEnPassantPossible;
 	}
+	
+	
 
 	// Constructeur pièce
 	public Piece(TypePiece nom, CouleursPiece couleur) {
@@ -113,6 +126,8 @@ public class Piece {
 	public Piece() {
 		
 	}
+
+	
 
 	
 }

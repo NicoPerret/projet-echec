@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Utilisateur } from '../../model/utilisateur';
 
 @Component({
   selector: 'app-jeu',
@@ -8,12 +9,11 @@ import { Component, OnInit } from '@angular/core';
 export class JeuComponent implements OnInit {
   public couleurJoueur = 'blanc'; //a definir a la création de la game
 
-  // private audio = new Audio('assets/372.mp3');
-
-  // private couleurJoueur: string = 'blanc';
-  // private typePartie: string = '1v1';
+  utilisateur!: Utilisateur;
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.utilisateur = JSON.parse(sessionStorage.getItem('compte')!);
+  }
 }
