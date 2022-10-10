@@ -1,51 +1,35 @@
 function dragDrop() {
-  // for (let piece of ){
-  //   let bonjour = document.querySelector("#C8");
-  //   let img = document.createElement("img");
-  //   img.setAttribute("style", "max-width: 100%;");
-  //   img.setAttribute("id", );
-  //   img.setAttribute("src", "assets/SpritePiecesPNG/RoiBlanc.png");
-  //   img.setAttribute("draggable", "true");
-  //   bonjour.append(img);
-  // }
+  // let bonjour = document.querySelector("#C8");
+  // let img = document.createElement("img");
+  // img.setAttribute("style", "max-width: 100%;");
+  // img.setAttribute("id", "roi-blanc");
+  // img.setAttribute("src", "assets/SpritePiecesPNG/ROIBLANC.png");
+  // img.setAttribute("draggable", "true");
+  // bonjour.append(img);
 
-  let bonjour = document.querySelector("#C8");
-  let img = document.createElement("img");
-  img.setAttribute("style", "max-width: 100%;");
-  img.setAttribute("id", "roi-blanc");
-  img.setAttribute("src", "assets/SpritePiecesPNG/RoiBlanc.png");
-  img.setAttribute("draggable", "true");
-  bonjour.append(img);
-
-  const bonjour2 = document.querySelector("#D4");
-  const img2 = document.createElement("img");
-  img2.setAttribute("style", "max-width: 100%;");
-  img2.setAttribute("id", "roi-noir");
-  img2.setAttribute("src", "assets/SpritePiecesPNG/RoiNoir.png");
-  img2.setAttribute("draggable", "true");
-  bonjour2.append(img2);
+  // bonjour = document.querySelector("#D4");
+  // img = document.createElement("img");
+  // img.setAttribute("style", "max-width: 100%;");
+  // img.setAttribute("id", "roi-noir");
+  // img.setAttribute("src", "assets/SpritePiecesPNG/ROINOIR.png");
+  // img.setAttribute("draggable", "true");
+  // bonjour.append(img);
 
   let possibilites = [];
   let cpt = 1;
   let bool = true;
   let audio = new Audio("assets/372.mp3");
-
-  // @hostlistener a mettre sur le component
-
+  console.log(document.querySelectorAll("img"));
   for (let i of document.querySelectorAll("img")) {
     i.addEventListener("dragstart", (e) => {
       e.dataTransfer.setData("piece-id", e.target.id);
-      console.log(i.parentNode.id);
+
       possibilites = [];
       possibilites.push("C3", "C2", "F1", "A5");
       // (async () => {
       //   let posts = await fetch(
       //     `http://localhost:8080/projet-echecs/api/coupspossibles/coord=${coordDepart}`
       //   ).then((resp) => resp.json());
-
-      //   for (let post of posts.filter((post) => post.id < 5)) {
-      //     console.log(post.title);
-      //   }
       // })();
 
       if (bool) {
