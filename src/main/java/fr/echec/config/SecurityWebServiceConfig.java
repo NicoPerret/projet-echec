@@ -22,6 +22,7 @@ public class SecurityWebServiceConfig {
 	            .headers()
 	                .frameOptions().disable()
 	                .and()
+
 	            .csrf().disable()
 	            .authorizeRequests()
 	                .antMatchers("/stomp").permitAll() // On autorise l'appel handshake entre le client et le serveur
@@ -31,11 +32,13 @@ public class SecurityWebServiceConfig {
 				
 				.and()
 				*/
+
 				.antMatcher("/api/**")
 					.csrf().disable()
 			   .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 			   .and()
 			   .authorizeRequests()
+			   .antMatchers("/stomp").permitAll()
 			   		.antMatchers(HttpMethod.OPTIONS).permitAll()
 			   		.antMatchers(HttpMethod.GET).hasAnyRole("USER", "COACH", "ADMIN")
 			   		.antMatchers(HttpMethod.POST).hasAnyRole("USER", "COACH", "ADMIN")

@@ -36,9 +36,9 @@ public class ResultatProblemeRestController {
 	
 	@GetMapping("/id")
 	public ResultatProbleme findById(Integer id) throws IdNegatifException, ResultatProblemeNotFoundException {
-		return srvResultatProbleme.findById(id);
 		
-}
+		return srvResultatProbleme.findById(id);	
+	}
 	@PostMapping("")
 	@ResponseStatus(code = HttpStatus.CREATED)
 	@JsonView(Common.class)

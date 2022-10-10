@@ -1,3 +1,4 @@
+import { DemoWebsocketComponent } from './projet/component/demo-websocket/demo-websocket/demo-websocket.component';
 import { LoginComponent } from './projet/component/login/login.component';
 import { InscriptionComponent } from './projet/component/inscription/inscription.component';
 import { HistoriqueComponent } from './projet/component/historique/historique.component';
@@ -62,6 +63,11 @@ export const routes: Routes = [
   {
     path: 'statistiques',
     component: StatistiquesComponent,
+    canActivate: [UserGuardService],
+  },
+  {
+    path: 'web',
+    component: DemoWebsocketComponent,
     canActivate: [UserGuardService],
   },
 ];
