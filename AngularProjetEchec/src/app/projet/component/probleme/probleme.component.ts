@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 })
 export class ProblemeComponent implements OnInit {
   public listeProblemes!: Probleme[];
+  imageToShow: any;
+  listeImages!: any[];
 
   constructor(
     private http: HttpClient,
@@ -24,4 +26,14 @@ export class ProblemeComponent implements OnInit {
     });
     console.log(this.listeProblemes);
   }
+
+  initListeImages() {
+    for (let probleme of this.listeProblemes) {
+      let probImg = document.createElement('img');
+      probImg.setAttribute('id', '' + probleme.id);
+      probImg.setAttribute('src',"http://www.fen-to-image.com/image/" + probleme.fenDepart);
+      this.listeImages[probleme.id!] = probImg;
+    }
+  }
+
 }
