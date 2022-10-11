@@ -29,15 +29,15 @@ export class AccueilComponent implements OnInit {
     private http: HttpClient,
     private router: Router,
     private utilisateurService: UtilisateurService
-  ) {
+  ) {}
+
+  ngOnInit(): void {
     this.utilisateur = JSON.parse(sessionStorage.getItem('compte')!);
     this.utilisateurService.getById(this.utilisateur.id!).subscribe((data) => {
       this.utilisateur = data;
     });
     this.utilisateurHistorique = this.utilisateur.historiqueparties;
   }
-
-  ngOnInit(): void {}
 
   openJcJ() {
     this.parametresTypePartie = 'JcJ';

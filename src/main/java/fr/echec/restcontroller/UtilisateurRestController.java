@@ -24,54 +24,56 @@ import fr.echec.exception.IdNegatifException;
 import fr.echec.exception.UtilisateurNotFoundException;
 import fr.echec.service.UtilisateursService;
 
-
 @RestController
-@RequestMapping("/api/")
+@RequestMapping("/api/utilisateur")
 public class UtilisateurRestController {
 
 	@Autowired
 	private UtilisateursService srvUtilisateurs;
 
 	private Utilisateur utilisateur;
-	
+
 	@GetMapping("/{id}")
-	public Utilisateur findById(@PathVariable("id") Integer id) throws IdNegatifException, UtilisateurNotFoundException {
+	public Utilisateur findById(@PathVariable("id") Integer id)
+			throws IdNegatifException, UtilisateurNotFoundException {
 		utilisateur = srvUtilisateurs.findById(id);
 		return utilisateur;
 	}
-	
+
 	@PostMapping("")
 	@ResponseStatus(code = HttpStatus.CREATED)
 	@JsonView(Common.class)
-	public Utilisateur create(@Valid @RequestBody Utilisateur utilisateur,BindingResult br) throws UtilisateurNotFoundException {
+	public Utilisateur create(@Valid @RequestBody Utilisateur utilisateur, BindingResult br)
+			throws UtilisateurNotFoundException {
 		// pas d'id dans le fournisseur
-		if(br.hasErrors()) {
+		if (br.hasErrors()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
 		}
 		srvUtilisateurs.save(utilisateur);
 		return utilisateur;
-		
+
 	}
 
-		@ResponseStatus(code = HttpStatus.NO_CONTENT)
-		@DeleteMapping("/{id}")
-		public void delete(@PathVariable("id") Integer id) {
-			try {
-				srvUtilisateurs.deleteById(id);
-			} catch (Exception ex) {
-				throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-			}
+	@ResponseStatus(code = HttpStatus.NO_CONTENT)
+	@DeleteMapping("/{id}")
+	public void delete(@PathVariable("id") Integer id) {
+		try {
+			srvUtilisateurs.deleteById(id);
+		} catch (Exception ex) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		}
-		
-		@JsonView(Common.class)
-		@PutMapping("/{id}")
-		public Utilisateur replace(@PathVariable("id") Integer id,@Valid @RequestBody Utilisateur utilisateur,BindingResult br) throws IdNegatifException, UtilisateurNotFoundException {
-			if(br.hasErrors()) {
-				throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-			}
-			srvUtilisateurs.findById(id);
-			utilisateur.setId(id);
-			srvUtilisateurs.save(utilisateur);
-			return utilisateur;
+	}
+
+	@JsonView(Common.class)
+	@PutMapping("/{id}")
+	public Utilisateur replace(@PathVariable("id") Integer id, @Valid @RequestBody Utilisateur utilisateur,
+			BindingResult br) throws IdNegatifException, UtilisateurNotFoundException {
+		if (br.hasErrors()) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
 		}
+		srvUtilisateurs.findById(id);
+		utilisateur.setId(id);
+		srvUtilisateurs.save(utilisateur);
+		return utilisateur;
+	}
 }

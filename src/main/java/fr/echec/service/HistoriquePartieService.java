@@ -2,7 +2,8 @@ package fr.echec.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ import fr.echec.exception.IdNegatifException;
 import fr.echec.repository.IHistoriquePartie;
 
 @Service
+@Transactional
 public class HistoriquePartieService {
 	@Autowired
 	private IHistoriquePartie repoPartie;
@@ -45,7 +47,6 @@ public class HistoriquePartieService {
 
 	public void save(HistoriquePartie laPartie) throws HistoriquePartieNotFoundException {
 
-
 		if (laPartie == null) {
 			throw new HistoriquePartieNotFoundException();
 		}
@@ -53,11 +54,12 @@ public class HistoriquePartieService {
 		repoPartie.save(laPartie);
 
 	}
+
 	public void deleteById(int id) throws IdNegatifException {
 		if (id <= 0) {
 			throw new IdNegatifException();
 		}
-		
+
 		repoPartie.deleteById(id);
 	}
 }
