@@ -58,7 +58,7 @@ public class WebControllerJcIA {
 
 	@MessageMapping("/cp-IA-facile")
 	@SendTo("/topic/JCIA-facile")
-	public List<String> coupPossible(CoordDepart coord) throws Exception {
+	public List<String> coupPossible(Coords coord) throws Exception {
 		coordDepart = NotationCoup.conversionLettreTo64(coord.getCoup());
 		List<Integer> listeCoup64 = coupPossible.trouveDestinationsPossibles(pIA.getPlateau(),
 				pIA.getPlateau().getPieceCase(coordDepart));
@@ -71,7 +71,7 @@ public class WebControllerJcIA {
 
 	@MessageMapping("/jc-IA-facile")
 	@SendTo("/topic/JCIA-facile")
-	public JcIA jouerCoup(CoordDepart coord) throws Exception {
+	public JcIA jouerCoup(Coords coord) throws Exception {
 		coordArrivee = NotationCoup.conversionLettreTo64(coord.getCoup());
 		d.deplacement(pIA.getPlateau().getPieceCase(coordDepart), coordArrivee, pIA.getPlateau());
 		pIA.jouerContreIaFacile();
@@ -81,7 +81,7 @@ public class WebControllerJcIA {
 
 	@MessageMapping("/jc-stockfish")
 	@SendTo("/topic/JCIA-facile")
-	public JcIA jouerCoupSF(CoordDepart coord) throws Exception {
+	public JcIA jouerCoupSF(Coords coord) throws Exception {
 		coordArrivee = NotationCoup.conversionLettreTo64(coord.getCoup());
 		d.deplacement(pIA.getPlateau().getPieceCase(coordDepart), coordArrivee, pIA.getPlateau());
 		pIA.jouerContreIaStockfish();
