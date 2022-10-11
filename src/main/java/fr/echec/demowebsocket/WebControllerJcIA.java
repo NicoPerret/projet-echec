@@ -10,20 +10,20 @@ import org.springframework.stereotype.Controller;
 
 import fr.echec.classe.historique.NotationCoup;
 import fr.echec.classe.jeu.Fen;
-import fr.echec.classe.jeu.Piece;
 import fr.echec.classe.joueur.Utilisateur;
 import fr.echec.classe.mouvements.analyse.CoupsPossibles;
 import fr.echec.classe.mouvements.deplacement.Deplacement;
 import fr.echec.classe.parametres.ParametresPartie;
-import fr.echec.classe.partie.JcJ;
+import fr.echec.classe.partie.JcIA;
+import fr.echec.enumerateur.CouleursPiece;
 import fr.echec.finpartie.FinPartie;
 import fr.echec.service.UtilisateursService;
 
 @Controller
-public class WebController {
+public class WebControllerJcIA {
 
 	@Autowired
-	JcJ p;
+	JcIA pIA;
 	@Autowired
 	protected NotationCoup nt;
 	@Autowired
@@ -44,26 +44,24 @@ public class WebController {
 	private int coordDepart;
 	private int coordArrivee;
 
-	@MessageMapping("/initialisation")
-	@SendTo("/topic/hi")
-	public List<Piece> initPlateau() throws Exception {
+	@MessageMapping("/init-IA_facile")
+	@SendTo("/topic/JCIA-facile")
+	public JcIA initPlateau() throws Exception {
 		ParametresPartie param = new ParametresPartie();
-		p.setParam(param);
+		pIA.setParam(param);
 
 		Utilisateur j1 = srvUti.findById(3);
-		Utilisateur j2 = srvUti.findById(2);
+		pIA.setCouleurJoueurActif(CouleursPiece.BLANC);
 
-		p.setJ1(j1);
-		p.setJ2(j2);
-		return p.getPlateau().getPieces();
+		return pIA;
 	}
 
-	@MessageMapping("/coup-possible")
-	@SendTo("/topic/hi")
+	@MessageMapping("/cp-IA-facile")
+	@SendTo("/topic/JCIA-facile")
 	public List<String> coupPossible(CoordDepart coord) throws Exception {
 		coordDepart = NotationCoup.conversionLettreTo64(coord.getCoup());
-		List<Integer> listeCoup64 = coupPossible.trouveDestinationsPossibles(p.getPlateau(),
-				p.getPlateau().getPieceCase(coordDepart));
+		List<Integer> listeCoup64 = coupPossible.trouveDestinationsPossibles(pIA.getPlateau(),
+				pIA.getPlateau().getPieceCase(coordDepart));
 		List<String> listeCoup = new ArrayList<>();
 		for (Integer i : listeCoup64) {
 			listeCoup.add(NotationCoup.conversion64ToLettre(i));
@@ -71,12 +69,24 @@ public class WebController {
 		return listeCoup;
 	}
 
-	@MessageMapping("/jouer-coup")
-	@SendTo("/topic/hi")
-	public void jouerCoup(CoordDepart coord) throws Exception {
+	@MessageMapping("/jc-IA-facile")
+	@SendTo("/topic/JCIA-facile")
+	public JcIA jouerCoup(CoordDepart coord) throws Exception {
 		coordArrivee = NotationCoup.conversionLettreTo64(coord.getCoup());
-		d.deplacement(p.getPlateau().getPieceCase(coordDepart), coordArrivee, p.getPlateau());
-		p.isPartieFinie(); // ?
+		d.deplacement(pIA.getPlateau().getPieceCase(coordDepart), coordArrivee, pIA.getPlateau());
+		pIA.jouerContreIaFacile();
+		pIA.isPartieFinieIA(); // ?
+		return pIA;
+	}
+
+	@MessageMapping("/jc-stockfish")
+	@SendTo("/topic/JCIA-facile")
+	public JcIA jouerCoupSF(CoordDepart coord) throws Exception {
+		coordArrivee = NotationCoup.conversionLettreTo64(coord.getCoup());
+		d.deplacement(pIA.getPlateau().getPieceCase(coordDepart), coordArrivee, pIA.getPlateau());
+		pIA.jouerContreIaStockfish();
+		pIA.isPartieFinieIA(); // ?
+		return pIA;
 	}
 
 	// CHRONO ??

@@ -37,7 +37,7 @@ export class ChatComponent implements OnInit {
       _this.setConnected(true);
       console.log('Connected: ' + frame);
 
-      _this.stompClient.subscribe('/topic/hi', function (hello: any) {
+      _this.stompClient.subscribe('/topic/chat', function (hello: any) {
         console.log(hello);
 
         _this.greetings.push(JSON.parse(hello.body).greeting);
@@ -60,11 +60,7 @@ export class ChatComponent implements OnInit {
     ) {
       let compte = JSON.parse(sessionStorage.getItem('compte')!);
       const msg: string = compte.pseudo + ' : ' + wsMessageForm.value.message;
-      this.stompClient.send(
-        '/gkz/hello2',
-        {},
-        JSON.stringify({ message: msg })
-      );
+      this.stompClient.send('/gkz/hello', {}, JSON.stringify({ message: msg }));
       wsMessageForm.controls['message'].reset();
     }
   }
