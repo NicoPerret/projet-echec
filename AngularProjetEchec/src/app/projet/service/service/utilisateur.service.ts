@@ -32,9 +32,11 @@ export class UtilisateurService {
   public utilisateurToJson(utilisateur: Utilisateur): any {
     let obj = {
       id: utilisateur.id,
-      historiqueparties: utilisateur.historiqueparties,
-      elo: utilisateur.elo,
       pseudo: utilisateur.pseudo,
+      nom: utilisateur.nom,
+      prenom: utilisateur.prenom,
+      mdp: utilisateur.mdp,
+      email: utilisateur.email,
     };
     return obj;
   }

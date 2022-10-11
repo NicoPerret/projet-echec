@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
   AsyncValidatorFn,
+  EmailValidator,
   FormControl,
   FormGroup,
   ValidationErrors,
@@ -22,7 +23,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class InscriptionComponent implements OnInit {
   form!: FormGroup;
-  utilisateur!: Utilisateur;
+  utilisateur: Utilisateur = new Utilisateur();
 
   constructor(
     private srvUtilisateur: UtilisateurService,
@@ -105,19 +106,29 @@ export class InscriptionComponent implements OnInit {
     };
   }
 
-  chargeUtil(): Utilisateur {
-    this.utilisateur.nom = this.form.get('nom')?.value;
-    this.utilisateur.prenom = this.form.get('prenom')?.value;
-    this.utilisateur.email = this.form.get('email')?.value;
-    this.utilisateur.mdp = this.form.get('mdp')?.value;
-    this.utilisateur.pseudo = this.form.get('pseudo')?.value;
-
-    return this.utilisateur;
+  retour() {
+    this.router.navigateByUrl('/connexion');
   }
 
+  // chargeUtil(): Utilisateur {
+  //   this.utilisateur.nom = this.form.get('nom')?.value;
+  //   this.utilisateur.prenom = this.form.get('prenom')?.value;
+  //   this.utilisateur.email = this.form.get('email')?.value;
+  //   this.utilisateur.mdp = this.form.get('mdp')?.value;
+  //   this.utilisateur.pseudo = this.form.get('pseudo')?.value;
+
+  //   return this.utilisateur;
+  // }
+
   inscription() {
-    this.srvUtilisateur.create(this.chargeUtil()).subscribe((data) => {
-      this.router.navigateByUrl('/profil?action=create&id=' + data.id);
+    // this.srvUtilisateur.create(this.chargeUtil()).subscribe((data) => {
+    this.srvUtilisateur.create(this.utilisateur).subscribe((data) => {
+      this.form.get('nom')?.setValue(data.nom);
+      this.form.get('prenom')?.setValue(data.prenom);
+      this.form.get('pseudo')?.setValue(data.pseudo);
+      this.form.get('mdp')?.setValue(data.mdp);
+      this.form.get('email')?.setValue(data.email);
+      this.router.navigateByUrl('/connexion');
     });
   }
 }

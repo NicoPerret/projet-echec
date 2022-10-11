@@ -23,6 +23,7 @@
     "@stomp/ng2-stompjs": "^8.0.0",
     "@stomp/stompjs": "^6.1.2",
     "@types/sockjs-client": "^1.5.1",
+    "bootstrap": "^5.2.2",
     "rxjs": "~7.5.0",
     "sockjs-client": "^1.6.1",
     "tslib": "^2.3.0",

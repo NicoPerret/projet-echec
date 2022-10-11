@@ -5,6 +5,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,9 +34,9 @@ public class UtilisateurRestController {
 
 	private Utilisateur utilisateur;
 
-	@GetMapping("/{id}")
+	@GetMapping("/id")
 	@JsonView(Common.class)
-	public Utilisateur findById(@PathVariable("id") Integer id)
+	public Utilisateur findById(Integer id)
 			throws IdNegatifException, UtilisateurNotFoundException {
 		utilisateur = srvUtilisateurs.findById(id);
 		return utilisateur;
@@ -46,7 +47,6 @@ public class UtilisateurRestController {
 	@JsonView(Common.class)
 	public Utilisateur create(@Valid @RequestBody Utilisateur utilisateur, BindingResult br)
 			throws UtilisateurNotFoundException {
-		// pas d'id dans le fournisseur
 		if (br.hasErrors()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
 		}
