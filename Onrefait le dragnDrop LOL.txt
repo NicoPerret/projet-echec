@@ -23,19 +23,7 @@ export class Plateau64casesComponent implements OnInit, AfterViewInit {
   couleur!: string;
 
   private coord!: string;
-
-  addCoord(coordonnee: string) {
-    this.coord = coordonnee;
-  }
-
-  @HostListener('mousedown') onClick() {
-    this.listeCoups = dragDrop(this.coord, this.plateau);
-  }
-  @HostListener('drop') JeremyJetaime() {
-    console.log(this.listeCoups);
-    this.deplacement(this.listeCoups);
-  }
-
+  private possibilites: string[] = [];
   greetings: string[] = [];
   disabled = true;
   name!: string;
@@ -48,11 +36,105 @@ export class Plateau64casesComponent implements OnInit, AfterViewInit {
   public lettres = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
   public nombres = [8, 7, 6, 5, 4, 3, 2, 1];
 
+  @HostListener('dragstart') onClick() {
+    async () => {
+      let cpt = 1;
+      let bool = true;
+      let audio = new Audio('assets/372.mp3');
+
+      const options = {
+        method: 'POST',
+        body: JSON.stringify(this.plateau),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
+
+      (async () => {
+        this.possibilites = await fetch(
+          `http://localhost:8080/projet-echecs/api/coup-possible/${this.coord}`,
+          options
+        ).then((resp) => resp.json());
+      })();
+
+      for (let pos of this.possibilites) {
+        const ClaDiv = document.querySelector(`#${pos}`) as HTMLDivElement;
+        ClaDiv!.style.background = 'green';
+      }
+      if (bool) {
+        bool = false;
+        // timerJ1();
+      }
+    };
+  }
+
+  @HostListener('dragenter') JeremyJetaimeaussi() {
+    document.querySelector('div')!.addEventListener('dragenter', (e: any) => {
+      e.preventDefault();
+
+      if (
+        this.possibilites.find((pos) => pos === e.target.getAttribute('id'))
+      ) {
+        e.target.style.background = 'red';
+      }
+    });
+  }
+
+  @HostListener('dragleave') pouet() {
+    document.querySelector('div')!.addEventListener('dragleave', (e: any) => {
+      e.preventDefault();
+      if (
+        this.possibilites.find((pos) => pos === e.target.getAttribute('id'))
+      ) {
+        e.target.style.background = 'green';
+      }
+    });
+  }
+  @HostListener('dragover') pouet2() {
+    document.querySelector('div')!.addEventListener('dragover', (e: any) => {
+      e.preventDefault();
+    });
+  }
+
+  @HostListener('drop') JeremyJetaime() {
+    document.querySelector('div')!.addEventListener('drop', (e: any) => {
+      const target = e.target.closest('div');
+      console.log(target);
+
+      if (this.possibilites.find((pos) => pos === target.getAttribute('id'))) {
+        const pieceId = e.dataTransfer.getData('piece-id');
+        const piece = document.querySelector(`#${pieceId}`);
+
+        target.innerHTML = '';
+        target.append(piece);
+        //exécution bruit POC
+        //audio.play();
+
+        /* if (cpt % 2 == 0) {
+        stopJ2();
+      } else {
+        stopJ1();
+      }
+      cpt++;*/
+      }
+      for (let pos of this.possibilites) {
+        (document.querySelector(`#${pos}`) as HTMLDivElement).style.background =
+          '';
+      }
+      this.possibilites = [];
+    });
+
+    console.log(this.listeCoups);
+    this.deplacement(this.listeCoups);
+  }
+
   constructor() {}
 
   ngAfterViewInit(): void {
     this.connect();
-
+    document.querySelector('.img')!.addEventListener('dragstart', (e: any) => {
+      e.dataTransfer.setData('piece-id', e.target.id);
+    });
     // dragDrop();
   }
 
@@ -61,6 +143,9 @@ export class Plateau64casesComponent implements OnInit, AfterViewInit {
     // this.init();
   }
 
+  addCoord(coordonnee: string) {
+    this.coord = coordonnee;
+  }
   connect(): any {
     const socket = new SockJS(
       'http://localhost:8080/projet-echecs/gkz-stomp-endpoint'
