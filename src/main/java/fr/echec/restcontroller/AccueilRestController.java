@@ -3,6 +3,7 @@ package fr.echec.restcontroller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,7 @@ import fr.echec.service.UtilisateursService;
 
 @RestController
 @RequestMapping("/api/accueil")
+@CrossOrigin(origins = "*")
 public class AccueilRestController {
 
 	@Autowired

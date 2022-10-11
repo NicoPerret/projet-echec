@@ -12,11 +12,8 @@ import { Observable } from 'rxjs';
   styleUrls: ['./accueil.component.css'],
 })
 export class AccueilComponent implements OnInit {
-  utilisateurService!: UtilisateurService;
-
   utilisateur!: Utilisateur;
-  utilisateur2!: Observable<Utilisateur>;
-  utilisateurHistorique!: HistoriquePartie[] | undefined;
+  private utilisateurHistorique: HistoriquePartie[] | undefined;
 
   parametresTypePartie = '';
 
@@ -28,16 +25,19 @@ export class AccueilComponent implements OnInit {
 
   paramProblemeDifficulte!: String;
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private utilisateurService: UtilisateurService
+  ) {
     this.utilisateur = JSON.parse(sessionStorage.getItem('compte')!);
-  }
-
-  ngOnInit(): void {
     this.utilisateurService.getById(this.utilisateur.id!).subscribe((data) => {
       this.utilisateur = data;
     });
     this.utilisateurHistorique = this.utilisateur.historiqueparties;
   }
+
+  ngOnInit(): void {}
 
   openJcJ() {
     this.parametresTypePartie = 'JcJ';
