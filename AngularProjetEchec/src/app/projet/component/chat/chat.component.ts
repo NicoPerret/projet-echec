@@ -55,11 +55,11 @@ export class ChatComponent implements OnInit {
 
   sendMessage(wsMessageForm: NgForm) {
     if (
-      wsMessageForm.value.message != null ||
-      wsMessageForm.value.message == ''
+      wsMessageForm.value.message != null &&
+      wsMessageForm.value.message != ''
     ) {
       let compte = JSON.parse(sessionStorage.getItem('compte')!);
-      const msg: string = compte.pseudo + ' : ' + wsMessageForm.value.message;
+      let msg: string = compte.pseudo + ' : ' + wsMessageForm.value.message;
       this.stompClient.send('/gkz/hello', {}, JSON.stringify({ message: msg }));
       wsMessageForm.controls['message'].reset();
     }
