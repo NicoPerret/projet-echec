@@ -1,6 +1,5 @@
-let possibilites = [];
-let coordArrivee;
-function dragDrop(coordonnee, plateau) {
+function dragDrop(possibilites) {
+  let coordArrivee;
   (async () => {
     let cpt = 1;
     let bool = true;
@@ -8,22 +7,8 @@ function dragDrop(coordonnee, plateau) {
 
     for (let i of document.querySelectorAll("img")) {
       i.addEventListener("dragstart", (e) => {
+        console.log(possibilites);
         e.dataTransfer.setData("piece-id", e.target.id);
-
-        const options = {
-          method: "POST",
-          body: JSON.stringify(plateau),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        };
-
-        (async () => {
-          possibilites = await fetch(
-            `http://localhost:8080/projet-echecs/api/coup-possible/${coordonnee}`,
-            options
-          ).then((resp) => resp.json());
-        })();
 
         for (let pos of possibilites) {
           document.querySelector(`#${pos}`).style.background = "green";
@@ -60,8 +45,9 @@ function dragDrop(coordonnee, plateau) {
 
         if (possibilites.find((pos) => pos === target.getAttribute("id"))) {
           const pieceId = e.dataTransfer.getData("piece-id");
+
           const piece = document.querySelector(`#${pieceId}`);
-          coordArrivee = target.getAttribute("id");
+          //coordArrivee = target.getAttribute("id");
 
           target.innerHTML = "";
           target.append(piece);
@@ -82,6 +68,7 @@ function dragDrop(coordonnee, plateau) {
       });
     }
   })();
-  console.log(coordArrivee);
-  return [coordonnee, coordArrivee];
+  // console.log("fin" + possibilites);
+  //console.log("arrive" + coordArrivee);
+  //return [coordonnee, coordArrivee];
 }

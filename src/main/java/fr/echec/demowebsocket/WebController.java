@@ -58,11 +58,12 @@ public class WebController {
 	@MessageMapping("/jouer-coup")
 	@SendTo("/topic/hi")
 	public void jouerCoup(Coords coord) throws Exception {
-		System.out.println("Coucou");
-		coordArrivee64 = NotationCoup.conversionLettreTo64(coord.getCoup().get(1));
-		coordDepart64 = NotationCoup.conversionLettreTo64(coord.getCoup().get(0));
+		System.out.println("Coucou"+coord);
+		coordArrivee64 = NotationCoup.conversionLettreTo64(coord.getCoup().get(2));
+		coordDepart64 = NotationCoup.conversionLettreTo64(coord.getCoup().get(1));
 		d.deplacement(p.getPlateau().getPieceCase(coordDepart64), coordArrivee64, p.getPlateau());
 		p.isPartieFinie(); // ?
+		System.out.println(p.getPlateau());
 	}
 
 	// CHRONO ??

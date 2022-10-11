@@ -13,4 +13,13 @@ public class Coords {
 		this.coup = coup;
 	}
 
+	public Coords() {
+
+	}
+
+	public Coords(List<String> coups) {
+		this.coup = coups;
+
+	}
+
 }

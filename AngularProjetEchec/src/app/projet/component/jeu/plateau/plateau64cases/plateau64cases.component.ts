@@ -12,7 +12,7 @@ import * as SockJS from 'sockjs-client';
 import { Stomp } from '@stomp/stompjs';
 import { Utilisateur } from 'src/app/projet/model/utilisateur';
 
-declare function dragDrop(coord: string, plateau: any): any;
+declare function dragDrop(coupsPossibles: string[]): any;
 @Component({
   selector: 'app-plateau64cases',
   templateUrl: './plateau64cases.component.html',
@@ -22,28 +22,17 @@ export class Plateau64casesComponent implements OnInit, AfterViewInit {
   @Input()
   couleur!: string;
 
+  private caseArrivee!: any;
   private coord!: string;
-
-  addCoord(coordonnee: string) {
-    this.coord = coordonnee;
-  }
-
-  // @HostListener('mousedown') onClick() {
-  //   this.listeCoups = dragDrop(this.coord, this.plateau);
-  // }
-  // @HostListener('drop') JeremyJetaime() {
-  //   setTimeout(() => {
-  //     console.log(this.listeCoups);
-  //     this.deplacement(this.listeCoups);
-  //   }, 1000);
-  // }
+  private listeCoups!: string;
+  private coupsPossibles!: string[];
 
   greetings: string[] = [];
   disabled = true;
   name!: string;
   private stompClient: any;
   private listePieces!: any[];
-  private listeCoups!: string[];
+
   private prems: boolean = true;
   private plateau!: any;
 
@@ -63,6 +52,35 @@ export class Plateau64casesComponent implements OnInit, AfterViewInit {
     // this.init();
   }
 
+  @HostListener('mousedown') merciJeremyDeNousAider() {
+    const options = {
+      method: 'POST',
+      body: JSON.stringify(this.plateau),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+
+    (async () => {
+      this.coupsPossibles = await fetch(
+        `http://localhost:8080/projet-echecs/api/coup-possible/${this.coord}`,
+        options
+      ).then((resp) => resp.json());
+      //console.log('apres fetch' + this.coupsPossibles);
+      dragDrop(this.coupsPossibles);
+    })();
+  }
+
+  @HostListener('drop') JeremyJetaime() {
+    this.caseArrivee = event?.target;
+
+    //console.log(('arrivee dans hostlistener ' + this.caseArrivee.id) as string);
+    if (this.coupsPossibles.find((pos) => pos === this.caseArrivee.id)) {
+      this.deplacement(this.coord as string, this.caseArrivee.id as string);
+      console.log(this.coord + ' ' + this.caseArrivee.id);
+    }
+  }
+
   connect(): any {
     const socket = new SockJS(
       'http://localhost:8080/projet-echecs/gkz-stomp-endpoint'
@@ -75,14 +93,13 @@ export class Plateau64casesComponent implements OnInit, AfterViewInit {
       _this.stompClient.send('/gkz/initialisation', {});
       _this.stompClient.subscribe('/topic/hi', function (hello: any) {
         console.log(hello.body);
-        console.log('hello');
         _this.plateau = JSON.parse(hello.body);
         if (_this.prems) {
           _this.listePieces = JSON.parse(hello.body).pieces;
           _this.initImg();
           _this.prems = false;
         }
-        console.log(_this.coord);
+        // console.log('ahah' + _this.coord);
       });
     });
   }
@@ -112,8 +129,13 @@ export class Plateau64casesComponent implements OnInit, AfterViewInit {
     }
   }
 
-  deplacement(coord: string[]) {
-    this.stompClient.send('/gkz//jouer-coup', {}),
-      JSON.stringify({ coup: coord });
+  deplacement(coord: string, coordArr: string) {
+    let coords = [coord, coordArr];
+    this.stompClient.send('/gkz/jouer-coup', {}),
+      JSON.stringify({ coup: coords });
+  }
+
+  addCoord(coordonnee: string) {
+    this.coord = coordonnee;
   }
 }
