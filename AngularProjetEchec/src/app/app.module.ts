@@ -1,4 +1,3 @@
-import { ChatComponent } from './projet/component/chat/chat.component';
 import { CaseComponent } from './projet/component/jeu/plateau/plateau64cases/case/case.component';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -28,6 +27,7 @@ import { ColonneBoutonsComponent } from './projet/component/jeu/colonne-boutons/
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { DemoWebsocketComponent } from './projet/component/demo-websocket/demo-websocket/demo-websocket.component';
+import { ChatComponent } from './projet/component/jeu/chat/chat.component';
 
 @NgModule({
   declarations: [
