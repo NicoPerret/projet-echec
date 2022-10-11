@@ -32,6 +32,16 @@ export class CaseComponent implements OnInit {
     this.coordonneesDepart.emit(this.name);
   }
 
+  // @HostListener('click') jeremyRevient() {
+  //   if (
+  //     /* la div a une imge*/ document.getElementsByTagName('img').length > 0
+  //   ) {
+  //     console.log('Bla');
+  //   } /* if (document.getElementsByTagName('img')  la div est coloré) */ else {
+  //     console.log('lol');
+  //   }
+  // }
+
   constructor() {}
 
   ngOnInit(): void {}

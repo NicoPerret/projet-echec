@@ -32,8 +32,10 @@ export class Plateau64casesComponent implements OnInit, AfterViewInit {
     this.listeCoups = dragDrop(this.coord, this.plateau);
   }
   @HostListener('drop') JeremyJetaime() {
-    console.log(this.listeCoups);
-    this.deplacement(this.listeCoups);
+    setTimeout(() => {
+      console.log(this.listeCoups);
+      this.deplacement(this.listeCoups);
+    }, 1000);
   }
 
   greetings: string[] = [];
