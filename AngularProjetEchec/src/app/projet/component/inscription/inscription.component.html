@@ -1,5 +1,5 @@
 <section>
-  <form (ngSubmit)="inscription()" [formGroup]="form">
+  <form method="post" (ngSubmit)="inscription()" [formGroup]="form">
     <fieldset>
       <div>
         <h2 style="text-align: center">Inscription</h2>
@@ -11,6 +11,7 @@
                 <input
                   type="text"
                   id="pseudo"
+                  name="pseudo"
                   placeholder="Entrez votre pseudo"
                   formControlName="pseudo"
                 />
@@ -21,7 +22,7 @@
                   >Le pseudo doit être différent du nom</span
                 >
                 <span
-                  *ngIf="form.get('loginGrouo.pseudo')?.hasError('pseudoExist')"
+                  *ngIf="form.get('loginGroup.pseudo')?.hasError('pseudoExist')"
                   >ce pseudo existe déjà</span
                 >
               </td>
@@ -32,6 +33,7 @@
                 <input
                   type="text"
                   id="nom"
+                  name="nom"
                   placeholder="Entrez votre nom"
                   formControlName="nom"
                 />
@@ -43,6 +45,7 @@
                 <input
                   type="text"
                   id="prenom"
+                  name="prenom"
                   placeholder="Entrez votre prénom"
                   formControlName="prenom"
                 />
@@ -56,6 +59,7 @@
                 <input
                   type="password"
                   id="mdp"
+                  name="mdp"
                   placeholder="Entrez votre mot de passe"
                   formControlName="mdp"
                 />
@@ -86,6 +90,7 @@
               <input
                 type="email"
                 id="mail"
+                name="mail"
                 placeholder="Entrez votre email"
                 formControlName="emailCtrl"
               />
@@ -104,6 +109,9 @@
           class="inscription petitBouton"
         >
           S'inscrire
+        </button>
+        <button (click)="retour()" class="inscription petitBouton">
+          Retour
         </button>
       </div>
     </fieldset>

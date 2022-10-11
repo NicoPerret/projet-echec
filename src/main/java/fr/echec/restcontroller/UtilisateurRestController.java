@@ -35,9 +35,9 @@ public class UtilisateurRestController {
 
 	private Utilisateur utilisateur;
 
-	@GetMapping("/{id}")
+	@GetMapping("/id")
 	@JsonView(Common.class)
-	public Utilisateur findById(@PathVariable("id") Integer id)
+	public Utilisateur findById(Integer id)
 			throws IdNegatifException, UtilisateurNotFoundException {
 		utilisateur = srvUtilisateurs.findById(id);
 		return utilisateur;
@@ -48,7 +48,6 @@ public class UtilisateurRestController {
 	@JsonView(Common.class)
 	public Utilisateur create(@Valid @RequestBody Utilisateur utilisateur, BindingResult br)
 			throws UtilisateurNotFoundException {
-		// pas d'id dans le fournisseur
 		if (br.hasErrors()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
 		}

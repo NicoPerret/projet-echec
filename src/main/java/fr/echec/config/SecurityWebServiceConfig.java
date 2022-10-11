@@ -43,7 +43,7 @@ public class SecurityWebServiceConfig {
 			   .antMatchers("/stomp").permitAll()
 			   		.antMatchers(HttpMethod.OPTIONS).permitAll()
 			   		.antMatchers(HttpMethod.GET).hasAnyRole("USER", "COACH", "ADMIN")
-			   		.antMatchers(HttpMethod.POST).hasAnyRole("USER", "COACH", "ADMIN")
+		   		    .antMatchers(HttpMethod.POST).hasAnyRole("USER", "COACH", "ADMIN")
 			   		.antMatchers(HttpMethod.PUT).hasAnyRole("COACH", "ADMIN")
 			   		.antMatchers(HttpMethod.DELETE).hasAnyRole( "ADMIN")
 			   		.anyRequest().authenticated()
