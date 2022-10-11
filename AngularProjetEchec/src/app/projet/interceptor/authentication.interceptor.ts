@@ -15,6 +15,7 @@ export class AuthenticationInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
+    console.log("test");
     if (sessionStorage.getItem('token')) {
       request = request.clone({
         headers: request.headers.append(

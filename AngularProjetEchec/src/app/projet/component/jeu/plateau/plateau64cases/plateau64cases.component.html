@@ -5,6 +5,7 @@
       *ngFor="let l of lettres"
       id="{{ l }}{{ n }}"
       name="{{ l }}{{ n }}"
+      (coordonneesDepart)="addCoord($event)"
     >
       <!-- <img src="assets/SpritePiecesPNG/RoiBlanc.png" /> -->
     </div>

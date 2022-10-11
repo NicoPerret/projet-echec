@@ -27,6 +27,7 @@ import fr.echec.service.UtilisateursService;
 
 @RestController
 @RequestMapping("/api/utilisateur")
+@CrossOrigin(origins = "*")
 public class UtilisateurRestController {
 
 	@Autowired

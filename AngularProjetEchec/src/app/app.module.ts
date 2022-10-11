@@ -64,9 +64,8 @@ import { ChatComponent } from './projet/component/jeu/chat/chat.component';
   ],
   providers: [
     {
-      provide: [HTTP_INTERCEPTORS],
+      provide: HTTP_INTERCEPTORS,
       useClass: AuthenticationInterceptor,
-
       multi: true,
     },
   ],
