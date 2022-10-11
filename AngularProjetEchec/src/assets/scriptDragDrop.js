@@ -1,20 +1,4 @@
-function dragDrop(coordonnee) {
-  // let bonjour = document.querySelector("#C8");
-  // let img = document.createElement("img");
-  // img.setAttribute("style", "max-width: 100%;");
-  // img.setAttribute("id", "roi-blanc");
-  // img.setAttribute("src", "assets/SpritePiecesPNG/ROIBLANC.png");
-  // img.setAttribute("draggable", "true");
-  // bonjour.append(img);
-
-  // bonjour = document.querySelector("#D4");
-  // img = document.createElement("img");
-  // img.setAttribute("style", "max-width: 100%;");
-  // img.setAttribute("id", "roi-noir");
-  // img.setAttribute("src", "assets/SpritePiecesPNG/ROINOIR.png");
-  // img.setAttribute("draggable", "true");
-  // bonjour.append(img);
-
+function dragDrop(coordonnee, plateau) {
   let possibilites = [];
   let cpt = 1;
   let bool = true;
@@ -25,20 +9,20 @@ function dragDrop(coordonnee) {
       e.dataTransfer.setData("piece-id", e.target.id);
 
       // possibilites = [];
-      possiblites = trouverCoupsPossibles(coordonnee);
+      // possiblites = trouverCoupsPossibles(coordonnee);
 
       // possibilites.push("C3", "C2", "F1", "A5");
-      // (async () => {
-      //   let posts = await fetch(
-      //     `http://localhost:8080/projet-echecs/api/coupspossibles/coord=${coordDepart}`
-      //   ).then((resp) => resp.json());
-      // })();
+      (async () => {
+        possibilites = await fetch(
+          `http://localhost:8080/projet-echecs/api/coupspossibles/${plateau}&${coordonnee}`
+        ).then((resp) => resp.json());
+      })();
 
       if (bool) {
         bool = false;
         // timerJ1();
       }
-      for (let pos of coupspossibles) {
+      for (let pos of possibilites) {
         document.querySelector(`#${pos}`).style.background = "green";
       }
     });

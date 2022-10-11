@@ -9,6 +9,8 @@ export class PlateauComponent implements OnInit {
   @Input()
   couleurJoueur!: string;
 
+  private coord!: string;
+
   constructor() {}
 
   ngOnInit(): void {}
