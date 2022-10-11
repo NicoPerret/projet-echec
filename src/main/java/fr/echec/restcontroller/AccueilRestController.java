@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import fr.echec.classe.JsonViews.Common;
 import fr.echec.classe.joueur.Utilisateur;
 import fr.echec.classe.parametres.PenalitePiece;
 import fr.echec.exception.IdNegatifException;
@@ -34,6 +37,7 @@ public class AccueilRestController {
 	}
 
 	@GetMapping("/id")
+	@JsonView(Common.class)
 	public Utilisateur findById(Integer id) throws IdNegatifException, UtilisateurNotFoundException {
 		utilisateur = srvUtilisateurs.findById(id);
 		return utilisateur;

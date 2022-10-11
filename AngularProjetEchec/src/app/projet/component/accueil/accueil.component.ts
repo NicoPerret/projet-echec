@@ -62,4 +62,8 @@ export class AccueilComponent implements OnInit {
   listePb() {
     this.router.navigateByUrl('/probleme');
   }
+
+  renvoiHistorique() {
+    this.router.navigateByUrl('/historique');
+  }
 }
