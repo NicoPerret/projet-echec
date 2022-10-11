@@ -1,4 +1,4 @@
-import { HistoriquePartie } from './../../projet/model/historique-partie';
+import { HistoriquePartie } from '../../model/historique-partie';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';

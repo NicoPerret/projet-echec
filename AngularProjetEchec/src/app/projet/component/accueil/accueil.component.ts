@@ -1,7 +1,7 @@
 import { HistoriquePartie } from './../../model/historique-partie';
 import { Utilisateur } from './../../model/utilisateur';
 import { HttpClient } from '@angular/common/http';
-import { UtilisateurService } from './../../../service/service/utilisateur.service';
+import { UtilisateurService } from '../../service/service/utilisateur.service';
 import { Router } from '@angular/router';
 import { Component, Injectable, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';

@@ -1,4 +1,4 @@
-import { WebSocketChat } from '../../projet/component/jeu/chat/chat.component.model';
+import { WebSocketChat } from '../../component/jeu/chat/chat.component.model';
 import { Injectable } from '@angular/core';
 
 @Injectable({
