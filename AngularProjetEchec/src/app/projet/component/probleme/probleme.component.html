@@ -52,11 +52,14 @@
 
         <tbody>
           <ng-container *ngFor="let probleme of listeProblemes">
-            <tr>
+            <tr (click)="renvoiProbleme(probleme.id!)">
               <td>{{ probleme.id }}</td>
-              <td>{{ listeImages[probleme.id!] }}</td>
-              <td>{{ probleme.difficulte }}</td>
-              <td>A FAIRE</td>
+              <td> <img *ngIf="probleme.id! < 10" src="http://www.fen-to-image.com/image/{{ probleme.fenDepart }}"></td>
+              <td>{{ probleme.difficulteCategorie }} ({{probleme.difficulte}})</td>
+              <td>
+                <div *ngIf="listeProblemesResolus.includes(probleme.id!); else elseBlock">OUI</div>
+                <ng-template #elseBlock>NON</ng-template>
+              </td>
             </tr>
           </ng-container>
 

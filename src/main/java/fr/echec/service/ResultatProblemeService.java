@@ -59,6 +59,19 @@ public class ResultatProblemeService {
 
 		return probleme;
 	}
+	
+	public Boolean findByIdAndUser(int idProbleme, int idUtilisateur ) {
+		try {
+			ResultatProbleme resultatProbleme = repoResultatProbleme.findById(idProbleme);
+			if (resultatProbleme.getUtilisateur().getId() == idUtilisateur) {
+				return true;
+			}
+			return false;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+	
 	public void deleteById(Integer id) throws IdNegatifException {
 		if (id <= 0) {
 			throw new IdNegatifException();

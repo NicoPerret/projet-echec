@@ -1,10 +1,13 @@
 package fr.echec.restcontroller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,8 +20,10 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import fr.echec.classe.JsonViews;
 import fr.echec.classe.JsonViews.Common;
 import fr.echec.classe.joueur.Utilisateur;
+import fr.echec.classe.probleme.Probleme;
 import fr.echec.classe.probleme.ResultatProbleme;
 import fr.echec.exception.IdNegatifException;
 import fr.echec.exception.ProblemeNotFoundException;
@@ -28,17 +33,32 @@ import fr.echec.service.ResultatProblemeService;
 import fr.echec.service.UtilisateursService;
 
 @RestController
-@RequestMapping("/api/probleme")
+@RequestMapping("/api/resultat-probleme")
+@CrossOrigin(origins = "*")
 public class ResultatProblemeRestController {
 
 	@Autowired
 	private ResultatProblemeService srvResultatProbleme;
 	
-	@GetMapping("/id")
-	public ResultatProbleme findById(Integer id) throws IdNegatifException, ResultatProblemeNotFoundException {
-		
+	@JsonView(JsonViews.ResultatProbleme.class)
+	@GetMapping("")
+	public List<ResultatProbleme> findAll() {
+		return srvResultatProbleme.findAll();
+
+	}
+	
+	@JsonView(JsonViews.ResultatProbleme.class)
+	@GetMapping("/{id}")
+	public ResultatProbleme findById(@PathVariable("id")Integer id) throws IdNegatifException, ResultatProblemeNotFoundException {
 		return srvResultatProbleme.findById(id);	
 	}
+	
+	@JsonView(JsonViews.ResultatProbleme.class)
+	@GetMapping("/{idProbleme}/{idUtilisateur}")
+	public boolean findByIdAndUser(@PathVariable("idProbleme")Integer idProbleme, @PathVariable("idUtilisateur")Integer idUtilisateur) throws IdNegatifException, ResultatProblemeNotFoundException {
+		return srvResultatProbleme.findByIdAndUser(idProbleme, idUtilisateur);	
+	}
+	
 	@PostMapping("")
 	@ResponseStatus(code = HttpStatus.CREATED)
 	@JsonView(Common.class)

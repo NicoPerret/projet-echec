@@ -1,8 +1,5 @@
 package fr.echec.demowebsocket;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -41,8 +38,8 @@ public class WebController {
 	@Autowired
 	UtilisateursService srvUti;
 
-	private int coordDepart;
-	private int coordArrivee;
+	private int coordDepart64;
+	private int coordArrivee64;
 
 	@MessageMapping("/initialisation")
 	@SendTo("/topic/hi")
@@ -58,24 +55,13 @@ public class WebController {
 		return p.getPlateau();
 	}
 
-	@MessageMapping("/coup-possible")
-	@SendTo("/topic/test")
-	public List<String> coupPossible(CoordDepart coord) throws Exception {
-		coordDepart = NotationCoup.conversionLettreTo64(coord.getCoup());
-		List<Integer> listeCoup64 = coupPossible.trouveDestinationsPossibles(p.getPlateau(),
-				p.getPlateau().getPieceCase(coordDepart));
-		List<String> listeCoup = new ArrayList<>();
-		for (Integer i : listeCoup64) {
-			listeCoup.add(NotationCoup.conversion64ToLettre(i));
-		}
-		return listeCoup;
-	}
-
 	@MessageMapping("/jouer-coup")
 	@SendTo("/topic/hi")
-	public void jouerCoup(CoordDepart coord) throws Exception {
-		coordArrivee = NotationCoup.conversionLettreTo64(coord.getCoup());
-		d.deplacement(p.getPlateau().getPieceCase(coordDepart), coordArrivee, p.getPlateau());
+	public void jouerCoup(Coords coord) throws Exception {
+		System.out.println("Coucou");
+		coordArrivee64 = NotationCoup.conversionLettreTo64(coord.getCoup().get(1));
+		coordDepart64 = NotationCoup.conversionLettreTo64(coord.getCoup().get(0));
+		d.deplacement(p.getPlateau().getPieceCase(coordDepart64), coordArrivee64, p.getPlateau());
 		p.isPartieFinie(); // ?
 	}
 

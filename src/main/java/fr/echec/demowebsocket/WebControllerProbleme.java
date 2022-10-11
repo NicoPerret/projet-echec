@@ -46,7 +46,7 @@ public class WebControllerProbleme {
 
 	@MessageMapping("/jc-pb")
 	@SendTo("/topic/probleme")
-	public void jouerCoup(CoordDepart coord) throws Exception {
+	public void jouerCoup(Coords coord) throws Exception {
 
 	}
 

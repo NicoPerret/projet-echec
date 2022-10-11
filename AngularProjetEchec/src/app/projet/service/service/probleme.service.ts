@@ -39,4 +39,18 @@ export class ProblemeService {
     };
     return obj;
   }
+
+  public trouveDifficulteCategorie(probleme: Probleme): Probleme {
+    if (probleme.difficulte! <= 800) {
+      probleme.difficulteCategorie="EASY";
+    }
+    else if (probleme.difficulte! <= 1200) {
+      probleme.difficulteCategorie="MEDIUM";
+    }
+    else {
+      probleme.difficulteCategorie="HARD";
+    }
+    return probleme;
+  }
+
 }
