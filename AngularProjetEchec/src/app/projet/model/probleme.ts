@@ -5,6 +5,12 @@ export class Probleme {
   public set difficulte(value: number | undefined) {
     this._difficulte = value;
   }
+  public get difficulteCategorie(): string | undefined {
+    return this._difficulteCategorie;
+  }
+  public set difficulteCategorie(value: string | undefined) {
+    this._difficulteCategorie = value;
+  }
   public get traitAuBlanc(): boolean | undefined {
     return this._traitAuBlanc;
   }
@@ -34,6 +40,7 @@ export class Probleme {
     private _fenDepart?: string,
     private _listeDeplacements?: string,
     private _traitAuBlanc?: boolean,
-    private _difficulte?: number
+    private _difficulte?: number,
+    private _difficulteCategorie?: string
   ) {}
 }
