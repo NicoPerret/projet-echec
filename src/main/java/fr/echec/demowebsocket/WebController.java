@@ -10,7 +10,7 @@ import org.springframework.stereotype.Controller;
 
 import fr.echec.classe.historique.NotationCoup;
 import fr.echec.classe.jeu.Fen;
-import fr.echec.classe.jeu.Piece;
+import fr.echec.classe.jeu.Plateau;
 import fr.echec.classe.joueur.Utilisateur;
 import fr.echec.classe.mouvements.analyse.CoupsPossibles;
 import fr.echec.classe.mouvements.deplacement.Deplacement;
@@ -46,7 +46,7 @@ public class WebController {
 
 	@MessageMapping("/initialisation")
 	@SendTo("/topic/hi")
-	public List<Piece> initPlateau() throws Exception {
+	public Plateau initPlateau() throws Exception {
 		ParametresPartie param = new ParametresPartie();
 		p.setParam(param);
 
@@ -55,11 +55,11 @@ public class WebController {
 
 		p.setJ1(j1);
 		p.setJ2(j2);
-		return p.getPlateau().getPieces();
+		return p.getPlateau();
 	}
 
 	@MessageMapping("/coup-possible")
-	@SendTo("/topic/hi")
+	@SendTo("/topic/test")
 	public List<String> coupPossible(CoordDepart coord) throws Exception {
 		coordDepart = NotationCoup.conversionLettreTo64(coord.getCoup());
 		List<Integer> listeCoup64 = coupPossible.trouveDestinationsPossibles(p.getPlateau(),

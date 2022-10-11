@@ -1,10 +1,18 @@
-import { verifyHostBindings } from '@angular/compiler';
-import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import { outputAst, verifyHostBindings } from '@angular/compiler';
+import {
+  AfterViewInit,
+  Component,
+  HostListener,
+  Input,
+  OnInit,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import * as SockJS from 'sockjs-client';
 import { Stomp } from '@stomp/stompjs';
 import { Utilisateur } from 'src/app/projet/model/utilisateur';
 
-declare function dragDrop(): any;
+declare function dragDrop(coord: string, plateau: any): any;
 @Component({
   selector: 'app-plateau64cases',
   templateUrl: './plateau64cases.component.html',
@@ -14,12 +22,24 @@ export class Plateau64casesComponent implements OnInit, AfterViewInit {
   @Input()
   couleur!: string;
 
+  private coord!: string;
+
+  addCoord(coordonnee: string) {
+    this.coord = coordonnee;
+  }
+
+  @HostListener('mousedown') onClick() {
+    dragDrop(this.coord, this.plateau);
+  }
+
   greetings: string[] = [];
   disabled = true;
   name!: string;
   private stompClient: any;
   private listePieces!: any[];
   private listeCoups!: string[];
+  private prems: boolean = true;
+  private plateau!: any;
 
   public lettres = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
   public nombres = [8, 7, 6, 5, 4, 3, 2, 1];
@@ -28,6 +48,7 @@ export class Plateau64casesComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.connect();
+
     // dragDrop();
   }
 
@@ -47,10 +68,15 @@ export class Plateau64casesComponent implements OnInit, AfterViewInit {
       console.log('Connected: ' + frame);
       _this.stompClient.send('/gkz/initialisation', {});
       _this.stompClient.subscribe('/topic/hi', function (hello: any) {
-        console.log(hello);
-        _this.listePieces = JSON.parse(hello.body);
-        _this.showGreeting(JSON.parse(hello.body).greeting);
-        _this.initImg();
+        console.log(hello.body);
+        console.log('hello');
+        _this.plateau = JSON.parse(hello.body);
+        if (_this.prems) {
+          _this.listePieces = JSON.parse(hello.body).pieces;
+          _this.initImg();
+          _this.prems = false;
+        }
+        console.log(_this.coord);
       });
     });
   }
@@ -70,7 +96,6 @@ export class Plateau64casesComponent implements OnInit, AfterViewInit {
       divImg!.append(img);
       cpt++;
     }
-    dragDrop();
   }
 
   setConnected(connected: boolean) {
@@ -81,19 +106,15 @@ export class Plateau64casesComponent implements OnInit, AfterViewInit {
     }
   }
 
-  showGreeting(truc: any) {
-    this.greetings.push(truc);
-  }
-
   deplacement() {
     this.stompClient.send('/gkz//jouer-coup', {}),
       JSON.stringify({ coup: 'E4' });
   }
-  coupPossible() {
+  coupPossible(coord: string) {
     this.stompClient.send(
       '/gkz/coup-possible',
       {},
-      JSON.stringify({ coup: 'E2' })
+      JSON.stringify({ coup: coord })
     );
   }
 }
