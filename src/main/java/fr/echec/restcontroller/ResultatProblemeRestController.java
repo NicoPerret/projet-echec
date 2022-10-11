@@ -54,7 +54,7 @@ public class ResultatProblemeRestController {
 	}
 	
 	@JsonView(JsonViews.ResultatProbleme.class)
-	@GetMapping("/{idProbleme}&{idUtilisateur}")
+	@GetMapping("/{idProbleme}/{idUtilisateur}")
 	public boolean findByIdAndUser(@PathVariable("idProbleme")Integer idProbleme, @PathVariable("idUtilisateur")Integer idUtilisateur) throws IdNegatifException, ResultatProblemeNotFoundException {
 		return srvResultatProbleme.findByIdAndUser(idProbleme, idUtilisateur);	
 	}

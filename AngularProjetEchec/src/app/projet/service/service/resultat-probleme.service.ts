@@ -19,7 +19,7 @@ export class ResultatProblemeService {
   }
 
   public getByIdAndUser(idProbleme: number, idUtilisateur: number): Observable<Boolean> {
-    return this.httpClient.get<Boolean>(ResultatProblemeService.URL + '/' + idProbleme + '&' + idUtilisateur);
+    return this.httpClient.get<Boolean>(ResultatProblemeService.URL + '/' + idProbleme + '/' + idUtilisateur);
   }
 
   public delete(id: number): Observable<void> {

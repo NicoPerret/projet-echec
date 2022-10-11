@@ -36,12 +36,11 @@ export class ProblemeComponent implements OnInit {
     this.problemeService.getAll().subscribe((data) => {
       this.listeProblemes = data;
       this.listeProblemes.forEach( (probleme) => {
-        this.problemeService.trouveDifficulteCategorie(probleme);
-        this.resultatProblemeService.getByIdAndUser(probleme.id!, this.utilisateur.id!).subscribe((data) => {
-          if (data == true) {
-            this.listeProblemesResolus.push(probleme.id!);
-            console.log("HOHOHO")
-          }
+          this.problemeService.trouveDifficulteCategorie(probleme);
+          this.resultatProblemeService.getByIdAndUser(probleme.id!, this.utilisateur.id!).subscribe((data) => {
+            if (data == true) {
+              this.listeProblemesResolus.push(probleme.id!);
+            }
         });
       });
     });
@@ -58,6 +57,10 @@ export class ProblemeComponent implements OnInit {
     }
 
     console.log(this.listeProblemes);
+  }
+
+  renvoiProbleme(id: Number) {
+    this.router.navigateByUrl('/jeu');
   }
 
 }
