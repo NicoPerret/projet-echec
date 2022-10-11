@@ -1,6 +1,7 @@
+import { DragDrop } from '@angular/cdk/drag-drop';
 import { outputAst } from '@angular/compiler';
 import { Component, HostListener, Input, OnInit } from '@angular/core';
-
+declare function dragDrop(): any;
 @Component({
   selector: '[app-case]',
   templateUrl: './case.component.html',
@@ -10,10 +11,13 @@ export class CaseComponent implements OnInit {
   @Input()
   name!: string;
 
+  @Input()
+  plateau!: any;
+
   private caseDepart: string = '';
 
-  @HostListener('mousedown') onClick() {
-    this.caseDepart = this.name;
+  @HostListener('dragstart') onClick() {
+    dragDrop();
     console.log(this.name);
   }
 

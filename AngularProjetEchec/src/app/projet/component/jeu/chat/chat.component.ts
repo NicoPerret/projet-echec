@@ -1,4 +1,4 @@
-import { WebSocketService } from '../../../service/service/chat.service';
+import { WebSocketService } from '../../../../service/service/chat.service';
 import { Component, OnInit } from '@angular/core';
 import { WebSocketChat } from './chat.component.model';
 import { NgForm } from '@angular/forms';
