@@ -36,8 +36,10 @@ public class SecurityWebServiceConfig {
 				.antMatcher("/api/**")
 					.csrf().disable()
 			   .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+			   
 			   .and()
 			   .authorizeRequests()
+			   .antMatchers("/api/coup-possible/**").permitAll()
 			   .antMatchers("/stomp").permitAll()
 			   		.antMatchers(HttpMethod.OPTIONS).permitAll()
 			   		.antMatchers(HttpMethod.GET).hasAnyRole("USER", "COACH", "ADMIN")
@@ -45,6 +47,7 @@ public class SecurityWebServiceConfig {
 			   		.antMatchers(HttpMethod.PUT).hasAnyRole("COACH", "ADMIN")
 			   		.antMatchers(HttpMethod.DELETE).hasAnyRole( "ADMIN")
 			   		.anyRequest().authenticated()
+			   		
 			   .and()
 			   		//plus de formulaire on envoie dans le header de la requete le login, password
 			   		.httpBasic()
