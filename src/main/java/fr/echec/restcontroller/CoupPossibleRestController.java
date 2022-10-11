@@ -20,7 +20,7 @@ public class CoupPossibleRestController {
 	@Autowired
 	protected CoupsPossibles coupPossible;
 
-	@GetMapping("/{plateau}?{coord}")
+	@GetMapping("/{plateau}&{coord}")
 	public List<String> coupPossible(@PathVariable("plateau") Plateau plateau, @PathVariable("coord") String coord) {
 		int coordDepart = NotationCoup.conversionLettreTo64(coord);
 		List<Integer> listeCoup64 = coupPossible.trouveDestinationsPossibles(plateau,

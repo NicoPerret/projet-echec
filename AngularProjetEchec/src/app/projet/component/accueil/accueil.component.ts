@@ -11,9 +11,7 @@ import { Observable } from 'rxjs';
   templateUrl: './accueil.component.html',
   styleUrls: ['./accueil.component.css'],
 })
-
 export class AccueilComponent implements OnInit {
-
   utilisateurService!: UtilisateurService;
 
   utilisateur!: Utilisateur;
@@ -22,7 +20,7 @@ export class AccueilComponent implements OnInit {
 
   parametresTypePartie = '';
 
-  paramJcJPseudoAdversaire = "aleatoire";
+  paramJcJPseudoAdversaire = 'aleatoire';
   paramJcJModeJeu!: String;
   paramJcJHandicap!: String;
 
@@ -30,14 +28,9 @@ export class AccueilComponent implements OnInit {
 
   paramProblemeDifficulte!: String;
 
-  constructor(
-
-    private http: HttpClient,
-    private router: Router,
-
-    ) {
-      this.utilisateur = JSON.parse(sessionStorage.getItem('compte')!);
-    }
+  constructor(private http: HttpClient, private router: Router) {
+    this.utilisateur = JSON.parse(sessionStorage.getItem('compte')!);
+  }
 
   ngOnInit(): void {
     this.utilisateurService.getById(this.utilisateur.id!).subscribe((data) => {
@@ -47,15 +40,15 @@ export class AccueilComponent implements OnInit {
   }
 
   openJcJ() {
-    this.parametresTypePartie = "JcJ";
+    this.parametresTypePartie = 'JcJ';
   }
 
   openJcIA() {
-    this.parametresTypePartie = "JcIA";
+    this.parametresTypePartie = 'JcIA';
   }
 
   openProbleme() {
-    this.parametresTypePartie = "Probleme";
+    this.parametresTypePartie = 'Probleme';
   }
 
   annuler() {
@@ -69,5 +62,4 @@ export class AccueilComponent implements OnInit {
   listePb() {
     this.router.navigateByUrl('/probleme');
   }
-
 }
