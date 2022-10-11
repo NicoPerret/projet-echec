@@ -7,7 +7,7 @@ import { Utilisateur } from 'src/app/projet/model/utilisateur';
   providedIn: 'root',
 })
 export class UtilisateurService {
-  private static URL = 'http://localhost:8080/echecs/api/utilisateur';
+  private static URL = 'http://localhost:8080/projet-echecs/api/utilisateur';
   constructor(private httpClient: HttpClient) {}
 
   public getAll(): Observable<Utilisateur[]> {

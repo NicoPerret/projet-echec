@@ -14,11 +14,11 @@ import { Observable } from 'rxjs';
 
 export class AccueilComponent implements OnInit {
 
-  utilisateurService!: UtilisateurService;
+
 
   utilisateur!: Utilisateur;
-  utilisateur2!: Observable<Utilisateur>;
-  utilisateurHistorique!: HistoriquePartie[] | undefined;
+  private utilisateurHistorique: HistoriquePartie[] | undefined;
+
 
   parametresTypePartie = '';
 
@@ -34,17 +34,18 @@ export class AccueilComponent implements OnInit {
 
     private http: HttpClient,
     private router: Router,
+    private utilisateurService: UtilisateurService
+
 
     ) {
       this.utilisateur = JSON.parse(sessionStorage.getItem('compte')!);
+      this.utilisateurService.getById(this.utilisateur.id!).subscribe((data) => {
+        this.utilisateur = data;
+      });
+      this.utilisateurHistorique = this.utilisateur.historiqueparties;
     }
 
-  ngOnInit(): void {
-    this.utilisateurService.getById(this.utilisateur.id!).subscribe((data) => {
-      this.utilisateur = data;
-    });
-    this.utilisateurHistorique = this.utilisateur.historiqueparties;
-  }
+  ngOnInit(): void {}
 
   openJcJ() {
     this.parametresTypePartie = "JcJ";

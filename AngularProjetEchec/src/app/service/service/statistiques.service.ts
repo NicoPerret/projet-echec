@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class StatistiquesService {
-  private static URL = 'http://localhost:8080/echecs/api/statistiques';
+  private static URL = 'http://localhost:8080/projet-echecs/api/statistiques';
 
   constructor(private httpClient: HttpClient) {}
 

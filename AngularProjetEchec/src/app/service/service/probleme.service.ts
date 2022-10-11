@@ -7,7 +7,7 @@ import { Probleme } from 'src/app/projet/model/probleme';
   providedIn: 'root',
 })
 export class ProblemeService {
-  private static URL = 'http://localhost:8080/echecs/api/probleme';
+  private static URL = 'http://localhost:8080/projet-echecs/api/probleme';
   constructor(private httpClient: HttpClient) {}
 
   public getAll(): Observable<Probleme[]> {
