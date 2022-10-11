@@ -57,12 +57,12 @@ function dragDrop(coordonnee, plateau) {
 
       div.addEventListener("drop", (e) => {
         const target = e.target.closest("div");
-        console.log(target);
 
         if (possibilites.find((pos) => pos === target.getAttribute("id"))) {
           const pieceId = e.dataTransfer.getData("piece-id");
           const piece = document.querySelector(`#${pieceId}`);
-          coordArrivee = pieceId;
+          coordArrivee = target.getAttribute("id");
+
           target.innerHTML = "";
           target.append(piece);
           //exécution bruit POC
@@ -82,5 +82,6 @@ function dragDrop(coordonnee, plateau) {
       });
     }
   })();
+  console.log(coordArrivee);
   return [coordonnee, coordArrivee];
 }

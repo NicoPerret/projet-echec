@@ -28,13 +28,15 @@ export class Plateau64casesComponent implements OnInit, AfterViewInit {
     this.coord = coordonnee;
   }
 
-  @HostListener('mousedown') onClick() {
-    this.listeCoups = dragDrop(this.coord, this.plateau);
-  }
-  @HostListener('drop') JeremyJetaime() {
-    console.log(this.listeCoups);
-    this.deplacement(this.listeCoups);
-  }
+  // @HostListener('mousedown') onClick() {
+  //   this.listeCoups = dragDrop(this.coord, this.plateau);
+  // }
+  // @HostListener('drop') JeremyJetaime() {
+  //   setTimeout(() => {
+  //     console.log(this.listeCoups);
+  //     this.deplacement(this.listeCoups);
+  //   }, 1000);
+  // }
 
   greetings: string[] = [];
   disabled = true;
