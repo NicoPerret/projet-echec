@@ -1,4 +1,4 @@
-import { Statistiques } from './../../projet/model/statistiques';
+import { Statistiques } from '../../model/statistiques';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';

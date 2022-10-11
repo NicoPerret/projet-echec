@@ -27,7 +27,7 @@ import { ColonneBoutonsComponent } from './projet/component/jeu/colonne-boutons/
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { DemoWebsocketComponent } from './projet/component/demo-websocket/demo-websocket/demo-websocket.component';
-import { ChatComponent } from './projet/component/chat/chat.component';
+import { ChatComponent } from './projet/component/jeu/chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -64,9 +64,8 @@ import { ChatComponent } from './projet/component/chat/chat.component';
   ],
   providers: [
     {
-      provide: [HTTP_INTERCEPTORS],
+      provide: HTTP_INTERCEPTORS,
       useClass: AuthenticationInterceptor,
-
       multi: true,
     },
   ],

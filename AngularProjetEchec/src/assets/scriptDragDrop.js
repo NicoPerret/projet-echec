@@ -1,4 +1,4 @@
-function dragDrop(coupspossibles) {
+function dragDrop(coordonnee) {
   // let bonjour = document.querySelector("#C8");
   // let img = document.createElement("img");
   // img.setAttribute("style", "max-width: 100%;");
@@ -24,7 +24,9 @@ function dragDrop(coupspossibles) {
     i.addEventListener("dragstart", (e) => {
       e.dataTransfer.setData("piece-id", e.target.id);
 
-      possibilites = [];
+      // possibilites = [];
+      possiblites = trouverCoupsPossibles(coordonnee);
+
       // possibilites.push("C3", "C2", "F1", "A5");
       // (async () => {
       //   let posts = await fetch(
