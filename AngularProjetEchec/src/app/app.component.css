@@ -19,6 +19,8 @@ body {
 .milieu {
   grid-area: milieu;
   text-align: center;
+  display: grid;
+  grid-template-columns: 0% 80% 20%;
 }
 
 .droite {

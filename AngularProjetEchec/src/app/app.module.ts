@@ -27,8 +27,9 @@ import { ColonneBoutonsComponent } from './projet/component/jeu/colonne-boutons/
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { DemoWebsocketComponent } from './projet/component/demo-websocket/demo-websocket/demo-websocket.component';
-import { ChatComponent } from './projet/component/jeu/chat/chat.component';
+import { ChatComponent } from './projet/component/jeu/colonne-hist-chat/chat/chat.component';
 import { EditProfilComponent } from './projet/component/profil/edit-profil/edit-profil.component';
+import { ColonneHistChatComponent } from './projet/component/jeu/colonne-hist-chat/colonne-hist-chat.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { EditProfilComponent } from './projet/component/profil/edit-profil/edit-
     CaseComponent,
     ChatComponent,
     EditProfilComponent,
+    ColonneHistChatComponent,
   ],
   imports: [
     ReactiveFormsModule,

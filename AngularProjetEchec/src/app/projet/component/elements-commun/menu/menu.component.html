@@ -10,7 +10,17 @@
       </li>
 
       <li>
-        <a routerLink="/jeu">Jeu en cours</a>
+        <a
+          [routerLink]="[
+            {
+              outlets: {
+                primary: ['jeu'],
+                droite: ['chat']
+              }
+            }
+          ]"
+          >Jeu en cours</a
+        >
       </li>
 
       <li>
