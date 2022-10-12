@@ -1,14 +1,10 @@
 package fr.echec.classe.partie;
 
-import java.util.Scanner;
+import org.springframework.stereotype.Service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import fr.echec.classe.historique.NotationCoup;
 import fr.echec.classe.probleme.Probleme;
-import fr.echec.enumerateur.CouleursPiece;
-import fr.echec.ia.CoupOrdi;
 
+@Service
 public class ProblemePartie extends Partie {
 	
 	protected Probleme probleme = new Probleme();

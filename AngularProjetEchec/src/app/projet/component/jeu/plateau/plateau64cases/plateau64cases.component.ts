@@ -102,6 +102,8 @@ export class Plateau64casesComponent implements OnInit, AfterViewInit {
     this.stompClient.connect({}, function (frame: any) {
       _this.setConnected(true);
       console.log('Connected: ' + frame);
+
+      //jeu
       _this.stompClient.send('/gkz/initialisation', {});
       _this.stompClient.subscribe('/topic/hi', function (hello: any) {
         console.log(hello.body);
@@ -111,6 +113,16 @@ export class Plateau64casesComponent implements OnInit, AfterViewInit {
 
         _this.initImg();
 
+        //pb
+        // _this.stompClient.send('/gkz/init-probleme', {}, 1);
+        // _this.stompClient.subscribe('/topic/probleme', function (hello: any) {
+        //   console.log(hello.body);
+        //   _this.plateau = JSON.parse(hello.body);
+        //   _this.listePieces = JSON.parse(hello.body).pieces;
+        //   document.querySelectorAll('img').forEach((el) => el.remove());
+
+        //   _this.initImg();
+
         // console.log('ahah' + _this.coord);
       });
     });
@@ -119,17 +131,19 @@ export class Plateau64casesComponent implements OnInit, AfterViewInit {
   initImg() {
     let cpt: number = 0;
     for (let piece of this.listePieces) {
-      let divImg = document.querySelector('#' + piece.coordonneeLettre);
-      let img = document.createElement('img');
-      img.setAttribute('style', 'max-width: 100%;');
-      img.setAttribute('id', 'p' + cpt.toString());
-      img.setAttribute('idDiv', piece.coordonneeLettre);
-      img.setAttribute(
-        'src',
-        'assets/SpritePiecesPNG/' + piece.nom + piece.couleur + '.png'
-      );
-      img.setAttribute('draggable', 'true');
-      divImg!.append(img);
+      if (piece.coordonneeLettre != '') {
+        let divImg = document.querySelector('#' + piece.coordonneeLettre);
+        let img = document.createElement('img');
+        img.setAttribute('style', 'max-width: 100%;');
+        img.setAttribute('id', 'p' + cpt.toString());
+        img.setAttribute('idDiv', piece.coordonneeLettre);
+        img.setAttribute(
+          'src',
+          'assets/SpritePiecesPNG/' + piece.nom + piece.couleur + '.png'
+        );
+        img.setAttribute('draggable', 'true');
+        divImg!.append(img);
+      }
       cpt++;
     }
   }

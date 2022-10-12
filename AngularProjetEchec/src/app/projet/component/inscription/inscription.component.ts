@@ -93,6 +93,7 @@ export class InscriptionComponent implements OnInit {
       return null;
     }
   }
+
   pseudoExist(): AsyncValidatorFn {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
       return this.httpClient

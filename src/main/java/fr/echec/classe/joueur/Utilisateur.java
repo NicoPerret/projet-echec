@@ -42,18 +42,23 @@ public class Utilisateur implements UserDetails {
 
 	@Column(name = "uti_mdp", length = 150, nullable = false)
 	protected String mdp;
-
+	
+	@JsonView(JsonViews.Common.class)
 	@Column(name = "uti_nom", length = 20, nullable = false)
 	protected String nom;
-
+	
+	@JsonView(JsonViews.Common.class)
 	@Column(name = "uti_prenom", length = 20, nullable = false)
 	protected String prenom;
+	
 	@JsonView(JsonViews.Common.class)
 	@Column(name = "uti_elo", nullable = false)
 	protected int elo = 800;
-
+	
+	@JsonView(JsonViews.Common.class)
 	@Column(name = "uti_email", length = 50, nullable = false, unique=true)
 	protected String email;
+	
 	@JsonView(JsonViews.Common.class)
 	@Column(name = "uti_role", length = 10, nullable = false)
 	protected String role = "USER";

@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -33,11 +34,13 @@ import fr.echec.service.UtilisateursService;
 public class UtilisateurRestController {
 
 	@Autowired
+	PasswordEncoder passwordEncoder;
+	
+	@Autowired
 	private UtilisateursService srvUtilisateurs;
 
 	private Utilisateur utilisateur;
 
-<<<<<<< HEAD
 	@GetMapping("")
 	@JsonView(Common.class)
 	public List<Utilisateur> findAll(){
@@ -46,10 +49,6 @@ public class UtilisateurRestController {
 	
 	@GetMapping("/{id}")
 	@JsonView(Common.class)
-=======
-	@GetMapping("/{id}")
-	@JsonView(Common.class)
->>>>>>> 3686abb3dde6a0bfd0e9a0e45d6b77848b737f2b
 	public Utilisateur findById(@PathVariable("id") Integer id)
 			throws IdNegatifException, UtilisateurNotFoundException {
 		
@@ -65,6 +64,7 @@ public class UtilisateurRestController {
 		if (br.hasErrors()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
 		}
+		utilisateur.setMdp(passwordEncoder.encode(utilisateur.getMdp()));
 		srvUtilisateurs.save(utilisateur);
 		return srvUtilisateurs.findById(utilisateur.getId());
 
