@@ -68,6 +68,12 @@ public class WebControllerProbleme {
 		problemePartie.setPlateau(probleme.getFenDepart());
 		problemePartie.setTabCoups(tabCoups);
 		
+		coupOrdi.coupOrdi(problemePartie.getTabCoups()[problemePartie.getNumCoup()],
+						  problemePartie.getPlateau(),
+						  problemePartie.getProbleme().isTraitAuBlanc());
+		problemePartie.setNumCoup(problemePartie.getNumCoup()+1);
+		
+		
 		return problemePartie.getPlateau();
 	}
 
