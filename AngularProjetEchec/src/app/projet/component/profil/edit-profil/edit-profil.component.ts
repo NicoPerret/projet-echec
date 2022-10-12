@@ -1,29 +1,27 @@
-import { UtilisateurService } from '../../service/service/utilisateur.service';
-import { Utilisateur } from './../../model/utilisateur';
-
-import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
   AsyncValidatorFn,
-  EmailValidator,
   FormControl,
   FormGroup,
+  NgForm,
   ValidationErrors,
-  ValidatorFn,
   Validators,
 } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { map, Observable } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { Utilisateur } from 'src/app/projet/model/utilisateur';
+import { Router } from '@angular/router';
+import { UtilisateurService } from 'src/app/projet/service/service/utilisateur.service';
 import { HttpClient } from '@angular/common/http';
+import { Observable, map } from 'rxjs';
 
 @Component({
-  selector: 'app-inscription',
-  templateUrl: './inscription.component.html',
-  styleUrls: ['./inscription.component.css'],
+  selector: 'app-edit-profil',
+  templateUrl: './edit-profil.component.html',
+  styleUrls: ['./edit-profil.component.css'],
 })
-export class InscriptionComponent implements OnInit {
+export class EditProfilComponent implements OnInit {
+  utilisateur!: Utilisateur;
   form!: FormGroup;
-  utilisateur: Utilisateur = new Utilisateur();
 
   constructor(
     private srvUtilisateur: UtilisateurService,
@@ -32,6 +30,8 @@ export class InscriptionComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.utilisateur = JSON.parse(sessionStorage.getItem('compte')!);
+
     this.form = new FormGroup({
       loginGroup: new FormGroup(
         {
@@ -104,35 +104,9 @@ export class InscriptionComponent implements OnInit {
         );
     };
   }
-
   retour() {
     this.router.navigateByUrl('/connexion');
   }
 
-  // chargeUtil(): Utilisateur {
-  //   this.utilisateur.nom = this.form.get('LoginGroup.nom')?.value;
-  //   this.utilisateur.prenom = this.form.get('LoginGroup.prenom')?.value;
-  //   this.utilisateur.email = this.form.get('email')?.value;
-  //   this.utilisateur.mdp = this.form.get('mdpGroup.mdp')?.value;
-  //   this.utilisateur.pseudo = this.form.get('LoginGroup.pseudo')?.value;
-
-  //   return this.utilisateur;
-  // }
-
-  inscription() {
-    this.utilisateur.nom = this.form.get('loginGroup.nom')?.value;
-    this.utilisateur.prenom = this.form.get('loginGroup.prenom')?.value;
-    this.utilisateur.email = this.form.get('emailCtrl')?.value;
-    this.utilisateur.mdp = this.form.get('mdpGroup.mdp')?.value;
-    this.utilisateur.pseudo = this.form.get('loginGroup.pseudo')?.value;
-    this.srvUtilisateur.create(this.utilisateur).subscribe((data) => {
-      // this.srvUtilisateur.create(this.utilisateur).subscribe((data) => {
-      // this.form.get('nom')?.setValue(data.nom);
-      // this.form.get('prenom')?.setValue(data.prenom);
-      // this.form.get('pseudo')?.setValue(data.pseudo);
-      // this.form.get('mdp')?.setValue(data.mdp);
-      // this.form.get('email')?.setValue(data.email);
-      this.router.navigateByUrl('/connexion');
-    });
-  }
+  modifier() {}
 }

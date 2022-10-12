@@ -51,10 +51,8 @@ export class Utilisateur {
   }
   constructor(
     private _pseudo?: string,
-
     private _nom?: string,
     private _prenom?: string,
-
     private _email?: string,
     private _mdp?: string,
     private _id?: number,

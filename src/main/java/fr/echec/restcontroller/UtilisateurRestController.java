@@ -1,5 +1,7 @@
 package fr.echec.restcontroller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,9 +37,15 @@ public class UtilisateurRestController {
 
 	private Utilisateur utilisateur;
 
-	@GetMapping("/id")
+	@GetMapping("")
 	@JsonView(Common.class)
-	public Utilisateur findById(Integer id)
+	public List<Utilisateur> findAll(){
+		return srvUtilisateurs.findAll();
+	}
+	
+	@GetMapping("/{id}")
+	@JsonView(Common.class)
+	public Utilisateur findById(@PathVariable("id") Integer id)
 			throws IdNegatifException, UtilisateurNotFoundException {
 		utilisateur = srvUtilisateurs.findById(id);
 		return utilisateur;
@@ -47,12 +55,12 @@ public class UtilisateurRestController {
 	@ResponseStatus(code = HttpStatus.CREATED)
 	@JsonView(Common.class)
 	public Utilisateur create(@Valid @RequestBody Utilisateur utilisateur, BindingResult br)
-			throws UtilisateurNotFoundException {
+			throws UtilisateurNotFoundException, IdNegatifException {
 		if (br.hasErrors()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
 		}
 		srvUtilisateurs.save(utilisateur);
-		return utilisateur;
+		return srvUtilisateurs.findById(utilisateur.getId());
 
 	}
 

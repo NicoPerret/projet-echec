@@ -1,3 +1,4 @@
+import { EditProfilComponent } from './projet/component/profil/edit-profil/edit-profil.component';
 import { DemoWebsocketComponent } from './projet/component/demo-websocket/demo-websocket/demo-websocket.component';
 import { LoginComponent } from './projet/component/login/login.component';
 import { InscriptionComponent } from './projet/component/inscription/inscription.component';
@@ -68,6 +69,11 @@ export const routes: Routes = [
   {
     path: 'web',
     component: DemoWebsocketComponent,
+    canActivate: [UserGuardService],
+  },
+  {
+    path: 'edit-profil',
+    component: EditProfilComponent,
     canActivate: [UserGuardService],
   },
 ];

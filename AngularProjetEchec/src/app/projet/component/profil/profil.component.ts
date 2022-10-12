@@ -1,6 +1,7 @@
 import { Utilisateur } from './../../model/utilisateur';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profil',
@@ -9,17 +10,13 @@ import { FormGroup, NgForm } from '@angular/forms';
 })
 export class ProfilComponent implements OnInit {
   utilisateur!: Utilisateur;
-  monForm!: NgForm;
-  pseudo!: string | undefined;
-
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     this.utilisateur = JSON.parse(sessionStorage.getItem('compte')!);
-    this.pseudo = this.utilisateur.pseudo;
   }
   modifier() {
-    this.monForm.valid;
+    this.router.navigateByUrl('/edit-profil');
   }
   submit() {
     return null;

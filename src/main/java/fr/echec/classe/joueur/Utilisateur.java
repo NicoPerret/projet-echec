@@ -52,11 +52,11 @@ public class Utilisateur implements UserDetails {
 	@Column(name = "uti_elo", nullable = false)
 	protected int elo = 800;
 
-	@Column(name = "uti_email", length = 50, nullable = false, unique = true)
+	@Column(name = "uti_email", length = 50, nullable = false, unique=true)
 	protected String email;
 	@JsonView(JsonViews.Common.class)
 	@Column(name = "uti_role", length = 10, nullable = false)
-	protected String role = "Utilisateur";
+	protected String role = "USER";
 
 	@ManyToMany(mappedBy = "joueurs")
 	protected List<HistoriquePartie> historiqueParties;

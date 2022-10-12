@@ -1,5 +1,5 @@
 <section>
-  <form method="POST" (ngSubmit)="inscription()" [formGroup]="form">
+  <form method="POST" (ngSubmit)="modifier()" [formGroup]="form">
     <fieldset>
       <div>
         <h2 style="text-align: center">Inscription</h2>
@@ -95,10 +95,6 @@
               />
             </td>
           </tr>
-          <tr>
-            <td><label>Etes vous coach ? </label></td>
-            <td><input type="checkbox" id="coach" /></td>
-          </tr>
         </table>
       </div>
       <div style="text-align: center">
@@ -107,7 +103,7 @@
           [disabled]="form.invalid"
           class="inscription petitBouton"
         >
-          S'inscrire
+          Modifier
         </button>
         <button (click)="retour()" class="inscription petitBouton">
           Retour

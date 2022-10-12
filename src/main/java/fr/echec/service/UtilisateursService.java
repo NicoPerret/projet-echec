@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.echec.classe.joueur.Utilisateur;
+import fr.echec.classe.probleme.Probleme;
 import fr.echec.exception.IdNegatifException;
 import fr.echec.exception.UtilisateurNotFoundException;
 import fr.echec.repository.IUtilisateurs;
@@ -18,6 +19,7 @@ import fr.echec.repository.IUtilisateurs;
 public class UtilisateursService {
 	@Autowired
 	private IUtilisateurs repoUtilisateur;
+	
 
 	public Utilisateur findById(int id) throws IdNegatifException, UtilisateurNotFoundException {
 

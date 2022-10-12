@@ -1,59 +1,26 @@
-<form (ngSubmit)="submit()" #monForm="ngForm">
+<form>
   <table class="">
     <thead></thead>
     <tr>
       <td>Pseudo</td>
-      <td>
-        <input
-          name="pseudo"
-          [(ngModel)]="pseudo"
-          id="pseudo"
-          type="text"
-          value="{{ utilisateur.pseudo }}"
-          disabled
-        />
-      </td>
+      <td>{{ utilisateur.pseudo }}</td>
     </tr>
     <tr>
       <td>Mot de passe</td>
-      <td>
-        <input
-          class="mdp"
-          id="mdp"
-          type="password"
-          value="{{ utilisateur.mdp }}"
-          disabled
-        />
-      </td>
+      <td>{{ utilisateur.mdp }}</td>
     </tr>
     <tbody>
       <tr>
         <td>Prenom</td>
-        <td>
-          <input
-            id="prenom"
-            type="text"
-            value="{{ utilisateur.prenom }}"
-            disabled
-          />
-        </td>
+        <td>{{ utilisateur.prenom }}</td>
       </tr>
       <tr>
         <td>Nom</td>
-        <td>
-          <input id="nom" type="text" value="{{ utilisateur.nom }}" disabled />
-        </td>
+        <td>{{ utilisateur.nom }}</td>
       </tr>
       <tr>
         <td>Adresse e-mail</td>
-        <td>
-          <input
-            id="mail"
-            type="email"
-            value="{{ utilisateur.email }}"
-            disabled
-          />
-        </td>
+        <td>{{ utilisateur.email }}</td>
       </tr>
       <tr>
         <td>Elo</td>
@@ -62,5 +29,5 @@
     </tbody>
   </table>
   <button (click)="modifier()" id="modifier">Modifier</button>
-  <button [disabled]="monForm.invalid">Valider</button>
+  <button disabled>Valider</button>
 </form>
