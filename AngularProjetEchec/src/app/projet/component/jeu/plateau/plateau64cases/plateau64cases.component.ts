@@ -26,6 +26,7 @@ export class Plateau64casesComponent implements OnInit, AfterViewInit {
 
   private caseArrivee!: any;
   private coord!: string;
+  private id!: number;
   private listeCoups!: string;
   private coupsPossibles!: string[];
 
@@ -41,6 +42,11 @@ export class Plateau64casesComponent implements OnInit, AfterViewInit {
   public lettres = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
   public nombres = [8, 7, 6, 5, 4, 3, 2, 1];
 
+  public modeJeu!: string;
+  public initialisationMapping!: string;
+  public jouerCoupMapping!: string;
+  public destinationMapping!: string;
+
   @ViewChild('eventTarget')
   private ER!: ElementRef;
 
@@ -51,6 +57,20 @@ export class Plateau64casesComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    this.modeJeu="Probleme";
+    if (this.modeJeu=="JcJ") {
+      this.initialisationMapping='/gkz/initialisation';
+      this.jouerCoupMapping='/gkz/jouer-coup';
+      this.destinationMapping='/topic/hi';
+    } else if (this.modeJeu=="JcIA") {
+      this.initialisationMapping='/gkz/init-IA_facile';
+      this.jouerCoupMapping='';
+      this.destinationMapping='/topic/JCIA-facile';
+    } else if (this.modeJeu=="Probleme") {
+      this.initialisationMapping='/gkz/init-probleme';
+      this.jouerCoupMapping='/gkz/jc-pb';
+      this.destinationMapping='/topic/probleme';
+    }
     // this.connect();
     // this.init();
   }
@@ -102,8 +122,13 @@ export class Plateau64casesComponent implements OnInit, AfterViewInit {
     this.stompClient.connect({}, function (frame: any) {
       _this.setConnected(true);
       console.log('Connected: ' + frame);
-      _this.stompClient.send('/gkz/initialisation', {});
-      _this.stompClient.subscribe('/topic/hi', function (hello: any) {
+      if (_this.modeJeu=="Probleme"){
+        _this.stompClient.send(_this.initialisationMapping, {},
+          JSON.stringify({ idProbleme: 1 }));
+      } else {
+        _this.stompClient.send(_this.initialisationMapping, {});
+      }
+      _this.stompClient.subscribe(_this.destinationMapping, function (hello: any) {
         console.log(hello.body);
         _this.plateau = JSON.parse(hello.body);
         _this.listePieces = JSON.parse(hello.body).pieces;
@@ -144,7 +169,7 @@ export class Plateau64casesComponent implements OnInit, AfterViewInit {
 
   deplacement(coordDep: string, coordArr: string) {
     this.stompClient.send(
-      '/gkz/jouer-coup',
+      this.jouerCoupMapping,
       {},
       JSON.stringify({ coupDepart: coordDep, coupArrivee: coordArr })
     );

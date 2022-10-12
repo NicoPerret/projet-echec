@@ -55,8 +55,9 @@ public class WebControllerProbleme {
 
 	@MessageMapping("/init-probleme")
 	@SendTo("/topic/probleme")
-	public Plateau initPlateau(int id) throws Exception {
+	public Plateau initPlateau(IdProbleme idProbleme) throws Exception {
 		
+		int id = idProbleme.getIdProbleme();
 		Utilisateur j1 = srvUti.findById(1);
 		problemePartie.setJ1(j1);
 		
@@ -72,37 +73,39 @@ public class WebControllerProbleme {
 
 	@MessageMapping("/jc-pb")
 	@SendTo("/topic/probleme")
-	public void jouerCoup(Coords coord) throws Exception {
+	public Plateau jouerCoup(Coords coord) throws Exception {
+		System.out.println("BONJOUR");
 		if (problemePartie.getNumCoup() < problemePartie.getTabCoups().length) {
-			
+			System.out.println("JE SUIS ICI");
+			System.out.println("LES COUPS A JOUER SONT : ");
+			for (String coup : problemePartie.getTabCoups()) {
+				System.out.println(coup);;
+			}
 			coordArrivee64 = NotationCoup.conversionLettreTo64(coord.getCoupArrivee());
 			coordDepart64 = NotationCoup.conversionLettreTo64(coord.getCoupDepart());
-			String coupJoueur = coordDepart64 + "" + coordArrivee64;
-			boolean verif = srvResolutionProbleme.verifBonCoup(coupJoueur, problemePartie.getTabCoups()[problemePartie.getNumCoup()]);
-			if (verif) {
+			String coupJoueur = coord.getCoupDepart() + coord.getCoupArrivee();
+			System.out.println("COUP JOUEUR : " + coupJoueur);
+			System.out.println("COUP A JOUER : " + problemePartie.getTabCoups()[problemePartie.getNumCoup()]);
+			boolean verif = srvResolutionProbleme.verifBonCoupWeb(coupJoueur, problemePartie.getTabCoups()[problemePartie.getNumCoup()]);
+			if (!verif) {
+				System.out.println("JE FAIS LE COUP !");
 				d.deplacement(problemePartie.getPlateau().getPieceCase(coordDepart64), coordArrivee64, problemePartie.getPlateau());
 				problemePartie.setNumCoup(problemePartie.getNumCoup()+1);
 				System.out.println(problemePartie.getPlateau());
+				
+				if (problemePartie.getNumCoup() < problemePartie.getTabCoups().length) {
+					coupOrdi.coupOrdi(problemePartie.getTabCoups()[problemePartie.getNumCoup()],
+									  problemePartie.getPlateau(),
+									  problemePartie.getProbleme().isTraitAuBlanc());
+					problemePartie.setNumCoup(problemePartie.getNumCoup()+1);
+				}
 			}
 		
 		} else {
 			System.out.println("GG t'as gagné, t'es le best !");
 		}
 		
-	}
-	
-	@MessageMapping("/jcordi-pb")
-	@SendTo("/topic/probleme")
-	public void jouerCoupOrdi(Coords coord) throws Exception {
-		if (problemePartie.getNumCoup() < problemePartie.getTabCoups().length) {
-			coupOrdi.coupOrdi(problemePartie.getTabCoups()[problemePartie.getNumCoup()],
-							  problemePartie.getPlateau(),
-							  problemePartie.getProbleme().isTraitAuBlanc());
-			problemePartie.setNumCoup(problemePartie.getNumCoup()+1);
-			
-		} else {
-			System.out.println("GG t'as gagné, t'es le best !");
-		}
+		return problemePartie.getPlateau();
 		
 	}
 

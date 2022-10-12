@@ -121,6 +121,15 @@ public class ResolutionProbleme {
 			return true;
 		}
 	}
+	
+	public boolean verifBonCoupWeb(String coupJoueur, String coupAJouer) {
+		if (coupJoueur.equals(coupAJouer)) {
+			return false;
+		} else {
+			System.out.println("Ce n'est pas le bon coup ! Reessayez !");
+			return true;
+		}
+	}
 
 	// Sélection de la piece renvoi coord depart
 	public int selectionPieceProbleme() {
