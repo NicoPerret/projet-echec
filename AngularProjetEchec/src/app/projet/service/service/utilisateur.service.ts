@@ -29,6 +29,13 @@ export class UtilisateurService {
     );
   }
 
+  public update(utilisateur: Utilisateur): Observable<Utilisateur> {
+    return this.httpClient.put<Utilisateur>(
+      `${UtilisateurService.URL}/${utilisateur.id}`,
+      this.utilisateurToJson(utilisateur)
+    );
+  }
+
   public utilisateurToJson(utilisateur: Utilisateur): any {
     let obj = {
       id: utilisateur.id,

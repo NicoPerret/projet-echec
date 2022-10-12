@@ -39,7 +39,7 @@ public class Utilisateur implements UserDetails {
 	@JsonView(JsonViews.Common.class)
 	@Column(name = "uti_pseudo", length = 20, nullable = false)
 	protected String pseudo;
-
+	@JsonView(JsonViews.Common.class)
 	@Column(name = "uti_mdp", length = 150, nullable = false)
 	protected String mdp;
 	

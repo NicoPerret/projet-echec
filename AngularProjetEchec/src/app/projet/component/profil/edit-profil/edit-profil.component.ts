@@ -9,7 +9,7 @@ import {
 } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Utilisateur } from 'src/app/projet/model/utilisateur';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { UtilisateurService } from 'src/app/projet/service/service/utilisateur.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
@@ -26,7 +26,8 @@ export class EditProfilComponent implements OnInit {
   constructor(
     private srvUtilisateur: UtilisateurService,
     private router: Router,
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -35,15 +36,15 @@ export class EditProfilComponent implements OnInit {
     this.form = new FormGroup({
       loginGroup: new FormGroup(
         {
-          pseudo: new FormControl('', [
+          pseudo: new FormControl(this.utilisateur.pseudo, [
             Validators.required,
             Validators.minLength(2),
           ]),
-          prenom: new FormControl('', [
+          prenom: new FormControl(this.utilisateur.prenom, [
             Validators.required,
             Validators.minLength(2),
           ]),
-          nom: new FormControl('', [
+          nom: new FormControl(this.utilisateur.nom, [
             Validators.required,
             Validators.minLength(2),
           ]),
@@ -51,34 +52,25 @@ export class EditProfilComponent implements OnInit {
         this.pseudoDiffNom
       ),
 
-      emailCtrl: new FormControl('', [
+      emailCtrl: new FormControl(this.utilisateur.email, [
         Validators.required,
         Validators.minLength(2),
       ]),
-
-      mdpGroup: new FormGroup(
-        {
-          mdp: new FormControl('', [
-            Validators.required,
-            Validators.minLength(2),
-            Validators.pattern('[a-zA-Z]*[0-9]'),
-          ]),
-          confirmmdp: new FormControl('', [Validators.required]),
-        },
-        this.mdpIdentique
-      ),
     });
+
+    // this.activatedRoute.params.subscribe((params) => {
+    //   if (params['id']) {
+    //     this.srvUtilisateur.getById(params['id']).subscribe((data) => {
+    //       this.form.get('id')?.setValue(data.id);
+    //       this.form.get('loginGroup.nom')?.setValue(data.nom);
+    //       this.form.get('loginGroup.prenom')?.setValue(data.prenom);
+    //       this.form.get('emailCtrl')?.setValue(data.email);
+    //       this.form.get('loginGroup.pseudo')?.setValue(data.pseudo);
+    //     });
+    //   }
+    // });
   }
 
-  mdpIdentique(control: AbstractControl): ValidationErrors | null {
-    let group = control as FormGroup;
-    let mdp = group.get('mdp');
-    let confirmmdp = group.get('confirmmdp');
-    if (mdp?.invalid) {
-      return null;
-    }
-    return mdp?.value != confirmmdp?.value ? { prix: true } : null;
-  }
   pseudoDiffNom(control: AbstractControl): ValidationErrors | null {
     let group = control as FormGroup;
     let pseudo = group.get('pseudo');
@@ -96,7 +88,7 @@ export class EditProfilComponent implements OnInit {
   pseudoExist(): AsyncValidatorFn {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
       return this.httpClient
-        .get('http://localhost:8080/echecs/api/inscription' + control.value)
+        .get('http://localhost:8080/echecs/api/edit-profil' + control.value)
         .pipe(
           map((boolResultatDuGet: any) => {
             return boolResultatDuGet ? { pseudoExist: true } : null;
@@ -104,9 +96,30 @@ export class EditProfilComponent implements OnInit {
         );
     };
   }
+  // initUtilisateur(): Utilisateur {
+  //   let utilisateur: Utilisateur = {
+  //     id: this.form.get('id')?.value,
+  //     nom: this.form.get('loginGroup.nom')?.value,
+  //     prenom: this.form.get('loginGroup.prenom')?.value,
+  //     pseudo: this.form.get('loginGroup.pseudo')?.value,
+  //     email: this.form.get('emailCtrl')?.value,
+  //     mdp: this.utilisateur.mdp,
+  //     elo: this.utilisateur.elo,
+  //     historiqueparties: this.utilisateur.historiqueparties,
+  //   };
+  //   return utilisateur;
+  // }
   retour() {
-    this.router.navigateByUrl('/connexion');
+    this.router.navigateByUrl('/profil');
   }
 
-  modifier() {}
+  modifier() {
+    this.srvUtilisateur.update(this.utilisateur).subscribe((data) => {
+      this.utilisateur.nom = this.form.get('loginGroup.nom')?.value;
+      this.utilisateur.prenom = this.form.get('loginGroup.prenom')?.value;
+      this.utilisateur.email = this.form.get('emailCtrl')?.value;
+      this.utilisateur.pseudo = this.form.get('loginGroup.pseudo')?.value;
+      this.router.navigateByUrl('/profil');
+    });
+  }
 }
