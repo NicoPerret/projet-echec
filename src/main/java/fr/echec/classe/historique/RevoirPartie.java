@@ -34,6 +34,23 @@ public class RevoirPartie {
 	
 	private HistoriquePartie histPartie;
 	
+
+	public int getNbCoups() {
+		return nbCoups;
+	}
+
+	public void setNbCoups(int nbCoups) {
+		this.nbCoups = nbCoups;
+	}
+
+	public Plateau getPlateau() {
+		return plateau;
+	}
+
+	public void setPlateau(Plateau plateau) {
+		this.plateau = plateau;
+	}
+	
 	
 	public void trouveHistoriquePartie(int id) {
 		try {
@@ -169,5 +186,6 @@ public class RevoirPartie {
 		finPartie();
 		
 	}
+
 
 }
