@@ -35,10 +35,11 @@ public class UtilisateurRestController {
 
 	private Utilisateur utilisateur;
 
-	@GetMapping("/id")
+	@GetMapping("/{id}")
 	@JsonView(Common.class)
-	public Utilisateur findById(Integer id)
+	public Utilisateur findById(@PathVariable("id") Integer id)
 			throws IdNegatifException, UtilisateurNotFoundException {
+		
 		utilisateur = srvUtilisateurs.findById(id);
 		return utilisateur;
 	}
