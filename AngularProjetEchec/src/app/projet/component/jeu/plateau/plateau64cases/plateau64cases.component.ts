@@ -7,6 +7,8 @@ import {
   OnInit,
   Output,
   EventEmitter,
+  ElementRef,
+  ViewChild,
 } from '@angular/core';
 import * as SockJS from 'sockjs-client';
 import { Stomp } from '@stomp/stompjs';
@@ -39,12 +41,13 @@ export class Plateau64casesComponent implements OnInit, AfterViewInit {
   public lettres = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
   public nombres = [8, 7, 6, 5, 4, 3, 2, 1];
 
+  @ViewChild('eventTarget')
+  private ER!: ElementRef;
+
   constructor() {}
 
   ngAfterViewInit(): void {
     this.connect();
-
-    // dragDrop();
   }
 
   ngOnInit(): void {
@@ -60,7 +63,7 @@ export class Plateau64casesComponent implements OnInit, AfterViewInit {
         'Content-Type': 'application/json',
       },
     };
-
+    // console.log(this.plateau!);
     (async () => {
       this.coupsPossibles = await fetch(
         `http://localhost:8080/projet-echecs/api/coup-possible/${this.coord}`,
@@ -73,11 +76,20 @@ export class Plateau64casesComponent implements OnInit, AfterViewInit {
 
   @HostListener('drop') JeremyJetaime() {
     this.caseArrivee = event?.target;
+    console.log(this.caseArrivee.tagName);
+    // console.log(this.caseArrivee.parentElement);
+    //console.log(this.ER.nativeElement);
+    let divoupas = this.caseArrivee.tagName;
+    let caseArrId: any;
+    if (divoupas == 'DIV') {
+      caseArrId = this.caseArrivee.id as string;
+    } else {
+      caseArrId = this.caseArrivee.getAttribute('idDiv') as string;
+    }
 
-    //console.log(('arrivee dans hostlistener ' + this.caseArrivee.id) as string);
-    if (this.coupsPossibles.find((pos) => pos === this.caseArrivee.id)) {
-      this.deplacement(this.coord as string, this.caseArrivee.id as string);
-      console.log(this.coord + ' ' + this.caseArrivee.id);
+    if (this.coupsPossibles.find((pos) => pos === caseArrId)) {
+      this.deplacement(this.coord as string, caseArrId as string);
+      console.log(this.coord + ' ' + caseArrId);
     }
   }
 
@@ -95,10 +107,9 @@ export class Plateau64casesComponent implements OnInit, AfterViewInit {
         console.log(hello.body);
         _this.plateau = JSON.parse(hello.body);
         _this.listePieces = JSON.parse(hello.body).pieces;
-        if (_this.prems) {
-          _this.initImg();
-          _this.prems = false;
-        }
+        document.querySelectorAll('img').forEach((el) => el.remove());
+
+        _this.initImg();
 
         // console.log('ahah' + _this.coord);
       });
@@ -112,6 +123,7 @@ export class Plateau64casesComponent implements OnInit, AfterViewInit {
       let img = document.createElement('img');
       img.setAttribute('style', 'max-width: 100%;');
       img.setAttribute('id', 'p' + cpt.toString());
+      img.setAttribute('idDiv', piece.coordonneeLettre);
       img.setAttribute(
         'src',
         'assets/SpritePiecesPNG/' + piece.nom + piece.couleur + '.png'
