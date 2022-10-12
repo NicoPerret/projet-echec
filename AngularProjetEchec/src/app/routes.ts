@@ -1,3 +1,4 @@
+import { ColonneHistChatComponent } from './projet/component/jeu/colonne-hist-chat/colonne-hist-chat.component';
 import { EditProfilComponent } from './projet/component/profil/edit-profil/edit-profil.component';
 import { DemoWebsocketComponent } from './projet/component/demo-websocket/demo-websocket/demo-websocket.component';
 import { LoginComponent } from './projet/component/login/login.component';
@@ -14,6 +15,7 @@ import { JeuComponent } from './projet/component/jeu/jeu.component';
 import { ProblemeComponent } from './projet/component/probleme/probleme.component';
 import { ProfilComponent } from './projet/component/profil/profil.component';
 import { StatistiquesComponent } from './projet/component/statistiques/statistiques.component';
+import { DropListRef } from '@angular/cdk/drag-drop';
 
 export const routes: Routes = [
   {
@@ -35,6 +37,11 @@ export const routes: Routes = [
     path: '',
     component: LoginComponent,
     canActivate: [AnonymousGuardService],
+  },
+  {
+    path: 'chat',
+    component: ColonneHistChatComponent,
+    outlet: 'droite',
   },
   {
     path: 'inscription',

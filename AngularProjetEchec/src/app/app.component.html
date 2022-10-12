@@ -1,6 +1,12 @@
 <body>
   <app-header class="header"></app-header>
   <app-menu class="gauche"></app-menu>
+
   <!-- <app-footer class="footer"></app-footer> -->
-  <router-outlet></router-outlet>
+  <div class="milieu">
+    <router-outlet></router-outlet>
+  </div>
+  <div class="droite">
+    <router-outlet name="droite"></router-outlet>
+  </div>
 </body>
