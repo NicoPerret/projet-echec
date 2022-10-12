@@ -1,8 +1,8 @@
 <section>
-  <form method="POST" (ngSubmit)="modifier()" [formGroup]="form">
+  <form method="PATCH" (ngSubmit)="modifier()" [formGroup]="form">
     <fieldset>
       <div>
-        <h2 style="text-align: center">Inscription</h2>
+        <h2 style="text-align: center">Modification du profil</h2>
         <table>
           <ng-container formGroupName="loginGroup">
             <tr>
@@ -12,7 +12,7 @@
                   type="text"
                   id="pseudo"
                   name="pseudo"
-                  placeholder="Entrez votre pseudo"
+                  placeholder="{{ utilisateur.pseudo }}"
                   formControlName="pseudo"
                 />
                 <span
@@ -34,7 +34,7 @@
                   type="text"
                   id="nom"
                   name="nom"
-                  placeholder="Entrez votre nom"
+                  placeholder="{{ utilisateur.nom }}"
                   formControlName="nom"
                 />
               </td>
@@ -46,40 +46,9 @@
                   type="text"
                   id="prenom"
                   name="prenom"
-                  placeholder="Entrez votre prénom"
+                  placeholder="{{ utilisateur.prenom }}"
                   formControlName="prenom"
                 />
-              </td>
-            </tr>
-          </ng-container>
-          <ng-container formGroupName="mdpGroup">
-            <tr>
-              <td><label>Mot de passe : </label></td>
-              <td>
-                <input
-                  type="password"
-                  id="mdp"
-                  name="mdp"
-                  placeholder="Entrez votre mot de passe"
-                  formControlName="mdp"
-                />
-              </td>
-            </tr>
-            <tr>
-              <td><label>Confirmation du mot de passe : </label></td>
-              <td>
-                <input
-                  type="password"
-                  id="confirmmdp"
-                  placeholder="Confirmer votre mot de passe"
-                  formControlName="confirmmdp"
-                />
-                <span
-                  *ngIf="
-                    form.get('mdpGroup.confirmmdp')?.hasError('mdpIdentique')
-                  "
-                  >le mot de passe doit être identique</span
-                >
               </td>
             </tr>
           </ng-container>
@@ -90,7 +59,7 @@
                 type="email"
                 id="email"
                 name="email"
-                placeholder="Entrez votre email"
+                placeholder="{{ utilisateur.email }}"
                 formControlName="emailCtrl"
               />
             </td>

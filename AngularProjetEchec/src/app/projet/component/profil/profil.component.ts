@@ -22,13 +22,3 @@ export class ProfilComponent implements OnInit {
     return null;
   }
 }
-
-// valider() {
-//     if (this.utilisateur.nom && this.utilisateur.prenom && this.utilisateur.pseudo && this.utilisateur.mdp && this.utilisateur.email){
-//       this.utilisateurPret.emit({
-//         nom: this.utilisateur.nom,
-//         prenom: this.utilisateur.prenom,
-//         pseudo: this.utilisateur.pseudo,
-//         mdp: this.utilisateur.mdp
-//         email:this.utilisateur.email
-// }
