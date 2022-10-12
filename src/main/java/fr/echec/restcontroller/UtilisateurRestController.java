@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -32,6 +33,9 @@ import fr.echec.service.UtilisateursService;
 @CrossOrigin(origins = "*")
 public class UtilisateurRestController {
 
+	@Autowired
+	PasswordEncoder passwordEncoder;
+	
 	@Autowired
 	private UtilisateursService srvUtilisateurs;
 
@@ -61,6 +65,7 @@ public class UtilisateurRestController {
 		if (br.hasErrors()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
 		}
+		utilisateur.setMdp(passwordEncoder.encode(utilisateur.getMdp()));
 		srvUtilisateurs.save(utilisateur);
 		return srvUtilisateurs.findById(utilisateur.getId());
 

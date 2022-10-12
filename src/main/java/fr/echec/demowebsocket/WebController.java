@@ -6,6 +6,7 @@ import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 
 import fr.echec.classe.historique.NotationCoup;
+import fr.echec.classe.historique.Statistiques;
 import fr.echec.classe.jeu.Fen;
 import fr.echec.classe.jeu.Plateau;
 import fr.echec.classe.joueur.Utilisateur;
@@ -21,7 +22,7 @@ public class WebController {
 
 	@Autowired
 	JcJ p;
-	
+
 	@Autowired
 	protected NotationCoup nt;
 	@Autowired
@@ -38,6 +39,8 @@ public class WebController {
 
 	@Autowired
 	UtilisateursService srvUti;
+	@Autowired
+	Statistiques stats;
 
 	private int coordDepart64;
 	private int coordArrivee64;
@@ -50,7 +53,8 @@ public class WebController {
 
 		Utilisateur j1 = srvUti.findById(3);
 		Utilisateur j2 = srvUti.findById(2);
-
+		p.setCompteurCoups(1);
+		p.setCompteurTours(1);
 		p.setJ1(j1);
 		p.setJ2(j2);
 		return p.getPlateau();
@@ -59,13 +63,22 @@ public class WebController {
 	@MessageMapping("/jouer-coup")
 	@SendTo("/topic/hi")
 	public Plateau jouerCoup(Coords coord) throws Exception {
-		System.out.println("Coucou "+coord);
+		System.out.println("Coucou " + coord);
 		coordArrivee64 = NotationCoup.conversionLettreTo64(coord.getCoupArrivee());
 		coordDepart64 = NotationCoup.conversionLettreTo64(coord.getCoupDepart());
 		d.deplacement(p.getPlateau().getPieceCase(coordDepart64), coordArrivee64, p.getPlateau());
-		p.isPartieFinie(); // ?
-		System.out.println(p.getPlateau());
-		System.out.println(p.isPartieFinie());
+		p.finTour();
+		if (p.isPartieFinie()) {
+
+			p.savePartieEtHistorique();
+			Utilisateur J1 = srvUti.findByIdFetchHistorique(3);
+			Utilisateur J2 = srvUti.findByIdFetchHistorique(2);
+
+			stats.calculStats(J1);
+			stats.calculStats(J2);
+			initPlateau();
+
+		}
 		return p.getPlateau();
 	}
 

@@ -4,15 +4,10 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
-
 import fr.echec.classe.joueur.Utilisateur;
 import fr.echec.enumerateur.CouleursPiece;
 import fr.echec.exception.HistoriquePartieNotFoundException;
 import fr.echec.exception.UtilisateurNotFoundException;
-
 
 public class JcJ extends Partie {
 
@@ -23,7 +18,7 @@ public class JcJ extends Partie {
 	// Methodes
 
 	public void calculElo(Utilisateur joueur1, Utilisateur joueur2, double sa, double sb) {
-		
+
 		int ra = joueur1.getElo();
 		int rb = joueur2.getElo();
 		float ea;
@@ -64,26 +59,28 @@ public class JcJ extends Partie {
 
 			fin = finPartie.isEchecMatOuPat(plateau, couleurJoueurActif);
 
-			if (getChronoJ1().isDefaiteTemps() || isSurrJ1() == true || finPartie.isEchecMat()) {
+			if (isSurrJ1() == true || finPartie.isEchecMat()) {
 				h.setVainqueurId(j2.getId());
 				System.out.println("Le joueur 2 gagne !");
 				resJ1 = 0;
 				resJ2 = 1;
 				calculElo(j1, j2, resJ1, resJ2);
 				h.ajouterCoup("#");
+				finPartie.setEchecMat(false);
 				return true;
 
 			}
 
 		} else {
 			finPartie.isEchecMatOuPat(plateau, couleurJoueurActif);
-			if (getChronoj2().isDefaiteTemps() || isSurrJ2() || finPartie.isEchecMat()) {
+			if (isSurrJ2() || finPartie.isEchecMat()) {
 				System.out.println("Le joueur 1 gagne !");
 				h.setVainqueurId(j1.getId());
 				resJ1 = 1;
 				resJ2 = 0;
 				calculElo(j1, j2, resJ1, resJ2);
 				h.ajouterCoup("#");
+				finPartie.setEchecMat(false);
 				return true;
 			}
 			if (fin) {
@@ -110,7 +107,7 @@ public class JcJ extends Partie {
 		joueurs.add(j1);
 		joueurs.add(j2);
 		this.getH().setJoueurs(joueurs);
-		
+
 		srvHistPartie.save(this.getH());
 		srvUti.save(this.getJ1());
 		srvUti.save(this.getJ2());
