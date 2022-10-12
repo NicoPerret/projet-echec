@@ -7,9 +7,8 @@ function dragDrop(possibilites) {
 
     for (let i of document.querySelectorAll("img")) {
       i.addEventListener("dragstart", (e) => {
-        console.log(possibilites);
+        console.log("posibilites" + possibilites);
         e.dataTransfer.setData("piece-id", e.target.id);
-
         for (let pos of possibilites) {
           document.querySelector(`#${pos}`).style.background = "green";
         }
@@ -45,13 +44,14 @@ function dragDrop(possibilites) {
 
         if (possibilites.find((pos) => pos === target.getAttribute("id"))) {
           const pieceId = e.dataTransfer.getData("piece-id");
-
+          console.log("pieceid" + pieceId);
           const piece = document.querySelector(`#${pieceId}`);
-          //coordArrivee = target.getAttribute("id");
+
+          piece.setAttribute("idDiv", target.getAttribute("id"));
 
           target.innerHTML = "";
           target.append(piece);
-          console.log(piece);
+          //console.log(piece);
           //exécution bruit POC
           audio.play();
 
@@ -63,6 +63,7 @@ function dragDrop(possibilites) {
         cpt++;*/
         }
         for (let pos of possibilites) {
+          console.log("pos" + pos);
           document.querySelector(`#${pos}`).style.background = "";
         }
         possibilites = [];
@@ -71,5 +72,4 @@ function dragDrop(possibilites) {
   })();
   // console.log("fin" + possibilites);
   //console.log("arrive" + coordArrivee);
-  //return [coordonnee, coordArrivee];
 }

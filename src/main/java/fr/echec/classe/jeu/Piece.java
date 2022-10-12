@@ -29,7 +29,12 @@ public class Piece {
 
 	public void setCoordonnee(int coordonnee) {
 		this.coordonnee = coordonnee;
-		this.coordonneeLettre = NotationCoup.conversion64ToLettre(coordonnee);
+		if (coordonnee !=-1) {
+			this.coordonneeLettre = NotationCoup.conversion64ToLettre(coordonnee);
+		}else {
+			this.coordonneeLettre = "";
+		}
+		
 	}
 	
 	public String getCoordonneeLettre() {
