@@ -40,6 +40,7 @@ public class SecurityWebServiceConfig {
 			   .and()
 			   .authorizeRequests()
 			   .antMatchers("/api/coup-possible/**").permitAll()
+			   .antMatchers("/api/utilisateur/**").permitAll()
 			   .antMatchers("/stomp").permitAll()
 			   		.antMatchers(HttpMethod.OPTIONS).permitAll()
 			   		.antMatchers(HttpMethod.GET).hasAnyRole("USER", "COACH", "ADMIN")

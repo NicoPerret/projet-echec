@@ -1,25 +1,26 @@
 package fr.echec.demowebsocket;
 
-import java.util.List;
-
 public class Coords {
-	private List<String> coup;
-
-	public List<String> getCoup() {
-		return coup;
+	private String coupDepart;
+	private String coupArrivee;
+	
+	public String getCoupDepart() {
+		return coupDepart;
 	}
 
-	public void setCoup(List<String> coup) {
-		this.coup = coup;
+	public void setCoupDepart(String coupDepart) {
+		this.coupDepart = coupDepart;
 	}
 
-	public Coords() {
-
+	public String getCoupArrivee() {
+		return coupArrivee;
 	}
 
-	public Coords(List<String> coups) {
-		this.coup = coups;
-
+	public void setCoupArrivee(String coupArrivee) {
+		this.coupArrivee = coupArrivee;
 	}
 
+	
+
+	
 }

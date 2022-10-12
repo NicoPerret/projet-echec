@@ -94,11 +94,12 @@ export class Plateau64casesComponent implements OnInit, AfterViewInit {
       _this.stompClient.subscribe('/topic/hi', function (hello: any) {
         console.log(hello.body);
         _this.plateau = JSON.parse(hello.body);
+        _this.listePieces = JSON.parse(hello.body).pieces;
         if (_this.prems) {
-          _this.listePieces = JSON.parse(hello.body).pieces;
           _this.initImg();
           _this.prems = false;
         }
+
         // console.log('ahah' + _this.coord);
       });
     });
@@ -129,10 +130,12 @@ export class Plateau64casesComponent implements OnInit, AfterViewInit {
     }
   }
 
-  deplacement(coord: string, coordArr: string) {
-    let coords = [coord, coordArr];
-    this.stompClient.send('/gkz/jouer-coup', {}),
-      JSON.stringify({ coup: coords });
+  deplacement(coordDep: string, coordArr: string) {
+    this.stompClient.send(
+      '/gkz/jouer-coup',
+      {},
+      JSON.stringify({ coupDepart: coordDep, coupArrivee: coordArr })
+    );
   }
 
   addCoord(coordonnee: string) {

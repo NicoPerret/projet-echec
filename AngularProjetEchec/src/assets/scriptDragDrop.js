@@ -51,6 +51,7 @@ function dragDrop(possibilites) {
 
           target.innerHTML = "";
           target.append(piece);
+          console.log(piece);
           //exécution bruit POC
           audio.play();
 
