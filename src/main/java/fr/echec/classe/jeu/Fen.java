@@ -7,9 +7,9 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 import fr.echec.classe.partie.JcIA;
-import fr.echec.classe.partie.Partie;
 import fr.echec.enumerateur.CouleursPiece;
 import fr.echec.enumerateur.TypePiece;
+
 @Component
 public class Fen {
 
@@ -58,16 +58,20 @@ public class Fen {
 					// ------
 					switch (pi.getNom()) {
 					case PION:
-						pi.setNomPlateau("p" + (coul == CouleursPiece.BLANC ? "b" + cptPionBlanc++ : "n" + cptPionNoir++));
+						pi.setNomPlateau(
+								"p" + (coul == CouleursPiece.BLANC ? "b" + cptPionBlanc++ : "n" + cptPionNoir++));
 						break;
 					case TOUR:
-						pi.setNomPlateau("t" + (coul == CouleursPiece.BLANC ? "b" + cptTourBlanc++ : "n" + cptTourNoir++));
+						pi.setNomPlateau(
+								"t" + (coul == CouleursPiece.BLANC ? "b" + cptTourBlanc++ : "n" + cptTourNoir++));
 						break;
 					case FOU:
-						pi.setNomPlateau("f" + (coul == CouleursPiece.BLANC ? "b" + cptFouBlanc++ : "n" + cptFouNoir++));
+						pi.setNomPlateau(
+								"f" + (coul == CouleursPiece.BLANC ? "b" + cptFouBlanc++ : "n" + cptFouNoir++));
 						break;
 					case CAVALIER:
-						pi.setNomPlateau("c" + (coul == CouleursPiece.BLANC ? "b" + cptCavBlanc++ : "n" + cptCavNoir++));
+						pi.setNomPlateau(
+								"c" + (coul == CouleursPiece.BLANC ? "b" + cptCavBlanc++ : "n" + cptCavNoir++));
 						break;
 					case ROI:
 						pi.setNomPlateau("r" + (coul == CouleursPiece.BLANC ? "b " : "n "));
@@ -94,18 +98,18 @@ public class Fen {
 
 	public String creationFen(Plateau plat) {
 		String fen = "";
-		//Plateau plat = partie.getPlateau();
-		
+		// Plateau plat = partie.getPlateau();
+
 		// position piece
 		String str;
 		char piece = 0;
 		char p = 0;
 		int j = 8;
-		int[] a = new int[]{56,40,24,8,-8,-24,-40,-56}; 
+		int[] a = new int[] { 56, 40, 24, 8, -8, -24, -40, -56 };
 		int k = 0;
-		for (int i = 0 ; i< plat.getPlateau().length; i++) {
+		for (int i = 0; i < plat.getPlateau().length; i++) {
 			j--;
-			str = plat.getPlateau()[i+a[k]];
+			str = plat.getPlateau()[i + a[k]];
 			switch (str.charAt(0)) {
 			case 't':
 				piece = 'r';
@@ -125,7 +129,7 @@ public class Fen {
 			case 'p':
 				piece = 'p';
 			}
-			
+
 			if (str.charAt(1) == 'b') {
 				p = Character.toUpperCase(piece);
 			} else if (str.charAt(1) == 'n') {
@@ -141,40 +145,40 @@ public class Fen {
 		}
 		return fen;
 	}
-	
+
 	public String creationFenIA(JcIA partie) {
 		Plateau plat = partie.getPlateau();
-		
+
 		// position piece
 		String fen = creationFen(plat);
 		fen += " ";
-		
+
 		// trait
 		if (partie.getCouleurJoueurActif() == CouleursPiece.BLANC) {
 			fen += "w ";
-		}else {
+		} else {
 			fen += "b ";
 		}
-		
+
 		// roque
-		if(plat.getPieceCase(3).isaBouge()==false) {
-			if(plat.getPieceCase(0).isaBouge()==false) {
-				fen+="K";
+		if (plat.getPieceCase(4) != null && plat.getPieceCase(4).isaBouge() == false) {
+			if (plat.getPieceCase(0) != null && plat.getPieceCase(0).isaBouge() == false) {
+				fen += "K";
 			}
-			if(plat.getPieceCase(7).isaBouge()==false) {
-				fen+="Q";
-			}
-		}
-		if(plat.getPieceCase(59).isaBouge()==false) {
-			if(plat.getPieceCase(56).isaBouge()==false) {
-				fen+="k";
-			}
-			if(plat.getPieceCase(63).isaBouge()==false) {
-				fen+="q";
+			if (plat.getPieceCase(7) != null && plat.getPieceCase(7).isaBouge() == false) {
+				fen += "Q";
 			}
 		}
-		if(fen.charAt(fen.length()-1) == ' ') {
-			fen+="-";
+		if (plat.getPieceCase(59) != null && plat.getPieceCase(59).isaBouge() == false) {
+			if (plat.getPieceCase(56) != null && plat.getPieceCase(56).isaBouge() == false) {
+				fen += "k";
+			}
+			if (plat.getPieceCase(63) != null && plat.getPieceCase(63).isaBouge() == false) {
+				fen += "q";
+			}
+		}
+		if (fen.charAt(fen.length() - 1) == ' ') {
+			fen += "-";
 		}
 		return fen;
 	}

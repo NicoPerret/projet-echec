@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 
 import fr.echec.classe.historique.NotationCoup;
 import fr.echec.classe.jeu.Fen;
+import fr.echec.classe.jeu.Plateau;
 import fr.echec.classe.joueur.Utilisateur;
 import fr.echec.classe.mouvements.analyse.CoupsPossibles;
 import fr.echec.classe.mouvements.deplacement.Deplacement;
@@ -38,53 +39,68 @@ public class WebControllerJcIA {
 	@Autowired
 	UtilisateursService srvUti;
 
-	private int coordDepart;
-	private int coordArrivee;
+	private int coordDepart64;
+	private int coordArrivee64;
 
 	@MessageMapping("/init-IA_facile")
 	@SendTo("/topic/JCIA-facile")
-	public JcIA initPlateau() throws Exception {
+	public Plateau initPlateau() throws Exception {
 		ParametresPartie param = new ParametresPartie();
 		pIA.setParam(param);
 
 		Utilisateur j1 = srvUti.findById(3);
 		pIA.setCouleurJoueurActif(CouleursPiece.BLANC);
+		pIA.setCompteurCoups(1);
+		pIA.setCompteurTours(1);
 
-		return pIA;
+		return pIA.getPlateau();
 	}
 
-//	@MessageMapping("/cp-IA-facile")
-//	@SendTo("/topic/JCIA-facile")
-//	public List<String> coupPossible(Coords coord) throws Exception {
-//		coordDepart = NotationCoup.conversionLettreTo64(coord.getCoup());
-//		List<Integer> listeCoup64 = coupPossible.trouveDestinationsPossibles(pIA.getPlateau(),
-//				pIA.getPlateau().getPieceCase(coordDepart));
-//		List<String> listeCoup = new ArrayList<>();
-//		for (Integer i : listeCoup64) {
-//			listeCoup.add(NotationCoup.conversion64ToLettre(i));
-//		}
-//		return listeCoup;
-//	}
-//
-//	@MessageMapping("/jc-IA-facile")
-//	@SendTo("/topic/JCIA-facile")
-//	public JcIA jouerCoup(Coords coord) throws Exception {
-//		coordArrivee = NotationCoup.conversionLettreTo64(coord.getCoup());
-//		d.deplacement(pIA.getPlateau().getPieceCase(coordDepart), coordArrivee, pIA.getPlateau());
-//		pIA.jouerContreIaFacile();
-//		pIA.isPartieFinieIA(); // ?
-//		return pIA;
-//	}
-//
-//	@MessageMapping("/jc-stockfish")
-//	@SendTo("/topic/JCIA-facile")
-//	public JcIA jouerCoupSF(Coords coord) throws Exception {
-//		coordArrivee = NotationCoup.conversionLettreTo64(coord.getCoup());
-//		d.deplacement(pIA.getPlateau().getPieceCase(coordDepart), coordArrivee, pIA.getPlateau());
-//		pIA.jouerContreIaStockfish();
-//		pIA.isPartieFinieIA(); // ?
-//		return pIA;
-//	}
+	@MessageMapping("/jc-IA-facile")
+	@SendTo("/topic/JCIA-facile")
+	public Plateau jouerCoup(Coords coord) throws Exception {
+
+		coordArrivee64 = NotationCoup.conversionLettreTo64(coord.getCoupArrivee());
+		coordDepart64 = NotationCoup.conversionLettreTo64(coord.getCoupDepart());
+		d.deplacement(pIA.getPlateau().getPieceCase(coordDepart64), coordArrivee64, pIA.getPlateau());
+		pIA.setCompteurTours(pIA.getCompteurTours() + 1);
+		pIA.setCompteurCoups(pIA.getCompteurCoups() + 1);
+		if (pIA.isPartieFinieIA()) {
+			initPlateau();
+
+		}
+
+		pIA.jouerContreIaFacile();
+		if (pIA.isPartieFinieIA()) {
+			System.out.println("Test");
+			initPlateau();
+
+		}
+		return pIA.getPlateau();
+	}
+
+	@MessageMapping("/jc-stockfish")
+	@SendTo("/topic/JCIA-facile")
+	public Plateau jouerCoupSF(Coords coord) throws Exception {
+		coordArrivee64 = NotationCoup.conversionLettreTo64(coord.getCoupArrivee());
+		coordDepart64 = NotationCoup.conversionLettreTo64(coord.getCoupDepart());
+		d.deplacement(pIA.getPlateau().getPieceCase(coordDepart64), coordArrivee64, pIA.getPlateau());
+		pIA.setCompteurTours(pIA.getCompteurTours() + 1);
+		pIA.setCompteurCoups(pIA.getCompteurCoups() + 1);
+		if (pIA.isPartieFinieIA()) {
+			initPlateau();
+
+		}
+
+		pIA.jouerContreIaStockfish();
+		if (pIA.isPartieFinieIA()) {
+			System.out.println("Test");
+			initPlateau();
+
+		}
+		return pIA.getPlateau();
+
+	}
 
 	// CHRONO ??
 
