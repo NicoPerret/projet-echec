@@ -103,9 +103,11 @@ public class JcIA extends Partie {
 					break;
 				} else {
 					
+					/*
 					coupStockfish = "move:" + joueCoupAleatoire();
 					System.out.println(coupStockfish);
 					break;
+					*/
 					
 				}
 			}
