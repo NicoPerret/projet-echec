@@ -30,6 +30,7 @@ import { DemoWebsocketComponent } from './projet/component/demo-websocket/demo-w
 import { ChatComponent } from './projet/component/jeu/colonne-hist-chat/chat/chat.component';
 import { EditProfilComponent } from './projet/component/profil/edit-profil/edit-profil.component';
 import { ColonneHistChatComponent } from './projet/component/jeu/colonne-hist-chat/colonne-hist-chat.component';
+import { DroiteVideComponent } from './projet/component/elements-commun/droite-vide/droite-vide.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { ColonneHistChatComponent } from './projet/component/jeu/colonne-hist-ch
     ChatComponent,
     EditProfilComponent,
     ColonneHistChatComponent,
+    DroiteVideComponent,
   ],
   imports: [
     ReactiveFormsModule,

@@ -1,5 +1,5 @@
 import { WebSocketService } from '../../../../service/service/chat.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { WebSocketChat } from './chat.component.model';
 import { NgForm } from '@angular/forms';
 import * as SockJS from 'sockjs-client';
@@ -11,6 +11,8 @@ import { Stomp } from '@stomp/stompjs';
   styleUrls: ['./chat.component.css'],
 })
 export class ChatComponent implements OnInit {
+  @ViewChild('scrollMe') private myScrollContainer!: ElementRef;
+
   srvWebSocket: WebSocketService = new WebSocketService();
   private stompClient: any;
   greetings!: string[];
@@ -25,6 +27,17 @@ export class ChatComponent implements OnInit {
   // ngOnDestroy() {
   //   this.srvWebSocket.closeWebSocketConnection();
   // }
+
+  ngAfterViewChecked() {
+    this.scrollToBottom();
+  }
+
+  scrollToBottom(): void {
+    try {
+      this.myScrollContainer.nativeElement.scrollTop =
+        this.myScrollContainer.nativeElement.scrollHeight;
+    } catch (err) {}
+  }
 
   connect() {
     const socket = new SockJS(
