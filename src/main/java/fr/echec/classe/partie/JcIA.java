@@ -20,51 +20,51 @@ public class JcIA extends Partie {
 	protected int niveauIA;
 	int coordArrivee;
 	String coupJoueParIa;
-	String coupStockfish ="";
+	String coupStockfish = "";
 	@Autowired
 	protected CoupOrdi coupOrdi;
 	@Autowired
 	protected Fen fen;
-	
+
 	Timer timer = new Timer();
 	Random rand = new Random();
 
 	public void jouerContreIaFacile() {
-		if (couleurJoueur == couleurJoueurActif) {
+//		if (couleurJoueur == couleurJoueurActif) {
+//
+//			this.jouer();
+//		}
+//
+//		else {
 
-			this.jouer();
+		while (true) {
+			coordDepart = rand.nextInt(63 - 0 + 1) + 0;
+			if (plateau.getPieceCase(coordDepart) != null
+					&& plateau.getPieceCase(coordDepart).getCouleur() != couleurJoueur && coupPossible
+							.trouveDestinationsPossibles(plateau, plateau.getPieceCase(coordDepart)).size() != 0) {
+
+				break;
+			}
+		}
+		while (true) {
+
+			coordArrivee = rand.nextInt(30 - 0 + 1) + 0;
+			if (coupPossible.trouveDestinationsPossibles(plateau, plateau.getPieceCase(coordDepart))
+					.size() > coordArrivee) {
+
+				coordArrivee = coupPossible.trouveDestinationsPossibles(plateau, plateau.getPieceCase(coordDepart))
+						.get(coordArrivee);
+				break;
+			}
 		}
 
-		else {
+		coupJoueParIa = NotationCoup.conversion64ToLettre(coordDepart)
+				+ NotationCoup.conversion64ToLettre(coordArrivee);
 
-			while (true) {
-				coordDepart = rand.nextInt(63 - 0 + 1) + 0;
-				if (plateau.getPieceCase(coordDepart) != null
-						&& plateau.getPieceCase(coordDepart).getCouleur() != couleurJoueur && coupPossible
-								.trouveDestinationsPossibles(plateau, plateau.getPieceCase(coordDepart)).size() != 0) {
-
-					break;
-				}
-			}
-			while (true) {
-
-				coordArrivee = rand.nextInt(30 - 0 + 1) + 0;
-				if (coupPossible.trouveDestinationsPossibles(plateau, plateau.getPieceCase(coordDepart))
-						.size() > coordArrivee) {
-
-					coordArrivee = coupPossible.trouveDestinationsPossibles(plateau, plateau.getPieceCase(coordDepart))
-							.get(coordArrivee);
-					break;
-				}
-			}
-
-			coupJoueParIa = NotationCoup.conversion64ToLettre(coordDepart)
-					+ NotationCoup.conversion64ToLettre(coordArrivee);
-			System.out.println(coordArrivee);
-			coupOrdi.coupOrdi(coupJoueParIa, plateau, false);
-			compteurTours++;
-
-		}
+		coupOrdi.coupOrdi(coupJoueParIa, plateau, false);
+		compteurTours++;
+//
+//		}
 
 	}
 
@@ -79,29 +79,22 @@ public class JcIA extends Partie {
 			RestTemplate restTemplate = new RestTemplate();
 
 			while (true) {
-				
-				String fenURL = fen.creationFenIA(this);
-				
-			
-					 
-						  coupStockfish = restTemplate
-								  .getForObject("https://www.chessdb.cn/cdb.php?action=querybest&board=" + fenURL, String.class);
-					    
-					 
-				
 
-				
-				if (coupStockfish.equals("nobestmove") == false) {
+				String fenURL = fen.creationFenIA(this);
+
+				coupStockfish = restTemplate
+						.getForObject("https://www.chessdb.cn/cdb.php?action=querybest&board=" + fenURL, String.class);
+				System.out.println(coupStockfish);
+
+				if (!coupStockfish.trim().equals("nobestmove")) {
 					break;
 				}
 			}
-
+			System.out.println(coupStockfish);
 			coupJoueParIa = coupStockfish.substring(5).toUpperCase();
 			coupOrdi.coupOrdi(coupJoueParIa, plateau, false);
 			compteurTours++;
-
 		}
-
 	}
 
 	public boolean isPartieFinieIA() {
@@ -112,19 +105,19 @@ public class JcIA extends Partie {
 
 			fin = finPartie.isEchecMatOuPat(plateau, couleurJoueurActif);
 
-			if (getChronoJ1().isDefaiteTemps() || isSurrJ1() == true || finPartie.isEchecMat()) {
+			if (isSurrJ1() == true || finPartie.isEchecMat()) {
 
 				System.out.println("Le joueur 2 gagne !");
-
+				finPartie.setEchecMat(false);
 				return true;
 
 			}
 
 		} else {
 			finPartie.isEchecMatOuPat(plateau, couleurJoueurActif);
-			if (getChronoj2().isDefaiteTemps() || isSurrJ2() || finPartie.isEchecMat()) {
+			if (isSurrJ2() || finPartie.isEchecMat()) {
 				System.out.println("Le joueur 1 gagne !");
-
+				finPartie.setEchecMat(false);
 				return true;
 			}
 			if (fin) {
@@ -134,7 +127,7 @@ public class JcIA extends Partie {
 		}
 		if (finPartie.isMatchNulRepetition(plateau) || finPartie.isMatchNulmateriel(plateau) || isDraw() == true) {
 			System.out.println("Match nul ! ");
-
+			finPartie.setEchecMat(false);
 			return true;
 		}
 

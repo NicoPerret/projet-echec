@@ -57,19 +57,23 @@ export class Plateau64casesComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.modeJeu="Probleme";
-    if (this.modeJeu=="JcJ") {
-      this.initialisationMapping='/gkz/initialisation';
-      this.jouerCoupMapping='/gkz/jouer-coup';
-      this.destinationMapping='/topic/hi';
-    } else if (this.modeJeu=="JcIA") {
-      this.initialisationMapping='/gkz/init-IA_facile';
-      this.jouerCoupMapping='';
-      this.destinationMapping='/topic/JCIA-facile';
-    } else if (this.modeJeu=="Probleme") {
-      this.initialisationMapping='/gkz/init-probleme';
-      this.jouerCoupMapping='/gkz/jc-pb';
-      this.destinationMapping='/topic/probleme';
+    this.modeJeu = 'JcIA-stockfish';
+    if (this.modeJeu == 'JcJ') {
+      this.initialisationMapping = '/gkz/initialisation';
+      this.jouerCoupMapping = '/gkz/jouer-coup';
+      this.destinationMapping = '/topic/hi';
+    } else if (this.modeJeu == 'JcIA-facile') {
+      this.initialisationMapping = '/gkz/init-IA_facile';
+      this.jouerCoupMapping = '/gkz/jc-IA-facile';
+      this.destinationMapping = '/topic/JCIA-facile';
+    } else if (this.modeJeu == 'JcIA-stockfish') {
+      this.initialisationMapping = '/gkz/init-IA_facile';
+      this.jouerCoupMapping = '/gkz/jc-stockfish';
+      this.destinationMapping = '/topic/JCIA-facile';
+    } else if (this.modeJeu == 'Probleme') {
+      this.initialisationMapping = '/gkz/init-probleme';
+      this.jouerCoupMapping = '/gkz/jc-pb';
+      this.destinationMapping = '/topic/probleme';
     }
     // this.connect();
     // this.init();
@@ -123,33 +127,38 @@ export class Plateau64casesComponent implements OnInit, AfterViewInit {
       _this.setConnected(true);
       console.log('Connected: ' + frame);
 
-      if (_this.modeJeu=="Probleme"){
-        _this.stompClient.send(_this.initialisationMapping, {},
-          JSON.stringify({ idProbleme: 1 }));
+      if (_this.modeJeu == 'Probleme') {
+        _this.stompClient.send(
+          _this.initialisationMapping,
+          {},
+          JSON.stringify({ idProbleme: 1 })
+        );
       } else {
         _this.stompClient.send(_this.initialisationMapping, {});
       }
-      _this.stompClient.subscribe(_this.destinationMapping, function (hello: any) {
+      _this.stompClient.subscribe(
+        _this.destinationMapping,
+        function (hello: any) {
+          console.log(hello.body);
+          _this.plateau = JSON.parse(hello.body);
+          _this.listePieces = JSON.parse(hello.body).pieces;
+          document.querySelectorAll('img').forEach((el) => el.remove());
 
-        console.log(hello.body);
-        _this.plateau = JSON.parse(hello.body);
-        _this.listePieces = JSON.parse(hello.body).pieces;
-        document.querySelectorAll('img').forEach((el) => el.remove());
+          _this.initImg();
 
-        _this.initImg();
+          //pb
+          // _this.stompClient.send('/gkz/init-probleme', {}, 1);
+          // _this.stompClient.subscribe('/topic/probleme', function (hello: any) {
+          //   console.log(hello.body);
+          //   _this.plateau = JSON.parse(hello.body);
+          //   _this.listePieces = JSON.parse(hello.body).pieces;
+          //   document.querySelectorAll('img').forEach((el) => el.remove());
 
-        //pb
-        // _this.stompClient.send('/gkz/init-probleme', {}, 1);
-        // _this.stompClient.subscribe('/topic/probleme', function (hello: any) {
-        //   console.log(hello.body);
-        //   _this.plateau = JSON.parse(hello.body);
-        //   _this.listePieces = JSON.parse(hello.body).pieces;
-        //   document.querySelectorAll('img').forEach((el) => el.remove());
+          //   _this.initImg();
 
-        //   _this.initImg();
-
-        // console.log('ahah' + _this.coord);
-      });
+          // console.log('ahah' + _this.coord);
+        }
+      );
     });
   }
 
