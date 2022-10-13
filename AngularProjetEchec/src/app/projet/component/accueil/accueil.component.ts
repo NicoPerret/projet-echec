@@ -60,6 +60,13 @@ export class AccueilComponent implements OnInit {
       this.router.navigateByUrl(
         '/jeu/' + this.parametresTypePartie + '/1(droite:chat)'
       );
+    } else if (this.parametresTypePartie == 'JcIA') {
+      if (this.paramJcIADifficulte=='facile') {
+        this.parametresTypePartie='JcIA-facile'
+      } else {
+        this.parametresTypePartie='JcIA-stockfish'
+      }
+      this.router.navigateByUrl('/jeu/' + this.parametresTypePartie + '/1');
     } else {
       this.router.navigateByUrl('/jeu/' + this.parametresTypePartie + '/1');
     }

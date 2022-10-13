@@ -2,6 +2,7 @@ package fr.echec.classe.partie;
 
 import java.util.Random;
 import java.util.Timer;
+import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -79,16 +80,33 @@ public class JcIA extends Partie {
 			RestTemplate restTemplate = new RestTemplate();
 
 			while (true) {
+				
+				
 
 				String fenURL = fen.creationFenIA(this);
 
 				coupStockfish = restTemplate.getForObject(
 						"https://www.chessdb.cn/cdb.php?action=querybest&board=" + fenURL + "&egtbmetric=dtm",
 						String.class);
+				
+				try {
+					TimeUnit.SECONDS.sleep(2);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
 				System.out.println(coupStockfish);
+				System.out.println(fenURL);
 
 				if (!coupStockfish.trim().equals("nobestmove")) {
 					break;
+				} else {
+					
+					coupStockfish = "move:" + joueCoupAleatoire();
+					System.out.println(coupStockfish);
+					break;
+					
 				}
 			}
 			System.out.println(coupStockfish);
@@ -133,5 +151,35 @@ public class JcIA extends Partie {
 		}
 
 		return false;
+	}
+	
+	public String joueCoupAleatoire() {
+		
+		while (true) {
+			coordDepart = rand.nextInt(63 - 0 + 1) + 0;
+			if (plateau.getPieceCase(coordDepart) != null
+					&& plateau.getPieceCase(coordDepart).getCouleur() != couleurJoueur && coupPossible
+							.trouveDestinationsPossibles(plateau, plateau.getPieceCase(coordDepart)).size() != 0) {
+
+				break;
+			}
+		}
+		while (true) {
+
+			coordArrivee = rand.nextInt(30 - 0 + 1) + 0;
+			if (coupPossible.trouveDestinationsPossibles(plateau, plateau.getPieceCase(coordDepart))
+					.size() > coordArrivee) {
+
+				coordArrivee = coupPossible.trouveDestinationsPossibles(plateau, plateau.getPieceCase(coordDepart))
+						.get(coordArrivee);
+				break;
+			}
+		}
+
+		coupJoueParIa = NotationCoup.conversion64ToLettre(coordDepart)
+				+ NotationCoup.conversion64ToLettre(coordArrivee);
+		
+		return coupJoueParIa;
+		
 	}
 }

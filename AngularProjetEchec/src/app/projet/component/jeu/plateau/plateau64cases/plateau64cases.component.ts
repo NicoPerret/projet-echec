@@ -75,6 +75,7 @@ export class Plateau64casesComponent implements OnInit, AfterViewInit {
         this.jouerCoupMapping = '/gkz/jouer-coup';
         this.destinationMapping = '/topic/hi';
       } else if (this.modeJeu == 'JcIA-facile') {
+        console.log("OUI");
         this.initialisationMapping = '/gkz/init-IA_facile';
         this.jouerCoupMapping = '/gkz/jc-IA-facile';
         this.destinationMapping = '/topic/JCIA-facile';
@@ -152,7 +153,9 @@ export class Plateau64casesComponent implements OnInit, AfterViewInit {
         function (hello: any) {
           console.log(hello.body);
           _this.plateau = JSON.parse(hello.body);
-          _this.listePieces = JSON.parse(hello.body).pieces;
+          //_this.listePieces = JSON.parse(hello.body).pieces;
+          _this.listePieces = _this.plateau.pieces;
+          console.log("LISTE PIECE : " + _this.listePieces);
           document.querySelectorAll('img').forEach((el) => el.remove());
 
           _this.initImg();
