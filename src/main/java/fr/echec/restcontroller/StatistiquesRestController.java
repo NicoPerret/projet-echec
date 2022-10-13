@@ -15,7 +15,6 @@ import fr.echec.classe.JsonViews.Common;
 import fr.echec.classe.historique.Statistiques;
 import fr.echec.exception.HistoriquePartieNotFoundException;
 import fr.echec.exception.IdNegatifException;
-import fr.echec.exception.StatistiquesNotFoundException;
 import fr.echec.exception.UtilisateurNotFoundException;
 import fr.echec.service.StatistiquesService;
 
@@ -23,27 +22,27 @@ import fr.echec.service.StatistiquesService;
 @RequestMapping("/api/statistiques")
 public class StatistiquesRestController {
 
-	
 	@Autowired
 	private StatistiquesService srvStatistiques;
-	
+
 	@GetMapping("")
 	@JsonView(JsonViews.Statistiques.class)
-	public List<Statistiques> findAll(){
+	public List<Statistiques> findAll() {
 		return srvStatistiques.findAll();
 	}
-	
+
 	@GetMapping("/{id}")
 	@JsonView(Common.class)
-	public Statistiques findById(@PathVariable("id")Integer id) throws IdNegatifException, StatistiquesNotFoundException, HistoriquePartieNotFoundException {
-	return srvStatistiques.findById(id);
+	public Statistiques findById(@PathVariable("id") Integer id)
+			throws IdNegatifException, HistoriquePartieNotFoundException {
+		return srvStatistiques.findById(id);
 	}
+
 	@GetMapping("/utilisateur/{id}")
 	@JsonView(Common.class)
-	public Statistiques findByUtilisateur(@PathVariable("id")Integer id) throws IdNegatifException, StatistiquesNotFoundException, HistoriquePartieNotFoundException, UtilisateurNotFoundException {
-	return srvStatistiques.findByUtilisateur(id);
-	
-	
-	
-}
+	public Statistiques findByUtilisateur(@PathVariable("id") Integer id)
+			throws IdNegatifException, HistoriquePartieNotFoundException, UtilisateurNotFoundException {
+		return srvStatistiques.findByUtilisateur(id);
+
+	}
 }
