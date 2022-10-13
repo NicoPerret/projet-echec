@@ -1,153 +1,127 @@
-
 <div class="milieu">
-  <h2>
-    Bienvenue, {{ utilisateur.pseudo}} !
-  </h2>
-  <p>
-    Veuillez choisir un mode de jeu :
-  </p>
+  <h2>Bienvenue, {{ utilisateur.pseudo }} !</h2>
+  <p>Veuillez choisir un mode de jeu :</p>
 
   <div class="zoneBouton">
-    <button (click)="openJcJ()" class="open-parametres-jcj grosBouton">JCJ</button>
-    <button (click)="openJcIA()" class="open-parametres-jcia grosBouton">JCIA</button>
-    <button (click)="openProbleme()" class="open-parametres-probleme grosBouton">Probleme</button>
+    <button (click)="openJcJ()" class="open-parametres-jcj grosBouton">
+      JCJ
+    </button>
+    <button (click)="openJcIA()" class="open-parametres-jcia grosBouton">
+      JCIA
+    </button>
+    <button
+      (click)="openProbleme()"
+      class="open-parametres-probleme grosBouton"
+    >
+      Probleme
+    </button>
   </div>
 
   <!-- Afficher les paramètres de partie -->
-  <div class="parametres-container" [ngClass]="{'open' : parametresTypePartie!=''}">
-
+  <div
+    class="parametres-container"
+    [ngClass]="{ open: parametresTypePartie != '' }"
+  >
     <div class="parametres">
+      <div class="parametres-header">Type de partie</div>
 
-      <div class="parametres-header">
-        Type de partie
-      </div>
-
-      <div class="parametres-content" >
-
+      <div class="parametres-content">
         <form [ngSwitch]="parametresTypePartie">
-
-          <table class="jcj" *ngSwitchCase ='"JcJ"'>
-
+          <table class="jcj" *ngSwitchCase="'JcJ'">
             <tr>
               <th colspan="2">
                 <label>Jouer contre un autre joueur</label>
               </th>
-
             </tr>
 
             <tr>
               <td><label>Pseudo adversaire / aléatoire </label></td>
-              <td><input [(ngModel)]="paramJcJPseudoAdversaire" type="text" name="choix-adversaire" value="aleatoire" /></td>
+              <td>
+                <input
+                  [(ngModel)]="paramJcJPseudoAdversaire"
+                  type="text"
+                  name="choix-adversaire"
+                  value="aleatoire"
+                />
+              </td>
             </tr>
             <tr>
               <td><label>Mode de jeu : </label></td>
-              <td><select [(ngModel)]="paramJcJModeJeu" name="mode-jeu">
+              <td>
+                <select [(ngModel)]="paramJcJModeJeu" name="mode-jeu">
                   <option value="bullet">Bullet</option>
                   <option value="blitz">Blitz</option>
                   <option value="rapide">Rapide</option>
-                </select></td>
+                </select>
+              </td>
             </tr>
             <tr>
               <td><label>Handicap : </label></td>
-              <td><select [(ngModel)]="paramJcJHandicap" name="handicap">
-                  <option value="aucun">aucun </option>
-                  <option value="type1">type1 </option>
-                  <option value="type2">type2 </option>
-                </select></td>
+              <td>
+                <select [(ngModel)]="paramJcJHandicap" name="handicap">
+                  <option value="aucun">aucun</option>
+                  <option value="type1">type1</option>
+                  <option value="type2">type2</option>
+                </select>
+              </td>
             </tr>
-
           </table>
 
-          <table class="jcia" *ngSwitchCase ='"JcIA"'>
-
+          <table class="jcia" *ngSwitchCase="'JcIA'">
             <tr>
               <th colspan="2"><label>Jouer contre une IA</label></th>
             </tr>
 
             <tr>
               <td><label>Choix difficulté : </label></td>
-              <td><select [(ngModel)]="paramJcIADifficulte" name="difficulte">
-                  <option value="facile">Facile </option>
-                  <option value="moyen">Moyen </option>
-                  <option value="difficile">Difficile </option>
-                </select></td>
-
+              <td>
+                <select [(ngModel)]="paramJcIADifficulte" name="difficulte">
+                  <option value="facile">Facile</option>
+                  <option value="moyen">Moyen</option>
+                  <option value="difficile">Difficile</option>
+                </select>
+              </td>
             </tr>
-
-
           </table>
 
-          <table class="probleme" *ngSwitchCase ='"Probleme"'>
-
+          <table class="probleme" *ngSwitchCase="'Probleme'">
             <tr>
-              <th colspan="2"><label name="description">Jouer un problème</label></th>
+              <th colspan="2">
+                <label name="description">Jouer un problème</label>
+              </th>
             </tr>
 
             <tr>
               <td><label>Choix difficulté : </label></td>
-              <td><select [(ngModel)]="paramProblemeDifficulte" name="difficulte">
-                  <option value="facile">Facile </option>
-                  <option value="moyen">Moyen </option>
-                  <option value="difficile">Difficile </option>
-                </select></td>
-            </tr>
-            <tr>
-              <td colspan = "2" style="text-align: center ;">Ou</td>
-            </tr>
-            <tr>
-              <td colspan = "2" style="text-align: center ;">
-                <p>Liste des problèmes
-                <button (click)="listePb()" class="petitBouton">Go !</button>
-              </p>
+              <td>
+                <select [(ngModel)]="paramProblemeDifficulte" name="difficulte">
+                  <option value="facile">Facile</option>
+                  <option value="moyen">Moyen</option>
+                  <option value="difficile">Difficile</option>
+                </select>
               </td>
             </tr>
-
+            <tr>
+              <td colspan="2" style="text-align: center">Ou</td>
+            </tr>
+            <tr>
+              <td colspan="2" style="text-align: center">
+                <p>
+                  Liste des problèmes
+                  <button (click)="listePb()" class="petitBouton">Go !</button>
+                </p>
+              </td>
+            </tr>
           </table>
 
-          <p *ngSwitchDefault>Y a rien </p>
-
+          <p *ngSwitchDefault>Y a rien</p>
         </form>
 
-        <button (click)="annuler()" class="close-parametres petitBouton">Annuler</button>
-
-        <a routerLink="/jeu/{{ parametresTypePartie }}">JouerTest</a>
+        <button (click)="annuler()" class="close-parametres petitBouton">
+          Annuler
+        </button>
         <button (click)="jouer()" class="petitBouton">Jouer !</button>
-
       </div>
     </div>
-
   </div>
-
 </div>
-
-<div class="droite">
-
-  <div><h1>Elo</h1></div>
-
-  <table>
-    <thead>
-      <tr>
-        <td>Joueur 1</td>
-        <td>Joueur 2</td>
-
-        <td>Resultat</td>
-
-      </tr>
-    </thead>
-    <tbody class="historique">
-      <!--
-      <ng-container *ngFor="let partie of {utilisateurHistorique}">
-        <tr>
-          <td>{{ partie.j1 }}</td>
-          <td>{{ partie.j2 }}</td>
-          <td>{{ partie.vainqueur }}</td>
-        </tr>
-      </ng-container>
-    -->
-    </tbody>
-  </table>
-
-  <div><button (click)="renvoiHistorique()" class="grosBouton">Aller à l'historique</button></div>
-
-</div>
-

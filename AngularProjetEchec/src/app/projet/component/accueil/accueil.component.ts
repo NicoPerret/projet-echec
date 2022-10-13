@@ -56,14 +56,16 @@ export class AccueilComponent implements OnInit {
   }
 
   jouer() {
-    this.router.navigateByUrl('/jeu/' + this.parametresTypePartie + '/1' );
+    if (this.parametresTypePartie == 'JcJ') {
+      this.router.navigateByUrl(
+        '/jeu/' + this.parametresTypePartie + '/1(droite:chat)'
+      );
+    } else {
+      this.router.navigateByUrl('/jeu/' + this.parametresTypePartie + '/1');
+    }
   }
 
   listePb() {
     this.router.navigateByUrl('/probleme');
-  }
-
-  renvoiHistorique() {
-    this.router.navigateByUrl('/historique');
   }
 }

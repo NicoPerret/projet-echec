@@ -31,6 +31,7 @@ import { ChatComponent } from './projet/component/jeu/colonne-hist-chat/chat/cha
 import { EditProfilComponent } from './projet/component/profil/edit-profil/edit-profil.component';
 import { ColonneHistChatComponent } from './projet/component/jeu/colonne-hist-chat/colonne-hist-chat.component';
 import { DroiteVideComponent } from './projet/component/elements-commun/droite-vide/droite-vide.component';
+import { DivDroiteAccueilComponent } from './projet/component/accueil/div-droite-accueil/div-droite-accueil.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { DroiteVideComponent } from './projet/component/elements-commun/droite-v
     EditProfilComponent,
     ColonneHistChatComponent,
     DroiteVideComponent,
+    DivDroiteAccueilComponent,
   ],
   imports: [
     ReactiveFormsModule,

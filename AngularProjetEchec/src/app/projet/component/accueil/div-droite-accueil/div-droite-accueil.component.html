@@ -1,0 +1,32 @@
+<div>
+  <div>
+    <h1>Elo : {{ utilisateur.elo }}</h1>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <td>Joueur 1</td>
+        <td>Joueur 2</td>
+
+        <td>Resultat</td>
+      </tr>
+    </thead>
+    <tbody class="historique">
+      <!--
+      <ng-container *ngFor="let partie of {utilisateurHistorique}">
+        <tr>
+          <td>{{ partie.j1 }}</td>
+          <td>{{ partie.j2 }}</td>
+          <td>{{ partie.vainqueur }}</td>
+        </tr>
+      </ng-container>
+    --></tbody>
+  </table>
+
+  <div>
+    <button (click)="renvoiHistorique()" class="petitBouton">
+      Aller à l'historique
+    </button>
+  </div>
+</div>
