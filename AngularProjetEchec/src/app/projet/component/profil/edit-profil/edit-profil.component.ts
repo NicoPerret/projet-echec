@@ -96,29 +96,17 @@ export class EditProfilComponent implements OnInit {
         );
     };
   }
-  // initUtilisateur(): Utilisateur {
-  //   let utilisateur: Utilisateur = {
-  //     id: this.form.get('id')?.value,
-  //     nom: this.form.get('loginGroup.nom')?.value,
-  //     prenom: this.form.get('loginGroup.prenom')?.value,
-  //     pseudo: this.form.get('loginGroup.pseudo')?.value,
-  //     email: this.form.get('emailCtrl')?.value,
-  //     mdp: this.utilisateur.mdp,
-  //     elo: this.utilisateur.elo,
-  //     historiqueparties: this.utilisateur.historiqueparties,
-  //   };
-  //   return utilisateur;
-  // }
+
   retour() {
     this.router.navigateByUrl('/profil');
   }
 
   modifier() {
+    this.utilisateur.nom = this.form.get('loginGroup.nom')?.value;
+    this.utilisateur.prenom = this.form.get('loginGroup.prenom')?.value;
+    this.utilisateur.email = this.form.get('emailCtrl')?.value;
+    this.utilisateur.pseudo = this.form.get('loginGroup.pseudo')?.value;
     this.srvUtilisateur.update(this.utilisateur).subscribe((data) => {
-      this.utilisateur.nom = this.form.get('loginGroup.nom')?.value;
-      this.utilisateur.prenom = this.form.get('loginGroup.prenom')?.value;
-      this.utilisateur.email = this.form.get('emailCtrl')?.value;
-      this.utilisateur.pseudo = this.form.get('loginGroup.pseudo')?.value;
       this.router.navigateByUrl('/profil');
     });
   }

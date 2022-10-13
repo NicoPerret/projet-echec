@@ -7,14 +7,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.echec.classe.historique.Statistiques;
+import fr.echec.classe.joueur.Utilisateur;
 import fr.echec.exception.HistoriquePartieNotFoundException;
 import fr.echec.exception.IdNegatifException;
+import fr.echec.exception.UtilisateurNotFoundException;
 import fr.echec.repository.IStatistiques;
+import fr.echec.repository.IUtilisateurs;
 
 @Service
 public class StatistiquesService {
 	@Autowired
 	private IStatistiques repoStatistiques;
+	
+	@Autowired
+	private IUtilisateurs repoUtilisateur;
 
 	public Statistiques findById(int id) throws IdNegatifException, HistoriquePartieNotFoundException {
 
@@ -58,6 +64,11 @@ public class StatistiquesService {
 		}
 		
 		repoStatistiques.deleteById(id);
+	}
+	
+	
+	public Statistiques findByUtilisateur(int id) throws UtilisateurNotFoundException {
+		return repoStatistiques.findByUtilisateur(id).orElseThrow(UtilisateurNotFoundException::new);
 	}
 	
 }

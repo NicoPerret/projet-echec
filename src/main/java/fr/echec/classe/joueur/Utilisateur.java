@@ -9,7 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -21,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import fr.echec.classe.JsonViews;
 import fr.echec.classe.historique.HistoriquePartie;
+import fr.echec.classe.historique.Statistiques;
 import fr.echec.enumerateur.CouleursPiece;
 
 @Entity

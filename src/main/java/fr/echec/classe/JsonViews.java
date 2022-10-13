@@ -16,5 +16,8 @@ public class JsonViews {
 	public static class ResultatProbleme extends Common{
 		
 	}
+	public static class Statistiques extends Common{
+		
+	}
 
 }

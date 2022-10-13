@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import fr.echec.classe.historique.Statistiques;
 import fr.echec.classe.joueur.Utilisateur;
 
 public interface IUtilisateurs extends JpaRepository<Utilisateur, Integer> {
