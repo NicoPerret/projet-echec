@@ -2,6 +2,7 @@ import { Statistiques } from '../../model/statistiques';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Utilisateur } from '../../model/utilisateur';
 
 @Injectable({
   providedIn: 'root',
@@ -41,5 +42,11 @@ export class StatistiquesService {
       partieJouees: statistiques.partieJouees,
     };
     return obj;
+  }
+
+  public getByUtilisateur(utilisateur: Utilisateur): Observable<Statistiques> {
+    return this.httpClient.get<Statistiques>(
+      `${StatistiquesService.URL}/utilisateur/${utilisateur.id}`
+    );
   }
 }

@@ -13,23 +13,34 @@ import { UtilisateurService } from '../../service/service/utilisateur.service';
 export class StatistiquesComponent implements OnInit {
   statistiques!: Statistiques;
   utilisateur: Utilisateur = new Utilisateur();
-  activatedRoute!: ActivatedRoute;
+  // activatedRoute!: ActivatedRoute;
   srvUtilisateur!: UtilisateurService;
+  // srvStat!: StatistiquesService;
 
   constructor(
-    private srvStat: StatistiquesService,
-    private router: Router // activatedRoute: ActivatedRoute, // srvUtilisateur: UtilisateurService
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private srvStat: StatistiquesService
   ) {}
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe((params) => {
-      if (params['id']) {
-        this.srvUtilisateur.getById(params['id']).subscribe((data) => {
-          this.utilisateur = data;
-        });
-      }
+    this.utilisateur = JSON.parse(sessionStorage.getItem('compte')!);
+
+    this.srvStat.getByUtilisateur(this.utilisateur).subscribe((data) => {
+      this.statistiques = data;
     });
   }
+  // this.statistiques = this.srvStat.getByUtilisateur(this.utilisateur);
+
+  // this.activatedRoute.params.subscribe((params) => {
+  //   if (params['id']) {
+  //     this.srvStat
+  //       .getByUtilisateur(params['utilisateur.id'])
+  //       .subscribe((data) => {
+  //         this.statistiques = data;
+  //       });
+  //   }
+  // });
 
   retour() {
     this.router.navigateByUrl('/accueil');

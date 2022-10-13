@@ -18,7 +18,4 @@ export class ProfilComponent implements OnInit {
   modifier() {
     this.router.navigateByUrl('/edit-profil');
   }
-  submit() {
-    return null;
-  }
 }
