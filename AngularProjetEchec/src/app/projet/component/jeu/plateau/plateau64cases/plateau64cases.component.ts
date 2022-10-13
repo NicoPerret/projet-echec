@@ -57,7 +57,7 @@ export class Plateau64casesComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.modeJeu = 'JcIA-stockfish';
+    this.modeJeu = 'JcJ';
     if (this.modeJeu == 'JcJ') {
       this.initialisationMapping = '/gkz/initialisation';
       this.jouerCoupMapping = '/gkz/jouer-coup';

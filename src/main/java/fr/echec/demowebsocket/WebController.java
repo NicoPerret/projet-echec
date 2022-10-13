@@ -14,6 +14,7 @@ import fr.echec.classe.mouvements.analyse.CoupsPossibles;
 import fr.echec.classe.mouvements.deplacement.Deplacement;
 import fr.echec.classe.parametres.ParametresPartie;
 import fr.echec.classe.partie.JcJ;
+import fr.echec.enumerateur.CouleursPiece;
 import fr.echec.finpartie.FinPartie;
 import fr.echec.service.UtilisateursService;
 
@@ -57,6 +58,7 @@ public class WebController {
 		p.setCompteurTours(1);
 		p.setJ1(j1);
 		p.setJ2(j2);
+		p.setCouleurJoueurActif(CouleursPiece.BLANC);
 		return p.getPlateau();
 	}
 
@@ -66,18 +68,21 @@ public class WebController {
 
 		coordArrivee64 = NotationCoup.conversionLettreTo64(coord.getCoupArrivee());
 		coordDepart64 = NotationCoup.conversionLettreTo64(coord.getCoupDepart());
-		d.deplacement(p.getPlateau().getPieceCase(coordDepart64), coordArrivee64, p.getPlateau());
-		p.finTour();
-		if (p.isPartieFinie()) {
+		if (p.getPlateau().getPieceCase(coordDepart64).getCouleur() == p.getCouleurJoueurActif()) {
 
-			p.savePartieEtHistorique();
-			Utilisateur J1 = srvUti.findByIdFetchHistorique(3);
-			Utilisateur J2 = srvUti.findByIdFetchHistorique(2);
+			d.deplacement(p.getPlateau().getPieceCase(coordDepart64), coordArrivee64, p.getPlateau());
+			p.finTour();
+			if (p.isPartieFinie()) {
 
-			stats.calculStats(J1);
-			stats.calculStats(J2);
-			initPlateau();
+				p.savePartieEtHistorique();
+				Utilisateur J1 = srvUti.findByIdFetchHistorique(3);
+				Utilisateur J2 = srvUti.findByIdFetchHistorique(2);
 
+				stats.calculStats(J1);
+				stats.calculStats(J2);
+				initPlateau();
+
+			}
 		}
 		return p.getPlateau();
 	}
