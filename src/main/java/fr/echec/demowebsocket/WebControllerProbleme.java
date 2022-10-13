@@ -60,7 +60,7 @@ public class WebControllerProbleme {
 	public Plateau initPlateau(IdProbleme idProbleme) throws Exception {
 		
 		int id = idProbleme.getIdProbleme();
-		Utilisateur j1 = srvUti.findById(1);
+		Utilisateur j1 = srvUti.findById(2);
 		problemePartie.setJ1(j1);
 		
 		Probleme probleme = srvProbleme.findById(id);
@@ -116,6 +116,9 @@ public class WebControllerProbleme {
 			}
 		
 		} else {
+			IdProbleme id = new IdProbleme();
+			id.setIdProbleme(problemePartie.getProbleme().getId()+1);
+			initPlateau(id);
 			System.out.println("GG t'as gagné, t'es le best !");
 		}
 		

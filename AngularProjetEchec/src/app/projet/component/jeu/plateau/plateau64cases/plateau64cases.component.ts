@@ -142,7 +142,7 @@ export class Plateau64casesComponent implements OnInit, AfterViewInit {
         _this.stompClient.send(
           _this.initialisationMapping,
           {},
-          JSON.stringify({ idProbleme: 1 })
+          JSON.stringify({ idProbleme: _this.problemeId })
         );
       } else {
         _this.stompClient.send(_this.initialisationMapping, {});

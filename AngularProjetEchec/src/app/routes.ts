@@ -1,3 +1,4 @@
+import { DivDroiteAccueilComponent } from './projet/component/accueil/div-droite-accueil/div-droite-accueil.component';
 import { DroiteVideComponent } from './projet/component/elements-commun/droite-vide/droite-vide.component';
 import { ColonneHistChatComponent } from './projet/component/jeu/colonne-hist-chat/colonne-hist-chat.component';
 import { EditProfilComponent } from './projet/component/profil/edit-profil/edit-profil.component';
@@ -40,6 +41,11 @@ export const routes: Routes = [
     canActivate: [AnonymousGuardService],
   },
   { path: 'divDroite', component: DroiteVideComponent, outlet: 'droite' },
+  {
+    path: 'divDroiteAccueil',
+    component: DivDroiteAccueilComponent,
+    outlet: 'droite',
+  },
   {
     path: 'chat',
     component: ColonneHistChatComponent,
