@@ -82,8 +82,9 @@ public class JcIA extends Partie {
 
 				String fenURL = fen.creationFenIA(this);
 
-				coupStockfish = restTemplate
-						.getForObject("https://www.chessdb.cn/cdb.php?action=querybest&board=" + fenURL, String.class);
+				coupStockfish = restTemplate.getForObject(
+						"https://www.chessdb.cn/cdb.php?action=querybest&board=" + fenURL + "&egtbmetric=dtm",
+						String.class);
 				System.out.println(coupStockfish);
 
 				if (!coupStockfish.trim().equals("nobestmove")) {
