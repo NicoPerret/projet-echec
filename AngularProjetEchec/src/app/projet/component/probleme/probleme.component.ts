@@ -60,7 +60,7 @@ export class ProblemeComponent implements OnInit {
   }
 
   renvoiProbleme(id: Number) {
-    this.router.navigateByUrl('/jeu');
+    this.router.navigateByUrl('/jeu/Probleme/' + id);
   }
 
 }

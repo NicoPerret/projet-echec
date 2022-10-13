@@ -1,5 +1,7 @@
 package fr.echec.demowebsocket;
 
+import java.util.concurrent.TimeUnit;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -68,6 +70,13 @@ public class WebControllerProbleme {
 		problemePartie.setPlateau(probleme.getFenDepart());
 		problemePartie.setTabCoups(tabCoups);
 		
+		System.out.println("LES COUPS A JOUER SONT : ");
+		for (String coup : problemePartie.getTabCoups()) {
+			System.out.println(coup);;
+		}
+		
+		TimeUnit.SECONDS.sleep(1);
+		
 		coupOrdi.coupOrdi(problemePartie.getTabCoups()[problemePartie.getNumCoup()],
 						  problemePartie.getPlateau(),
 						  problemePartie.getProbleme().isTraitAuBlanc());
@@ -83,10 +92,7 @@ public class WebControllerProbleme {
 		System.out.println("BONJOUR");
 		if (problemePartie.getNumCoup() < problemePartie.getTabCoups().length) {
 			System.out.println("JE SUIS ICI");
-			System.out.println("LES COUPS A JOUER SONT : ");
-			for (String coup : problemePartie.getTabCoups()) {
-				System.out.println(coup);;
-			}
+			
 			coordArrivee64 = NotationCoup.conversionLettreTo64(coord.getCoupArrivee());
 			coordDepart64 = NotationCoup.conversionLettreTo64(coord.getCoupDepart());
 			String coupJoueur = coord.getCoupDepart() + coord.getCoupArrivee();
@@ -98,6 +104,8 @@ public class WebControllerProbleme {
 				d.deplacement(problemePartie.getPlateau().getPieceCase(coordDepart64), coordArrivee64, problemePartie.getPlateau());
 				problemePartie.setNumCoup(problemePartie.getNumCoup()+1);
 				System.out.println(problemePartie.getPlateau());
+				
+				TimeUnit.SECONDS.sleep(2);
 				
 				if (problemePartie.getNumCoup() < problemePartie.getTabCoups().length) {
 					coupOrdi.coupOrdi(problemePartie.getTabCoups()[problemePartie.getNumCoup()],

@@ -54,7 +54,7 @@ export const routes: Routes = [
     canActivate: [UserGuardService],
   },
   {
-    path: 'jeu',
+    path: 'jeu/:modeJeu/:problemeId',
     component: JeuComponent,
     canActivate: [UserGuardService],
   },

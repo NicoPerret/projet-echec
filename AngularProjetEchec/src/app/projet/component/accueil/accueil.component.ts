@@ -56,7 +56,7 @@ export class AccueilComponent implements OnInit {
   }
 
   jouer() {
-    this.router.navigateByUrl('/jeu');
+    this.router.navigateByUrl('/jeu/' + this.parametresTypePartie + '/1' );
   }
 
   listePb() {

@@ -13,6 +13,7 @@ import {
 import * as SockJS from 'sockjs-client';
 import { Stomp } from '@stomp/stompjs';
 import { Utilisateur } from 'src/app/projet/model/utilisateur';
+import { ActivatedRoute, Router } from '@angular/router';
 
 declare function dragDrop(coupsPossibles: string[]): any;
 @Component({
@@ -47,30 +48,45 @@ export class Plateau64casesComponent implements OnInit, AfterViewInit {
   public jouerCoupMapping!: string;
   public destinationMapping!: string;
 
+  public problemeId?: number;
+
   @ViewChild('eventTarget')
   private ER!: ElementRef;
 
-  constructor() {}
+  constructor(private activatedRoute: ActivatedRoute, private router: Router) {}
 
   ngAfterViewInit(): void {
     this.connect();
   }
 
   ngOnInit(): void {
-    this.modeJeu="Probleme";
-    if (this.modeJeu=="JcJ") {
-      this.initialisationMapping='/gkz/initialisation';
-      this.jouerCoupMapping='/gkz/jouer-coup';
-      this.destinationMapping='/topic/hi';
-    } else if (this.modeJeu=="JcIA") {
-      this.initialisationMapping='/gkz/init-IA_facile';
-      this.jouerCoupMapping='';
-      this.destinationMapping='/topic/JCIA-facile';
-    } else if (this.modeJeu=="Probleme") {
-      this.initialisationMapping='/gkz/init-probleme';
-      this.jouerCoupMapping='/gkz/jc-pb';
-      this.destinationMapping='/topic/probleme';
-    }
+
+    this.activatedRoute.params.subscribe((params) => {
+      this.modeJeu = params['modeJeu'];
+      //this.problemeId = params['problemeId'];
+      this.problemeId = params['problemeId'];
+
+      console.log(params);
+      console.log("MODE JEU : " +  this.modeJeu);
+      console.log("PROBLEME ID : " +this.problemeId);
+
+      // this.modeJeu="Probleme";
+      if (this.modeJeu=="JcJ") {
+        this.initialisationMapping='/gkz/initialisation';
+        this.jouerCoupMapping='/gkz/jouer-coup';
+        this.destinationMapping='/topic/hi';
+      } else if (this.modeJeu=="JcIA") {
+        this.initialisationMapping='/gkz/init-IA_facile';
+        this.jouerCoupMapping='';
+        this.destinationMapping='/topic/JCIA-facile';
+      } else if (this.modeJeu=="Probleme") {
+        this.initialisationMapping='/gkz/init-probleme';
+        this.jouerCoupMapping='/gkz/jc-pb';
+        this.destinationMapping='/topic/probleme';
+      }
+
+    });
+
     // this.connect();
     // this.init();
   }
@@ -125,7 +141,7 @@ export class Plateau64casesComponent implements OnInit, AfterViewInit {
 
       if (_this.modeJeu=="Probleme"){
         _this.stompClient.send(_this.initialisationMapping, {},
-          JSON.stringify({ idProbleme: 1 }));
+          JSON.stringify({ idProbleme: _this.problemeId }));
       } else {
         _this.stompClient.send(_this.initialisationMapping, {});
       }
