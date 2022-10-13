@@ -60,21 +60,20 @@ export class Plateau64casesComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-
     this.activatedRoute.params.subscribe((params) => {
       this.modeJeu = params['modeJeu'];
       //this.problemeId = params['problemeId'];
       this.problemeId = params['problemeId'];
 
       console.log(params);
-      console.log("MODE JEU : " +  this.modeJeu);
-      console.log("PROBLEME ID : " +this.problemeId);
+      console.log('MODE JEU : ' + this.modeJeu);
+      console.log('PROBLEME ID : ' + this.problemeId);
 
       // this.modeJeu="Probleme";
-      if (this.modeJeu=="JcJ") {
-        this.initialisationMapping='/gkz/initialisation';
-        this.jouerCoupMapping='/gkz/jouer-coup';
-        this.destinationMapping='/topic/hi';
+      if (this.modeJeu == 'JcJ') {
+        this.initialisationMapping = '/gkz/initialisation';
+        this.jouerCoupMapping = '/gkz/jouer-coup';
+        this.destinationMapping = '/topic/hi';
       } else if (this.modeJeu == 'JcIA-facile') {
         this.initialisationMapping = '/gkz/init-IA_facile';
         this.jouerCoupMapping = '/gkz/jc-IA-facile';
@@ -83,16 +82,12 @@ export class Plateau64casesComponent implements OnInit, AfterViewInit {
         this.initialisationMapping = '/gkz/init-IA_facile';
         this.jouerCoupMapping = '/gkz/jc-stockfish';
         this.destinationMapping = '/topic/JCIA-facile';
-      } else if (this.modeJeu=="Probleme") {
-        this.initialisationMapping='/gkz/init-probleme';
-        this.jouerCoupMapping='/gkz/jc-pb';
-        this.destinationMapping='/topic/probleme';
+      } else if (this.modeJeu == 'Probleme') {
+        this.initialisationMapping = '/gkz/init-probleme';
+        this.jouerCoupMapping = '/gkz/jc-pb';
+        this.destinationMapping = '/topic/probleme';
       }
-
     });
-
-    // this.connect();
-    // this.init();
   }
 
   @HostListener('mousedown') merciJeremyDeNousAider() {
@@ -149,7 +144,6 @@ export class Plateau64casesComponent implements OnInit, AfterViewInit {
           {},
           JSON.stringify({ idProbleme: 1 })
         );
-
       } else {
         _this.stompClient.send(_this.initialisationMapping, {});
       }
