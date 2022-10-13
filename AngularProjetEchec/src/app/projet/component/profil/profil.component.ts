@@ -1,3 +1,4 @@
+import { UtilisateurService } from 'src/app/projet/service/service/utilisateur.service';
 import { Utilisateur } from './../../model/utilisateur';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, NgForm } from '@angular/forms';
@@ -10,9 +11,16 @@ import { Router } from '@angular/router';
 })
 export class ProfilComponent implements OnInit {
   utilisateur!: Utilisateur;
-  constructor(private router: Router) {}
+  id!: number;
+  constructor(
+    private router: Router,
+    private srvUtilisateur: UtilisateurService
+  ) {}
 
   ngOnInit(): void {
+    // this.srvUtilisateur.getById(this.utilisateur.id).subscribe((data) => {
+    //   this.utilisateur = data;
+    // });
     this.utilisateur = JSON.parse(sessionStorage.getItem('compte')!);
   }
   modifier() {
