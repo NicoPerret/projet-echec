@@ -3,7 +3,7 @@ function dragDrop(possibilites) {
   (async () => {
     let cpt = 1;
     let bool = true;
-    let audio = new Audio("assets/372.mp3");
+    let audio = new Audio("assets/2172.mp3");
 
     for (let i of document.querySelectorAll("img")) {
       i.addEventListener("dragstart", (e) => {

@@ -75,7 +75,7 @@ public class WebControllerProbleme {
 			System.out.println(coup);;
 		}
 		
-		TimeUnit.SECONDS.sleep(1);
+		//TimeUnit.SECONDS.sleep(1);
 		
 		coupOrdi.coupOrdi(problemePartie.getTabCoups()[problemePartie.getNumCoup()],
 						  problemePartie.getPlateau(),
