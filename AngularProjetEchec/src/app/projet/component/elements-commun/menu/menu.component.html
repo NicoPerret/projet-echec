@@ -2,11 +2,31 @@
   <nav>
     <ul>
       <li class="active">
-        <a routerLink="/accueil">Projet Echecs</a>
+        <a
+          [routerLink]="[
+            {
+              outlets: {
+                primary: ['accueil'],
+                droite: ['divDroite']
+              }
+            }
+          ]"
+          >Projet Echecs</a
+        >
       </li>
 
       <li>
-        <a routerLink="/historique">Historique</a>
+        <a
+          [routerLink]="[
+            {
+              outlets: {
+                primary: ['historique'],
+                droite: ['divDroite']
+              }
+            }
+          ]"
+          >Historique</a
+        >
       </li>
 
       <li>
@@ -24,17 +44,57 @@
       </li>
 
       <li>
-        <a routerLink="/probleme">Probleme</a>
+        <a
+          [routerLink]="[
+            {
+              outlets: {
+                primary: ['probleme'],
+                droite: ['divDroite']
+              }
+            }
+          ]"
+          >Probleme</a
+        >
       </li>
       <li>
-        <a routerLink="/profil">Profil</a>
+        <a
+          [routerLink]="[
+            {
+              outlets: {
+                primary: ['profil'],
+                droite: ['divDroite']
+              }
+            }
+          ]"
+          >Profil</a
+        >
       </li>
 
       <li>
-        <a routerLink="/statistiques">Mes statistiques</a>
+        <a
+          [routerLink]="[
+            {
+              outlets: {
+                primary: ['statistiques'],
+                droite: ['divDroite']
+              }
+            }
+          ]"
+          >Mes statistiques</a
+        >
       </li>
       <li *ngIf="connecte">
-        <a routerLink="/deconnexion">Deconnexion</a>
+        <a
+          [routerLink]="[
+            {
+              outlets: {
+                primary: ['deconnexion'],
+                droite: ['divDroite']
+              }
+            }
+          ]"
+          >Deconnexion</a
+        >
       </li>
     </ul>
   </nav>

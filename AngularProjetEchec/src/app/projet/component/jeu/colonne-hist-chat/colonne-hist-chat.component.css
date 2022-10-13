@@ -3,7 +3,6 @@
   flex-direction: row;
   flex-wrap: wrap;
   box-sizing: border-box;
-  margin: 5px;
   height: 100%;
 }
 
@@ -17,4 +16,5 @@
 .historiqueCoups {
   width: 100%;
   text-align: center;
+  padding-top: 30px;
 }

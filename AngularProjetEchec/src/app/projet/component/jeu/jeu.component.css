@@ -1,5 +1,9 @@
+.grilleMilieu {
+  display: grid;
+  grid-template-columns: 80% 20%;
+}
+
 .grilleCentral5Verti {
-  width: 70%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -13,25 +17,24 @@
   height: 30px;
   display: grid;
   grid-template-columns: 50% 50%;
-  background: blue;
+  color: white;
 }
 
 .grilleCentraleNomChrono div {
-  border: solid 1px black;
+  border: solid 1px white;
 }
 
 .grilleCentral5Verti .piecesCapturees {
   width: 100%;
   height: 30px;
   padding: 0 5px 0 5px;
-  border: solid 1px black;
+  border: solid 1px rgb(255, 255, 255);
   box-sizing: border-box;
-  background: yellow;
   display: flex;
   flex-direction: row;
-
   position: left;
   text-align: left;
+  color: white;
 }
 
 .piecesCapturees > p {

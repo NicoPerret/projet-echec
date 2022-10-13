@@ -1,125 +1,133 @@
-.milieu>div.zoneBouton {
-	display: flex;
-	padding: 20px;
-	justify-content: center;
-
+.milieu > div.zoneBouton {
+  display: flex;
+  padding: 20px;
+  justify-content: center;
 }
 
-.parametres-content>form>table {
-	display: flex;
+.parametres-content > form > table {
+  display: flex;
 }
 
 .parametres-container {
-	display: none;
-	justify-content: center;
-	align-items: center;
-	margin-top: 20px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
 }
 
 .parametres-container.open {
-	display: flex;
+  display: flex;
 }
 
 .parametres {
-	background-color: rgba(255, 255, 255, 0.685);
-	border-radius: 32px;
-	overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.685);
+  border-radius: 32px;
+  overflow: hidden;
 }
 
 .parametres-header {
-	background-color: #33a3eeab;
-	color: white;
-	font-size: 18px;
-	padding: 10px;
-	display: flex;
-	justify-content: center;
-
+  background-color: #33a3eeab;
+  color: white;
+  font-size: 18px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
 }
 
 .parametres-content {
-	/* width:100%;
+  /* width:100%;
 	height:100%; */
-	padding: 15px 20px 30px 20px;
+  padding: 15px 20px 30px 20px;
 }
 
-.parametres-content>form>table>thead>tr>th {
-	text-align: center;
-	width: 100%;
+.parametres-content > form > table > thead > tr > th {
+  text-align: center;
+  width: 100%;
 }
 
-.parametres-content>form>table>tbody>tr>td {
-	padding: 10px;
-	text-align: left;
-	font-size: 20px;
+.parametres-content > form > table > tbody > tr > td {
+  padding: 10px;
+  text-align: left;
+  font-size: 20px;
 }
 div.droite table {
-	padding: 10px;
-	width: 100%;
+  padding: 10px;
+  width: 100%;
 }
 
 .probleme a {
-	color: black;
-	text-decoration: none;
+  color: black;
+  text-decoration: none;
 }
-.droite{
-	margin-top: 30%;
-}
-
-.milieu h2, div.milieu > h2 ~p{
-	color: white;
+.droite {
+  margin-top: 30%;
 }
 
-
-.petitBouton{
-	box-shadow: 0 0 0 1px black;
-	border: 1px solid #ccc;
-	border-radius: 32px;
-	text-align: center;
-	font-size: 20px;
-	font-weight: bold;
-	padding: 5px 10px 5px 10px;
-	margin: 15px;
-	background-color: #ffffffd3;
-	color: rgb(0, 0, 0);
+.milieu h2,
+div.milieu > h2 ~ p {
+  color: white;
 }
 
+.grosBouton {
+  box-shadow: 0 0 0 1px black;
+  border: 1px solid #ccc;
+  border-radius: 32px;
+  text-align: center;
+  font-size: 30px;
+  padding: 15px 40px 15px 40px;
+  margin: 15px;
+  background-color: #33a3eeab;
+  color: white;
+}
+
+.petitBouton {
+  box-shadow: 0 0 0 1px black;
+  border: 1px solid #ccc;
+  border-radius: 32px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 5px 10px 5px 10px;
+  margin: 15px;
+  background-color: #ffffffd3;
+  color: rgb(0, 0, 0);
+}
 
 .petitBouton:hover {
-	box-shadow: 0 0 9px #d85000;
-	border: 1px solid #d85000;
+  box-shadow: 0 0 9px #d85000;
+  border: 1px solid #d85000;
 }
 .input:hover {
-	box-shadow: 0 0 9px #d85000;
-	border: 1px solid #d85000;
+  box-shadow: 0 0 9px #d85000;
+  border: 1px solid #d85000;
 }
 
-
-select{
-	box-shadow: 0 0 0 1px black;
-	border: 1px solid #ccc;
-	border-radius: 32px;
-	text-align: center;
-	font-size: 14px;
-	padding: 5px 10px 5px 10px;
-	margin: 15px;
-	background-color: #ffffffd3;
-	color: rgb(0, 0, 0);
+select {
+  box-shadow: 0 0 0 1px black;
+  border: 1px solid #ccc;
+  border-radius: 32px;
+  text-align: center;
+  font-size: 14px;
+  padding: 5px 10px 5px 10px;
+  margin: 15px;
+  background-color: #ffffffd3;
+  color: rgb(0, 0, 0);
 }
- input{
-	box-shadow: 0 0 0 1px black;
-	border: 1px solid #ccc;
-	border-radius: 32px;
-	text-align: center;
-	font-size: 14px;
-	padding: 5px 10px 5px 10px;
-	margin: 15px;
-	background-color: #ffffffd3;
-	color: rgb(0, 0, 0);
- }
+input {
+  box-shadow: 0 0 0 1px black;
+  border: 1px solid #ccc;
+  border-radius: 32px;
+  text-align: center;
+  font-size: 14px;
+  padding: 5px 10px 5px 10px;
+  margin: 15px;
+  background-color: #ffffffd3;
+  color: rgb(0, 0, 0);
+}
 
-body{
-	background-image: url(/assets/echecs.jpg);
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-position: center;
+body {
+  background-image: url(/assets/echecs.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }

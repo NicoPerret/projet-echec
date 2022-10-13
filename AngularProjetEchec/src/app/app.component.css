@@ -1,5 +1,5 @@
 body {
-  background: rgba(0, 0, 0, 0.767);
+  /* background: rgba(0, 0, 0, 0.767); */
   display: grid;
 
   grid-template-areas:
@@ -19,8 +19,6 @@ body {
 .milieu {
   grid-area: milieu;
   text-align: center;
-  display: grid;
-  grid-template-columns: 0% 80% 20%;
 }
 
 .droite {
